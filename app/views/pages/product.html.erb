@@ -23,8 +23,11 @@
       </div>
     </div>
 
-    <div class="mt-10 grid gap-x-12 gap-y-10 lg:ml-[calc(7rem+3rem)] lg:grid-cols-[1.15fr_1fr]">
-      <div class="prose-braingency" data-reveal style="--reveal-delay:90ms">
+    <%# With a feature list the prose becomes a sticky sidebar so it stays with
+        the reader while they scan; without one it simply widens. %>
+    <div class="mt-10 grid gap-x-14 gap-y-10 lg:ml-[calc(7rem+3rem)] <%= "lg:grid-cols-[1fr_1.2fr]" if features.present? %>">
+      <div class="prose-braingency <%= features.present? ? "lg:sticky lg:top-28 lg:self-start" : "max-w-[70ch]" %>"
+           data-reveal style="--reveal-delay:90ms">
         <%= paragraphs("#{base}.body") %>
 
         <% if status.present? %>
