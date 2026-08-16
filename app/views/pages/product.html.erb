@@ -31,8 +31,12 @@
         <%= paragraphs("#{base}.body") %>
 
         <% if status.present? %>
+          <%# Most projects are live; Vertio overrides the badge because it is
+              still in development. %>
           <p class="!mt-8 flex items-start gap-3 border-l border-lime/40 pl-4 not-italic">
-            <span class="label label-accent mt-1 shrink-0"><%= t("common.in_production") %></span>
+            <span class="label label-accent mt-1 shrink-0">
+              <%= t("#{base}.status_label", default: t("common.in_production")) %>
+            </span>
             <span class="text-[0.9375rem] text-fg"><%= status %></span>
           </p>
         <% end %>

@@ -34,13 +34,18 @@
           <% Site::NAV_PAGES.each do |page| %>
             <li><%= link_to t("nav.#{page.key}"), path_for(page.key), class: "link text-[0.9375rem] text-fg-muted" %></li>
           <% end %>
+          <%# The plan is not in the main nav, so the sitemap column is where a
+              visitor — or an EIC evaluator — goes looking for it. %>
+          <li>
+            <%= link_to t("nav.gender_equality_plan"), gender_equality_plan_path,
+                  class: "link text-[0.9375rem] text-fg-muted" %>
+          </li>
         </ul>
       </nav>
 
       <div>
         <h2 class="label"><%= t("footer.company") %></h2>
         <ul class="mt-5 space-y-3 text-[0.9375rem] text-fg-muted">
-          <li><%= link_to t("nav.gender_equality_plan"), gender_equality_plan_path, class: "link" %></li>
           <li><%= mail_to Site::CONTACT_EMAIL, Site::CONTACT_EMAIL, class: "link" %></li>
           <% Site::FOUNDERS.each do |f| %>
             <li>

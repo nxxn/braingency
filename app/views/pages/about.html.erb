@@ -30,18 +30,20 @@
         label: t("pages.about.ml_approach.label"),
         heading: t("pages.about.ml_approach.heading") %>
 
-  <div class="mt-10 grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
-    <div class="prose-braingency" data-reveal>
-      <%= paragraphs("pages.about.ml_approach.body") %>
-    </div>
+  <div class="mt-10 max-w-3xl prose-braingency" data-reveal>
+    <%= paragraphs("pages.about.ml_approach.body") %>
+  </div>
 
-    <figure class="card relative p-8 lg:p-10" data-reveal style="--reveal-delay:120ms">
-      <span class="label label-accent">&#10077;</span>
-      <blockquote class="mt-5 text-h3 font-medium leading-snug text-fg">
+  <%# The quote is the point of the section, so it gets the full width rather
+      than sitting in a column that leaves the prose stranded beside it. %>
+  <figure class="card mt-12 p-8 lg:p-14" data-reveal style="--reveal-delay:120ms">
+    <div class="grid gap-8 lg:grid-cols-[7rem_1fr] lg:gap-12">
+      <span class="label label-accent">In practice</span>
+      <blockquote class="text-h2 max-w-[26ch] font-medium leading-[1.12] text-fg">
         <%= t("pages.about.ml_approach.pullquote") %>
       </blockquote>
-    </figure>
-  </div>
+    </div>
+  </figure>
 </section>
 
 <%# ====================================================================== %>

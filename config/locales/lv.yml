@@ -148,20 +148,6 @@ lv:
             title: "Dibinātāji, kas raksta kodu"
             body: "Abi dibinātāji ir praktizējoši inženieri ar 25+ gadu kopējo pieredzi fintech platformu izstrādē Ruby on Rails."
 
-      proof:
-        label: "Pieredze"
-        years:
-          value: "25"
-          suffix: "+"
-          caption: "Gadu kopējā inženierijas pieredze fintech jomā"
-        markets:
-          value: "3"
-          caption: "Tirgi ražošanā — Latvija, Spānija, Apvienotie Arābu Emirāti"
-        products:
-          value: "4"
-          caption: "Produkti, kas izveidoti un darbojas ražošanā"
-        jhu: "Mācību platforma, kas izstrādāta Džonsa Hopkinsa universitātei, ASV"
-
     about:
       heading: "Par Braingency"
       lead: "Braingency ir programmatūras izstrādes uzņēmums, kas veido biznesa infrastruktūru — sistēmas, uz kurām balstās uzņēmumu ikdienas darbība, nevis mājaslapas, ko tie rāda publikai."
@@ -183,7 +169,7 @@ lv:
         label: "Kur mēs strādājam"
         heading: "Rīga un trīs tirgi ražošanā"
         body:
-          - "Mēs atrodamies Rīgā, Latvijā, un strādājam ar klientiem Eiropā, Tuvajos Austrumos un Amerikas Savienotajās Valstīs. Mūsu pašreizējā klientu bāze aptver Latviju, Spāniju un Apvienotos Arābu Emirātus."
+          - "Mēs atrodamies Rīgā, Latvijā, un strādājam ar klientiem Eiropā un Tuvajos Austrumos. Mūsu pašreizējā klientu bāze aptver Latviju, Spāniju un Apvienotos Arābu Emirātus."
       details:
         label: "Uzņēmuma dati"
         legal_name: "Juridiskais nosaukums"
@@ -233,11 +219,14 @@ lv:
             - "Atšķirībā no atsevišķa tērzēšanas logrīka, asistentam ir savs CRM: katra saruna tiek saglabāta ar apkopotu ierakstu par to, ko klients jautāja un kas tika atrisināts, sniedzot pārdošanas un atbalsta komandām meklējamu klientu vajadzību vēsturi, nevis nesaistītu sarunu plūsmu."
         vertio:
           index: "04"
-          name: "Vertio — nekustamā īpašuma vērtēšana Latvijas tirgum"
+          name: "Vertio — nekustamā īpašuma vērtēšana kreditētājiem"
           subheading: "Uz ML balstīta nekustamā īpašuma cenu prognozēšana"
           body:
-            - "Vertio ir mūsu īpašumā esoša platforma nekustamā īpašuma vērtību analīzei un prognozēšanai Latvijā. Tā balstās uz mūsu pašu mašīnmācīšanās modeli, kas apmācīts uz Latvijas tirgus datiem, un sniedz atsevišķu īpašumu novērtējumus visā tirgū."
+            - "Vertio ir mūsu īpašumā esoša platforma nekustamā īpašuma vērtību analīzei un prognozēšanai. Tā balstās uz mūsu pašu mašīnmācīšanās modeli, kas apmācīts uz reāliem tirgus datiem, un sniedz atsevišķu īpašumu novērtējumus visā tirgū."
+            - "Modeļa jēga ir atbalstīt lēmumu pieņemšanu: Vertio pastāv, lai palīdzētu kreditētājiem izlemt, cik daudz aizdot. Tieši precīzs un aktuāls ķīlas novērtējums nosaka pareizo kredīta summu, un kļūda jebkurā virzienā izmaksā dārgi — tā vai nu pakļauj kredītportfeli pārmērīgam riskam, vai liek atteikt labiem darījumiem."
             - "Tiešākie pielietojumi ir kreditēšanā: automatizēta ķīlas vērtēšana hipotekāro kredītu izvērtēšanā un īpašuma vērtības dati kredītspējas novērtēšanas sistēmām. Vertio ir tieši savienots ar mūsu kreditēšanas platformu, tāpēc hipotekāro kredītu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis novecojušu novērtējumu."
+          status_label: "Izstrādē"
+          status: "Vispirms izveidots Latvijas tirgum, šobrīd tiek paplašināts uz Spāniju."
       technology:
         label: "Tehnoloģijas"
         heading: "Veidots, lai paliktu ražošanā"
@@ -302,7 +291,7 @@ lv:
       members:
         shehurina:
           bio:
-            - "Michelle ir Braingency līdzdibinātāja un vadītāja, un drīzāk praktizējoša inženiere nekā no ikdienas darba attālināta vadītāja. Viņas galvenais tehnoloģiju kopums ir Ruby on Rails, un viņa personīgi projektē sistēmu arhitektūru un datu modeļus, veido un mērogo Rails lietotnes, ievieš finanšu loģiku un automatizācijas procesus, integrē banku, KYC, maksājumu un AI pakalpojumus un pārbauda visu kritisko kodu."
+            - "Misela ir Braingency līdzdibinātāja un vadītāja, un drīzāk praktizējoša inženiere nekā no ikdienas darba attālināta vadītāja. Viņas galvenais tehnoloģiju kopums ir Ruby on Rails, un viņa personīgi projektē sistēmu arhitektūru un datu modeļus, veido un mērogo Rails lietotnes, ievieš finanšu loģiku un automatizācijas procesus, integrē banku, KYC, maksājumu un AI pakalpojumus un pārbauda visu kritisko kodu."
             - "Viņai ir maģistra grāds attīstības izglītībā un globālajā mācīšanā no UCL Izglītības institūta un bakalaura grāds biznesā un ekonomikā no Stokholmas Ekonomikas augstskolas Rīgā, kā arī papildu studijas London School of Economics and Political Science. Viņai ir sertifikāts uzraudzītajā mašīnmācīšanās (regresija un klasifikācija)."
             - "Pirms Braingency viņa bija Copy Brain, AI satura ģenerēšanas uzņēmuma, vadītāja un vairāk nekā desmit gadus līdztekus inženierijas darbam strādāja par matemātikas pasniedzēju. Viņas agrākajā karjerā ir vecākā projektu vadītāja un valdes locekles amati IT un biznesa konsultāciju jomā Rīgā."
         gnotovs:
@@ -355,7 +344,6 @@ lv:
       details:
         label: "Uzņēmuma dati"
         legal_name: "Juridiskais nosaukums"
-        trading_as: "Zīmols"
         reg: "Reģistrācijas numurs"
         vat: "PVN numurs"
         address: "Juridiskā adrese"

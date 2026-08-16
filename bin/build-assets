@@ -3,5 +3,10 @@
 # bin/dev runs these in watch mode; this is for scripted/CI-style rebuilds.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+
+# A leftover public/assets manifest (from a production precompile run) makes
+# Propshaft serve those stale files in development instead of the fresh build.
+rm -rf public/assets
+
 yarn build
 yarn build:css

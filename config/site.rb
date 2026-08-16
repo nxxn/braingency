@@ -36,7 +36,9 @@ module Site
   FOUNDERS = [
     {
       key: :shehurina,
-      name: "Michelle Shehurina",
+      # Spelling matches the signed Gender Equality Plan, which EIC evaluators
+      # cross-check against the site.
+      name: "Misela Sehurina",
       role_key: :ceo,
       linkedin: "https://www.linkedin.com/in/shehurina",
       initials: "MS"

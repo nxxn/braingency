@@ -99,29 +99,3 @@
   </div>
 </section>
 
-<%# ======================================================================
-    Track record
-    ====================================================================== %>
-<section class="shell pt-[var(--spacing-section)]">
-  <%= render "shared/section_head", index: "04", label: t("pages.home.proof.label") %>
-
-  <div class="mt-12 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-3" data-reveal-group="90">
-    <% [
-         ["years",   t("pages.home.proof.years.value"),   t("pages.home.proof.years.suffix"),  t("pages.home.proof.years.caption")],
-         ["markets", t("pages.home.proof.markets.value"), nil,                                 t("pages.home.proof.markets.caption")],
-         ["products",t("pages.home.proof.products.value"),nil,                                 t("pages.home.proof.products.caption")]
-       ].each do |_key, value, suffix, caption| %>
-      <div class="card border-0 p-8 lg:p-10">
-        <p class="flex items-baseline text-[clamp(3rem,2rem+4vw,5rem)] font-medium leading-none tracking-[-0.04em]">
-          <span data-count="<%= value %>"><%= value %></span><span class="text-lime"><%= suffix %></span>
-        </p>
-        <p class="mt-5 max-w-[28ch] text-[0.9375rem] leading-relaxed text-fg-muted"><%= caption %></p>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="mt-10 flex items-center gap-4 border-t border-line pt-6" data-reveal>
-    <span class="label label-accent">&#9679;</span>
-    <p class="text-[0.9375rem] text-fg-muted"><%= t("pages.home.proof.jhu") %></p>
-  </div>
-</section>

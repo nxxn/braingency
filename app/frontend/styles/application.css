@@ -117,7 +117,7 @@
   --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 
   /* Rhythm */
-  --spacing-section: clamp(5rem, 3rem + 9vw, 11rem);
+  --spacing-section: clamp(4.5rem, 2.5rem + 6vw, 8.5rem);
   --spacing-gutter: clamp(1.25rem, 0.5rem + 3vw, 4rem);
 }
 

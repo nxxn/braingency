@@ -7,8 +7,10 @@
 %><%
   shader = local_assigns.fetch(:shader, false)
 %>
-<section class="relative isolate overflow-hidden <%= shader ? "flex flex-col pb-10 pt-28" : "pb-[clamp(3rem,2rem+5vw,6rem)] pt-[clamp(8rem,6rem+8vw,13rem)]" %>"
-         <%= 'style="min-height: max(42rem, 92svh)"'.html_safe if shader %>>
+<%# The floor keeps the hero substantial on short viewports; capping it well
+    under 100svh keeps tall screens from opening a dead band under the copy. %>
+<section class="relative isolate overflow-hidden <%= shader ? "flex flex-col pb-14 pt-28" : "pb-[clamp(3rem,2rem+5vw,6rem)] pt-[clamp(8rem,6rem+8vw,13rem)]" %>"
+         <%= 'style="min-height: max(34rem, 66svh)"'.html_safe if shader %>>
 
   <%# --- Backdrop ------------------------------------------------------- %>
   <% if shader %>
@@ -80,7 +82,7 @@
 
   <%# --- Status strip --------------------------------------------------- %>
   <% if local_assigns[:meta].present? %>
-    <div class="shell relative mt-[clamp(2.5rem,1rem+5vw,4.5rem)]">
+    <div class="shell relative mt-10">
       <div class="rule"></div>
       <ul class="mask-fade-r flex gap-x-9 gap-y-4 overflow-x-auto pt-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <% meta.each_with_index do |item, i| %>

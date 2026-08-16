@@ -128,20 +128,6 @@ en:
             title: "Founders who write code"
             body: "Both founders are hands-on engineers with a combined 25+ years of experience building fintech platforms in Ruby on Rails."
 
-      proof:
-        label: "Track record"
-        years:
-          value: "25"
-          suffix: "+"
-          caption: "Years of combined engineering experience in fintech"
-        markets:
-          value: "3"
-          caption: "Markets in production — Latvia, Spain, United Arab Emirates"
-        products:
-          value: "4"
-          caption: "Products built and running in production"
-        jhu: "Learning platform developed for Johns Hopkins University, USA"
-
     about:
       heading: "About Braingency"
       lead: "Braingency is a software development company that builds business infrastructure — the systems companies run their operations on, rather than the websites they show to the public."
@@ -163,7 +149,7 @@ en:
         label: "Where we work"
         heading: "Riga, and three markets in production"
         body:
-          - "We are based in Riga, Latvia, and work with clients across Europe, the Middle East and the United States. Our current client base spans Latvia, Spain and the United Arab Emirates."
+          - "We are based in Riga, Latvia, and work with clients across Europe and the Middle East. Our current client base spans Latvia, Spain and the United Arab Emirates."
       details:
         label: "Company details"
         legal_name: "Legal name"
@@ -213,11 +199,14 @@ en:
             - "Unlike a standalone chat widget, the assistant includes its own CRM: every conversation is stored with a summarised record of what the customer asked and what was resolved, giving the sales and support teams a searchable history of customer intent rather than a stream of disconnected chat logs."
         vertio:
           index: "04"
-          name: "Vertio — property valuation for the Latvian market"
+          name: "Vertio — property valuation for lenders"
           subheading: "ML-based real estate price prediction"
           body:
-            - "Vertio is our proprietary platform for analysing and forecasting real estate values in Latvia. Built on our own machine learning model trained on Latvian market data, it produces valuations for individual properties across the market."
+            - "Vertio is our proprietary platform for analysing and forecasting real estate values. Built on our own machine learning model trained on real market data, it produces valuations for individual properties across the market."
+            - "The point of the model is decision support: Vertio exists to help lenders decide how much to lend. An accurate, current valuation of the collateral is what determines the right loan amount, and getting that number wrong in either direction is expensive — it either over-exposes the loan book or turns away sound business."
             - "The immediate applications are in lending: automated collateral valuation for mortgage underwriting, and property-value inputs for credit scoring systems. Vertio connects directly to our lending platform, so a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal."
+          status_label: "In development"
+          status: "Built first for the Latvian market and currently being extended to Spain."
       technology:
         label: "Technology"
         heading: "Built to stay in production"
@@ -282,7 +271,7 @@ en:
       members:
         shehurina:
           bio:
-            - "Michelle is co-founder and CEO of Braingency, and a hands-on engineer rather than a hands-off executive. Her primary stack is Ruby on Rails, and she personally designs system architecture and data models, builds and scales Rails applications, implements financial logic and automation pipelines, integrates banking, KYC, payment and AI services, and reviews all critical code."
+            - "Misela is co-founder and CEO of Braingency, and a hands-on engineer rather than a hands-off executive. Her primary stack is Ruby on Rails, and she personally designs system architecture and data models, builds and scales Rails applications, implements financial logic and automation pipelines, integrates banking, KYC, payment and AI services, and reviews all critical code."
             - "She holds an MA in Development Education and Global Learning from the UCL Institute of Education and a BSc in Business and Economics from the Stockholm School of Economics in Riga, with additional study at the London School of Economics and Political Science. She is certified in Supervised Machine Learning (Regression and Classification)."
             - "Before Braingency she was CEO of Copy Brain, an AI content generation company, and spent over a decade as a mathematics lecturer alongside her engineering work. Her earlier career includes senior project management and managing director roles across IT and business consulting in Riga."
         gnotovs:
@@ -398,7 +387,6 @@ en:
       details:
         label: "Company details"
         legal_name: "Legal name"
-        trading_as: "Trading as"
         reg: "Registration number"
         vat: "VAT number"
         address: "Registered address"
