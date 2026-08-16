@@ -366,19 +366,6 @@
     text-decoration-color: var(--color-lime);
   }
 
-  /* --- Oversized footer wordmark ----------------------------------------- */
-
-  .footer-wordmark::after {
-    content: "braingency";
-    display: block;
-    white-space: nowrap;
-    font-size: 19vw;
-    font-weight: 500;
-    line-height: 0.78;
-    letter-spacing: -0.055em;
-    color: rgb(152 160 163 / 0.07);
-  }
-
   /* --- Skip link ---------------------------------------------------------- */
 
   .skip-link {

@@ -7,10 +7,11 @@
 %><%
   shader = local_assigns.fetch(:shader, false)
 %>
-<%# The floor keeps the hero substantial on short viewports; capping it well
-    under 100svh keeps tall screens from opening a dead band under the copy. %>
-<section class="relative isolate overflow-hidden <%= shader ? "flex flex-col pb-14 pt-28" : "pb-[clamp(3rem,2rem+5vw,6rem)] pt-[clamp(8rem,6rem+8vw,13rem)]" %>"
-         <%= 'style="min-height: max(34rem, 66svh)"'.html_safe if shader %>>
+<%# Tall enough to give the shader room to read as motion, with the copy and
+    the status strip centred as one group so the leftover height falls evenly
+    above and below rather than pooling into a single gap. %>
+<section class="relative isolate overflow-hidden <%= shader ? "flex flex-col justify-center pb-16 pt-28" : "pb-[clamp(3rem,2rem+5vw,6rem)] pt-[clamp(8rem,6rem+8vw,13rem)]" %>"
+         <%= 'style="min-height: max(38rem, 86svh)"'.html_safe if shader %>>
 
   <%# --- Backdrop ------------------------------------------------------- %>
   <% if shader %>
@@ -34,7 +35,7 @@
   <% end %>
 
   <%# --- Content -------------------------------------------------------- %>
-  <div class="shell relative <%= "flex flex-1 flex-col justify-center" if shader %>">
+  <div class="shell relative">
     <% if local_assigns[:eyebrow] %>
       <div class="mb-8 flex items-center gap-3" data-reveal>
         <span class="relative flex h-1.5 w-1.5">
@@ -82,9 +83,8 @@
 
   <%# --- Status strip --------------------------------------------------- %>
   <% if local_assigns[:meta].present? %>
-    <div class="shell relative mt-10">
-      <div class="rule"></div>
-      <ul class="mask-fade-r flex gap-x-9 gap-y-4 overflow-x-auto pt-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div class="shell relative mt-14">
+      <ul class="mask-fade-r flex gap-x-9 gap-y-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <% meta.each_with_index do |item, i| %>
           <li class="flex shrink-0 items-baseline gap-2.5" data-reveal style="--reveal-delay:<%= 600 + i * 60 %>ms">
             <span class="label label-accent"><%= format("%02d", i + 1) %></span>
