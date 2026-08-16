@@ -11,8 +11,11 @@
     padding — rather than stretched to fill the viewport. The min-height is only
     a floor for short screens, so on tall ones there is no leftover height to
     pool into an empty band. %>
-<section class="relative isolate overflow-hidden <%= shader ? "flex flex-col justify-center pb-24 pt-32" : "pb-[clamp(3rem,2rem+5vw,6rem)] pt-[clamp(8rem,6rem+8vw,13rem)]" %>"
-         <%= 'style="min-height: max(36rem, 74svh)"'.html_safe if shader %>>
+<%# Padding is deliberately top-heavy (176 vs 56). Because the content is
+    centred, any leftover height is split evenly, so that 120px difference
+    survives at every viewport height rather than being averaged away. %>
+<section class="relative isolate overflow-hidden <%= shader ? "flex flex-col justify-center pb-14 pt-44" : "pb-[clamp(3rem,2rem+5vw,6rem)] pt-[clamp(8rem,6rem+8vw,13rem)]" %>"
+         <%= 'style="min-height: max(34rem, 68svh)"'.html_safe if shader %>>
 
   <%# --- Backdrop ------------------------------------------------------- %>
   <% if shader %>
