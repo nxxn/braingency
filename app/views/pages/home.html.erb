@@ -14,9 +14,11 @@
       ] %>
 
 <%# ======================================================================
-    What we do
+    What we do — tighter top spacing than the sections below it, because the
+    hero's own bottom padding already separates them and this heading needs to
+    stay visible above the fold.
     ====================================================================== %>
-<section class="shell pt-[var(--spacing-section)]">
+<section class="shell pt-[clamp(2rem,0.5rem+3svh,4rem)]">
   <%= render "shared/section_head",
         index: "01",
         label: t("pages.home.what_we_do.label"),

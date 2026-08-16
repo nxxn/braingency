@@ -426,6 +426,23 @@
 }
 
 /* ==========================================================================
+   Short viewports — laptop windows with lots of browser chrome, and phones
+   around 844px tall. Tighten the hero's type so the next section's heading
+   still clears the fold: the home page should never look like it ends at the
+   hero. Overriding the token is enough because .text-display reads it.
+   ========================================================================== */
+
+@media (max-height: 860px) {
+  .hero-shader {
+    --text-display: clamp(2.25rem, 5vw, 3.5rem);
+  }
+
+  .hero-shader .text-lead {
+    font-size: 1.0625rem;
+  }
+}
+
+/* ==========================================================================
    Hero canvas — hidden until the shader confirms it is actually running, so
    the CSS field underneath is what everyone else sees.
    ========================================================================== */
