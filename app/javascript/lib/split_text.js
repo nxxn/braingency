@@ -39,8 +39,8 @@ export default function splitText() {
       inner.animate(
         [{ transform: "translateY(105%)" }, { transform: "translateY(0)" }],
         {
-          duration: 1100,
-          delay: 120 + i * 65,
+          duration: 850,
+          delay: 60 + i * 42,
           easing: "cubic-bezier(0.16, 1, 0.3, 1)",
           fill: "both"
         }
