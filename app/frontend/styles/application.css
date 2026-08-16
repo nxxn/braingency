@@ -426,11 +426,31 @@
 }
 
 /* ==========================================================================
-   Short viewports — laptop windows with lots of browser chrome, and phones
-   around 844px tall. Tighten the hero's type so the next section's heading
-   still clears the fold: the home page should never look like it ends at the
-   hero. Overriding the token is enough because .text-display reads it.
+   Home hero.
+
+   Sized so the section below it always peeks above the fold — the page must
+   never look like it ends at the hero. Padding is top-heavy and scales with
+   viewport height, so a short window gets a tighter hero rather than a
+   cropped page.
    ========================================================================== */
+
+.hero-shader {
+  min-height: max(30rem, 60svh);
+  padding-top: clamp(7rem, 0.5rem + 14svh, 13rem);
+  padding-bottom: clamp(2rem, 0.5rem + 2svh, 3.5rem);
+}
+
+/* Narrow screens carry a compact nav and much taller copy, so they need less
+   clearance at the top and cannot afford to spend as much height on it. */
+@media (max-width: 640px) {
+  .hero-shader {
+    padding-top: clamp(6.5rem, 0.5rem + 9svh, 9rem);
+  }
+}
+
+/* Short viewports — laptop windows with lots of browser chrome, and phones
+   around 844px tall. Stepping the display type down is what makes the next
+   heading fit. Overriding the token is enough because .text-display reads it. */
 
 @media (max-height: 860px) {
   .hero-shader {

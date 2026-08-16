@@ -16,13 +16,9 @@
     short laptop screen gets a tighter hero rather than a cropped page. Because
     the content is centred, leftover height splits evenly and the top-vs-bottom
     offset survives at every height. %>
-<%
-  shader_style = "min-height: max(30rem, 60svh);" \
-                 "padding-top: clamp(6rem, 1.5rem + 9svh, 11rem);" \
-                 "padding-bottom: clamp(2rem, 0.5rem + 2svh, 3.5rem)"
-%>
-<section class="relative isolate overflow-hidden <%= shader ? "hero-shader flex flex-col justify-center" : "pb-[clamp(3rem,2rem+5vw,6rem)] pt-[clamp(8rem,6rem+8vw,13rem)]" %>"
-         <%= tag.attributes(style: shader_style) if shader %>>
+<%# Sizing lives in .hero-shader (application.css) rather than inline, so the
+    short-viewport and narrow-screen media queries can override it. %>
+<section class="relative isolate overflow-hidden <%= shader ? "hero-shader flex flex-col justify-center" : "pb-[clamp(3rem,2rem+5vw,6rem)] pt-[clamp(8rem,6rem+8vw,13rem)]" %>">
 
   <%# --- Backdrop ------------------------------------------------------- %>
   <% if shader %>
@@ -60,7 +56,7 @@
     <h1 class="text-display max-w-[19ch] font-medium" <%= "data-split" if shader %>><%= heading %></h1>
 
     <% if local_assigns[:lead] || local_assigns[:body] %>
-      <div class="mt-8 grid gap-x-16 gap-y-7 lg:mt-14 lg:gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+      <div class="mt-7 grid gap-x-16 gap-y-7 lg:mt-11 lg:gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
         <div>
           <% if local_assigns[:lead] %>
             <p class="max-w-[40ch] text-lead text-fg" data-reveal style="--reveal-delay:<%= shader ? 180 : 100 %>ms">
@@ -94,7 +90,7 @@
 
   <%# --- Status strip --------------------------------------------------- %>
   <% if local_assigns[:meta].present? %>
-    <div class="shell relative mt-9 lg:mt-16">
+    <div class="shell relative mt-8 lg:mt-12">
       <ul class="mask-fade-r flex gap-x-9 gap-y-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <%# Kept short: a long stagger here leaves a visible void at the bottom
             of the hero for most of a second after first paint. %>
