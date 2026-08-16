@@ -1,0 +1,11 @@
+<%#
+  Mark + wordmark lockup. locals: variant, mark_class, text_class
+%><%
+  variant = local_assigns[:variant] || Site::MARK
+  mark_class = local_assigns[:mark_class] || "h-[26px] w-[26px]"
+  text_class = local_assigns[:text_class] || "text-[1.0625rem]"
+%>
+<span class="inline-flex items-center gap-[0.5em]">
+  <%= render "shared/logo_mark", variant: variant, class: mark_class %>
+  <span class="<%= text_class %> font-medium tracking-[-0.045em] leading-none">braingency</span>
+</span>

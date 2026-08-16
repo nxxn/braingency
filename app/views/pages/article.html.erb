@@ -1,0 +1,39 @@
+<% key = @article.slug.tr("-", "_") %>
+
+<article>
+  <header class="relative isolate overflow-hidden pb-[clamp(2.5rem,2rem+3vw,4rem)] pt-[clamp(8rem,6rem+8vw,13rem)]">
+    <div class="bg-grid absolute inset-0 -z-10 opacity-[0.4] mask-fade-b" aria-hidden="true"></div>
+
+    <div class="shell-tight relative">
+      <%= link_to news_path, class: "link label !text-fg-faint" do %>
+        <span aria-hidden="true">&larr;</span>
+        <%= t("common.back_to_news") %>
+      <% end %>
+
+      <h1 class="text-h1 mt-8 max-w-[22ch] font-medium">
+        <%= t("articles.#{key}.title") %>
+      </h1>
+
+      <div class="mt-8 flex items-center gap-4 border-t border-line pt-5">
+        <time class="label text-fg-muted" datetime="<%= @article.published_on.iso8601 %>">
+          <%= format_date(@article.published_on) %>
+        </time>
+        <span class="label text-fg-faint"><%= Site::BRAND %></span>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell-tight">
+    <div class="prose-braingency text-[1.0625rem]" data-reveal>
+      <p class="!text-fg text-lead"><%= t("articles.#{key}.excerpt") %></p>
+      <%= paragraphs("articles.#{key}.body") %>
+    </div>
+
+    <div class="mt-14 border-t border-line pt-8" data-reveal>
+      <%= link_to news_path, class: "btn btn-ghost" do %>
+        <span aria-hidden="true">&larr;</span>
+        <%= t("common.back_to_news") %>
+      <% end %>
+    </div>
+  </div>
+</article>

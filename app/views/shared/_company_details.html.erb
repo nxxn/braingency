@@ -1,0 +1,20 @@
+<%#
+  Legal identity, rendered from Site so About and Contact can never disagree.
+  Marked up with the h-card microformat classes schema.org consumers and human
+  reviewers both look for.
+%>
+<dl class="mt-10 divide-y divide-line border-y border-line" data-reveal>
+  <% [
+       [t("pages.contact.details.legal_name"), Site::LEGAL_NAME],
+       [t("pages.contact.details.trading_as"), Site::BRAND],
+       [t("pages.contact.details.reg"),        Site::REG_NUMBER],
+       [t("pages.contact.details.vat"),        Site::VAT_NUMBER],
+       [t("pages.contact.details.address"),
+        "#{Site::ADDRESS[:street]}, #{Site::ADDRESS[:locality]}, #{Site::ADDRESS[:country_name]}, #{Site::ADDRESS[:postal_code]}"]
+     ].each do |term, value| %>
+    <div class="grid gap-1 py-5 sm:grid-cols-[14rem_1fr] sm:gap-6">
+      <dt class="label pt-1"><%= term %></dt>
+      <dd class="font-mono text-[0.9375rem] tracking-[-0.01em] text-fg"><%= value %></dd>
+    </div>
+  <% end %>
+</dl>

@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+# Rasterises the brand assets that browsers and social platforms cannot take as
+# SVG: the favicon set and the Open Graph cards.
+#
+# Sources of truth:
+#   public/icon.svg          -> favicon.ico, icon-{192,512}.png, apple-touch-icon.png
+#   tmp/brand/og-*.html      -> public/og/*.png   (generated below from the locale files)
+#
+# Re-run after changing the mark or any page title. Outputs are committed, so a
+# deploy never needs Chrome.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+CHROME="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+[ -x "$CHROME" ] || { echo "Chrome not found at $CHROME" >&2; exit 1; }
+
+WORK="tmp/brand"
+rm -rf "$WORK" && mkdir -p "$WORK" public/og
+
+shot() { # shot <src-file> <width> <height> <out-png>
+  "$CHROME" --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
+    --screenshot="$4" --window-size="$2,$3" \
+    --virtual-time-budget=4000 "file://$(cd "$(dirname "$1")" && pwd)/$(basename "$1")" \
+    >/dev/null 2>&1
+}
+
+# ---------------------------------------------------------------- favicons ---
+echo "→ favicons"
+for size in 32 180 192 512; do
+  cat > "$WORK/icon-$size.html" <<HTML
+<!doctype html><meta charset="utf-8">
+<style>html,body{margin:0;padding:0;background:transparent}
+img{display:block;width:${size}px;height:${size}px}</style>
+<img src="$(pwd)/public/icon.svg">
+HTML
+  shot "$WORK/icon-$size.html" "$size" "$size" "$WORK/icon-$size.png"
+done
+
+cp "$WORK/icon-180.png" public/apple-touch-icon.png
+cp "$WORK/icon-192.png" public/icon-192.png
+cp "$WORK/icon-512.png" public/icon-512.png
+magick "$WORK/icon-32.png" -define icon:auto-resize=48,32,16 public/favicon.ico
+
+# ----------------------------------------------------------- open graph ------
+echo "→ open graph cards"
+ruby -e '
+require "yaml"
+require "erb"
+require "fileutils"
+
+locales = { "en" => YAML.load_file("config/locales/en.yml")["en"] }
+template = File.read("lib/brand/og_card.html.erb")
+
+pages = %w[home about product ml_lab team news gender_equality_plan contact]
+pages.each do |page|
+  meta = locales["en"].dig("meta", page) or next
+  title = meta["title"].sub(/\s*[—|]\s*Braingency.*\z/, "").sub(/\A\s*Braingency\s*[—|]\s*/, "")
+
+  html = ERB.new(template).result_with_hash(
+    title:   title,
+    eyebrow: page == "home" ? "SIA BATWATEX · RIGA, LATVIA" : "BRAINGENCY",
+    footer:  "braingency.eu"
+  )
+  File.write("tmp/brand/og-#{page}.html", html)
+end
+'
+
+for f in "$WORK"/og-*.html; do
+  name=$(basename "$f" .html)   # og-home
+  page=${name#og-}
+  shot "$f" 1200 630 "public/og/${page}.png"
+done
+cp public/og/home.png public/og/default.png
+
+echo "✓ brand assets written to public/"
+ls -la public/*.png public/favicon.ico public/og/*.png 2>/dev/null | awk '{print "  " $5 "\t" $9}'

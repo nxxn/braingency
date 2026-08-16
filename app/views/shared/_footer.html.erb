@@ -1,0 +1,70 @@
+<footer class="relative mt-[var(--spacing-section)] border-t border-line">
+  <div class="shell">
+
+    <%# --- Closing CTA --- %>
+    <div class="grid gap-10 border-b border-line py-[clamp(4rem,2rem+7vw,8rem)] lg:grid-cols-[1.2fr_1fr] lg:gap-20">
+      <div data-reveal>
+        <h2 class="text-h2 font-medium"><%= t("common.cta.heading") %></h2>
+        <p class="prose-braingency mt-5 max-w-lg"><%= t("common.cta.body") %></p>
+      </div>
+      <div class="flex items-start lg:justify-end lg:pt-3" data-reveal style="--reveal-delay:120ms">
+        <%= link_to contact_path, class: "btn btn-primary", data: { magnetic: true } do %>
+          <%= t("common.cta.button") %>
+          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+        <% end %>
+      </div>
+    </div>
+
+    <%# --- Link columns --- %>
+    <div class="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-1">
+        <%= link_to locale_root_path, class: "inline-block text-fg transition-colors duration-300 hover:text-lime" do %>
+          <%= render "shared/logo" %>
+        <% end %>
+        <p class="label mt-5 normal-case tracking-[0.02em] text-fg-faint leading-relaxed">
+          <%= Site::LEGAL_NAME %><br>
+          <%= Site::ADDRESS[:street] %><br>
+          <%= Site::ADDRESS[:locality] %>, <%= Site::ADDRESS[:postal_code] %>, <%= Site::ADDRESS[:country_name] %>
+        </p>
+      </div>
+
+      <nav class="lg:col-start-3" aria-label="<%= t("footer.sitemap") %>">
+        <h2 class="label"><%= t("footer.sitemap") %></h2>
+        <ul class="mt-5 space-y-3">
+          <% Site::NAV_PAGES.each do |page| %>
+            <li><%= link_to t("nav.#{page.key}"), path_for(page.key), class: "link text-[0.9375rem] text-fg-muted" %></li>
+          <% end %>
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="label"><%= t("footer.company") %></h2>
+        <ul class="mt-5 space-y-3 text-[0.9375rem] text-fg-muted">
+          <li><%= link_to t("nav.gender_equality_plan"), gender_equality_plan_path, class: "link" %></li>
+          <li><%= mail_to Site::CONTACT_EMAIL, Site::CONTACT_EMAIL, class: "link" %></li>
+          <% Site::FOUNDERS.each do |f| %>
+            <li>
+              <a href="<%= f[:linkedin] %>" class="link" rel="noopener noreferrer" target="_blank">
+                LinkedIn — <%= f[:name].split.first %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <%# --- Oversized wordmark --- %>
+    <%# Oversized wordmark. Purely graphic, so the glyphs are drawn by CSS
+        rather than sitting in the DOM as a text node nobody is meant to read. %>
+    <div class="footer-wordmark mask-fade-b select-none overflow-hidden pt-4" aria-hidden="true"></div>
+
+    <div class="flex flex-col gap-2 border-t border-line py-6 sm:flex-row sm:items-center sm:justify-between">
+      <p class="label normal-case tracking-[0.02em]">
+        &copy; <%= Date.current.year %> <%= Site::LEGAL_NAME %>.
+        <%= t("footer.reg_number") %> <%= Site::REG_NUMBER %> &middot;
+        <%= t("footer.vat_number") %> <%= Site::VAT_NUMBER %>
+      </p>
+      <p class="label"><%= t("footer.tagline") %></p>
+    </div>
+  </div>
+</footer>

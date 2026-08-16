@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# One-shot rebuild of the JS and CSS bundles.
+# bin/dev runs these in watch mode; this is for scripted/CI-style rebuilds.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+yarn build
+yarn build:css

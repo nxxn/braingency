@@ -1,0 +1,127 @@
+<%= render "shared/hero",
+      shader: true,
+      eyebrow: t("pages.home.hero.markets"),
+      heading: t("pages.home.hero.heading"),
+      lead: t("pages.home.hero.subheading"),
+      body: t("pages.home.hero.body"),
+      cta: true,
+      meta: [
+        "Riga · Latvia",
+        "Spain",
+        "United Arab Emirates",
+        "25+ years in fintech",
+        "4 products in production"
+      ] %>
+
+<%# ======================================================================
+    What we do
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "01",
+        label: t("pages.home.what_we_do.label"),
+        heading: t("pages.home.what_we_do.heading") %>
+
+  <div class="mt-14 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3" data-reveal-group="110">
+    <% %w[financial ml platforms].each_with_index do |key, i| %>
+      <article class="card border-0 p-8 lg:p-10">
+        <div class="flex items-baseline justify-between gap-4">
+          <span class="label label-accent"><%= format("%02d", i + 1) %></span>
+          <%= render "shared/icon", name: key, class: "h-6 w-6 text-fg-faint" %>
+        </div>
+        <h3 class="text-h3 mt-8 font-medium"><%= t("pages.home.what_we_do.items.#{key}.title") %></h3>
+        <p class="prose-braingency mt-4 text-[1rem]"><%= t("pages.home.what_we_do.items.#{key}.body") %></p>
+      </article>
+    <% end %>
+  </div>
+</section>
+
+<%# ======================================================================
+    The lending cycle
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "02",
+        label: t("pages.home.pipeline.label"),
+        heading: t("pages.home.pipeline.heading"),
+        body: t("pages.home.pipeline.body") %>
+
+  <% stages = %w[intake scoring compliance contract portfolio collections] %>
+
+  <div data-pipeline class="mt-16">
+    <%# Track — one continuous rule that draws itself across all stages %>
+    <div class="relative h-px w-full bg-line">
+      <div data-pipeline-track class="absolute inset-0 bg-gradient-to-r from-lime/70 via-lime to-lime/70"></div>
+    </div>
+
+    <ol class="grid grid-cols-2 gap-x-6 gap-y-10 pt-6 sm:grid-cols-3 lg:grid-cols-6">
+      <% stages.each_with_index do |stage, i| %>
+        <li data-pipeline-stage class="relative">
+          <span class="pipeline-dot absolute -top-[1.6rem] left-0 block h-2 w-2 rounded-full"></span>
+          <span class="pipeline-index label block font-mono"><%= format("%02d", i + 1) %></span>
+          <h3 class="mt-3 text-[0.9375rem] font-medium leading-snug tracking-[-0.01em]">
+            <%= t("pages.home.pipeline.stages.#{stage}") %>
+          </h3>
+        </li>
+      <% end %>
+    </ol>
+
+    <%# The layer that makes the data usable — spans the whole cycle %>
+    <div class="mt-12 flex items-stretch gap-4" data-reveal>
+      <div class="w-px shrink-0 bg-gradient-to-b from-lime/60 to-transparent"></div>
+      <div class="pb-1">
+        <span class="label label-accent">ML layer</span>
+        <p class="mt-2 max-w-xl text-[0.9375rem] text-fg-muted">
+          <%= t("pages.home.pipeline.model_note") %>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ======================================================================
+    Why companies work with us
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "03",
+        label: t("pages.home.why.label"),
+        heading: t("pages.home.why.heading") %>
+
+  <div class="mt-14 grid gap-x-16 gap-y-12 md:grid-cols-2" data-reveal-group="100">
+    <% %w[regulated full_cycle ships founders].each_with_index do |key, i| %>
+      <article class="border-t border-line pt-6">
+        <span class="label label-accent"><%= format("%02d", i + 1) %></span>
+        <h3 class="text-h3 mt-5 font-medium"><%= t("pages.home.why.items.#{key}.title") %></h3>
+        <p class="prose-braingency mt-3.5 text-[1rem]"><%= t("pages.home.why.items.#{key}.body") %></p>
+      </article>
+    <% end %>
+  </div>
+</section>
+
+<%# ======================================================================
+    Track record
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head", index: "04", label: t("pages.home.proof.label") %>
+
+  <div class="mt-12 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-3" data-reveal-group="90">
+    <% [
+         ["years",   t("pages.home.proof.years.value"),   t("pages.home.proof.years.suffix"),  t("pages.home.proof.years.caption")],
+         ["markets", t("pages.home.proof.markets.value"), nil,                                 t("pages.home.proof.markets.caption")],
+         ["products",t("pages.home.proof.products.value"),nil,                                 t("pages.home.proof.products.caption")]
+       ].each do |_key, value, suffix, caption| %>
+      <div class="card border-0 p-8 lg:p-10">
+        <p class="flex items-baseline text-[clamp(3rem,2rem+4vw,5rem)] font-medium leading-none tracking-[-0.04em]">
+          <span data-count="<%= value %>"><%= value %></span><span class="text-lime"><%= suffix %></span>
+        </p>
+        <p class="mt-5 max-w-[28ch] text-[0.9375rem] leading-relaxed text-fg-muted"><%= caption %></p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mt-10 flex items-center gap-4 border-t border-line pt-6" data-reveal>
+    <span class="label label-accent">&#9679;</span>
+    <p class="text-[0.9375rem] text-fg-muted"><%= t("pages.home.proof.jhu") %></p>
+  </div>
+</section>

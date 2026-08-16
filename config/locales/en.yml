@@ -1,0 +1,428 @@
+# Braingency site copy — English (source language).
+#
+# This file is the whole content layer: there is no CMS and no database.
+# config/locales/lv.yml mirrors this structure key for key.
+en:
+  date:
+    formats:
+      long: "%-d %B %Y"
+      short: "%-d %b %Y"
+
+  common:
+    skip_to_content: "Skip to content"
+    talk_to_us: "Talk to us"
+    languages:
+      en: "English"
+      lv: "Latvian"
+    in_production: "In production"
+    read_article: "Read article"
+    back_to_news: "All news"
+    cta:
+      heading: "Have a system that needs building — or rebuilding?"
+      body: "Tell us what you are working with. We will tell you honestly whether we are the right team for it."
+      button: "Get in touch"
+
+  nav:
+    primary: "Primary"
+    menu: "Menu"
+    switch_language: "Switch to %{language}"
+    home: "Home"
+    product: "What we build"
+    ml_lab: "ML Lab"
+    about: "About"
+    team: "Team"
+    news: "News"
+    contact: "Contact"
+    gender_equality_plan: "Gender Equality Plan"
+
+  footer:
+    sitemap: "Sitemap"
+    company: "Company"
+    reg_number: "Reg. no."
+    vat_number: "VAT"
+    tagline: "Built in Riga"
+
+  # --- SEO --------------------------------------------------------------
+  meta:
+    home:
+      title: "Braingency — Lending Systems & Machine Learning"
+      description: "We build ERP, CRM and ML systems for lending companies — from application intake to portfolio management. Riga-based, working across Europe and the UAE."
+    about:
+      title: "About Braingency — Business Infrastructure Software"
+      description: "A Riga-based software company building production systems for the financial sector. Full cycle: architecture, development, launch and scale."
+    product:
+      title: "What We Build — Braingency"
+      description: "Lending ERP and CRM, learning management platforms, AI assistants and Vertio property valuation. Four products, built and running in production."
+    ml_lab:
+      title: "ML Lab — Applied Machine Learning | Braingency"
+      description: "Custom machine learning models for credit scoring, valuation and forecasting — built on your data and integrated into production systems."
+    team:
+      title: "Team — Braingency"
+      description: "Led by two hands-on engineers with 25+ years of combined experience building fintech platforms in Ruby on Rails."
+    news:
+      title: "News — Braingency"
+      description: "Updates on our work, our research and the products we are building."
+    gender_equality_plan:
+      title: "Gender Equality Plan — Braingency"
+      description: "Braingency's formal Gender Equality Plan, adopted 12 January 2026, covering research content, work-life balance and gender balance in leadership."
+    contact:
+      title: "Contact — Braingency | SIA BATWATEX, Riga"
+      description: "Get in touch with Braingency. SIA BATWATEX, Rupniecibas 22-38, Riga, Latvia."
+    article_one_platform_not_five_tools:
+      title: "Why we build lending systems as one platform — Braingency"
+      description: "Most lending businesses run on an assembled stack. Each tool works; the problem is everything between them. Why we build the full cycle as one system."
+    article_vertio_property_valuation_ml:
+      title: "Vertio: forecasting Latvian property values with ML — Braingency"
+      description: "A machine learning model trained on Latvian real estate market data, used for automated collateral assessment and as an input to credit scoring."
+
+  # --- Pages ------------------------------------------------------------
+  pages:
+    home:
+      hero:
+        heading: "Business infrastructure for financial services"
+        subheading: "We build the ERP, CRM and machine learning systems that lending companies run on — from application intake to portfolio management."
+        body: "Braingency is a product-driven software development company based in Riga, Latvia. We design and build production systems for consumer lending, auto finance, leasing and mortgage businesses, and we develop custom machine learning models that turn operational data into better decisions."
+        markets: "Clients in Latvia, Spain and the UAE"
+
+      what_we_do:
+        label: "What we do"
+        heading: "Three things, built to work together"
+        items:
+          financial:
+            title: "Financial systems"
+            body: "End-to-end ERP and CRM platforms for lenders: application intake, underwriting and scoring, AML and KYC, contract generation, portfolio accounting and debt collection — in one system."
+          ml:
+            title: "Machine learning"
+            body: "Our ML Lab builds models trained on your own operational data — credit scoring, risk assessment, valuation and forecasting — and integrates them directly into the systems that use them."
+          platforms:
+            title: "Platforms and products"
+            body: "Learning management platforms, AI assistants, market analytics tools. We take products from concept through to launch and scale, and we run them in production."
+
+      pipeline:
+        label: "The lending cycle"
+        heading: "One platform, not five tools"
+        body: "Rather than stitching together separate tools for origination, compliance and collections, the platform handles the entire loan lifecycle in a single, coherent system — which is also what makes the data usable for machine learning."
+        stages:
+          intake: "Application intake"
+          scoring: "Processing & scoring"
+          compliance: "AML & compliance"
+          contract: "Contract generation"
+          portfolio: "Portfolio management"
+          collections: "Collections"
+        model_note: "ML models trained on the full data stream"
+
+      why:
+        label: "Why companies work with us"
+        heading: "Four reasons this works"
+        items:
+          regulated:
+            title: "Built for regulated environments"
+            body: "Our financial systems are designed around compliance requirements from the start — AML screening, KYC/KYB integrations, audit trails and data integrity are part of the architecture, not an afterthought."
+          full_cycle:
+            title: "Full cycle, one team"
+            body: "We build from the initial idea through architecture, development, launch and scaling. You are not handing your product between agencies at each stage."
+          ships:
+            title: "Machine learning that actually ships"
+            body: "We do not deliver notebooks and slides. Our models run inside live lending systems, scoring real applications every day."
+          founders:
+            title: "Founders who write code"
+            body: "Both founders are hands-on engineers with a combined 25+ years of experience building fintech platforms in Ruby on Rails."
+
+      proof:
+        label: "Track record"
+        years:
+          value: "25"
+          suffix: "+"
+          caption: "Years of combined engineering experience in fintech"
+        markets:
+          value: "3"
+          caption: "Markets in production — Latvia, Spain, United Arab Emirates"
+        products:
+          value: "4"
+          caption: "Products built and running in production"
+        jhu: "Learning platform developed for Johns Hopkins University, USA"
+
+    about:
+      heading: "About Braingency"
+      lead: "Braingency is a software development company that builds business infrastructure — the systems companies run their operations on, rather than the websites they show to the public."
+      intro:
+        - "We work primarily with the financial sector: lending companies offering consumer credit, auto loans, leasing and mortgages. For these clients we design and build complete ERP and CRM platforms that cover the full lending cycle, and we develop machine learning models that make those processes measurably better. Alongside this core work, we build educational platforms, AI assistants and market analytics products."
+      how_we_work:
+        label: "How we work"
+        heading: "From idea to scale, as the engineering function"
+        body:
+          - "We take products from idea to scale. That means we are involved in defining what should be built, designing the system architecture and data model, writing the code, taking the system into production, and continuing to develop it as the business grows. Our clients do not hand a specification to us and receive a black box back — we work as the engineering function of the business."
+          - "Every system we build is designed to handle growth, regulatory compliance, data integrity and operational efficiency. In lending, these are not optional qualities: a scoring engine that cannot be audited or a portfolio system that loses data is not a system at all."
+      ml_approach:
+        label: "Our approach to machine learning"
+        heading: "An engineering discipline, not a research exercise"
+        body:
+          - "We treat machine learning as an engineering discipline rather than a research exercise. Our models are trained on our clients' real operational data, integrated directly into the systems that consume their output, and monitored in production."
+        pullquote: "A scoring model that lives inside the loan origination workflow and improves approval decisions is worth more than a more sophisticated model that never leaves a notebook."
+      where:
+        label: "Where we work"
+        heading: "Riga, and three markets in production"
+        body:
+          - "We are based in Riga, Latvia, and work with clients across Europe, the Middle East and the United States. Our current client base spans Latvia, Spain and the United Arab Emirates."
+      details:
+        label: "Company details"
+        legal_name: "Legal name"
+        vat: "VAT number"
+        reg: "Registration number"
+        address: "Registered address"
+
+    product:
+      heading: "What we build"
+      lead: "Four products and platforms, built and running in production. Each one started as a specific business problem that existing software did not solve well enough."
+      projects:
+        lending:
+          index: "01"
+          name: "Lending ERP & CRM platform"
+          subheading: "The full lending cycle in one system"
+          body:
+            - "A complete operating system for lending businesses — consumer credit, auto loans, leasing and mortgages. Rather than stitching together separate tools for origination, compliance and collections, the platform handles the entire loan lifecycle in a single, coherent system:"
+          features:
+            - title: "Application intake"
+              body: "Multi-channel capture of loan applications with configurable product rules"
+            - title: "Processing and scoring"
+              body: "Automated underwriting workflows with ML-driven credit scoring trained on the lender's own portfolio data"
+            - title: "AML and compliance"
+              body: "Screening, KYC/KYB integrations and audit trails built into the process"
+            - title: "Contract generation"
+              body: "Automated document production and e-signature workflows"
+            - title: "Portfolio management"
+              body: "Accounting, servicing, payment processing and reporting across the active loan book"
+            - title: "Collections"
+              body: "Structured debt recovery workflows with case management"
+          outro: "On top of the operational layer, we analyse the full incoming data stream and build large-scale ML models that optimise the processes themselves — improving scoring accuracy, identifying risk patterns and automating decisions that previously required manual review."
+          status: "In production with clients in Latvia, Spain and the United Arab Emirates."
+        learning:
+          index: "02"
+          name: "Learning management platform"
+          subheading: "Education operations, fully automated"
+          body:
+            - "A platform for organisations that deliver structured education at scale. Course creators can publish courses, take payment, assign and review homework, and track learner progress — with the entire administrative process automated end to end."
+            - "The platform includes a gamification layer designed to improve completion rates and engagement, addressing the drop-off problem that affects most online learning products."
+          status: "We developed a learning platform for Johns Hopkins University in the United States."
+        assistant:
+          index: "03"
+          name: "AI assistant with built-in CRM"
+          subheading: "An AI chat agent that remembers the conversation"
+          body:
+            - "A deployable AI chat assistant that can be embedded on any website. Through the admin panel, the assistant's knowledge base is populated with information about the company it represents, so it answers from the business's actual documentation rather than generic responses."
+            - "Unlike a standalone chat widget, the assistant includes its own CRM: every conversation is stored with a summarised record of what the customer asked and what was resolved, giving the sales and support teams a searchable history of customer intent rather than a stream of disconnected chat logs."
+        vertio:
+          index: "04"
+          name: "Vertio — property valuation for the Latvian market"
+          subheading: "ML-based real estate price prediction"
+          body:
+            - "Vertio is our proprietary platform for analysing and forecasting real estate values in Latvia. Built on our own machine learning model trained on Latvian market data, it produces valuations for individual properties across the market."
+            - "The immediate applications are in lending: automated collateral valuation for mortgage underwriting, and property-value inputs for credit scoring systems. Vertio connects directly to our lending platform, so a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal."
+      technology:
+        label: "Technology"
+        heading: "Built to stay in production"
+        body:
+          - "Our systems are built primarily in Ruby on Rails, chosen for its suitability for complex business logic and long-lived production systems. We build and integrate REST APIs, banking and payment provider connections, KYC/KYB services, credit bureau and third-party data sources, and our own machine learning services."
+        stack:
+          - "Ruby on Rails"
+          - "REST APIs"
+          - "Banking integrations"
+          - "Payment providers"
+          - "KYC / KYB services"
+          - "Credit bureaus"
+          - "Third-party data sources"
+          - "In-house ML services"
+
+    ml_lab:
+      heading: "Braingency ML Lab"
+      lead: "Applied machine learning for specific business problems"
+      what_it_is:
+        label: "What the ML Lab is"
+        heading: "A division, not a side project"
+        body:
+          - "The ML Lab is Braingency's dedicated machine learning division. It exists because the models that create real business value are rarely general-purpose — they are trained on a specific company's data to solve a specific decision problem. The Lab builds those models, integrates them into production systems, and conducts our own research in machine learning and AI."
+      what_we_do:
+        label: "What we do"
+        own_products:
+          heading: "Models inside our own products"
+          body:
+            - "Our financial ERP platform includes a scoring module where we train machine learning models on real user data from the lender's own portfolio. The resulting model scores incoming credit applications directly within the origination workflow — the model is not a separate analytics product, it is part of how the loan gets approved."
+            - "Vertio, our real estate valuation platform, runs on a model built entirely in-house and trained on Latvian property market data. It produces price forecasts used for mortgage collateral assessment and credit scoring inputs."
+        custom:
+          heading: "Custom models for clients"
+          body:
+            - "We build machine learning models on commission for companies across different industries. The typical engagement starts with the client's existing operational data and a decision they want to make better or faster — risk assessment, demand forecasting, classification, pricing, anomaly detection. We handle data preparation, model development, validation and production integration."
+            - "Because our engineering team builds the systems the models run inside, the handover problem that kills most ML projects does not arise: there is no gap between the team that trains the model and the team that has to deploy it."
+        research:
+          heading: "Research"
+          body:
+            - "The Lab conducts ongoing research in machine learning and AI, focused on the domains we work in — credit risk modelling, valuation, and applied AI in regulated environments."
+      capabilities:
+        label: "Capabilities and team"
+        body: "The ML Lab operates within the same engineering organisation that builds our production systems. Machine learning capability is embedded across the founding team."
+      cases:
+        label: "Case examples"
+        heading: "Two models in production"
+        items:
+          scoring:
+            index: "Case 01"
+            title: "Credit scoring"
+            body: "A lending client's underwriting process relied on static rule-based criteria. We trained a scoring model on their historical application and repayment data and integrated it into the origination workflow, allowing applications to be assessed against patterns in their actual portfolio performance."
+          valuation:
+            index: "Case 02"
+            title: "Property valuation"
+            body: "Vertio: an ML model trained on Latvian real estate market data that forecasts property values, applied to mortgage collateral assessment and scoring."
+
+    team:
+      heading: "The team"
+      lead: "Braingency is led by two hands-on engineers. Both founders write code, review architecture and work directly on client systems."
+      roles:
+        ceo: "Co-founder & CEO"
+        cto: "Co-founder & CTO"
+      members:
+        shehurina:
+          bio:
+            - "Michelle is co-founder and CEO of Braingency, and a hands-on engineer rather than a hands-off executive. Her primary stack is Ruby on Rails, and she personally designs system architecture and data models, builds and scales Rails applications, implements financial logic and automation pipelines, integrates banking, KYC, payment and AI services, and reviews all critical code."
+            - "She holds an MA in Development Education and Global Learning from the UCL Institute of Education and a BSc in Business and Economics from the Stockholm School of Economics in Riga, with additional study at the London School of Economics and Political Science. She is certified in Supervised Machine Learning (Regression and Classification)."
+            - "Before Braingency she was CEO of Copy Brain, an AI content generation company, and spent over a decade as a mathematics lecturer alongside her engineering work. Her earlier career includes senior project management and managing director roles across IT and business consulting in Riga."
+        gnotovs:
+          bio:
+            - "Nikita is co-founder and CTO of Braingency, a senior full-stack Ruby architect with 15 years of professional experience specialising in fintech products and complex financial platforms."
+            - "He designs system architectures from the ground up — data models, business logic and scalable APIs — with a focus on security, performance and regulatory requirements. His work spans backend and frontend, building high-load systems and integrating banking APIs, payment providers, credit scoring services, KYC/KYB solutions and third-party data sources. He is responsible for architectural decisions, technical strategy and long-term system scalability, and leads code review and mentoring across the engineering team."
+            - "He holds a Bachelor's degree in Finance from the Baltic International Academy — a combination of financial and engineering training that is directly relevant to the lending systems Braingency builds."
+            - "His track record includes CRM systems, online education platforms and networking platforms, and he has served as CTO of Copy Brain and as a lead developer across a range of production Rails systems since 2010."
+      working:
+        label: "Working at Braingency"
+        heading: "A small, senior team"
+        body:
+          - "We are a small, senior team. Our engineering culture is built on ownership: the people who design a system are the people who build it and keep it running."
+          - "Braingency is committed to an equitable and inclusive workplace. Our Gender Equality Plan sets out how we approach this in practice."
+        link: "Read our Gender Equality Plan"
+
+    news:
+      heading: "News"
+      lead: "Updates on our work, our research and the products we are building."
+
+    gender_equality_plan:
+      heading: "Gender Equality Plan"
+      lead: "Braingency (SIA BATWATEX) is committed to an equitable, inclusive and non-discriminatory working environment in which every team member has equal opportunity to contribute, grow and lead."
+      intro:
+        - "Our Gender Equality Plan is a formal document, approved and signed by the company's founders, setting out our approach across three thematic areas: integration of the gender dimension into research and teaching content, work-life balance and organisational culture, and gender balance in leadership and decision-making. It also covers our commitments on data collection, training and dedicated resources."
+      facts:
+        version: "Version"
+        adopted: "Adopted"
+        review: "Review cycle"
+        review_value: "Every 2 years"
+        status: "Status"
+        status_value: "In force — approved and signed by the founders"
+      download:
+        heading: "Download the plan"
+        button: "Gender Equality Plan — Version 1.0 (PDF)"
+        note: "The plan was adopted on 12 January 2026 and is reviewed every two years. Previous versions of the plan are archived and available on this page as it is updated."
+      archive:
+        heading: "Previous versions"
+        empty: "Version 1.0 is the current and only version. Superseded versions will be archived here."
+      contact_line_html: "Questions about this plan can be sent to %{email}."
+      full_text:
+        label: "Full text"
+        heading: "Gender Equality Plan 2026–2028"
+        adopted_by: "Adopted by the founders of SIA BATWATEX · Adoption date: 12 January 2026 · Version 1.0 · Review cycle: every 2 years"
+        sections:
+          - heading: "1. Statement of commitment"
+            body:
+              - "SIA BATWATEX is committed to fostering an equitable, inclusive and non-discriminatory working environment in which every team member — regardless of gender, gender identity, sexual orientation, ethnicity, age, disability, religion or belief — has equal opportunity to contribute, grow and lead. As a deep-tech / innovation company preparing to engage with EU-funded programmes such as Horizon Europe and the European Innovation Council (EIC), SIA BATWATEX recognises gender equality as both a matter of fairness and a driver of better science, better innovation and better business decisions."
+              - "This Gender Equality Plan (GEP) sets out SIA BATWATEX's formal, structured approach to promoting gender equality across recruitment, career development, governance, research and innovation content, and organisational culture. It fulfils the process-related requirements recommended under Horizon Europe / EIC gender equality guidance and is published to be transparent, accountable and applicable throughout the life of the company."
+          - heading: "2. Governance and adoption"
+            body:
+              - "This GEP is a formal document, approved and signed by SIA BATWATEX's top management, and published on the company's public website. Any future revision will be approved by the same governance level and re-published, with prior versions archived and made available on request."
+            list:
+              - "Owner: Founder(s) / CEO, with delegated day-to-day responsibility for implementation."
+              - "Approval body: the management team, reviewing progress at least once a year."
+              - "Publication: available on this page, alongside prior versions where applicable."
+          - heading: "3. Dedicated resources and expertise"
+            body:
+              - "SIA BATWATEX commits human and, where relevant, financial resources to implement this plan:"
+            list:
+              - "A named point of contact responsible for day-to-day implementation, staff queries and data collection."
+              - "An annual budget line covering training, external expert input, and any accessibility or work-life-balance measures identified as needed."
+              - "Access to external gender-equality expertise (consultants, HR advisory services or sector networks such as national innovation-ecosystem diversity initiatives) where in-house expertise is not sufficient."
+              - "Management-level sponsorship: gender equality progress is a standing item at leadership meetings."
+          - heading: "4. Data collection and monitoring"
+            body:
+              - "SIA BATWATEX collects and reviews sex/gender-disaggregated data on its personnel to track progress and inform decision-making. As the company grows, this includes:"
+            list:
+              - "Headcount and share of women, men and non-binary staff overall and by seniority level (including founding team, management and technical roles)."
+              - "Gender balance among new hires, promotions and departures."
+              - "Gender balance in leadership, decision-making bodies and any advisory board."
+              - "Participation in training, mentoring and professional-development opportunities, by gender."
+            outro:
+              - "Data is reviewed at least once every two years (annually once headcount allows meaningful reporting) and summarised in an internal monitoring report used to update this plan's targets. Individual-level data is handled confidentially and in line with applicable data-protection law (GDPR)."
+          - heading: "5. Training and awareness raising"
+            body:
+              - "SIA BATWATEX ensures that staff and decision-makers receive awareness-raising and training on gender equality, including unconscious bias:"
+            list:
+              - "All new joiners complete an induction module covering the company's gender equality and anti-harassment commitments."
+              - "Founders, managers and anyone involved in hiring or performance decisions complete training on unconscious bias in recruitment, evaluation and promotion at least once every two years."
+              - "Periodic team sessions or invited external speakers on inclusive leadership and gender equality in deep tech / entrepreneurship."
+              - "Training completion is logged as part of the monitoring process described in Section 4."
+          - heading: "6. Thematic areas, measures and targets"
+            body:
+              - "SIA BATWATEX addresses the following thematic areas through concrete measures and targets, reviewed at each cycle of this plan."
+            subsections:
+              - heading: "6.1 Integration of the gender dimension into research and/or teaching content"
+                body: "Where relevant to its technology and product development, SIA BATWATEX considers whether sex and gender factors (e.g. in end-users, data sets, or use cases) are relevant to its research and innovation content, and documents this consideration in project and proposal work, in line with Horizon Europe's requirement to integrate the gender dimension into R&I content by default."
+              - heading: "6.2 Work-life balance and organisational culture"
+                body: "SIA BATWATEX promotes a culture that supports employees in balancing professional and personal responsibilities, and treats caregiving leave and flexible arrangements as normal, not exceptional."
+              - heading: "6.3 Gender balance in leadership and decision-making"
+                body: "SIA BATWATEX aims for a gender-balanced founding/management team and, as the company scales, for gender-balanced representation in any advisory board, investment pitches and external representation of the company."
+          - heading: "7. Objectives, measures and targets"
+            table:
+              headers:
+                - "Objective"
+                - "Concrete measure(s)"
+                - "Target / indicator"
+                - "Timeline"
+              rows:
+                - ["Gender dimension in R&I", "Checklist/consideration of sex & gender relevance in research, product and teaching content", "Applied in all relevant proposals and projects", "Ongoing"]
+                - ["Work-life balance", "Flexible working policy, clear leave provisions", "Policy documented and communicated to all staff", "Year 1"]
+                - ["Gender balance in leadership", "Track gender composition of founding/management team and any advisory board at each review", "Baseline established in Year 1; balanced representation as the team scales", "Ongoing / annual review"]
+                - ["Data collection", "Maintain sex/gender-disaggregated staff data", "Monitoring report produced", "Every 2 years (or annually once feasible)"]
+                - ["Training", "Unconscious-bias and gender-equality training for staff and decision-makers", "100% of managers/decision-makers trained", "Every 2 years"]
+          - heading: "8. Reporting, review and continuous improvement"
+            body:
+              - "This GEP is a living document. SIA BATWATEX reviews progress against the targets in Section 7 at least once every two years, updates the plan to reflect the company's growth stage, and publishes the current version — together with prior versions — on its website. Any employee may raise suggestions for improving this plan through the contact address published on this page."
+
+    contact:
+      heading: "Contact"
+      lead: "Tell us what you are building. We will tell you honestly whether we are the right team for it."
+      details:
+        label: "Company details"
+        legal_name: "Legal name"
+        trading_as: "Trading as"
+        reg: "Registration number"
+        vat: "VAT number"
+        address: "Registered address"
+      get_in_touch:
+        label: "Get in touch"
+        email: "Email"
+        response: "We read everything that arrives and reply to anything that looks like a fit."
+      find_us:
+        label: "Find us"
+
+  # --- News articles ------------------------------------------------------
+  articles:
+    one_platform_not_five_tools:
+      title: "Why we build lending systems as one platform, not five tools"
+      excerpt: "Each tool in an assembled lending stack works. The problem is everything between them — and the data that gets scattered across systems that cannot see each other."
+      body:
+        - "Most lending businesses run on an assembled stack: one system for applications, another for scoring, a third for compliance checks, a spreadsheet for the portfolio, and something improvised for collections. Each tool works. The problem is everything between them."
+        - "Data gets re-entered. Reconciliation becomes a job. When a regulator asks how a specific decision was made, the answer has to be reconstructed from four sources. And the most valuable asset the business has — the accumulated record of who applied, what was decided, and what happened next — is scattered across systems that cannot see each other."
+        - "That last point is what changed our approach. A lender's own portfolio history is the best possible training data for a scoring model. But it is only usable if the application, the decision, the contract and the repayment record all live in the same place and can be joined. When we build the full lending cycle as one platform, the data stream becomes coherent by design — and the machine learning stops being a separate project and becomes a feature of the system."
+        - "This is the reasoning behind our lending ERP platform, now running with clients in Latvia, Spain and the UAE."
+    vertio_property_valuation_ml:
+      title: "Vertio: forecasting Latvian property values with machine learning"
+      excerpt: "In a small market, comparable transactions are scarce and the data that does exist is fragmented. Vertio turns collateral valuation from a bottleneck into part of the decision."
+      body:
+        - "Property valuation in a small market is a hard problem. There are fewer comparable transactions than in a large market, prices vary sharply by micro-location, and the data that does exist is fragmented. For a mortgage lender, this means collateral valuation is often slow, expensive and based on limited evidence."
+        - "We built Vertio to address this. It is a machine learning model trained on Latvian real estate market data that forecasts the value of individual properties. The output can be used in two ways: as an automated collateral assessment during mortgage underwriting, and as an input feature into credit scoring models."
+        - "Because Vertio connects to our lending platform, a mortgage application can be scored against a current model-driven valuation rather than a manual appraisal completed weeks earlier. The valuation stops being a bottleneck in the process and becomes part of the decision itself."

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Page not found — Braingency</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <style>
+    /* Standalone: served by the web server when Rails cannot run, so no
+       stylesheet or font from the asset pipeline is available here. */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      background: #08090A;
+      color: #F4F6F5;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(40rem 30rem at 78% 18%, rgba(203,255,77,0.06), transparent 62%),
+        linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: auto, 4.5rem 4.5rem, 4.5rem 4.5rem;
+    }
+    main { max-width: 34rem; text-align: left; }
+    .code {
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.6875rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #CBFF4D;
+    }
+    h1 {
+      margin-top: 1.5rem;
+      font-size: clamp(2rem, 1rem + 4vw, 3.25rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      font-weight: 500;
+    }
+    p { margin-top: 1.25rem; color: #98A0A3; line-height: 1.6; }
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2.25rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 999px;
+      background: #CBFF4D;
+      color: #08090A;
+      font-weight: 500;
+      font-size: 0.9375rem;
+      text-decoration: none;
+    }
+    a.btn:hover { background: #D8FF73; }
+    hr { margin-top: 3rem; border: 0; border-top: 1px solid rgba(255,255,255,0.07); }
+    .foot {
+      margin-top: 1.25rem;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.6875rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5E666A;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="code">Error 404</span>
+    <h1>This page does not exist.</h1>
+    <p>The address may be mistyped, or the page may have moved.</p>
+    <a class="btn" href="/">Go to the homepage <span aria-hidden="true">&rarr;</span></a>
+    <hr>
+    <p class="foot">Braingency &middot; SIA BATWATEX &middot; Riga</p>
+  </main>
+</body>
+</html>

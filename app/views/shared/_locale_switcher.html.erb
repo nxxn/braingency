@@ -1,0 +1,21 @@
+<%# Keeps the visitor on the same page when switching language. %>
+<div class="flex items-center rounded-full border border-line p-0.5 font-mono text-[0.6875rem] tracking-[0.08em] uppercase">
+  <% Site::LOCALES.each do |loc| %>
+    <% current = (loc == I18n.locale) %>
+    <%# The visible "EN"/"LV" must be part of the accessible name (WCAG 2.5.3
+        Label in Name), so the description is appended rather than replacing it
+        via aria-label. %>
+    <%= link_to alternate_url(loc),
+          hreflang: loc,
+          lang: loc,
+          class: class_names(
+            "rounded-full px-2.5 py-1 transition-colors duration-300",
+            "bg-lime text-ink-950" => current,
+            "text-fg-faint hover:text-fg" => !current
+          ),
+          aria: { current: ("true" if current) } do %>
+      <%= loc.to_s.upcase %>
+      <span class="sr-only"> &ndash; <%= t("nav.switch_language", language: t("common.languages.#{loc}")) %></span>
+    <% end %>
+  <% end %>
+</div>

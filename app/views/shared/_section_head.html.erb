@@ -1,0 +1,23 @@
+<%#
+  Mono index + label on a full-width hairline, then the heading.
+  The rule spans the container so it lines up with the grids underneath.
+  locals: index, label, heading, body (all optional), class
+%>
+<div>
+  <div class="flex items-center gap-4 border-t border-line pt-4" data-reveal>
+    <% if local_assigns[:index] %>
+      <span class="label label-accent"><%= index %></span>
+    <% end %>
+    <span class="label"><%= label %></span>
+  </div>
+
+  <div class="<%= local_assigns[:class] || "max-w-3xl" %>">
+    <% if local_assigns[:heading] %>
+      <h2 class="text-h2 mt-8 font-medium" data-reveal style="--reveal-delay:80ms"><%= heading %></h2>
+    <% end %>
+
+    <% if local_assigns[:body] %>
+      <p class="prose-braingency mt-5 max-w-2xl text-lead" data-reveal style="--reveal-delay:160ms"><%= body %></p>
+    <% end %>
+  </div>
+</div>

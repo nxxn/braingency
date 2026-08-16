@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#08090A">
+
+    <title><%= page_title %></title>
+    <meta name="description" content="<%= page_description %>">
+    <link rel="canonical" href="<%= canonical_url %>">
+
+    <% Site::LOCALES.each do |loc| %>
+      <link rel="alternate" hreflang="<%= loc %>" href="<%= alternate_url(loc) %>">
+    <% end %>
+    <link rel="alternate" hreflang="x-default" href="<%= alternate_url(Site::DEFAULT_LOCALE) %>">
+
+    <%# --- Open Graph / Twitter --- %>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="<%= Site::BRAND %>">
+    <meta property="og:locale" content="<%= I18n.locale == :lv ? "lv_LV" : "en_GB" %>">
+    <meta property="og:title" content="<%= page_title %>">
+    <meta property="og:description" content="<%= page_description %>">
+    <meta property="og:url" content="<%= canonical_url %>">
+    <% if (og = og_image_url) %>
+      <meta property="og:image" content="<%= og %>">
+      <meta property="og:image:width" content="1200">
+      <meta property="og:image:height" content="630">
+      <meta name="twitter:card" content="summary_large_image">
+    <% end %>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <%# Fonts are same-origin; preload the two subsets that render above the fold %>
+    <%= preload_link_tag asset_path("inter-tight-latin-wght-normal.woff2"), as: "font", type: "font/woff2", crossorigin: "anonymous" %>
+    <%= preload_link_tag asset_path("jetbrains-mono-latin-wght-normal.woff2"), as: "font", type: "font/woff2", crossorigin: "anonymous" %>
+
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application", type: "module", defer: true %>
+
+    <script type="application/ld+json"><%= organization_json_ld %></script>
+    <script>document.documentElement.classList.replace("no-js", "js")</script>
+
+    <%= yield :head %>
+  </head>
+
+  <body class="min-h-dvh bg-ink-950 text-fg antialiased">
+    <a href="#main" class="skip-link"><%= t("common.skip_to_content") %></a>
+
+    <%= render "shared/nav" %>
+
+    <main id="main" tabindex="-1"><%= yield %></main>
+
+    <%= render "shared/footer" %>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<%= render "shared/hero",
+      eyebrow: t("nav.product"),
+      heading: t("pages.product.heading"),
+      lead: t("pages.product.lead") %>
+
+<%# ======================================================================
+    Four products, alternating so the page has a rhythm rather than a stack
+    ====================================================================== %>
+<% %w[lending learning assistant vertio].each_with_index do |key, i| %>
+  <% base = "pages.product.projects.#{key}" %>
+  <% features = t("#{base}.features", default: nil) %>
+  <% status = t("#{base}.status", default: nil) %>
+
+  <section class="shell <%= i.zero? ? "" : "pt-[var(--spacing-section)]" %>">
+    <div class="border-t border-line pt-8" data-reveal>
+      <div class="grid gap-8 lg:grid-cols-[7rem_1fr] lg:gap-12">
+        <span class="label label-accent text-[0.8125rem]"><%= t("#{base}.index") %></span>
+
+        <div>
+          <h2 class="text-h2 max-w-[20ch] font-medium"><%= t("#{base}.name") %></h2>
+          <p class="mt-4 text-lead text-lime"><%= t("#{base}.subheading") %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-x-12 gap-y-10 lg:ml-[calc(7rem+3rem)] lg:grid-cols-[1.15fr_1fr]">
+      <div class="prose-braingency" data-reveal style="--reveal-delay:90ms">
+        <%= paragraphs("#{base}.body") %>
+
+        <% if status.present? %>
+          <p class="!mt-8 flex items-start gap-3 border-l border-lime/40 pl-4 not-italic">
+            <span class="label label-accent mt-1 shrink-0"><%= t("common.in_production") %></span>
+            <span class="text-[0.9375rem] text-fg"><%= status %></span>
+          </p>
+        <% end %>
+      </div>
+
+      <% if features.present? %>
+        <ol class="divide-y divide-line border-y border-line" data-reveal style="--reveal-delay:160ms">
+          <% features.each_with_index do |feature, fi| %>
+            <li class="group flex gap-5 py-5">
+              <span class="label label-accent pt-1"><%= format("%02d", fi + 1) %></span>
+              <div>
+                <h3 class="text-[1rem] font-medium leading-snug"><%= feature[:title] %></h3>
+                <p class="mt-1.5 text-[0.9375rem] leading-relaxed text-fg-muted"><%= feature[:body] %></p>
+              </div>
+            </li>
+          <% end %>
+        </ol>
+      <% end %>
+    </div>
+
+    <% if (outro = t("#{base}.outro", default: nil)).present? %>
+      <div class="mt-10 lg:ml-[calc(7rem+3rem)]" data-reveal>
+        <div class="card p-8 lg:p-10">
+          <p class="prose-braingency max-w-3xl !mt-0"><%= outro %></p>
+        </div>
+      </div>
+    <% end %>
+  </section>
+<% end %>
+
+<%# ======================================================================
+    Technology
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "05",
+        label: t("pages.product.technology.label"),
+        heading: t("pages.product.technology.heading") %>
+
+  <div class="mt-10 grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
+    <div class="prose-braingency" data-reveal>
+      <%= paragraphs("pages.product.technology.body") %>
+    </div>
+
+    <ul class="flex flex-wrap content-start gap-2.5" data-reveal style="--reveal-delay:120ms">
+      <% Array(t("pages.product.technology.stack")).each do |item| %>
+        <li class="rounded-full border border-line px-4 py-2 font-mono text-[0.75rem] tracking-[0.04em] text-fg-muted
+                   transition-colors duration-300 hover:border-lime/50 hover:text-lime">
+          <%= item %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

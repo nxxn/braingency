@@ -1,0 +1,69 @@
+<header data-nav
+        class="fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-500
+               border-b border-transparent
+               data-[stuck=true]:border-line data-[stuck=true]:bg-ink-950/72 data-[stuck=true]:backdrop-blur-xl">
+  <div class="shell flex items-center justify-between gap-6 py-5 transition-[padding] duration-500
+              [[data-stuck=true]_&]:py-3">
+
+    <%= link_to locale_root_path, class: "shrink-0 -m-2 p-2 text-fg transition-colors duration-300 hover:text-lime",
+                aria: { label: "#{Site::BRAND} — #{t('nav.home')}" } do %>
+      <%= render "shared/logo" %>
+    <% end %>
+
+    <%# --- Desktop nav --- %>
+    <nav class="hidden lg:flex items-center gap-1" aria-label="<%= t("nav.primary") %>">
+      <% Site::NAV_PAGES.each do |page| %>
+        <%= link_to t("nav.#{page.key}"), path_for(page.key),
+              class: class_names(
+                "relative px-3.5 py-2 text-[0.9375rem] tracking-[-0.01em] transition-colors duration-300",
+                "after:absolute after:inset-x-3.5 after:-bottom-px after:h-px after:bg-lime after:origin-right after:scale-x-0 after:transition-transform after:duration-500 after:[transition-timing-function:var(--ease-out-expo)]",
+                "hover:text-lime hover:after:scale-x-100 hover:after:origin-left",
+                "text-lime after:scale-x-100" => @page_key == page.key,
+                "text-fg-muted" => @page_key != page.key
+              ),
+              aria: { current: ("page" if @page_key == page.key) } %>
+      <% end %>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <%= render "shared/locale_switcher" %>
+
+      <%= link_to contact_path, class: "hidden sm:inline-flex btn btn-primary !py-2.5 !px-5 !text-[0.875rem]", data: { magnetic: true } do %>
+        <%= t("common.talk_to_us") %>
+        <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+      <% end %>
+
+      <%# --- Mobile toggle --- %>
+      <button type="button" data-nav-toggle
+              class="lg:hidden -mr-2 grid h-10 w-10 place-items-center text-fg"
+              aria-expanded="false" aria-controls="mobile-nav"
+              aria-label="<%= t("nav.menu") %>">
+        <span class="relative block h-3 w-5">
+          <span class="absolute inset-x-0 top-0 h-px bg-current transition-transform duration-400 [transition-timing-function:var(--ease-out-expo)] [[aria-expanded=true]_&]:translate-y-[5.5px] [[aria-expanded=true]_&]:rotate-45"></span>
+          <span class="absolute inset-x-0 bottom-0 h-px bg-current transition-transform duration-400 [transition-timing-function:var(--ease-out-expo)] [[aria-expanded=true]_&]:-translate-y-[5.5px] [[aria-expanded=true]_&]:-rotate-45"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <%# --- Mobile panel --- %>
+  <div id="mobile-nav" data-nav-panel hidden
+       class="lg:hidden border-t border-line bg-ink-950/95 backdrop-blur-xl">
+    <nav class="shell flex flex-col py-4" aria-label="<%= t("nav.primary") %>">
+      <% Site::NAV_PAGES.each_with_index do |page, i| %>
+        <%= link_to t("nav.#{page.key}"), path_for(page.key),
+              style: "--reveal-delay: #{i * 40}ms",
+              class: class_names(
+                "border-b border-line py-4 text-[1.375rem] tracking-[-0.02em] transition-colors duration-300",
+                "text-lime" => @page_key == page.key,
+                "text-fg" => @page_key != page.key
+              ),
+              aria: { current: ("page" if @page_key == page.key) } %>
+      <% end %>
+      <%= link_to contact_path, class: "btn btn-primary mt-6 mb-2 justify-center" do %>
+        <%= t("common.talk_to_us") %>
+        <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+      <% end %>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,41 @@
+<%#
+  The Braingency mark. Three candidate directions live here; the active one is
+  chosen by Site::MARK (config in app/models/site.rb) or overridden per-call
+  for the /dev/brand comparison page.
+
+  All variants are drawn on a 32×32 grid, inherit the surrounding text colour
+  through `currentColor`, and carry the accent as an explicit fill so the mark
+  keeps its identity on any background.
+
+  locals: variant (Symbol), class (String, optional)
+%><%
+  variant ||= Site::MARK
+  css_class = local_assigns[:class] || "h-7 w-7"
+  lime = "#CBFF4D"
+%>
+<svg class="<%= css_class %>" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+  <% case variant.to_sym %>
+  <% when :aperture %>
+    <%# Split square: two triangles divided by a diagonal channel.
+        Reads as a lens, a data split, two hemispheres. %>
+    <path d="M3 3H26L3 26V3Z" fill="currentColor"/>
+    <path d="M29 6V29H6L29 6Z" fill="<%= lime %>"/>
+
+  <% when :node %>
+    <%# A model inside a system: framed graph edge, one node live. %>
+    <rect x="3.25" y="3.25" width="25.5" height="25.5" rx="7.5"
+          stroke="currentColor" stroke-width="2.5"/>
+    <path d="M11.5 20.5L20.5 11.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="20.5" cy="11.5" r="3.5" fill="currentColor"/>
+    <circle cx="11.5" cy="20.5" r="3.5" fill="<%= lime %>"/>
+
+  <% else %>
+    <%# :core — brackets around a live signal. Machine learning running
+        inside a production system, which is literally the business. %>
+    <path d="M12.5 4H5.5V28H12.5" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M19.5 4H26.5V28H19.5" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="12.75" y="12.75" width="6.5" height="6.5" rx="1.25" fill="<%= lime %>"/>
+  <% end %>
+</svg>

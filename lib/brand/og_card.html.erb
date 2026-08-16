@@ -1,0 +1,115 @@
+<!doctype html>
+<meta charset="utf-8">
+<!--
+  Open Graph card, rendered to PNG at 1200x630 by bin/build-brand.
+  Fonts are loaded from the repo so the card matches the site exactly.
+-->
+<style>
+  @font-face {
+    font-family: "Inter Tight";
+    src: url("../../app/assets/fonts/inter-tight-latin-wght-normal.woff2") format("woff2-variations");
+    font-weight: 100 900;
+  }
+  @font-face {
+    font-family: "JetBrains Mono";
+    src: url("../../app/assets/fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2-variations");
+    font-weight: 100 800;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #08090A;
+    color: #F4F6F5;
+    font-family: "Inter Tight", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(560px 380px at 82% 16%, rgba(203, 255, 77, 0.13), transparent 62%),
+      radial-gradient(420px 300px at 96% 74%, rgba(203, 255, 77, 0.07), transparent 60%);
+  }
+
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.055) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: linear-gradient(115deg, transparent 8%, black 55%);
+  }
+
+  .frame {
+    position: relative;
+    height: 100%;
+    padding: 72px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .top { display: flex; align-items: center; gap: 16px; }
+
+  .mark { width: 40px; height: 40px; }
+
+  .wordmark {
+    font-size: 27px;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+  }
+
+  h1 {
+    font-size: 82px;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    max-width: 17ch;
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.09);
+    padding-top: 26px;
+  }
+
+  .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #98A0A3;
+  }
+
+  .accent { color: #CBFF4D; }
+</style>
+
+<div class="glow"></div>
+<div class="grid"></div>
+
+<div class="frame">
+  <div class="top">
+    <svg class="mark" viewBox="0 0 32 32" fill="none">
+      <path d="M12.5 4H5.5V28H12.5" stroke="#F4F6F5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19.5 4H26.5V28H19.5" stroke="#F4F6F5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="12.75" y="12.75" width="6.5" height="6.5" rx="1.25" fill="#CBFF4D"/>
+    </svg>
+    <span class="wordmark">braingency</span>
+  </div>
+
+  <h1><%= title %></h1>
+
+  <div class="bottom">
+    <span class="mono"><%= eyebrow %></span>
+    <span class="mono accent"><%= footer %></span>
+  </div>
+</div>

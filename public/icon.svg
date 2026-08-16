@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Braingency">
+  <rect width="64" height="64" rx="14" fill="#08090A"/>
+  <g transform="translate(16 16) scale(1)">
+    <path d="M12.5 4H5.5V28H12.5" stroke="#F4F6F5" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M19.5 4H26.5V28H19.5" stroke="#F4F6F5" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <rect x="12.75" y="12.75" width="6.5" height="6.5" rx="1.25" fill="#CBFF4D"/>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+<%= render "shared/hero",
+      eyebrow: t("nav.team"),
+      heading: t("pages.team.heading"),
+      lead: t("pages.team.lead") %>
+
+<%# ======================================================================
+    Founders
+    ====================================================================== %>
+<section class="shell">
+  <% Site::FOUNDERS.each_with_index do |founder, i| %>
+    <article class="border-t border-line pt-10 <%= "mt-[var(--spacing-section)]" unless i.zero? %>">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
+
+        <div data-reveal>
+          <%= render "shared/portrait", initials: founder[:initials], seed: founder[:key] %>
+
+          <div class="mt-6 flex items-center justify-between gap-4">
+            <span class="label label-accent"><%= format("%02d", i + 1) %></span>
+            <a href="<%= founder[:linkedin] %>" class="link label !text-fg-muted"
+               rel="noopener noreferrer" target="_blank">
+              LinkedIn
+              <%= render "shared/icon", name: "arrow-up-right", class: "h-3.5 w-3.5" %>
+            </a>
+          </div>
+        </div>
+
+        <div data-reveal style="--reveal-delay:110ms">
+          <h2 class="text-h2 font-medium"><%= founder[:name] %></h2>
+          <p class="mt-3 text-lead text-lime"><%= t("pages.team.roles.#{founder[:role_key]}") %></p>
+
+          <div class="prose-braingency mt-8 max-w-[62ch]">
+            <%= paragraphs("pages.team.members.#{founder[:key]}.bio") %>
+          </div>
+        </div>
+      </div>
+    </article>
+  <% end %>
+</section>
+
+<%# ======================================================================
+    Working at Braingency
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "03",
+        label: t("pages.team.working.label"),
+        heading: t("pages.team.working.heading") %>
+
+  <div class="mt-10 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+    <div class="prose-braingency" data-reveal>
+      <%= paragraphs("pages.team.working.body") %>
+    </div>
+
+    <div class="card flex flex-col justify-between gap-8 p-8" data-reveal style="--reveal-delay:120ms">
+      <%= render "shared/icon", name: "shield", class: "h-7 w-7 text-lime" %>
+      <div>
+        <h3 class="text-h3 font-medium"><%= t("nav.gender_equality_plan") %></h3>
+        <%= link_to gender_equality_plan_path, class: "link mt-5 inline-flex text-[0.9375rem] text-lime" do %>
+          <%= t("pages.team.working.link") %>
+          <span aria-hidden="true">&rarr;</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

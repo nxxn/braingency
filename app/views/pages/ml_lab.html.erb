@@ -1,0 +1,68 @@
+<%= render "shared/hero",
+      eyebrow: t("nav.ml_lab"),
+      heading: t("pages.ml_lab.heading"),
+      lead: t("pages.ml_lab.lead") %>
+
+<%# ====================================================================== %>
+<section class="shell">
+  <%= render "shared/section_head",
+        index: "01",
+        label: t("pages.ml_lab.what_it_is.label"),
+        heading: t("pages.ml_lab.what_it_is.heading") %>
+
+  <div class="mt-10 max-w-3xl prose-braingency text-[1.0625rem]" data-reveal>
+    <%= paragraphs("pages.ml_lab.what_it_is.body") %>
+  </div>
+</section>
+
+<%# ======================================================================
+    What we do — three strands of the Lab's work
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head", index: "02", label: t("pages.ml_lab.what_we_do.label") %>
+
+  <div class="mt-12 space-y-px overflow-hidden border border-line bg-line">
+    <% %w[own_products custom research].each_with_index do |key, i| %>
+      <article class="card border-0 p-8 lg:p-12" data-reveal style="--reveal-delay:<%= i * 90 %>ms">
+        <div class="grid gap-6 lg:grid-cols-[1fr_1.6fr] lg:gap-14">
+          <div>
+            <span class="label label-accent"><%= format("%02d", i + 1) %></span>
+            <h3 class="text-h3 mt-4 max-w-[18ch] font-medium">
+              <%= t("pages.ml_lab.what_we_do.#{key}.heading") %>
+            </h3>
+          </div>
+          <div class="prose-braingency">
+            <%= paragraphs("pages.ml_lab.what_we_do.#{key}.body") %>
+          </div>
+        </div>
+      </article>
+    <% end %>
+  </div>
+
+  <div class="mt-10 flex items-start gap-4 border-t border-line pt-6" data-reveal>
+    <%= render "shared/icon", name: "research", class: "h-5 w-5 shrink-0 text-lime mt-0.5" %>
+    <p class="max-w-2xl text-[0.9375rem] leading-relaxed text-fg-muted">
+      <%= t("pages.ml_lab.capabilities.body") %>
+    </p>
+  </div>
+</section>
+
+<%# ======================================================================
+    Case examples
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "03",
+        label: t("pages.ml_lab.cases.label"),
+        heading: t("pages.ml_lab.cases.heading") %>
+
+  <div class="mt-12 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2" data-reveal-group="110">
+    <% %w[scoring valuation].each do |key| %>
+      <article class="card border-0 p-8 lg:p-10">
+        <span class="label label-accent"><%= t("pages.ml_lab.cases.items.#{key}.index") %></span>
+        <h3 class="text-h3 mt-6 font-medium"><%= t("pages.ml_lab.cases.items.#{key}.title") %></h3>
+        <p class="prose-braingency mt-4 text-[1rem]"><%= t("pages.ml_lab.cases.items.#{key}.body") %></p>
+      </article>
+    <% end %>
+  </div>
+</section>

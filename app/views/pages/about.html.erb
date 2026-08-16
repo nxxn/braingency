@@ -1,0 +1,72 @@
+<%= render "shared/hero",
+      eyebrow: Site::LEGAL_NAME,
+      heading: t("pages.about.heading"),
+      lead: t("pages.about.lead") %>
+
+<section class="shell">
+  <div class="max-w-3xl prose-braingency text-lead" data-reveal>
+    <%= paragraphs("pages.about.intro") %>
+  </div>
+</section>
+
+<%# ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "01",
+        label: t("pages.about.how_we_work.label"),
+        heading: t("pages.about.how_we_work.heading") %>
+
+  <div class="mt-10 grid gap-x-16 gap-y-6 lg:grid-cols-2" data-reveal>
+    <% Array(t("pages.about.how_we_work.body")).each do |para| %>
+      <p class="prose-braingency"><%= para %></p>
+    <% end %>
+  </div>
+</section>
+
+<%# ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "02",
+        label: t("pages.about.ml_approach.label"),
+        heading: t("pages.about.ml_approach.heading") %>
+
+  <div class="mt-10 grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+    <div class="prose-braingency" data-reveal>
+      <%= paragraphs("pages.about.ml_approach.body") %>
+    </div>
+
+    <figure class="card relative p-8 lg:p-10" data-reveal style="--reveal-delay:120ms">
+      <span class="label label-accent">&#10077;</span>
+      <blockquote class="mt-5 text-h3 font-medium leading-snug text-fg">
+        <%= t("pages.about.ml_approach.pullquote") %>
+      </blockquote>
+    </figure>
+  </div>
+</section>
+
+<%# ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "03",
+        label: t("pages.about.where.label"),
+        heading: t("pages.about.where.heading") %>
+
+  <div class="mt-10 max-w-2xl prose-braingency" data-reveal>
+    <%= paragraphs("pages.about.where.body") %>
+  </div>
+
+  <div class="mt-12 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-3" data-reveal-group="90">
+    <% [["Latvia", "Riga · headquarters"], ["Spain", "Lending platform in production"], ["United Arab Emirates", "Lending platform in production"]].each do |place, note| %>
+      <div class="card border-0 p-7">
+        <h3 class="text-[1.0625rem] font-medium"><%= place %></h3>
+        <p class="label mt-3 normal-case tracking-[0.02em] text-fg-faint"><%= note %></p>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<%# ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head", index: "04", label: t("pages.about.details.label") %>
+  <%= render "shared/company_details", context: :about %>
+</section>

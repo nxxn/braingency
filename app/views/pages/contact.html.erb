@@ -1,0 +1,72 @@
+<%= render "shared/hero",
+      eyebrow: t("nav.contact"),
+      heading: t("pages.contact.heading"),
+      lead: t("pages.contact.lead") %>
+
+<section class="shell">
+  <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
+
+    <%# --- Email --------------------------------------------------------- %>
+    <div class="card flex flex-col justify-between gap-10 p-8 lg:p-12" data-reveal>
+      <div>
+        <span class="label label-accent"><%= t("pages.contact.get_in_touch.label") %></span>
+        <%= mail_to Site::CONTACT_EMAIL,
+              class: "mt-7 block text-h3 font-medium tracking-[-0.02em] transition-colors duration-300 hover:text-lime" do %>
+          <%= Site::CONTACT_EMAIL %>
+        <% end %>
+        <p class="mt-5 max-w-[38ch] text-[0.9375rem] leading-relaxed text-fg-muted">
+          <%= t("pages.contact.get_in_touch.response") %>
+        </p>
+      </div>
+
+      <%= mail_to Site::CONTACT_EMAIL, class: "btn btn-primary self-start", data: { magnetic: true } do %>
+        <%= t("common.cta.button") %>
+        <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+      <% end %>
+    </div>
+
+    <%# --- Where / who ---------------------------------------------------- %>
+    <div class="flex flex-col gap-10" data-reveal style="--reveal-delay:110ms">
+      <div>
+        <span class="label label-accent"><%= t("pages.contact.find_us.label") %></span>
+        <ul class="mt-6 divide-y divide-line border-y border-line">
+          <% Site::FOUNDERS.each do |founder| %>
+            <li>
+              <a href="<%= founder[:linkedin] %>" rel="noopener noreferrer" target="_blank"
+                 class="group flex items-center justify-between gap-4 py-4">
+                <span>
+                  <span class="block text-[0.9375rem] font-medium transition-colors duration-300 group-hover:text-lime">
+                    <%= founder[:name] %>
+                  </span>
+                  <span class="label mt-1.5 block text-fg-faint">
+                    <%= t("pages.team.roles.#{founder[:role_key]}") %>
+                  </span>
+                </span>
+                <span class="label inline-flex items-center gap-2 text-fg-faint transition-colors duration-300 group-hover:text-lime">
+                  LinkedIn
+                  <%= render "shared/icon", name: "arrow-up-right", class: "h-3.5 w-3.5" %>
+                </span>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <address class="not-italic">
+        <span class="label label-accent"><%= t("pages.contact.details.address") %></span>
+        <p class="mt-6 font-mono text-[0.9375rem] leading-relaxed text-fg">
+          <%= Site::LEGAL_NAME %><br>
+          <%= Site::ADDRESS[:street] %><br>
+          <%= Site::ADDRESS[:locality] %>, <%= Site::ADDRESS[:postal_code] %><br>
+          <%= Site::ADDRESS[:country_name] %>
+        </p>
+      </address>
+    </div>
+  </div>
+</section>
+
+<%# ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head", index: "01", label: t("pages.contact.details.label") %>
+  <%= render "shared/company_details", context: :contact %>
+</section>

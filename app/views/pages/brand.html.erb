@@ -1,0 +1,70 @@
+<%#
+  Development-only comparison sheet for the logo mark.
+  Pick a variant, then set Site::MARK in config/site.rb — that constant is the
+  only thing the rest of the site reads.
+%>
+<section class="shell pb-24 pt-32">
+  <span class="label label-accent">Internal · not linked from the site</span>
+  <h1 class="text-h1 mt-6 font-medium">Logo mark — candidates</h1>
+  <p class="prose-braingency mt-5 max-w-2xl">
+    Three directions for the Braingency mark. Currently active:
+    <strong><%= Site::MARK %></strong>. To switch, change <code class="font-mono text-lime">Site::MARK</code>
+    in <code class="font-mono text-lime">config/site.rb</code> — every logo, favicon source and
+    Open Graph card follows from it.
+  </p>
+
+  <% variants = {
+       core:     ["Core", "Brackets around a live signal — machine learning running inside a production system, which is literally the business."],
+       aperture: ["Aperture", "A square split by a diagonal channel. Reads as a lens, a data split, two hemispheres."],
+       node:     ["Node", "A framed graph edge with one live node — a model inside a system."]
+     } %>
+
+  <div class="mt-16 space-y-px overflow-hidden border border-line bg-line">
+    <% variants.each_with_index do |(key, (name, rationale)), i| %>
+      <div class="bg-ink-950 p-8 lg:p-12">
+        <div class="grid gap-10 lg:grid-cols-[16rem_1fr] lg:gap-16">
+          <div>
+            <div class="flex items-baseline gap-4">
+              <span class="label label-accent"><%= format("%02d", i + 1) %></span>
+              <h2 class="text-h3 font-medium"><%= name %></h2>
+              <% if Site::MARK == key %>
+                <span class="rounded-full bg-lime px-2.5 py-1 font-mono text-[0.625rem] uppercase tracking-[0.1em] text-ink-950">Active</span>
+              <% end %>
+            </div>
+            <p class="mt-4 text-[0.875rem] leading-relaxed text-fg-muted"><%= rationale %></p>
+            <p class="label mt-5">Site::MARK = :<%= key %></p>
+          </div>
+
+          <div class="space-y-8">
+            <%# Dark, at the sizes it actually gets used %>
+            <div class="flex flex-wrap items-center gap-10 border border-line bg-ink-900 p-8">
+              <%= render "shared/logo_mark", variant: key, class: "h-16 w-16 text-fg" %>
+              <%= render "shared/logo_mark", variant: key, class: "h-8 w-8 text-fg" %>
+              <%= render "shared/logo_mark", variant: key, class: "h-4 w-4 text-fg" %>
+              <div class="text-fg"><%= render "shared/logo", variant: key %></div>
+              <div class="text-fg"><%= render "shared/logo", variant: key, mark_class: "h-9 w-9", text_class: "text-2xl" %></div>
+            </div>
+
+            <%# Light, for invoices, decks and letterheads %>
+            <div class="flex flex-wrap items-center gap-10 border border-line bg-[#FAFAF8] p-8">
+              <%= render "shared/logo_mark", variant: key, class: "h-16 w-16 text-[#08090A]" %>
+              <%= render "shared/logo_mark", variant: key, class: "h-8 w-8 text-[#08090A]" %>
+              <div class="text-[#08090A]"><%= render "shared/logo", variant: key %></div>
+            </div>
+
+            <%# Favicon-scale reality check %>
+            <div class="flex items-center gap-6">
+              <span class="label">Favicon</span>
+              <span class="grid h-8 w-8 place-items-center rounded-[7px] bg-ink-900">
+                <%= render "shared/logo_mark", variant: key, class: "h-5 w-5 text-fg" %>
+              </span>
+              <span class="grid h-5 w-5 place-items-center rounded-[4px] bg-ink-900">
+                <%= render "shared/logo_mark", variant: key, class: "h-3.5 w-3.5 text-fg" %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

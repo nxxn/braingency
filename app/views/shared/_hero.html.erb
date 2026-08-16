@@ -1,0 +1,95 @@
+<%#
+  Page hero. The home page passes shader: true for the WebGL field; inner pages
+  get the same type ramp on a quieter backdrop.
+
+  locals: heading, lead (optional), body (optional), eyebrow (optional),
+          shader (Boolean), meta (Array of strings, optional), cta (Boolean)
+%><%
+  shader = local_assigns.fetch(:shader, false)
+%>
+<section class="relative isolate overflow-hidden <%= shader ? "flex flex-col pb-10 pt-28" : "pb-[clamp(3rem,2rem+5vw,6rem)] pt-[clamp(8rem,6rem+8vw,13rem)]" %>"
+         <%= 'style="min-height: max(42rem, 92svh)"'.html_safe if shader %>>
+
+  <%# --- Backdrop ------------------------------------------------------- %>
+  <% if shader %>
+    <%# CSS field: what every visitor sees until WebGL proves it can run. %>
+    <div class="absolute inset-0 -z-30" aria-hidden="true"
+         style="background:
+           radial-gradient(46rem 34rem at 76% 20%, rgb(203 255 77 / 0.055), transparent 64%),
+           radial-gradient(34rem 26rem at 92% 62%, rgb(203 255 77 / 0.030), transparent 62%);"></div>
+
+    <canvas data-hero-canvas class="absolute inset-0 -z-20 h-full w-full mask-fade-b" aria-hidden="true"></canvas>
+  <% end %>
+
+  <div class="bg-grid absolute inset-0 -z-10 opacity-[0.5] mask-fade-b" aria-hidden="true"></div>
+
+  <% if shader %>
+    <%# Scrim: guarantees headline contrast no matter what the field is doing. %>
+    <div class="pointer-events-none absolute inset-0 -z-[9]" aria-hidden="true"
+         style="background:
+           linear-gradient(100deg, #08090A 4%, rgb(8 9 10 / 0.80) 32%, rgb(8 9 10 / 0.18) 62%, transparent 90%),
+           linear-gradient(to top, #08090A 1%, transparent 30%);"></div>
+  <% end %>
+
+  <%# --- Content -------------------------------------------------------- %>
+  <div class="shell relative <%= "flex flex-1 flex-col justify-center" if shader %>">
+    <% if local_assigns[:eyebrow] %>
+      <div class="mb-8 flex items-center gap-3" data-reveal>
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-60"></span>
+          <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime"></span>
+        </span>
+        <span class="label text-fg-muted"><%= eyebrow %></span>
+      </div>
+    <% end %>
+
+    <h1 class="text-display max-w-[19ch] font-medium" <%= "data-split" if shader %>><%= heading %></h1>
+
+    <% if local_assigns[:lead] || local_assigns[:body] %>
+      <div class="mt-10 grid gap-x-16 gap-y-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+        <div>
+          <% if local_assigns[:lead] %>
+            <p class="max-w-[40ch] text-lead text-fg" data-reveal style="--reveal-delay:<%= shader ? 380 : 100 %>ms">
+              <%= lead %>
+            </p>
+          <% end %>
+
+          <% if local_assigns.fetch(:cta, false) %>
+            <div class="mt-8 flex flex-wrap items-center gap-3.5" data-reveal style="--reveal-delay:<%= shader ? 520 : 200 %>ms">
+              <%= link_to contact_path, class: "btn btn-primary", data: { magnetic: true } do %>
+                <%= t("common.talk_to_us") %>
+                <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+              <% end %>
+              <%= link_to product_path, class: "btn btn-ghost" do %>
+                <%= t("nav.product") %>
+                <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+
+        <% if local_assigns[:body] %>
+          <p class="max-w-[52ch] text-[0.9375rem] leading-relaxed text-fg-muted lg:justify-self-end"
+             data-reveal style="--reveal-delay:<%= shader ? 460 : 160 %>ms">
+            <%= body %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%# --- Status strip --------------------------------------------------- %>
+  <% if local_assigns[:meta].present? %>
+    <div class="shell relative mt-[clamp(2.5rem,1rem+5vw,4.5rem)]">
+      <div class="rule"></div>
+      <ul class="mask-fade-r flex gap-x-9 gap-y-4 overflow-x-auto pt-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <% meta.each_with_index do |item, i| %>
+          <li class="flex shrink-0 items-baseline gap-2.5" data-reveal style="--reveal-delay:<%= 600 + i * 60 %>ms">
+            <span class="label label-accent"><%= format("%02d", i + 1) %></span>
+            <span class="label text-fg-muted"><%= item %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</section>

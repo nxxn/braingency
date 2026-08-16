@@ -1,0 +1,38 @@
+<%= render "shared/hero",
+      eyebrow: t("nav.news"),
+      heading: t("pages.news.heading"),
+      lead: t("pages.news.lead") %>
+
+<section class="shell">
+  <ol class="border-t border-line" data-reveal-group="120">
+    <% @articles.each_with_index do |article, i| %>
+      <% key = article.slug.tr("-", "_") %>
+      <li class="border-b border-line">
+        <%= link_to article_path(slug: article.slug), class: "group block py-10 lg:py-12" do %>
+          <div class="grid gap-5 lg:grid-cols-[9rem_1fr_auto] lg:items-baseline lg:gap-12">
+            <div class="flex items-baseline gap-4 lg:block">
+              <span class="label label-accent"><%= format("%02d", i + 1) %></span>
+              <time class="label mt-2 block text-fg-faint" datetime="<%= article.published_on.iso8601 %>">
+                <%= format_date(article.published_on) %>
+              </time>
+            </div>
+
+            <div class="max-w-[52ch]">
+              <h2 class="text-h3 font-medium transition-colors duration-300 group-hover:text-lime">
+                <%= t("articles.#{key}.title") %>
+              </h2>
+              <p class="mt-3 text-[0.9375rem] leading-relaxed text-fg-muted">
+                <%= t("articles.#{key}.excerpt") %>
+              </p>
+            </div>
+
+            <span class="label inline-flex items-center gap-2 text-fg-faint transition-colors duration-300 group-hover:text-lime">
+              <%= t("common.read_article") %>
+              <span class="transition-transform duration-500 [transition-timing-function:var(--ease-out-expo)] group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+            </span>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ol>
+</section>

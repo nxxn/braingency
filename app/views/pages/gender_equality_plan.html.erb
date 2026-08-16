@@ -1,0 +1,173 @@
+<%#
+  Published for EIC / Horizon Europe evaluators. Two things matter here and
+  drive the layout: the signed PDF must be one obvious click away, and the full
+  text must be readable in the page without downloading anything.
+%>
+<%= render "shared/hero",
+      eyebrow: Site::LEGAL_NAME,
+      heading: t("pages.gender_equality_plan.heading"),
+      lead: t("pages.gender_equality_plan.lead") %>
+
+<%# ======================================================================
+    Document facts + download
+    ====================================================================== %>
+<section class="shell">
+  <div class="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+    <div class="prose-braingency" data-reveal>
+      <%= paragraphs("pages.gender_equality_plan.intro") %>
+    </div>
+
+    <div class="card p-8 lg:p-10" data-reveal style="--reveal-delay:110ms">
+      <%= render "shared/icon", name: "shield", class: "h-7 w-7 text-lime" %>
+
+      <dl class="mt-8 divide-y divide-line border-y border-line">
+        <% [
+             [t("pages.gender_equality_plan.facts.version"), Site::GEP[:version]],
+             [t("pages.gender_equality_plan.facts.adopted"), format_date(Site::GEP[:adopted_on])],
+             [t("pages.gender_equality_plan.facts.review"),  t("pages.gender_equality_plan.facts.review_value")],
+             [t("pages.gender_equality_plan.facts.status"),  t("pages.gender_equality_plan.facts.status_value")]
+           ].each do |term, value| %>
+          <div class="flex flex-wrap items-baseline justify-between gap-3 py-3.5">
+            <dt class="label"><%= term %></dt>
+            <dd class="font-mono text-[0.8125rem] text-fg"><%= value %></dd>
+          </div>
+        <% end %>
+      </dl>
+
+      <%= link_to gep_document_path, class: "btn btn-primary mt-8 w-full justify-center",
+                  download: Site::GEP[:filename], data: { magnetic: true } do %>
+        <%= render "shared/icon", name: "download", class: "h-4 w-4" %>
+        <%= t("pages.gender_equality_plan.download.button") %>
+      <% end %>
+
+      <p class="mt-5 text-[0.8125rem] leading-relaxed text-fg-faint">
+        <%= t("pages.gender_equality_plan.download.note") %>
+      </p>
+    </div>
+  </div>
+</section>
+
+<%# ======================================================================
+    Full text — so an evaluator never has to open the PDF to read the plan
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "01",
+        label: t("pages.gender_equality_plan.full_text.label"),
+        heading: t("pages.gender_equality_plan.full_text.heading") %>
+
+  <p class="label mt-6 max-w-3xl normal-case leading-relaxed tracking-[0.02em] text-fg-faint" data-reveal>
+    <%= t("pages.gender_equality_plan.full_text.adopted_by") %>
+  </p>
+
+  <%# Only present in locales where the plan text stays in its signed language. %>
+  <% if (note = t("pages.gender_equality_plan.full_text.language_note", default: nil)).present? %>
+    <p class="mt-6 flex max-w-3xl items-start gap-3 border-l border-lime/40 pl-4 text-[0.875rem] leading-relaxed text-fg-muted"
+       data-reveal>
+      <span class="label label-accent mt-0.5 shrink-0">EN</span>
+      <span><%= note %></span>
+    </p>
+  <% end %>
+
+  <div class="mt-14 max-w-3xl space-y-14">
+    <% Array(t("pages.gender_equality_plan.full_text.sections")).each do |section| %>
+      <section data-reveal>
+        <h3 class="text-h3 border-t border-line pt-5 font-medium"><%= section[:heading] %></h3>
+
+        <div class="prose-braingency mt-5">
+          <% Array(section[:body]).each do |para| %>
+            <p><%= para %></p>
+          <% end %>
+        </div>
+
+        <% if section[:list].present? %>
+          <ul class="mt-6 space-y-3.5">
+            <% Array(section[:list]).each do |item| %>
+              <li class="flex gap-4">
+                <span class="mt-[0.6em] h-1 w-3 shrink-0 bg-lime/60" aria-hidden="true"></span>
+                <span class="text-[0.9375rem] leading-relaxed text-fg-muted"><%= item %></span>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <% if section[:subsections].present? %>
+          <div class="mt-8 space-y-7 border-l border-line pl-6">
+            <% Array(section[:subsections]).each do |sub| %>
+              <div>
+                <h4 class="text-[1rem] font-medium text-fg"><%= sub[:heading] %></h4>
+                <p class="mt-2.5 text-[0.9375rem] leading-relaxed text-fg-muted"><%= sub[:body] %></p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <% if section[:table].present? %>
+          <div class="mt-7 overflow-x-auto border border-line">
+            <table class="w-full min-w-[42rem] border-collapse text-left">
+              <thead>
+                <tr class="border-b border-line bg-ink-850">
+                  <% Array(section.dig(:table, :headers)).each do |header| %>
+                    <th scope="col" class="label px-4 py-3.5 align-bottom text-fg-muted"><%= header %></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-line">
+                <% Array(section.dig(:table, :rows)).each do |row| %>
+                  <tr>
+                    <% row.each_with_index do |cell, ci| %>
+                      <td class="px-4 py-4 align-top text-[0.875rem] leading-relaxed <%= ci.zero? ? "font-medium text-fg" : "text-fg-muted" %>">
+                        <%= cell %>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+
+        <% if section[:outro].present? %>
+          <div class="prose-braingency mt-6">
+            <% Array(section[:outro]).each do |para| %>
+              <p><%= para %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </section>
+    <% end %>
+  </div>
+</section>
+
+<%# ======================================================================
+    Version archive + contact
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head", index: "02", label: t("pages.gender_equality_plan.archive.heading") %>
+
+  <ol class="mt-10 max-w-3xl border-y border-line divide-y divide-line" data-reveal>
+    <li class="flex flex-wrap items-center justify-between gap-4 py-5">
+      <div>
+        <p class="text-[0.9375rem] font-medium text-fg">
+          <%= t("nav.gender_equality_plan") %> &middot; v<%= Site::GEP[:version] %>
+        </p>
+        <p class="label mt-2 text-fg-faint">
+          <%= t("pages.gender_equality_plan.facts.adopted") %>: <%= format_date(Site::GEP[:adopted_on]) %>
+        </p>
+      </div>
+      <%= link_to gep_document_path, class: "link label !text-lime", download: Site::GEP[:filename] do %>
+        PDF
+        <%= render "shared/icon", name: "download", class: "h-3.5 w-3.5" %>
+      <% end %>
+    </li>
+  </ol>
+
+  <p class="mt-6 max-w-3xl text-[0.875rem] text-fg-faint" data-reveal>
+    <%= t("pages.gender_equality_plan.archive.empty") %>
+  </p>
+
+  <p class="prose-braingency mt-10 max-w-3xl border-t border-line pt-6" data-reveal>
+    <%= t("pages.gender_equality_plan.contact_line_html",
+          email: mail_to(Site::CONTACT_EMAIL, Site::CONTACT_EMAIL)) %>
+  </p>
+</section>

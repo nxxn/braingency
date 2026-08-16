@@ -1,0 +1,385 @@
+# Braingency site copy — Latvian.
+#
+# Translated from config/locales/en.yml. AWAITING NATIVE-SPEAKER PROOFREADING
+# before launch — the structure is final, only the wording may change.
+#
+# Deliberately NOT translated (falls back to English via config.i18n.fallbacks):
+#   pages.gender_equality_plan.full_text.sections
+# The Gender Equality Plan was signed in English; publishing a second language
+# version of a signed legal document would create two competing texts. The LV
+# page shows the English full text with a note explaining why.
+lv:
+  date:
+    formats:
+      long: "%Y. gada %-d. %B"
+      short: "%d.%m.%Y."
+    month_names:
+      - ~
+      - janvārī
+      - februārī
+      - martā
+      - aprīlī
+      - maijā
+      - jūnijā
+      - jūlijā
+      - augustā
+      - septembrī
+      - oktobrī
+      - novembrī
+      - decembrī
+
+  common:
+    skip_to_content: "Pāriet uz saturu"
+    talk_to_us: "Sazināties"
+    languages:
+      en: "angļu"
+      lv: "latviešu"
+    in_production: "Ražošanā"
+    read_article: "Lasīt rakstu"
+    back_to_news: "Visas ziņas"
+    cta:
+      heading: "Vai ir sistēma, kas jāizveido — vai jāpārbūvē?"
+      body: "Pastāstiet, ar ko strādājat. Mēs godīgi pateiksim, vai esam īstā komanda šim darbam."
+      button: "Sazināties ar mums"
+
+  nav:
+    primary: "Galvenā"
+    menu: "Izvēlne"
+    switch_language: "Pārslēgt uz %{language} valodu"
+    home: "Sākums"
+    product: "Ko mēs veidojam"
+    ml_lab: "ML laboratorija"
+    about: "Par mums"
+    team: "Komanda"
+    news: "Ziņas"
+    contact: "Kontakti"
+    gender_equality_plan: "Dzimumu līdztiesības plāns"
+
+  footer:
+    sitemap: "Lapas karte"
+    company: "Uzņēmums"
+    reg_number: "Reģ. nr."
+    vat_number: "PVN"
+    tagline: "Veidots Rīgā"
+
+  # --- SEO --------------------------------------------------------------
+  meta:
+    home:
+      title: "Braingency — kreditēšanas sistēmas un mašīnmācīšanās"
+      description: "Veidojam ERP, CRM un mašīnmācīšanās sistēmas kreditēšanas uzņēmumiem — no pieteikuma saņemšanas līdz portfeļa pārvaldībai. Bāzēti Rīgā, strādājam Eiropā un AAE."
+    about:
+      title: "Par Braingency — biznesa infrastruktūras programmatūra"
+      description: "Rīgā bāzēts programmatūras uzņēmums, kas veido produkcijas sistēmas finanšu sektoram. Pilns cikls: arhitektūra, izstrāde, palaišana un mērogošana."
+    product:
+      title: "Ko mēs veidojam — Braingency"
+      description: "Kreditēšanas ERP un CRM, mācību pārvaldības platformas, AI asistenti un Vertio nekustamā īpašuma vērtēšana. Četri produkti, kas darbojas ražošanā."
+    ml_lab:
+      title: "ML laboratorija — lietišķā mašīnmācīšanās | Braingency"
+      description: "Pielāgoti mašīnmācīšanās modeļi kredītspējas novērtēšanai, vērtēšanai un prognozēšanai — veidoti uz jūsu datiem un integrēti produkcijas sistēmās."
+    team:
+      title: "Komanda — Braingency"
+      description: "Uzņēmumu vada divi praktizējoši inženieri ar 25+ gadu kopējo pieredzi fintech platformu izstrādē Ruby on Rails."
+    news:
+      title: "Ziņas — Braingency"
+      description: "Jaunumi par mūsu darbu, pētniecību un produktiem, ko veidojam."
+    gender_equality_plan:
+      title: "Dzimumu līdztiesības plāns — Braingency"
+      description: "Braingency oficiālais dzimumu līdztiesības plāns, pieņemts 2026. gada 12. janvārī, aptver pētniecības saturu, darba un privātās dzīves līdzsvaru un dzimumu līdzsvaru vadībā."
+    contact:
+      title: "Kontakti — Braingency | SIA BATWATEX, Rīga"
+      description: "Sazinieties ar Braingency. SIA BATWATEX, Rupniecibas 22-38, Rīga, Latvija."
+    article_one_platform_not_five_tools:
+      title: "Kāpēc veidojam kreditēšanas sistēmas kā vienu platformu — Braingency"
+      description: "Lielākā daļa kreditētāju strādā ar salikto rīku kopumu. Katrs rīks darbojas; problēma ir viss, kas atrodas starp tiem."
+    article_vertio_property_valuation_ml:
+      title: "Vertio: Latvijas īpašumu vērtību prognozēšana ar ML — Braingency"
+      description: "Mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un tiek izmantots automatizētai ķīlas novērtēšanai un kredītspējas novērtēšanā."
+
+  # --- Pages ------------------------------------------------------------
+  pages:
+    home:
+      hero:
+        heading: "Biznesa infrastruktūra finanšu pakalpojumiem"
+        subheading: "Veidojam ERP, CRM un mašīnmācīšanās sistēmas, uz kurām balstās kreditēšanas uzņēmumi — no pieteikuma saņemšanas līdz portfeļa pārvaldībai."
+        body: "Braingency ir uz produktu orientēts programmatūras izstrādes uzņēmums, kas atrodas Rīgā, Latvijā. Mēs projektējam un veidojam produkcijas sistēmas patēriņa kreditēšanas, auto finansēšanas, līzinga un hipotekāro kredītu uzņēmumiem, kā arī izstrādājam pielāgotus mašīnmācīšanās modeļus, kas pārvērš darbības datus labākos lēmumos."
+        markets: "Klienti Latvijā, Spānijā un AAE"
+
+      what_we_do:
+        label: "Ko mēs darām"
+        heading: "Trīs lietas, kas veidotas darboties kopā"
+        items:
+          financial:
+            title: "Finanšu sistēmas"
+            body: "Pilna cikla ERP un CRM platformas kreditētājiem: pieteikumu saņemšana, kredītu izvērtēšana un skorings, AML un KYC, līgumu ģenerēšana, portfeļa uzskaite un parādu piedziņa — vienā sistēmā."
+          ml:
+            title: "Mašīnmācīšanās"
+            body: "Mūsu ML laboratorija veido modeļus, kas apmācīti uz jūsu pašu darbības datiem — kredītspējas novērtēšana, risku novērtēšana, vērtēšana un prognozēšana — un integrē tos tieši sistēmās, kas šos modeļus izmanto."
+          platforms:
+            title: "Platformas un produkti"
+            body: "Mācību pārvaldības platformas, AI asistenti, tirgus analītikas rīki. Mēs vedam produktus no idejas līdz palaišanai un mērogošanai, un uzturam tos ražošanā."
+
+      pipeline:
+        label: "Kreditēšanas cikls"
+        heading: "Viena platforma, nevis pieci rīki"
+        body: "Tā vietā, lai savienotu atsevišķus rīkus izsniegšanai, atbilstībai un piedziņai, platforma pārvalda visu kredīta dzīves ciklu vienā saskaņotā sistēmā — un tieši tas padara datus izmantojamus mašīnmācīšanās vajadzībām."
+        stages:
+          intake: "Pieteikumu saņemšana"
+          scoring: "Apstrāde un skorings"
+          compliance: "AML un atbilstība"
+          contract: "Līgumu ģenerēšana"
+          portfolio: "Portfeļa pārvaldība"
+          collections: "Parādu piedziņa"
+        model_note: "ML modeļi, kas apmācīti uz visas datu plūsmas"
+
+      why:
+        label: "Kāpēc uzņēmumi strādā ar mums"
+        heading: "Četri iemesli, kāpēc tas darbojas"
+        items:
+          regulated:
+            title: "Veidots regulētai videi"
+            body: "Mūsu finanšu sistēmas jau no paša sākuma tiek projektētas ap atbilstības prasībām — AML pārbaudes, KYC/KYB integrācijas, audita ieraksti un datu integritāte ir daļa no arhitektūras, nevis vēlāks papildinājums."
+          full_cycle:
+            title: "Pilns cikls, viena komanda"
+            body: "Mēs veidojam produktu no sākotnējās idejas līdz arhitektūrai, izstrādei, palaišanai un mērogošanai. Jums nav jānodod produkts no vienas aģentūras otrai katrā posmā."
+          ships:
+            title: "Mašīnmācīšanās, kas tiešām nonāk ražošanā"
+            body: "Mēs nepiegādājam piezīmju grāmatiņas un prezentācijas. Mūsu modeļi darbojas dzīvās kreditēšanas sistēmās un katru dienu novērtē reālus pieteikumus."
+          founders:
+            title: "Dibinātāji, kas raksta kodu"
+            body: "Abi dibinātāji ir praktizējoši inženieri ar 25+ gadu kopējo pieredzi fintech platformu izstrādē Ruby on Rails."
+
+      proof:
+        label: "Pieredze"
+        years:
+          value: "25"
+          suffix: "+"
+          caption: "Gadu kopējā inženierijas pieredze fintech jomā"
+        markets:
+          value: "3"
+          caption: "Tirgi ražošanā — Latvija, Spānija, Apvienotie Arābu Emirāti"
+        products:
+          value: "4"
+          caption: "Produkti, kas izveidoti un darbojas ražošanā"
+        jhu: "Mācību platforma, kas izstrādāta Džonsa Hopkinsa universitātei, ASV"
+
+    about:
+      heading: "Par Braingency"
+      lead: "Braingency ir programmatūras izstrādes uzņēmums, kas veido biznesa infrastruktūru — sistēmas, uz kurām balstās uzņēmumu ikdienas darbība, nevis mājaslapas, ko tie rāda publikai."
+      intro:
+        - "Mēs strādājam galvenokārt ar finanšu sektoru: kreditēšanas uzņēmumiem, kas piedāvā patēriņa kredītus, auto kredītus, līzingu un hipotekāros kredītus. Šiem klientiem mēs projektējam un veidojam pilnvērtīgas ERP un CRM platformas, kas aptver visu kreditēšanas ciklu, un izstrādājam mašīnmācīšanās modeļus, kas šos procesus izmērāmi uzlabo. Līdztekus šim pamatdarbam mēs veidojam izglītības platformas, AI asistentus un tirgus analītikas produktus."
+      how_we_work:
+        label: "Kā mēs strādājam"
+        heading: "No idejas līdz mērogam — kā inženierijas funkcija"
+        body:
+          - "Mēs vedam produktus no idejas līdz mērogam. Tas nozīmē, ka esam iesaistīti tajā, lai definētu, kas jāizveido, projektētu sistēmas arhitektūru un datu modeli, rakstītu kodu, ieviestu sistēmu ražošanā un turpinātu to attīstīt, biznesam augot. Mūsu klienti nenodod mums specifikāciju, lai saņemtu atpakaļ melno kasti — mēs strādājam kā uzņēmuma inženierijas funkcija."
+          - "Katra mūsu veidotā sistēma ir projektēta tā, lai izturētu izaugsmi, regulējuma atbilstību, datu integritāti un darbības efektivitāti. Kreditēšanā šīs nav izvēles īpašības: skoringa dzinējs, ko nevar auditēt, vai portfeļa sistēma, kas zaudē datus, vispār nav sistēma."
+      ml_approach:
+        label: "Mūsu pieeja mašīnmācīšanās"
+        heading: "Inženierijas disciplīna, nevis pētniecisks vingrinājums"
+        body:
+          - "Mēs uztveram mašīnmācīšanos kā inženierijas disciplīnu, nevis pētniecisku vingrinājumu. Mūsu modeļi tiek apmācīti uz klientu reāliem darbības datiem, integrēti tieši sistēmās, kas izmanto to rezultātus, un uzraudzīti ražošanā."
+        pullquote: "Skoringa modelis, kas darbojas kredīta izsniegšanas procesā un uzlabo apstiprināšanas lēmumus, ir vērtīgāks nekā sarežģītāks modelis, kas nekad nepamet piezīmju grāmatiņu."
+      where:
+        label: "Kur mēs strādājam"
+        heading: "Rīga un trīs tirgi ražošanā"
+        body:
+          - "Mēs atrodamies Rīgā, Latvijā, un strādājam ar klientiem Eiropā, Tuvajos Austrumos un Amerikas Savienotajās Valstīs. Mūsu pašreizējā klientu bāze aptver Latviju, Spāniju un Apvienotos Arābu Emirātus."
+      details:
+        label: "Uzņēmuma dati"
+        legal_name: "Juridiskais nosaukums"
+        vat: "PVN numurs"
+        reg: "Reģistrācijas numurs"
+        address: "Juridiskā adrese"
+
+    product:
+      heading: "Ko mēs veidojam"
+      lead: "Četri produkti un platformas, kas izveidotas un darbojas ražošanā. Katrs no tiem sākās kā konkrēta biznesa problēma, ko esošā programmatūra neatrisināja pietiekami labi."
+      projects:
+        lending:
+          index: "01"
+          name: "Kreditēšanas ERP un CRM platforma"
+          subheading: "Viss kreditēšanas cikls vienā sistēmā"
+          body:
+            - "Pilnvērtīga operacionālā sistēma kreditēšanas uzņēmumiem — patēriņa kredītiem, auto kredītiem, līzingam un hipotekārajiem kredītiem. Tā vietā, lai savienotu atsevišķus rīkus izsniegšanai, atbilstībai un piedziņai, platforma pārvalda visu kredīta dzīves ciklu vienā saskaņotā sistēmā:"
+          features:
+            - title: "Pieteikumu saņemšana"
+              body: "Kredītpieteikumu saņemšana no vairākiem kanāliem ar konfigurējamiem produktu noteikumiem"
+            - title: "Apstrāde un skorings"
+              body: "Automatizēti izvērtēšanas procesi ar ML balstītu kredītspējas novērtēšanu, kas apmācīta uz kreditētāja paša portfeļa datiem"
+            - title: "AML un atbilstība"
+              body: "Pārbaudes, KYC/KYB integrācijas un audita ieraksti, kas iebūvēti procesā"
+            - title: "Līgumu ģenerēšana"
+              body: "Automatizēta dokumentu sagatavošana un e-paraksta procesi"
+            - title: "Portfeļa pārvaldība"
+              body: "Uzskaite, apkalpošana, maksājumu apstrāde un atskaites par visu aktīvo kredītportfeli"
+            - title: "Parādu piedziņa"
+              body: "Strukturēti parādu atgūšanas procesi ar lietu pārvaldību"
+          outro: "Virs operacionālā slāņa mēs analizējam visu ienākošo datu plūsmu un veidojam liela mēroga ML modeļus, kas optimizē pašus procesus — uzlabo skoringa precizitāti, identificē risku modeļus un automatizē lēmumus, kas iepriekš prasīja manuālu pārbaudi."
+          status: "Darbojas ražošanā ar klientiem Latvijā, Spānijā un Apvienotajos Arābu Emirātos."
+        learning:
+          index: "02"
+          name: "Mācību pārvaldības platforma"
+          subheading: "Pilnībā automatizēta izglītības procesu vadība"
+          body:
+            - "Platforma organizācijām, kas nodrošina strukturētu izglītību lielā mērogā. Kursu veidotāji var publicēt kursus, pieņemt maksājumus, uzdot un pārbaudīt mājasdarbus un sekot līdzi apmācāmo progresam — ar pilnībā automatizētu administratīvo procesu."
+            - "Platformā ir iekļauts spēlifikācijas slānis, kas veidots, lai uzlabotu kursu pabeigšanas rādītājus un iesaisti, risinot atbiruma problēmu, kas skar lielāko daļu tiešsaistes mācību produktu."
+          status: "Mēs izstrādājām mācību platformu Džonsa Hopkinsa universitātei Amerikas Savienotajās Valstīs."
+        assistant:
+          index: "03"
+          name: "AI asistents ar iebūvētu CRM"
+          subheading: "AI tērzēšanas aģents, kas atceras sarunu"
+          body:
+            - "Ieviešams AI tērzēšanas asistents, ko var iegult jebkurā mājaslapā. Caur administrācijas paneli asistenta zināšanu bāze tiek papildināta ar informāciju par uzņēmumu, ko tas pārstāv, tāpēc tas atbild, balstoties uz uzņēmuma reālo dokumentāciju, nevis vispārīgām atbildēm."
+            - "Atšķirībā no atsevišķa tērzēšanas logrīka, asistentam ir savs CRM: katra saruna tiek saglabāta ar apkopotu ierakstu par to, ko klients jautāja un kas tika atrisināts, sniedzot pārdošanas un atbalsta komandām meklējamu klientu vajadzību vēsturi, nevis nesaistītu sarunu plūsmu."
+        vertio:
+          index: "04"
+          name: "Vertio — nekustamā īpašuma vērtēšana Latvijas tirgum"
+          subheading: "Uz ML balstīta nekustamā īpašuma cenu prognozēšana"
+          body:
+            - "Vertio ir mūsu īpašumā esoša platforma nekustamā īpašuma vērtību analīzei un prognozēšanai Latvijā. Tā balstās uz mūsu pašu mašīnmācīšanās modeli, kas apmācīts uz Latvijas tirgus datiem, un sniedz atsevišķu īpašumu novērtējumus visā tirgū."
+            - "Tiešākie pielietojumi ir kreditēšanā: automatizēta ķīlas vērtēšana hipotekāro kredītu izvērtēšanā un īpašuma vērtības dati kredītspējas novērtēšanas sistēmām. Vertio ir tieši savienots ar mūsu kreditēšanas platformu, tāpēc hipotekāro kredītu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis novecojušu novērtējumu."
+      technology:
+        label: "Tehnoloģijas"
+        heading: "Veidots, lai paliktu ražošanā"
+        body:
+          - "Mūsu sistēmas galvenokārt tiek veidotas Ruby on Rails, kas izvēlēts tā piemērotības dēļ sarežģītai biznesa loģikai un ilgmūžīgām produkcijas sistēmām. Mēs veidojam un integrējam REST API, banku un maksājumu pakalpojumu sniedzēju savienojumus, KYC/KYB pakalpojumus, kredītbiroju un trešo pušu datu avotus, kā arī mūsu pašu mašīnmācīšanās pakalpojumus."
+        stack:
+          - "Ruby on Rails"
+          - "REST API"
+          - "Banku integrācijas"
+          - "Maksājumu pakalpojumi"
+          - "KYC / KYB pakalpojumi"
+          - "Kredītbiroji"
+          - "Trešo pušu datu avoti"
+          - "Iekšēji ML pakalpojumi"
+
+    ml_lab:
+      heading: "Braingency ML laboratorija"
+      lead: "Lietišķā mašīnmācīšanās konkrētām biznesa problēmām"
+      what_it_is:
+        label: "Kas ir ML laboratorija"
+        heading: "Nodaļa, nevis blakusprojekts"
+        body:
+          - "ML laboratorija ir Braingency specializētā mašīnmācīšanās nodaļa. Tā pastāv tāpēc, ka modeļi, kas rada reālu biznesa vērtību, reti ir universāli — tie tiek apmācīti uz konkrēta uzņēmuma datiem, lai atrisinātu konkrētu lēmumu problēmu. Laboratorija veido šos modeļus, integrē tos produkcijas sistēmās un veic mūsu pašu pētniecību mašīnmācīšanās un mākslīgā intelekta jomā."
+      what_we_do:
+        label: "Ko mēs darām"
+        own_products:
+          heading: "Modeļi mūsu pašu produktos"
+          body:
+            - "Mūsu finanšu ERP platformā ir skoringa modulis, kurā mēs apmācām mašīnmācīšanās modeļus uz reāliem lietotāju datiem no kreditētāja paša portfeļa. Iegūtais modelis novērtē ienākošos kredītpieteikumus tieši izsniegšanas procesā — modelis nav atsevišķs analītikas produkts, tas ir daļa no tā, kā kredīts tiek apstiprināts."
+            - "Vertio, mūsu nekustamā īpašuma vērtēšanas platforma, darbojas uz modeļa, kas pilnībā izstrādāts iekšēji un apmācīts uz Latvijas nekustamā īpašuma tirgus datiem. Tā sniedz cenu prognozes, kas tiek izmantotas hipotekāro kredītu ķīlas novērtēšanā un kredītspējas novērtēšanā."
+        custom:
+          heading: "Pielāgoti modeļi klientiem"
+          body:
+            - "Mēs veidojam mašīnmācīšanās modeļus pēc pasūtījuma uzņēmumiem dažādās nozarēs. Tipisks projekts sākas ar klienta esošajiem darbības datiem un lēmumu, ko viņi vēlas pieņemt labāk vai ātrāk — risku novērtēšana, pieprasījuma prognozēšana, klasifikācija, cenu noteikšana, anomāliju atklāšana. Mēs nodrošinām datu sagatavošanu, modeļa izstrādi, validāciju un integrāciju ražošanā."
+            - "Tā kā mūsu inženierijas komanda veido sistēmas, kurās šie modeļi darbojas, nerodas nodošanas problēma, kas iznīcina lielāko daļu ML projektu: nav plaisas starp komandu, kas apmāca modeli, un komandu, kurai tas jāievieš."
+        research:
+          heading: "Pētniecība"
+          body:
+            - "Laboratorija veic pastāvīgu pētniecību mašīnmācīšanās un mākslīgā intelekta jomā, koncentrējoties uz nozarēm, kurās strādājam — kredītriska modelēšana, vērtēšana un lietišķais AI regulētā vidē."
+      capabilities:
+        label: "Kompetences un komanda"
+        body: "ML laboratorija darbojas tajā pašā inženierijas organizācijā, kas veido mūsu produkcijas sistēmas. Mašīnmācīšanās kompetence ir integrēta visā dibinātāju komandā."
+      cases:
+        label: "Piemēri"
+        heading: "Divi modeļi ražošanā"
+        items:
+          scoring:
+            index: "Piemērs 01"
+            title: "Kredītspējas novērtēšana"
+            body: "Kreditēšanas klienta izvērtēšanas process balstījās uz statiskiem, uz noteikumiem balstītiem kritērijiem. Mēs apmācījām skoringa modeli uz viņu vēsturiskajiem pieteikumu un atmaksas datiem un integrējām to izsniegšanas procesā, ļaujot pieteikumus izvērtēt pret modeļiem, kas atklāti viņu faktiskajā portfeļa sniegumā."
+          valuation:
+            index: "Piemērs 02"
+            title: "Nekustamā īpašuma vērtēšana"
+            body: "Vertio: ML modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un prognozē īpašumu vērtības, pielietots hipotekāro kredītu ķīlas novērtēšanā un skoringā."
+
+    team:
+      heading: "Komanda"
+      lead: "Braingency vada divi praktizējoši inženieri. Abi dibinātāji raksta kodu, izvērtē arhitektūru un strādā tieši ar klientu sistēmām."
+      roles:
+        ceo: "Līdzdibinātāja un vadītāja"
+        cto: "Līdzdibinātājs un tehnoloģiju direktors"
+      members:
+        shehurina:
+          bio:
+            - "Michelle ir Braingency līdzdibinātāja un vadītāja, un drīzāk praktizējoša inženiere nekā no ikdienas darba attālināta vadītāja. Viņas galvenais tehnoloģiju kopums ir Ruby on Rails, un viņa personīgi projektē sistēmu arhitektūru un datu modeļus, veido un mērogo Rails lietotnes, ievieš finanšu loģiku un automatizācijas procesus, integrē banku, KYC, maksājumu un AI pakalpojumus un pārbauda visu kritisko kodu."
+            - "Viņai ir maģistra grāds attīstības izglītībā un globālajā mācīšanā no UCL Izglītības institūta un bakalaura grāds biznesā un ekonomikā no Stokholmas Ekonomikas augstskolas Rīgā, kā arī papildu studijas London School of Economics and Political Science. Viņai ir sertifikāts uzraudzītajā mašīnmācīšanās (regresija un klasifikācija)."
+            - "Pirms Braingency viņa bija Copy Brain, AI satura ģenerēšanas uzņēmuma, vadītāja un vairāk nekā desmit gadus līdztekus inženierijas darbam strādāja par matemātikas pasniedzēju. Viņas agrākajā karjerā ir vecākā projektu vadītāja un valdes locekles amati IT un biznesa konsultāciju jomā Rīgā."
+        gnotovs:
+          bio:
+            - "Nikita ir Braingency līdzdibinātājs un tehnoloģiju direktors, vecākais pilna cikla Ruby arhitekts ar 15 gadu profesionālo pieredzi, kas specializējas fintech produktos un sarežģītās finanšu platformās."
+            - "Viņš projektē sistēmu arhitektūras no pamatiem — datu modeļus, biznesa loģiku un mērogojamus API — ar uzsvaru uz drošību, veiktspēju un regulējuma prasībām. Viņa darbs aptver gan aizmuguri, gan priekšpusi, veidojot augstas slodzes sistēmas un integrējot banku API, maksājumu pakalpojumu sniedzējus, kredītspējas novērtēšanas pakalpojumus, KYC/KYB risinājumus un trešo pušu datu avotus. Viņš atbild par arhitektūras lēmumiem, tehnoloģisko stratēģiju un ilgtermiņa sistēmu mērogojamību, kā arī vada koda pārbaudi un mentoringu inženierijas komandā."
+            - "Viņam ir bakalaura grāds finansēs no Baltijas Starptautiskās akadēmijas — finanšu un inženierijas izglītības apvienojums, kas ir tieši saistīts ar kreditēšanas sistēmām, ko veido Braingency."
+            - "Viņa pieredzē ir CRM sistēmas, tiešsaistes izglītības platformas un sociālo tīklu platformas; viņš ir bijis Copy Brain tehnoloģiju direktors un vadošais izstrādātājs virknē produkcijas Rails sistēmu kopš 2010. gada."
+      working:
+        label: "Darbs Braingency"
+        heading: "Neliela, pieredzējusi komanda"
+        body:
+          - "Mēs esam neliela, pieredzējusi komanda. Mūsu inženierijas kultūra balstās uz atbildību: cilvēki, kas projektē sistēmu, ir tie paši, kas to veido un uztur."
+          - "Braingency ir apņēmies nodrošināt taisnīgu un iekļaujošu darba vidi. Mūsu dzimumu līdztiesības plāns nosaka, kā mēs to īstenojam praksē."
+        link: "Lasīt mūsu dzimumu līdztiesības plānu"
+
+    news:
+      heading: "Ziņas"
+      lead: "Jaunumi par mūsu darbu, pētniecību un produktiem, ko veidojam."
+
+    gender_equality_plan:
+      heading: "Dzimumu līdztiesības plāns"
+      lead: "Braingency (SIA BATWATEX) ir apņēmies nodrošināt taisnīgu, iekļaujošu un nediskriminējošu darba vidi, kurā katram komandas loceklim ir vienlīdzīgas iespējas dot ieguldījumu, augt un vadīt."
+      intro:
+        - "Mūsu dzimumu līdztiesības plāns ir oficiāls dokuments, ko apstiprinājuši un parakstījuši uzņēmuma dibinātāji un kas nosaka mūsu pieeju trīs tematiskajās jomās: dzimuma dimensijas integrācija pētniecības un mācību saturā, darba un privātās dzīves līdzsvars un organizācijas kultūra, kā arī dzimumu līdzsvars vadībā un lēmumu pieņemšanā. Tas aptver arī mūsu saistības attiecībā uz datu vākšanu, apmācību un piešķirtajiem resursiem."
+      facts:
+        version: "Versija"
+        adopted: "Pieņemts"
+        review: "Pārskatīšanas cikls"
+        review_value: "Reizi 2 gados"
+        status: "Statuss"
+        status_value: "Spēkā — apstiprinājuši un parakstījuši dibinātāji"
+      download:
+        heading: "Lejupielādēt plānu"
+        button: "Dzimumu līdztiesības plāns — versija 1.0 (PDF)"
+        note: "Plāns pieņemts 2026. gada 12. janvārī un tiek pārskatīts reizi divos gados. Iepriekšējās plāna versijas tiek arhivētas un pieejamas šajā lapā, plānam tiekot atjaunotam."
+      archive:
+        heading: "Iepriekšējās versijas"
+        empty: "Versija 1.0 ir pašreizējā un vienīgā versija. Aizstātās versijas tiks arhivētas šeit."
+      contact_line_html: "Jautājumus par šo plānu var sūtīt uz %{email}."
+      full_text:
+        label: "Pilnais teksts"
+        heading: "Dzimumu līdztiesības plāns 2026.–2028."
+        language_note: "Plāna pilnais teksts publicēts angļu valodā — tā ir parakstītā dokumenta oficiālā valoda."
+        adopted_by: "Pieņēmuši SIA BATWATEX dibinātāji · Pieņemšanas datums: 2026. gada 12. janvāris · Versija 1.0 · Pārskatīšanas cikls: reizi 2 gados"
+
+    contact:
+      heading: "Kontakti"
+      lead: "Pastāstiet, ko jūs veidojat. Mēs godīgi pateiksim, vai esam īstā komanda šim darbam."
+      details:
+        label: "Uzņēmuma dati"
+        legal_name: "Juridiskais nosaukums"
+        trading_as: "Zīmols"
+        reg: "Reģistrācijas numurs"
+        vat: "PVN numurs"
+        address: "Juridiskā adrese"
+      get_in_touch:
+        label: "Sazinieties ar mums"
+        email: "E-pasts"
+        response: "Mēs izlasām visu, kas pienāk, un atbildam uz visu, kas šķiet piemērots."
+      find_us:
+        label: "Atrodiet mūs"
+
+  # --- News articles ------------------------------------------------------
+  articles:
+    one_platform_not_five_tools:
+      title: "Kāpēc mēs veidojam kreditēšanas sistēmas kā vienu platformu, nevis pieciem rīkiem"
+      excerpt: "Katrs rīks saliktā kreditēšanas sistēmu kopumā darbojas. Problēma ir viss, kas atrodas starp tiem — un dati, kas izkaisīti pa sistēmām, kuras viena otru neredz."
+      body:
+        - "Lielākā daļa kreditēšanas uzņēmumu strādā ar salikto rīku kopumu: viena sistēma pieteikumiem, cita skoringam, trešā atbilstības pārbaudēm, izklājlapa portfelim un kaut kas improvizēts parādu piedziņai. Katrs rīks darbojas. Problēma ir viss, kas atrodas starp tiem."
+        - "Dati tiek ievadīti atkārtoti. Saskaņošana kļūst par atsevišķu darbu. Kad regulators jautā, kā tika pieņemts konkrēts lēmums, atbilde jāsaliek kopā no četriem avotiem. Un vērtīgākais aktīvs, kas uzņēmumam ir — uzkrātais ieraksts par to, kas pieteicās, kas tika izlemts un kas notika pēc tam — ir izkaisīts pa sistēmām, kuras viena otru neredz."
+        - "Tieši šis pēdējais punkts mainīja mūsu pieeju. Kreditētāja paša portfeļa vēsture ir labākie iespējamie apmācības dati skoringa modelim. Bet tie ir izmantojami tikai tad, ja pieteikums, lēmums, līgums un atmaksas ieraksts atrodas vienuviet un ir savienojami. Kad mēs veidojam visu kreditēšanas ciklu kā vienu platformu, datu plūsma jau pēc būtības kļūst saskaņota — un mašīnmācīšanās pārstāj būt atsevišķs projekts un kļūst par sistēmas funkciju."
+        - "Tāda ir loģika aiz mūsu kreditēšanas ERP platformas, kas tagad darbojas ar klientiem Latvijā, Spānijā un AAE."
+    vertio_property_valuation_ml:
+      title: "Vertio: Latvijas īpašumu vērtību prognozēšana ar mašīnmācīšanos"
+      excerpt: "Nelielā tirgū salīdzināmu darījumu ir maz, un tie dati, kas ir pieejami, ir sadrumstaloti. Vertio pārvērš ķīlas vērtēšanu no šķēršļa par daļu no lēmuma."
+      body:
+        - "Nekustamā īpašuma vērtēšana nelielā tirgū ir sarežģīts uzdevums. Salīdzināmu darījumu ir mazāk nekā lielā tirgū, cenas krasi atšķiras atkarībā no mikrolokācijas, un tie dati, kas ir pieejami, ir sadrumstaloti. Hipotekāro kredītu izsniedzējam tas nozīmē, ka ķīlas vērtēšana bieži ir lēna, dārga un balstīta uz ierobežotiem pierādījumiem."
+        - "Mēs izveidojām Vertio, lai to atrisinātu. Tas ir mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un prognozē atsevišķu īpašumu vērtību. Rezultātu var izmantot divējādi: kā automatizētu ķīlas novērtējumu hipotekārā kredīta izvērtēšanas laikā un kā ievades datus kredītspējas novērtēšanas modeļos."
+        - "Tā kā Vertio ir savienots ar mūsu kreditēšanas platformu, hipotekāro kredīta pieteikumu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis manuālu novērtējumu, kas veikts vairākas nedēļas iepriekš. Vērtēšana pārstāj būt šķērslis procesā un kļūst par daļu no paša lēmuma."
