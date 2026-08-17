@@ -82,6 +82,14 @@ en:
         heading: "Business infrastructure for financial services"
         subheading: "We build the ERP, CRM and machine learning systems that lending companies run on — from application intake to portfolio management."
         body: "Braingency is a product-driven software development company based in Riga, Latvia. We design and build production systems for consumer lending, auto finance, leasing and mortgage businesses, and we develop custom machine learning models that turn operational data into better decisions."
+        # Status rail under the hero. Deliberately no small counts — the last
+        # item states the differentiator instead of quantifying it.
+        strip:
+          - "Riga · Latvia"
+          - "Spain"
+          - "United Arab Emirates"
+          - "25+ years in fintech"
+          - "ML models in production"
 
       what_we_do:
         label: "What we do"
