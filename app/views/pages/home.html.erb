@@ -1,6 +1,5 @@
 <%= render "shared/hero",
       shader: true,
-      eyebrow: t("pages.home.hero.markets"),
       heading: t("pages.home.hero.heading"),
       lead: t("pages.home.hero.subheading"),
       body: t("pages.home.hero.body"),
@@ -50,23 +49,29 @@
 
   <% stages = %w[intake scoring compliance contract portfolio collections] %>
 
+  <%# The cycle runs left-to-right on wide screens and top-to-bottom below lg,
+      so the rail changes axis rather than a horizontal one being sliced across
+      a stacked grid. %>
   <div data-pipeline class="mt-16">
-    <%# Track — one continuous rule that draws itself across all stages %>
-    <div class="relative h-px w-full bg-line">
+    <div class="relative hidden h-px w-full bg-line lg:block">
       <div data-pipeline-track class="absolute inset-0 bg-gradient-to-r from-lime/70 via-lime to-lime/70"></div>
     </div>
 
-    <ol class="grid grid-cols-2 gap-x-6 gap-y-10 pt-6 sm:grid-cols-3 lg:grid-cols-6">
-      <% stages.each_with_index do |stage, i| %>
-        <li data-pipeline-stage class="relative">
-          <span class="pipeline-dot absolute -top-[1.6rem] left-0 block h-2 w-2 rounded-full"></span>
-          <span class="pipeline-index label block font-mono"><%= format("%02d", i + 1) %></span>
-          <h3 class="mt-3 text-[0.9375rem] font-medium leading-snug tracking-[-0.01em]">
-            <%= t("pages.home.pipeline.stages.#{stage}") %>
-          </h3>
-        </li>
-      <% end %>
-    </ol>
+    <div class="relative">
+      <span class="absolute bottom-3 left-[3.5px] top-3 w-px bg-line lg:hidden" aria-hidden="true"></span>
+
+      <ol class="grid gap-y-8 lg:grid-cols-6 lg:gap-x-6 lg:gap-y-0 lg:pt-6">
+        <% stages.each_with_index do |stage, i| %>
+          <li data-pipeline-stage class="relative pl-8 lg:pl-0">
+            <span class="pipeline-dot absolute left-0 top-[0.3rem] block h-2 w-2 rounded-full lg:-top-[1.6rem]"></span>
+            <span class="pipeline-index label block font-mono"><%= format("%02d", i + 1) %></span>
+            <h3 class="mt-2.5 text-[0.9375rem] font-medium leading-snug tracking-[-0.01em] lg:mt-3">
+              <%= t("pages.home.pipeline.stages.#{stage}") %>
+            </h3>
+          </li>
+        <% end %>
+      </ol>
+    </div>
 
     <%# The layer that makes the data usable — spans the whole cycle %>
     <div class="mt-12 flex items-stretch gap-4" data-reveal>
