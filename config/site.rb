@@ -94,10 +94,17 @@ module Site
 
   ARTICLES = [
     Article.new(slug: "keeping-scoring-models-honest",  published_on: Date.new(2026, 9, 24)),
-    Article.new(slug: "vertio-live-in-latvia",          published_on: Date.new(2026, 9, 10)),
+    Article.new(slug: "verteo-live-in-latvia",          published_on: Date.new(2026, 9, 10)),
     Article.new(slug: "one-platform-not-five-tools",    published_on: Date.new(2026, 8, 12)),
-    Article.new(slug: "vertio-property-valuation-ml",   published_on: Date.new(2026, 7, 29))
+    Article.new(slug: "verteo-property-valuation-ml",   published_on: Date.new(2026, 7, 29))
   ].freeze
+
+  # Slugs that have been live and were later renamed. Old URLs answer with a
+  # permanent redirect so links and search engines carry over.
+  RENAMED_ARTICLES = {
+    "vertio-live-in-latvia"        => "verteo-live-in-latvia",
+    "vertio-property-valuation-ml" => "verteo-property-valuation-ml"
+  }.freeze
 
   def self.article(slug) = ARTICLES.find { |a| a.slug == slug }
 end

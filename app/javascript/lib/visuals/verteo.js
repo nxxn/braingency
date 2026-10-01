@@ -1,18 +1,18 @@
 import { coarsePointer, observeOnce, reducedMotion } from "../env";
 
-// The Vertio property card: draws the market index in when it is first seen,
+// The Verteo property card: draws the market index in when it is first seen,
 // counts the estimate up, and adds a crosshair that snaps to the nearest month
 // and reads out the value (and the 90% range on forecast months).
 
-export default function vertioVisual() {
-  const root = document.querySelector("[data-vertio-visual]");
+export default function verteoVisual() {
+  const root = document.querySelector("[data-verteo-visual]");
   if (!root) return;
 
-  const chart = root.querySelector("[data-vertio-chart]");
+  const chart = root.querySelector("[data-verteo-chart]");
   const svg = chart.querySelector("svg");
-  const cross = root.querySelector("[data-vertio-cross]");
-  const dot = root.querySelector("[data-vertio-dot]");
-  const tip = root.querySelector("[data-vertio-tip]");
+  const cross = root.querySelector("[data-verteo-cross]");
+  const dot = root.querySelector("[data-verteo-dot]");
+  const tip = root.querySelector("[data-verteo-tip]");
   const points = JSON.parse(root.dataset.points || "[]");
   const lang = document.documentElement.lang || "en";
   const month = new Intl.DateTimeFormat(lang, { month: "short", year: "numeric" });
@@ -88,7 +88,7 @@ export default function vertioVisual() {
   if (reducedMotion()) return;
 
   // --- Entrance -------------------------------------------------------------
-  const estimate = root.querySelector("[data-vertio-estimate]");
+  const estimate = root.querySelector("[data-verteo-estimate]");
   const target = Number(estimate.dataset.value);
   const eur = new Intl.NumberFormat(lang, { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
 

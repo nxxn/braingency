@@ -18,6 +18,10 @@ Rails.application.routes.draw do
       get page.slug, to: "pages##{page.action}", as: page.key
     end
 
+    Site::RENAMED_ARTICLES.each do |old_slug, new_slug|
+      get "news/#{old_slug}", to: redirect("/%{locale}/news/#{new_slug}", status: 301)
+    end
+
     get "news/:slug", to: "pages#article", as: :article
   end
 

@@ -1,10 +1,10 @@
 <%#
-  Vertio across Latvia: a hex field of estimated €/m², one hue from dim to
+  Verteo across Latvia: a hex field of estimated €/m², one hue from dim to
   bright, with sales pinging in and the model re-estimating around them. The
   values are a synthetic field shaped like the market, not market data, and
   the figure says so in its header.
 
-  visuals/vertio_map.js builds the hexes, the legend classes, the city table
+  visuals/verteo_map.js builds the hexes, the legend classes, the city table
   (the non-hover way to read values) and the feed. Without JS the figure
   still carries its caption and the sr-only summary.
 %><%
@@ -13,11 +13,11 @@
 <figure class="mt-14" data-reveal>
   <p class="sr-only"><%= t("#{v}.sr_summary") %></p>
 
-  <div data-vertio-map
+  <div data-verteo-map
        data-label-near="<%= t("#{v}.near", city: "%{city}") %>"
        data-label-sale="<%= t("#{v}.sale") %>"
        data-label-updated="<%= t("#{v}.updated") %>"
-       data-label-range="<%= t("pages.product.projects.vertio.visual.range") %>"
+       data-label-range="<%= t("pages.product.projects.verteo.visual.range") %>"
        class="crop visual-window overflow-hidden border border-line bg-ink-900">
 
     <div class="flex items-center justify-between gap-4 border-b border-line px-5 py-3.5">
@@ -26,7 +26,7 @@
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-60"></span>
           <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime"></span>
         </span>
-        <span class="label text-fg-muted">vertio / <%= t("#{v}.window") %></span>
+        <span class="label text-fg-muted">verteo / <%= t("#{v}.window") %></span>
       </div>
       <span class="label"><%= t("#{v}.note") %></span>
     </div>
@@ -54,7 +54,7 @@
         <table class="w-full text-[0.8125rem]">
           <caption class="sr-only"><%= t("#{v}.table") %></caption>
           <thead class="sr-only">
-            <tr><th scope="col"><%= t("#{v}.city") %></th><th scope="col">€/m²</th><th scope="col"><%= t("pages.product.projects.vertio.visual.range") %></th></tr>
+            <tr><th scope="col"><%= t("#{v}.city") %></th><th scope="col">€/m²</th><th scope="col"><%= t("pages.product.projects.verteo.visual.range") %></th></tr>
           </thead>
           <tbody data-map-table></tbody>
         </table>

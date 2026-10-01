@@ -143,15 +143,15 @@ export default function scoringDemo() {
     await runCheck("bureau");
     logLine("bureau.fetched", `records=${s.records}`);
 
-    // Property goes to Vertio, our valuation model; vehicles are priced from
+    // Property goes to Verteo, our valuation model; vehicles are priced from
     // registry data. Unsecured credit has no collateral to value.
     if (s.collateral) {
-      const vertio = s.product === "mortgage";
+      const verteo = s.product === "mortgage";
       setCheck("collateral", "is-pending", "···");
-      logLine(vertio ? "vertio.requested" : "collateral.requested", vertio ? "asset=property" : "source=vehicle_registry");
+      logLine(verteo ? "verteo.requested" : "collateral.requested", verteo ? "asset=property" : "source=vehicle_registry");
       await wait(620);
       setCheck("collateral", "is-pass", "OK");
-      logLine(vertio ? "vertio.valued" : "collateral.valued", `value=EUR${s.collateral}${vertio ? " ci=±4%" : ""}`);
+      logLine(verteo ? "verteo.valued" : "collateral.valued", `value=EUR${s.collateral}${verteo ? " ci=±4%" : ""}`);
     } else {
       setCheck("collateral", "is-na", labels.labelNa);
     }

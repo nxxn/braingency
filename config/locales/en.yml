@@ -54,7 +54,7 @@ en:
       description: "A Riga-based software company building production systems for the financial sector. Full cycle: architecture, development, launch and scale."
     product:
       title: "What We Build — Braingency"
-      description: "Lending ERP and CRM, learning management platforms, AI assistants and Vertio property valuation. Four products, built and running in production."
+      description: "Lending ERP and CRM, learning management platforms, AI assistants and Verteo property valuation. Four products, built and running in production."
     ml_lab:
       title: "ML Lab — Applied Machine Learning | Braingency"
       description: "Custom machine learning models for credit scoring, valuation and forecasting — built on your data and integrated into production systems."
@@ -73,11 +73,11 @@ en:
     article_one_platform_not_five_tools:
       title: "Why we build lending systems as one platform — Braingency"
       description: "Most lending businesses run on an assembled stack. Each tool works; the problem is everything between them. Why we build the full cycle as one system."
-    article_vertio_property_valuation_ml:
-      title: "Vertio: forecasting Latvian property values with ML — Braingency"
+    article_verteo_property_valuation_ml:
+      title: "Verteo: forecasting Latvian property values with ML — Braingency"
       description: "A machine learning model trained on Latvian real estate market data, used for automated collateral assessment and as an input to credit scoring."
-    article_vertio_live_in_latvia:
-      title: "Vertio is live in Latvia — Braingency"
+    article_verteo_live_in_latvia:
+      title: "Verteo is live in Latvia — Braingency"
       description: "Our machine learning model for property valuation now runs in production in Latvia, and we are extending it to Spain."
     article_keeping_scoring_models_honest:
       title: "Keeping a scoring model honest in production — Braingency"
@@ -332,14 +332,14 @@ en:
                 status: "Handed to sales"
                 summary: "Prospect asked about volume pricing for 40 units. Qualifies for volume terms; quote requested by email."
                 tags: ["lead", "volume", "quote"]
-        vertio:
+        verteo:
           index: "04"
-          name: "Vertio — property valuation for lenders"
+          name: "Verteo — property valuation for lenders"
           subheading: "ML-based real estate price prediction"
           body:
-            - "Vertio is our proprietary platform for analysing and forecasting real estate values. Built on our own machine learning model trained on real market data, it produces valuations for individual properties across the market."
-            - "The point of the model is decision support: Vertio exists to help lenders decide how much to lend. An accurate, current valuation of the collateral is what determines the right loan amount, and getting that number wrong in either direction is expensive — it either over-exposes the loan book or turns away sound business."
-            - "The immediate applications are in lending: automated collateral valuation for mortgage underwriting, and property-value inputs for credit scoring systems. Vertio connects directly to our lending platform, so a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal."
+            - "Verteo is our proprietary platform for analysing and forecasting real estate values. Built on our own machine learning model trained on real market data, it produces valuations for individual properties across the market."
+            - "The point of the model is decision support: Verteo exists to help lenders decide how much to lend. An accurate, current valuation of the collateral is what determines the right loan amount, and getting that number wrong in either direction is expensive — it either over-exposes the loan book or turns away sound business."
+            - "The immediate applications are in lending: automated collateral valuation for mortgage underwriting, and property-value inputs for credit scoring systems. Verteo connects directly to our lending platform, so a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal."
           status: "Live in Latvia and currently being extended to Spain."
           visual:
             window: "valuation"
@@ -415,7 +415,7 @@ en:
           heading: "Models inside our own products"
           body:
             - "Our financial ERP platform includes a scoring module where we train machine learning models on real user data from the lender's own portfolio. The resulting model scores incoming credit applications directly within the origination workflow — the model is not a separate analytics product, it is part of how the loan gets approved."
-            - "Vertio, our real estate valuation platform, runs on a model built entirely in-house and trained on Latvian property market data. It produces price forecasts used for mortgage collateral assessment and credit scoring inputs."
+            - "Verteo, our real estate valuation platform, runs on a model built entirely in-house and trained on Latvian property market data. It produces price forecasts used for mortgage collateral assessment and credit scoring inputs."
         custom:
           heading: "Custom models for clients"
           body:
@@ -439,11 +439,11 @@ en:
           valuation:
             index: "Case 02"
             title: "Property valuation"
-            body: "Vertio: an ML model trained on Latvian real estate market data that forecasts property values, applied to mortgage collateral assessment and scoring."
+            body: "Verteo: an ML model trained on Latvian real estate market data that forecasts property values, applied to mortgage collateral assessment and scoring."
       map:
-        label: "Vertio, nationwide"
+        label: "Verteo, nationwide"
         heading: "Every cell is a valuation"
-        body: "Vertio estimates a price for every part of the country and re-estimates as sales come in. Where comparable sales are scarce, the range widens — and the model says so."
+        body: "Verteo estimates a price for every part of the country and re-estimates as sales come in. Where comparable sales are scarce, the range widens — and the model says so."
         window: "latvia · €/m²"
         note: "Illustrative field, not market data"
         caption: "fig. 09 — estimated price per m², by area"
@@ -455,7 +455,7 @@ en:
         near: "near %{city}"
         sale: "sale"
         updated: "model.updated"
-        see: "fig. 09 — Vertio across Latvia"
+        see: "fig. 09 — Verteo across Latvia"
       threshold:
         title: "Model score by outcome"
         repaid: "Repaid"
@@ -612,21 +612,21 @@ en:
         - "Data gets re-entered. Reconciliation becomes a job. When a regulator asks how a specific decision was made, the answer has to be reconstructed from four sources. And the most valuable asset the business has — the accumulated record of who applied, what was decided, and what happened next — is scattered across systems that cannot see each other."
         - "That last point is what changed our approach. A lender's own portfolio history is the best possible training data for a scoring model. But it is only usable if the application, the decision, the contract and the repayment record all live in the same place and can be joined. When we build the full lending cycle as one platform, the data stream becomes coherent by design — and the machine learning stops being a separate project and becomes a feature of the system."
         - "This is the reasoning behind our lending ERP platform, now running with clients in Latvia, Spain and the UAE."
-    vertio_property_valuation_ml:
-      title: "Vertio: forecasting Latvian property values with machine learning"
-      excerpt: "In a small market, comparable transactions are scarce and the data that does exist is fragmented. Vertio turns collateral valuation from a bottleneck into part of the decision."
+    verteo_property_valuation_ml:
+      title: "Verteo: forecasting Latvian property values with machine learning"
+      excerpt: "In a small market, comparable transactions are scarce and the data that does exist is fragmented. Verteo turns collateral valuation from a bottleneck into part of the decision."
       body:
         - "Property valuation in a small market is a hard problem. There are fewer comparable transactions than in a large market, prices vary sharply by micro-location, and the data that does exist is fragmented. For a mortgage lender, this means collateral valuation is often slow, expensive and based on limited evidence."
-        - "We built Vertio to address this. It is a machine learning model trained on Latvian real estate market data that forecasts the value of individual properties. The output can be used in two ways: as an automated collateral assessment during mortgage underwriting, and as an input feature into credit scoring models."
-        - "Because Vertio connects to our lending platform, a mortgage application can be scored against a current model-driven valuation rather than a manual appraisal completed weeks earlier. The valuation stops being a bottleneck in the process and becomes part of the decision itself."
-    vertio_live_in_latvia:
-      title: "Vertio is live in Latvia — Spain is next"
+        - "We built Verteo to address this. It is a machine learning model trained on Latvian real estate market data that forecasts the value of individual properties. The output can be used in two ways: as an automated collateral assessment during mortgage underwriting, and as an input feature into credit scoring models."
+        - "Because Verteo connects to our lending platform, a mortgage application can be scored against a current model-driven valuation rather than a manual appraisal completed weeks earlier. The valuation stops being a bottleneck in the process and becomes part of the decision itself."
+    verteo_live_in_latvia:
+      title: "Verteo is live in Latvia — Spain is next"
       excerpt: "Our property valuation model now runs in production for the Latvian market. Extending it to Spain is less about copying the model than about rebuilding what it learns from."
       body:
-        - "Vertio, our machine learning model for property valuation, is now in production in Latvia. It estimates the value of individual properties from market data and puts that estimate where lenders need it: into collateral assessment during mortgage underwriting, and into credit scoring as an input."
+        - "Verteo, our machine learning model for property valuation, is now in production in Latvia. It estimates the value of individual properties from market data and puts that estimate where lenders need it: into collateral assessment during mortgage underwriting, and into credit scoring as an input."
         - "Running in production changes what a model has to be good at. A forecast in a notebook only has to be accurate on average. A valuation that sits inside an underwriting workflow is judged case by case — including in the places where the market is thin and comparable sales are few. That is where most of the engineering effort goes."
-        - "We are now extending Vertio to Spain. That is not a matter of copying the model across: the Spanish market is larger, more regional and structured differently, and so are its data sources. The work is in rebuilding the training data and the features for that market, then validating the model against it before it informs a single decision."
-        - "Because Vertio connects directly to our lending platform, every market it covers is also a market where a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal."
+        - "We are now extending Verteo to Spain. That is not a matter of copying the model across: the Spanish market is larger, more regional and structured differently, and so are its data sources. The work is in rebuilding the training data and the features for that market, then validating the model against it before it informs a single decision."
+        - "Because Verteo connects directly to our lending platform, every market it covers is also a market where a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal."
     keeping_scoring_models_honest:
       title: "What it takes to keep a scoring model honest in production"
       excerpt: "Training a credit scoring model is the visible part of the work. Whether it stays useful is decided after it starts approving real loans."

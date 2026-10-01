@@ -16,8 +16,8 @@ import assistantVisual from "./lib/visuals/assistant";
 import learningVisual from "./lib/visuals/learning";
 import lendingVisual from "./lib/visuals/lending";
 import thresholdVisual from "./lib/visuals/threshold";
-import vertioVisual from "./lib/visuals/vertio";
-import vertioMap from "./lib/visuals/vertio_map";
+import verteoVisual from "./lib/visuals/verteo";
+import verteoMap from "./lib/visuals/verteo_map";
 
 // Each module is independent and guards its own preconditions, so one throwing
 // can never take the rest of the page down with it.
@@ -25,7 +25,7 @@ const boot = () => {
   for (const init of [
     nav, reveal, splitText, scramble, counter, pointerFx, pipeline,
     scoringDemo, codeWindow, integrationGraph, commandPalette, localTime,
-    lendingVisual, learningVisual, assistantVisual, vertioVisual, vertioMap, thresholdVisual, portraitReveal,
+    lendingVisual, learningVisual, assistantVisual, verteoVisual, verteoMap, thresholdVisual, portraitReveal,
     heroShader
   ]) {
     try {

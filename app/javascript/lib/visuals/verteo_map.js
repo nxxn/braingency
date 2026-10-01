@@ -1,6 +1,6 @@
 import { coarsePointer, observeOnce, reducedMotion, visibleClock } from "../env";
 
-// Vertio on the ML Lab page: Latvia as a hex field of estimated €/m².
+// Verteo on the ML Lab page: Latvia as a hex field of estimated €/m².
 //
 // The outline is a hand-simplified border (good to a few km, which is all a
 // hex this size can show). The value field is synthetic — a rural floor plus
@@ -76,8 +76,8 @@ function inside([x, y], poly) {
 
 const classOf = (v) => CLASSES.filter((c) => v >= c).length - 1;
 
-export default function vertioMap() {
-  const root = document.querySelector("[data-vertio-map]");
+export default function verteoMap() {
+  const root = document.querySelector("[data-verteo-map]");
   if (!root) return;
 
   const SVG = "http://www.w3.org/2000/svg";

@@ -1457,9 +1457,9 @@
 
 .crm-tag.is-new { animation: item-in 0.35s var(--ease-out-expo) both; }
 
-/* --- Vertio property card ----------------------------------------------- */
+/* --- Verteo property card ----------------------------------------------- */
 
-.vertio-line {
+.verteo-line {
   fill: none;
   stroke: var(--color-lime);
   stroke-width: 2;
@@ -1467,75 +1467,75 @@
   filter: drop-shadow(0 0 5px rgb(203 255 77 / 0.35));
 }
 
-.vertio-forecast {
+.verteo-forecast {
   fill: none;
   stroke: rgb(203 255 77 / 0.6);
   stroke-width: 2;
   stroke-linejoin: round;
 }
 
-.vertio-band { fill: rgb(203 255 77 / 0.1); }
+.verteo-band { fill: rgb(203 255 77 / 0.1); }
 
-.vertio-now {
+.verteo-now {
   fill: var(--color-lime);
   stroke: var(--color-ink-900);
   stroke-width: 2;
 }
 
-.vertio-cross {
+.verteo-cross {
   stroke: var(--color-fg-muted);
   stroke-width: 1;
   opacity: 0;
 }
 
-.vertio-dot {
+.verteo-dot {
   fill: var(--color-ink-950);
   stroke: var(--color-lime);
   stroke-width: 2;
   opacity: 0;
 }
 
-[data-vertio-visual].is-crossing .vertio-cross,
-[data-vertio-visual].is-crossing .vertio-dot { opacity: 1; }
+[data-verteo-visual].is-crossing .verteo-cross,
+[data-verteo-visual].is-crossing .verteo-dot { opacity: 1; }
 
-[data-vertio-chart] { cursor: crosshair; touch-action: pan-y; }
-[data-vertio-chart]:focus-visible { outline-offset: 4px; }
+[data-verteo-chart] { cursor: crosshair; touch-action: pan-y; }
+[data-verteo-chart]:focus-visible { outline-offset: 4px; }
 
-.js [data-vertio-visual].is-armed .vertio-line,
-.js [data-vertio-visual].is-armed .vertio-forecast {
+.js [data-verteo-visual].is-armed .verteo-line,
+.js [data-verteo-visual].is-armed .verteo-forecast {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
 }
 
-.js [data-vertio-visual].is-armed .vertio-band,
-.js [data-vertio-visual].is-armed .vertio-now,
-.js [data-vertio-visual].is-armed .chart-value { opacity: 0; }
+.js [data-verteo-visual].is-armed .verteo-band,
+.js [data-verteo-visual].is-armed .verteo-now,
+.js [data-verteo-visual].is-armed .chart-value { opacity: 0; }
 
-[data-vertio-visual].is-playing .vertio-line { animation: draw 1.8s var(--ease-in-out-quart) 0.2s forwards; }
-[data-vertio-visual].is-playing .vertio-forecast { animation: draw 1s var(--ease-out-quart) 1.9s forwards; }
-[data-vertio-visual].is-playing .vertio-band { animation: fade-in 1s var(--ease-out-quart) 2.1s forwards; }
-[data-vertio-visual].is-playing .vertio-now,
-[data-vertio-visual].is-playing .chart-value { animation: fade-in 0.6s var(--ease-out-quart) 2.6s forwards; }
+[data-verteo-visual].is-playing .verteo-line { animation: draw 1.8s var(--ease-in-out-quart) 0.2s forwards; }
+[data-verteo-visual].is-playing .verteo-forecast { animation: draw 1s var(--ease-out-quart) 1.9s forwards; }
+[data-verteo-visual].is-playing .verteo-band { animation: fade-in 1s var(--ease-out-quart) 2.1s forwards; }
+[data-verteo-visual].is-playing .verteo-now,
+[data-verteo-visual].is-playing .chart-value { animation: fade-in 0.6s var(--ease-out-quart) 2.6s forwards; }
 
-.vertio-confidence { box-shadow: 0 0 10px rgb(203 255 77 / 0.5); }
+.verteo-confidence { box-shadow: 0 0 10px rgb(203 255 77 / 0.5); }
 
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes fade-in { to { opacity: 1; } }
 
-/* --- Vertio map --------------------------------------------------------- */
+/* --- Verteo map --------------------------------------------------------- */
 
 .map-cell {
   transition: opacity 0.35s var(--ease-out-quart), filter 0.35s;
 }
 
-.js [data-vertio-map].is-armed .map-cell {
+.js [data-verteo-map].is-armed .map-cell {
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(0.4);
 }
 
-.js [data-vertio-map].is-armed.is-shown .map-cell {
+.js [data-verteo-map].is-armed.is-shown .map-cell {
   opacity: 1;
   transform: none;
   transition:
@@ -1544,7 +1544,7 @@
     filter 0.35s;
 }
 
-[data-vertio-map].has-hot .map-cell:not(.is-hot) { opacity: 0.35; }
+[data-verteo-map].has-hot .map-cell:not(.is-hot) { opacity: 0.35; }
 
 .map-cell.is-hot { filter: brightness(1.35) drop-shadow(0 0 4px rgb(203 255 77 / 0.6)); }
 
