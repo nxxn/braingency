@@ -35,6 +35,7 @@ lv:
       en: "angļu"
       lv: "latviešu"
     in_production: "Ražošanā"
+    illustrative: "Ilustratīvi dati"
     read_article: "Lasīt rakstu"
     back_to_news: "Visas ziņas"
     cta:
@@ -61,6 +62,7 @@ lv:
     reg_number: "Reģ. nr."
     vat_number: "PVN"
     tagline: "Veidots Rīgā"
+    local_time: "Vietējais laiks Rīgā"
 
   # --- SEO --------------------------------------------------------------
   meta:
@@ -94,8 +96,26 @@ lv:
     article_vertio_property_valuation_ml:
       title: "Vertio: Latvijas īpašumu vērtību prognozēšana ar ML — Braingency"
       description: "Mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un tiek izmantots automatizētai ķīlas novērtēšanai un kredītspējas novērtēšanā."
-
+    article_vertio_live_in_latvia:
+      title: "Vertio darbojas Latvijā — Braingency"
+      description: "Mūsu mašīnmācīšanās modelis īpašumu vērtēšanai darbojas ražošanā Latvijā, un mēs to paplašinām uz Spāniju."
+    article_keeping_scoring_models_honest:
+      title: "Kā saglabāt kredītnovērtēšanas modeli godīgu ražošanā — Braingency"
+      description: "Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Datu nobīde, vēlu zināmi iznākumi un atbildība nosaka, vai tas paliek noderīgs, kad apstiprina reālus kredītus."
   # --- Pages ------------------------------------------------------------
+  # --- Komandu palete (⌘K) ---------------------------------------------
+  palette:
+    open: "Meklēt vietnē"
+    placeholder: "Pāriet uz lapu vai darbību…"
+    pages: "Lapas"
+    actions: "Darbības"
+    write_email: "Rakstiet mums"
+    copy_email: "Kopēt e-pasta adresi"
+    copied: "Nokopēts"
+    empty: "Nekas neatbilst"
+    hint_navigate: "pārvietoties"
+    hint_open: "atvērt"
+
   pages:
     home:
       hero:
@@ -135,6 +155,41 @@ lv:
           portfolio: "Portfeļa pārvaldība"
           collections: "Parādu piedziņa"
         model_note: "ML modeļi, kas apmācīti uz visas datu plūsmas"
+
+      demo:
+        label: "Kā tas darbojas"
+        heading: "Viens pieteikums no sākuma līdz beigām"
+        body: "Pieteikums ceļā caur platformu: pārbaudīts, izvērtēts, modeļa novērtēts un iegrāmatots — aptuveni tikpat ilgā laikā, cik vajag, lai izlasītu šo rindkopu."
+        note: "Ilustratīvi dati"
+        caption: "fig. 02 — pieteikuma apstrāde"
+        sr_summary: "Animēta ilustrācija ar parauga datiem: kredīta pieteikums iziet pieņemšanu, kredītbiroja un ķīlas pārbaudes, modeļa novērtējumu, KYC un AML pārbaudes, lēmumu, līguma sagatavošanu un iegrāmatošanu portfelī."
+        fields:
+          application: "Pieteikums"
+          product: "Produkts"
+          amount: "Summa"
+          term: "Termiņš"
+        products:
+          auto: "Auto kredīts"
+          consumer: "Patēriņa kredīts"
+          mortgage: "Hipotekārais kredīts"
+        months: "%{count} mēn."
+        checks:
+          kyc: "Identitāte (KYC)"
+          aml: "Sankciju un PEP pārbaude"
+          bureau: "Kredītbirojs"
+          collateral: "Ķīlas novērtējums"
+        not_applicable: "n/a"
+        score: "Modeļa vērtējums"
+        decisions:
+          approved: "Apstiprināts"
+          review: "Nodots izvērtētājam"
+        log: "Notikumu žurnāls"
+      code:
+        label: "No koda bāzes"
+        heading: "Modelis ir viens darba plūsmas solis"
+        body: "Novērtējums nav atskaite, ko kāds izlasa vēlāk. Tas tiek izpildīts tajā pašā transakcijā, kurā tiek pieņemts lēmums par kredītu, tiek ierakstīts audita pierakstā un versionēts kā pārējais kods."
+        note: "Ilustratīvs fragments"
+        caption: "fig. 03 — novērtējums pieteikuma apstrādē"
 
       why:
         label: "Kāpēc uzņēmumi strādā ar mums"
@@ -207,6 +262,31 @@ lv:
               body: "Strukturēti parādu atgūšanas procesi ar lietu pārvaldību"
           outro: "Virs operacionālā slāņa mēs analizējam visu ienākošo datu plūsmu un veidojam liela mēroga ML modeļus, kas optimizē pašus procesus — uzlabo skoringa precizitāti, identificē risku modeļus un automatizē lēmumus, kas iepriekš prasīja manuālu pārbaudi."
           status: "Darbojas ražošanā ar klientiem Latvijā, Spānijā un Apvienotajos Arābu Emirātos."
+          visual:
+            queue: "pieteikumi"
+            caption: "fig. 05 — operatora skats"
+            statuses:
+              received: "Saņemts"
+              scoring: "Vērtēšana"
+              review: "Manuāla pārbaude"
+              approved: "Apstiprināts"
+              signed: "Parakstīts"
+              active: "Aktīvs"
+            products:
+              auto: "Auto kredīts"
+              consumer: "Patēriņa"
+              mortgage: "Hipotēka"
+              leasing: "Līzings"
+            kpis:
+              book: "Portfelis"
+              review: "Pārbaudē"
+              collected: "Iekasēts"
+            columns:
+              id: "Pieteikums"
+              product: "Produkts"
+              amount: "Summa"
+              status: "Statuss"
+              score: "Vērtējums"
         learning:
           index: "02"
           name: "Mācību pārvaldības platforma"
@@ -215,6 +295,26 @@ lv:
             - "Platforma organizācijām, kas nodrošina strukturētu izglītību lielā mērogā. Kursu veidotāji var publicēt kursus, pieņemt maksājumus, uzdot un pārbaudīt mājasdarbus un sekot līdzi apmācāmo progresam — ar pilnībā automatizētu administratīvo procesu."
             - "Platformā ir iekļauts spēlifikācijas slānis, kas veidots, lai uzlabotu kursu pabeigšanas rādītājus un iesaisti, risinot atbiruma problēmu, kas skar lielāko daļu tiešsaistes mācību produktu."
           status: "Mēs izstrādājām mācību platformu Džonsa Hopkinsa universitātei Amerikas Savienotajās Valstīs."
+          visual:
+            course: "finanšu modelēšana"
+            caption: "fig. 06 — studenta nedēļa"
+            modules:
+              - "Izklājlapas analītiķiem"
+              - "Trīs pārskatu modeļi"
+              - "Naudas plūsma un vērtēšana"
+              - "Scenāriju un jutīguma analīze"
+              - "Modeļa prezentēšana"
+            level: "Līmenis"
+            streak: "%{count} dienas pēc kārtas"
+            homework:
+              label: "Mājasdarbs"
+              title: "Izveidot DCF biržā kotētam uzņēmumam"
+              submitted: "Iesniegts"
+              reviewing: "Pārbaudē"
+              reviewed: "Pārbaudīts"
+            badge:
+              label: "Iegūta nozīmīte"
+              title: "Septiņas dienas pēc kārtas"
         assistant:
           index: "03"
           name: "AI asistents ar iebūvētu CRM"
@@ -222,6 +322,32 @@ lv:
           body:
             - "Ieviešams AI tērzēšanas asistents, ko var iegult jebkurā mājaslapā. Caur administrācijas paneli asistenta zināšanu bāze tiek papildināta ar informāciju par uzņēmumu, ko tas pārstāv, tāpēc tas atbild, balstoties uz uzņēmuma reālo dokumentāciju, nevis vispārīgām atbildēm."
             - "Atšķirībā no atsevišķa tērzēšanas logrīka, asistentam ir savs CRM: katra saruna tiek saglabāta ar apkopotu ierakstu par to, ko klients jautāja un kas tika atrisināts, sniedzot pārdošanas un atbalsta komandām meklējamu klientu vajadzību vēsturi, nevis nesaistītu sarunu plūsmu."
+          visual:
+            window: "tiešsaistes čats"
+            caption: "fig. 07 — saruna ienāk, ieraksts paliek"
+            source: "No zināšanu bāzes"
+            placeholder: "Rakstiet ziņu…"
+            record: "sarunas ieraksts"
+            fields:
+              intent: "Nolūks"
+              status: "Statuss"
+              summary: "Kopsavilkums"
+              tags: "Birkas"
+            scenarios:
+              - question: "Vai varu pārcelt piegādi uz nākamo nedēļu?"
+                answer: "Jā. Datumu var mainīt līdz 48 stundām pirms piegādes — savā kontā vai atbildot uz apstiprinājuma e-pastu ar jauno datumu."
+                source: "Piegādes noteikumi"
+                intent: "Piegādes pārcelšana"
+                status: "Atrisināja asistents"
+                summary: "Klients vēlējās pārcelt piegādi uz nākamo nedēļu. Izskaidrots 48 stundu noteikums un abi datuma maiņas veidi."
+                tags: ["piegāde", "pašapkalpošanās"]
+              - question: "Vai jums ir apjoma cenas 40 vienībām?"
+                answer: "Apjoma cenas sākas no 25 vienībām, tātad 40 atbilst. Nodevu jūsu pieprasījumu pārdošanas komandai — piedāvājumu nosūtīsim uz šo e-pastu vienas darba dienas laikā."
+                source: "Cenas — apjoma noteikumi"
+                intent: "Apjoma cena, 40 vienības"
+                status: "Nodots pārdošanai"
+                summary: "Potenciālais klients jautāja par apjoma cenu 40 vienībām. Atbilst apjoma noteikumiem; piedāvājums pieprasīts e-pastā."
+                tags: ["potenciālais klients", "apjoms", "piedāvājums"]
         vertio:
           index: "04"
           name: "Vertio — nekustamā īpašuma vērtēšana kreditētājiem"
@@ -230,8 +356,29 @@ lv:
             - "Vertio ir mūsu īpašumā esoša platforma nekustamā īpašuma vērtību analīzei un prognozēšanai. Tā balstās uz mūsu pašu mašīnmācīšanās modeli, kas apmācīts uz reāliem tirgus datiem, un sniedz atsevišķu īpašumu novērtējumus visā tirgū."
             - "Modeļa jēga ir atbalstīt lēmumu pieņemšanu: Vertio pastāv, lai palīdzētu kreditētājiem izlemt, cik daudz aizdot. Tieši precīzs un aktuāls ķīlas novērtējums nosaka pareizo kredīta summu, un kļūda jebkurā virzienā izmaksā dārgi — tā vai nu pakļauj kredītportfeli pārmērīgam riskam, vai liek atteikt labiem darījumiem."
             - "Tiešākie pielietojumi ir kreditēšanā: automatizēta ķīlas vērtēšana hipotekāro kredītu izvērtēšanā un īpašuma vērtības dati kredītspējas novērtēšanas sistēmām. Vertio ir tieši savienots ar mūsu kreditēšanas platformu, tāpēc hipotekāro kredītu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis novecojušu novērtējumu."
-          status_label: "Izstrādē"
-          status: "Vispirms izveidots Latvijas tirgum, šobrīd tiek paplašināts uz Spāniju."
+          status: "Darbojas Latvijā, šobrīd tiek paplašināts uz Spāniju."
+          visual:
+            window: "vērtējums"
+            caption: "fig. 08 — viens īpašums, viens vērtējums, viens tirgus"
+            forecast: "prognoze"
+            range: "90% intervāls"
+            estimate: "Modeļa vērtējums"
+            comparables: "%{count} salīdzināmi darījumi"
+            chart_title: "Vietējā tirgus indekss, €/m²"
+            today: "šodien"
+            month: "Mēnesis"
+            fact_labels:
+              location: "Atrašanās vieta"
+              type: "Tips"
+              area: "Platība"
+              built: "Būvēts"
+              floor: "Stāvs"
+            facts:
+              location: "Rīga · Teika"
+              type: "2 istabu dzīvoklis"
+              area: "54 m²"
+              built: "1978"
+              floor: "4 / 5"
       technology:
         label: "Tehnoloģijas"
         heading: "Veidots, lai paliktu ražošanā"
@@ -246,6 +393,29 @@ lv:
           - "Kredītbiroji"
           - "Trešo pušu datu avoti"
           - "Iekšēji ML pakalpojumi"
+        graph:
+          caption: "fig. 04 — integrāciju karte"
+          core: "Kreditēšanas platforma"
+          core_note: "Viens datu modelis visam ciklam"
+          nodes:
+            banking:
+              title: "Banku integrācijas"
+              body: "Kontu dati, pārskaitījumi un izmaksas"
+            payments:
+              title: "Maksājumu pakalpojumi"
+              body: "Atmaksas un kredītu izmaksas"
+            bureaus:
+              title: "Kredītbiroji"
+              body: "Kredītvēsture novērtēšanas brīdī"
+            kyc:
+              title: "KYC / KYB pakalpojumi"
+              body: "Personu un uzņēmumu pārbaude"
+            data:
+              title: "Trešo pušu dati"
+              body: "Reģistri un tirgus dati"
+            ml:
+              title: "Iekšējie ML pakalpojumi"
+              body: "Kredītspējas un īpašumu vērtēšanas modeļi"
 
     ml_lab:
       heading: "Braingency ML laboratorija"
@@ -286,6 +456,32 @@ lv:
             index: "Piemērs 02"
             title: "Nekustamā īpašuma vērtēšana"
             body: "Vertio: ML modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un prognozē īpašumu vērtības, pielietots hipotekāro kredītu ķīlas novērtēšanā un skoringā."
+      map:
+        label: "Vertio visā valstī"
+        heading: "Katra šūna ir vērtējums"
+        body: "Vertio novērtē cenu katrai valsts daļai un pārrēķina to, ienākot jauniem darījumiem. Kur salīdzināmu darījumu ir maz, intervāls kļūst platāks — un modelis to parāda."
+        window: "latvija · €/m²"
+        note: "Ilustratīvs lauks, nevis tirgus dati"
+        caption: "fig. 09 — aplēstā cena par m² pa teritorijām"
+        sr_summary: "Ilustratīva Latvijas karte, sadalīta sešstūros un iekrāsota pēc aplēstās cenas par kvadrātmetru: visgaišākā ap Rīgu un Jūrmalu, zemāka reģionu pilsētās un viszemākā laukos. Blakus esošajā tabulā norādītas vērtības galvenajām pilsētām."
+        legend: "€/m²"
+        table: "Galvenās pilsētas"
+        city: "Pilsēta"
+        feed: "Jauni darījumi"
+        near: "pie %{city}"
+        sale: "darījums"
+        updated: "model.updated"
+        see: "fig. 09 — Vertio visā Latvijā"
+      threshold:
+        title: "Modeļa vērtējums pēc iznākuma"
+        repaid: "Atmaksāts"
+        defaulted: "Saistības nepildītas"
+        threshold: "Apstiprināt virs"
+        readouts:
+          approved: "Apstiprināti"
+          default_rate: "Saistību nepildīšana"
+          declined_good: "Atteikti labi"
+        caption: "fig. 10 — apstiprināšanas kompromiss uz sintētiskiem datiem"
 
     team:
       heading: "Komanda"
@@ -376,3 +572,20 @@ lv:
         - "Nekustamā īpašuma vērtēšana nelielā tirgū ir sarežģīts uzdevums. Salīdzināmu darījumu ir mazāk nekā lielā tirgū, cenas krasi atšķiras atkarībā no mikrolokācijas, un tie dati, kas ir pieejami, ir sadrumstaloti. Hipotekāro kredītu izsniedzējam tas nozīmē, ka ķīlas vērtēšana bieži ir lēna, dārga un balstīta uz ierobežotiem pierādījumiem."
         - "Mēs izveidojām Vertio, lai to atrisinātu. Tas ir mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un prognozē atsevišķu īpašumu vērtību. Rezultātu var izmantot divējādi: kā automatizētu ķīlas novērtējumu hipotekārā kredīta izvērtēšanas laikā un kā ievades datus kredītspējas novērtēšanas modeļos."
         - "Tā kā Vertio ir savienots ar mūsu kreditēšanas platformu, hipotekāro kredīta pieteikumu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis manuālu novērtējumu, kas veikts vairākas nedēļas iepriekš. Vērtēšana pārstāj būt šķērslis procesā un kļūst par daļu no paša lēmuma."
+    vertio_live_in_latvia:
+      title: "Vertio darbojas Latvijā — nākamā ir Spānija"
+      excerpt: "Mūsu īpašumu vērtēšanas modelis tagad darbojas ražošanā Latvijas tirgū. Paplašināšana uz Spāniju nav modeļa kopēšana, bet gan tā mācību pamata pārbūve."
+      body:
+        - "Vertio, mūsu mašīnmācīšanās modelis īpašumu vērtēšanai, tagad darbojas ražošanā Latvijā. Tas novērtē atsevišķu īpašumu vērtību, balstoties uz tirgus datiem, un nodod šo vērtējumu tur, kur tas kreditētājiem vajadzīgs: ķīlas novērtēšanā hipotekāro kredītu izvērtēšanas laikā un kredītspējas novērtēšanā kā ievades datus."
+        - "Darbs ražošanā maina to, kas modelim jāprot. Prognozei piezīmju grāmatiņā pietiek būt precīzai vidēji. Vērtējums, kas iekļauts kredīta izvērtēšanas procesā, tiek vērtēts katrā gadījumā atsevišķi — arī tur, kur tirgus ir plāns un salīdzināmu darījumu ir maz. Tieši tur tiek ieguldīta lielākā daļa inženiertehniskā darba."
+        - "Tagad mēs paplašinām Vertio uz Spāniju. Tā nav modeļa pārnešana: Spānijas tirgus ir lielāks, izteiktāk reģionāls un citādi strukturēts, un tādi ir arī tā datu avoti. Darbs ir mācību datu un pazīmju pārbūvē šim tirgum un modeļa validācijā, pirms tas ietekmē kaut vienu lēmumu."
+        - "Tā kā Vertio ir tieši savienots ar mūsu kreditēšanas platformu, katrs tirgus, ko tas aptver, ir arī tirgus, kurā hipotekārā kredīta pieteikumu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis novecojušu ekspertīzi."
+    keeping_scoring_models_honest:
+      title: "Kas vajadzīgs, lai kredītnovērtēšanas modelis ražošanā paliktu godīgs"
+      excerpt: "Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Vai tas paliek noderīgs, izšķiras pēc tam, kad tas sāk apstiprināt reālus kredītus."
+      body:
+        - "Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Tā daļa, kas nosaka, vai modelis paliek noderīgs, sākas dienā, kad tas sāk apstiprināt reālus pieteikumus."
+        - "Pirmā problēma ir nobīde. Modelis apgūst saikni starp pieteicējiem un iznākumiem tādu, kāda tā bija mācību datos. Produkti mainās, mārketings piesaista citus klientus, ekonomika mainās. Modelis jebkurā gadījumā turpina izdot pārliecinošus vērtējumus, tāpēc vienīgā aizsardzība ir to uzraudzīt: salīdzināt šodienas vērtējumus ar tiem, ko tas izdeva validācijas laikā, un sekot iznākumiem, kredītiem nobriestot."
+        - "Otrā — iznākumi kļūst zināmi vēlu un tikai daļai. Vai kredīts bija labs lēmums, kļūst zināms mēnešus vēlāk un tikai par apstiprinātajiem pieteicējiem. Modelis, kas nekad neuzzina, kas notika ar tiem, kuriem tas atteica, var novirzīties uz saviem aklajiem punktiem, tāpēc uzraudzībai tas jāņem vērā, nevis jāuzskata apstiprinātais portfelis par visu patiesību."
+        - "Trešā ir atbildība. Regulētā biznesā katram automatizētam lēmumam jābūt izskaidrojamam arī vēlāk: kura modeļa versija novērtēja pieteikumu, ar kādiem ievaddatiem un pret kādu slieksni. Tā ir tikpat liela inženiertehniska prasība kā datu zinātnes prasība — vērtējumam jābūt ierakstītam audita pierakstā tajā pašā solī, kurā uz to balstās lēmums."
+        - "Nekas no tā nav eksotisks. Tā ir atšķirība starp modeli, kas reiz bija precīzs, un modeli, uz kuru kreditētājs var turpināt paļauties — un tieši tāpēc mēs iebūvējam novērtēšanu pašā kreditēšanas platformā, nevis pievienojam to no ārpuses."

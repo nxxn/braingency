@@ -41,3 +41,6 @@
 
 # Intermediate HTML used by bin/build-brand (outputs land in public/)
 /tmp/brand
+
+# macOS Finder metadata
+.DS_Store

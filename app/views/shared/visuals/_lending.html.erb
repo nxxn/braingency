@@ -1,0 +1,80 @@
+<%#
+  The lending platform as its operators see it: module rail, portfolio
+  counters and a live applications queue. Sample data, labelled as such.
+  The server renders a settled queue; visuals/lending.js keeps it moving.
+%><%
+  v = "pages.product.projects.lending.visual"
+  stages = %w[intake scoring compliance contract portfolio collections]
+  statuses = %w[received scoring review approved signed active]
+  rows = [
+    ["APP-31207", :auto,     euros(14_900),  "active",   "0.88"],
+    ["APP-31206", :consumer, euros(3_200),   "signed",   "0.92"],
+    ["APP-31205", :mortgage, euros(118_000), "review",   "0.61"],
+    ["APP-31204", :leasing,  euros(42_500),  "approved", "0.79"],
+    ["APP-31203", :consumer, euros(1_800),   "scoring",  "—"]
+  ]
+%>
+<figure class="mt-12" data-reveal>
+  <div data-lending-visual aria-hidden="true"
+       data-statuses="<%= statuses.to_h { |s| [s, t("#{v}.statuses.#{s}")] }.to_json %>"
+       data-products="<%= %i[auto consumer mortgage leasing].to_h { |p| [p, t("#{v}.products.#{p}")] }.to_json %>"
+       class="crop visual-window overflow-hidden border border-line bg-ink-900">
+
+    <div class="flex items-center justify-between gap-4 border-b border-line px-5 py-3.5">
+      <div class="flex items-center gap-3">
+        <span class="flex gap-1.5" aria-hidden="true">
+          <span class="h-2 w-2 rounded-full bg-ink-700"></span><span class="h-2 w-2 rounded-full bg-ink-700"></span><span class="h-2 w-2 rounded-full bg-ink-700"></span>
+        </span>
+        <span class="label text-fg-muted">lending / <%= t("#{v}.queue") %></span>
+      </div>
+      <span class="label"><%= t("common.illustrative") %></span>
+    </div>
+
+    <div class="grid md:grid-cols-[12rem_minmax(0,1fr)]">
+      <%# --- Module rail --- %>
+      <ul class="hidden border-r border-line py-3 md:block">
+        <% stages.each_with_index do |stage, i| %>
+          <li data-lending-module class="lending-module <%= "is-active" if i.zero? %> flex items-center gap-3 px-5 py-2.5 text-[0.8125rem]">
+            <span class="label"><%= format("%02d", i + 1) %></span>
+            <span class="truncate"><%= t("pages.home.pipeline.stages.#{stage}") %></span>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="min-w-0">
+        <%# --- Counters --- %>
+        <dl class="grid grid-cols-3 border-b border-line">
+          <% [[:book, euros(48_200_000, compact: true)], [:review, "12"], [:collected, euros(186_400)]].each_with_index do |(key, value), i| %>
+            <div class="<%= "border-r border-line" if i < 2 %> px-4 py-4 sm:px-6 sm:py-5">
+              <dt class="label truncate"><%= t("#{v}.kpis.#{key}") %></dt>
+              <dd class="mt-2.5 font-mono text-[1rem] tracking-[-0.02em] text-fg sm:text-[1.375rem]" data-lending-kpi="<%= key %>"><%= value %></dd>
+            </div>
+          <% end %>
+        </dl>
+
+        <%# --- Queue --- %>
+        <div class="px-4 py-4 sm:px-6">
+          <div class="lending-row label !text-fg-faint">
+            <span><%= t("#{v}.columns.id") %></span>
+            <span class="max-sm:hidden"><%= t("#{v}.columns.product") %></span>
+            <span class="text-right"><%= t("#{v}.columns.amount") %></span>
+            <span><%= t("#{v}.columns.status") %></span>
+            <span class="text-right max-sm:hidden"><%= t("#{v}.columns.score") %></span>
+          </div>
+          <ol data-lending-rows class="relative mt-1 h-[15.5rem] overflow-hidden">
+            <% rows.each do |id, product, amount, status, score| %>
+              <li class="lending-row lending-item" data-status="<%= status %>" data-score-value="<%= score == "—" ? "0.83" : score %>" data-path="auto">
+                <span class="font-mono text-fg"><%= id %></span>
+                <span class="truncate text-fg-muted max-sm:hidden"><%= t("#{v}.products.#{product}") %></span>
+                <span class="text-right font-mono text-fg"><%= amount %></span>
+                <span><span class="status-pill" data-pill><%= t("#{v}.statuses.#{status}") %></span></span>
+                <span class="text-right font-mono text-fg-muted max-sm:hidden" data-score><%= score %></span>
+              </li>
+            <% end %>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <figcaption class="label mt-4"><%= t("#{v}.caption") %></figcaption>
+</figure>

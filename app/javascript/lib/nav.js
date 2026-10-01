@@ -14,6 +14,28 @@ export default function nav() {
     header.dataset.stuck = String(!entry.isIntersecting);
   }).observe(sentinel);
 
+  // --- Hide on the way down, return on the way up ------------------------
+  // Reading gets the whole viewport; any upward scroll brings the nav back.
+  // It never hides while focus is inside it, or a keyboard user would lose it.
+  // Scroll events already arrive at most once per frame and the work here is
+  // two comparisons, so there is nothing to gain from deferring it to rAF.
+  let lastY = window.scrollY;
+
+  const update = () => {
+    const y = window.scrollY;
+    const delta = y - lastY;
+    if (Math.abs(delta) < 6) return;
+
+    const open = header.querySelector("[aria-expanded=true]");
+    const hide = delta > 0 && y > 160 && !open && !header.contains(document.activeElement);
+    header.dataset.hidden = String(hide);
+    lastY = y;
+  };
+
+  window.addEventListener("scroll", update, { passive: true });
+
+  header.addEventListener("focusin", () => { header.dataset.hidden = "false"; });
+
   // --- Mobile panel --------------------------------------------------------
   const toggle = header.querySelector("[data-nav-toggle]");
   const panel = header.querySelector("[data-nav-panel]");

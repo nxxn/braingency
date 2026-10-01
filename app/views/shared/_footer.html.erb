@@ -4,7 +4,7 @@
     <%# --- Closing CTA --- %>
     <div class="grid gap-10 border-b border-line py-[clamp(4rem,2rem+7vw,8rem)] lg:grid-cols-[1.2fr_1fr] lg:gap-20">
       <div data-reveal>
-        <h2 class="text-h2 font-medium"><%= t("common.cta.heading") %></h2>
+        <h2 class="text-h2 font-medium" data-split><%= t("common.cta.heading") %></h2>
         <p class="prose-braingency mt-5 max-w-lg"><%= t("common.cta.body") %></p>
       </div>
       <div class="flex items-start lg:justify-end lg:pt-3" data-reveal style="--reveal-delay:120ms">
@@ -65,7 +65,16 @@
         <%= t("footer.reg_number") %> <%= Site::REG_NUMBER %> &middot;
         <%= t("footer.vat_number") %> <%= Site::VAT_NUMBER %>
       </p>
-      <p class="label"><%= t("footer.tagline") %></p>
+      <p class="label flex flex-wrap items-center gap-x-4 gap-y-2">
+        <span><%= t("footer.tagline") %></span>
+        <%# The office, Rūpniecības iela 22 (OpenStreetMap). %>
+        <span class="text-fg-faint/80">56.961° N · 24.104° E</span>
+        <span class="inline-flex items-center gap-2">
+          <span class="h-1 w-1 rounded-full bg-lime" aria-hidden="true"></span>
+          <span class="sr-only"><%= t("footer.local_time") %>:</span>
+          <span data-local-time>Europe/Riga</span>
+        </span>
+      </p>
     </div>
   </div>
 </footer>

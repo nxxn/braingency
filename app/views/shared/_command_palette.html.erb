@@ -1,0 +1,52 @@
+<%#
+  ⌘K / Ctrl+K command palette. A native <dialog>, so focus trapping, Escape
+  and the backdrop come from the browser. Items are rendered here from the
+  same page list the nav uses; command_palette.js only filters and moves the
+  selection. Without JS the dialog is never opened and costs nothing.
+%><%
+  other = (Site::LOCALES - [I18n.locale]).first
+  items = Site::PAGES.map do |page|
+    { group: :pages, label: t("nav.#{page.key}"), href: path_for(page.key), hint: page.slug ? "/#{page.slug}" : "/" }
+  end
+  items += [
+    { group: :actions, label: t("palette.write_email"), href: "mailto:#{Site::CONTACT_EMAIL}", hint: Site::CONTACT_EMAIL },
+    { group: :actions, label: t("palette.copy_email"), copy: Site::CONTACT_EMAIL, hint: "clipboard" },
+    { group: :actions, label: t("nav.switch_language", language: t("common.languages.#{other}")), href: alternate_url(other), hint: other.to_s.upcase }
+  ]
+%>
+<dialog data-palette class="palette" aria-label="<%= t("palette.open") %>">
+  <div class="palette-panel crop">
+    <div class="flex items-center gap-3 border-b border-line px-5">
+      <svg class="h-4 w-4 shrink-0 text-fg-faint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5" stroke-linecap="round"/>
+      </svg>
+      <input data-palette-input type="text" autocomplete="off" spellcheck="false"
+             role="combobox" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list"
+             placeholder="<%= t("palette.placeholder") %>"
+             aria-label="<%= t("palette.placeholder") %>"
+             class="w-full bg-transparent py-4.5 text-[1rem] text-fg placeholder:text-fg-faint focus:outline-none">
+      <kbd class="palette-kbd">esc</kbd>
+    </div>
+
+    <ul id="palette-list" data-palette-list role="listbox" class="max-h-[min(60svh,26rem)] overflow-y-auto p-2">
+      <% items.group_by { |i| i[:group] }.each do |group, entries| %>
+        <li role="presentation" class="label px-3 pb-2 pt-3" data-palette-group><%= t("palette.#{group}") %></li>
+        <% entries.each do |item| %>
+          <li role="option" data-palette-item aria-selected="false"
+              <% if item[:href] %>data-href="<%= item[:href] %>"<% end %>
+              <% if item[:copy] %>data-copy="<%= item[:copy] %>" data-copied="<%= t("palette.copied") %>"<% end %>
+              class="palette-item">
+            <span class="palette-label"><%= item[:label] %></span>
+            <span class="palette-hint"><%= item[:hint] %></span>
+          </li>
+        <% end %>
+      <% end %>
+      <li data-palette-empty hidden class="px-3 py-8 text-center text-[0.9375rem] text-fg-faint"><%= t("palette.empty") %></li>
+    </ul>
+
+    <div class="flex items-center gap-5 border-t border-line px-5 py-3">
+      <span class="palette-legend"><kbd class="palette-kbd">↑</kbd><kbd class="palette-kbd">↓</kbd> <%= t("palette.hint_navigate") %></span>
+      <span class="palette-legend"><kbd class="palette-kbd">↵</kbd> <%= t("palette.hint_open") %></span>
+    </div>
+  </div>
+</dialog>

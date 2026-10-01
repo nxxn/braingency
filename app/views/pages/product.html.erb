@@ -24,15 +24,16 @@
     </div>
 
     <%# With a feature list the prose becomes a sticky sidebar so it stays with
-        the reader while they scan; without one it simply widens. %>
-    <div class="mt-10 grid gap-x-14 gap-y-10 lg:ml-[calc(7rem+3rem)] <%= "lg:grid-cols-[1fr_1.2fr]" if features.present? %>">
-      <div class="prose-braingency <%= features.present? ? "lg:sticky lg:top-28 lg:self-start" : "max-w-[70ch]" %>"
+        the reader while they scan; without one the product's illustration
+        takes the second column instead. %>
+    <div class="mt-10 grid grid-cols-1 gap-x-14 gap-y-10 lg:ml-[calc(7rem+3rem)] <%= features.present? ? "lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]" : "lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start" %>">
+      <div class="prose-braingency <%= features.present? ? "lg:sticky lg:top-28 lg:self-start" : "lg:sticky lg:top-28" %>"
            data-reveal style="--reveal-delay:90ms">
         <%= paragraphs("#{base}.body") %>
 
         <% if status.present? %>
-          <%# Most projects are live; Vertio overrides the badge because it is
-              still in development. %>
+          <%# A project can override the badge with status_label; by default
+              it reads "In production". %>
           <p class="!mt-8 flex items-start gap-3 border-l border-lime/40 pl-4 not-italic">
             <span class="label label-accent mt-1 shrink-0">
               <%= t("#{base}.status_label", default: t("common.in_production")) %>
@@ -54,8 +55,16 @@
             </li>
           <% end %>
         </ol>
+      <% else %>
+        <%= render "shared/visuals/#{key}" %>
       <% end %>
     </div>
+
+    <% if features.present? %>
+      <div class="lg:ml-[calc(7rem+3rem)]">
+        <%= render "shared/visuals/#{key}" %>
+      </div>
+    <% end %>
 
     <% if (outro = t("#{base}.outro", default: nil)).present? %>
       <div class="mt-10 lg:ml-[calc(7rem+3rem)]" data-reveal>
@@ -90,4 +99,6 @@
       <% end %>
     </ul>
   </div>
+
+  <%= render "shared/integration_graph" %>
 </section>

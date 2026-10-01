@@ -1,5 +1,6 @@
 <header data-nav
-        class="fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-500
+        class="fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color,translate] duration-500
+               [transition-timing-function:var(--ease-out-expo)] data-[hidden=true]:-translate-y-full
                border-b border-transparent
                data-[stuck=true]:border-line data-[stuck=true]:bg-ink-950/72 data-[stuck=true]:backdrop-blur-xl">
   <div class="shell flex items-center justify-between gap-6 py-5 transition-[padding] duration-500
@@ -26,6 +27,13 @@
     </nav>
 
     <div class="flex items-center gap-3">
+      <%# Revealed by command_palette.js, which also sets the right modifier. %>
+      <button type="button" data-palette-open hidden
+              class="hidden items-center gap-1.5 rounded-full border border-line px-3 py-2 text-fg-faint transition-colors duration-300 hover:border-line-strong hover:text-fg lg:inline-flex"
+              aria-label="<%= t("palette.open") %>">
+        <kbd class="font-mono text-[0.6875rem] tracking-[0.04em]"><span data-palette-mod>⌘</span> K</kbd>
+      </button>
+
       <%= render "shared/locale_switcher" %>
 
       <%= link_to contact_path, class: "hidden sm:inline-flex btn btn-primary !py-2.5 !px-5 !text-[0.875rem]", data: { magnetic: true } do %>
@@ -45,6 +53,10 @@
       </button>
     </div>
   </div>
+
+  <%# Reading progress: a lime hairline along the bottom edge, driven purely by
+      a CSS scroll timeline (no-op where unsupported). %>
+  <div class="scroll-progress pointer-events-none absolute inset-x-0 -bottom-px h-px" aria-hidden="true"></div>
 
   <%# --- Mobile panel --- %>
   <div id="mobile-nav" data-nav-panel hidden

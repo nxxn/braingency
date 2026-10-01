@@ -3,6 +3,7 @@ import { coarsePointer, reducedMotion } from "./env";
 // Two cursor-driven effects, both no-ops on touch and under reduced motion:
 //   [data-magnetic] — buttons drift a few pixels toward the pointer
 //   .card           — feeds --mx/--my so the CSS spotlight can follow
+//   [data-grid-glow] — lights the hero grid in a soft circle around the pointer
 export default function pointerFx() {
   if (coarsePointer() || reducedMotion()) return;
 
@@ -42,5 +43,27 @@ export default function pointerFx() {
       card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
       card.style.setProperty("--my", `${event.clientY - rect.top}px`);
     }, { passive: true });
+  });
+
+  document.querySelectorAll("[data-grid-glow]").forEach((glow) => {
+    const area = glow.parentElement;
+    let raf = null;
+    let x = 0, y = 0;
+
+    const paint = () => {
+      raf = null;
+      glow.style.setProperty("--gx", `${x}px`);
+      glow.style.setProperty("--gy", `${y}px`);
+    };
+
+    area.addEventListener("pointermove", (event) => {
+      const rect = area.getBoundingClientRect();
+      x = event.clientX - rect.left;
+      y = event.clientY - rect.top;
+      glow.dataset.active = "true";
+      if (raf === null) raf = requestAnimationFrame(paint);
+    }, { passive: true });
+
+    area.addEventListener("pointerleave", () => { glow.dataset.active = "false"; });
   });
 }

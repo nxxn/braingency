@@ -31,6 +31,10 @@ module Site
 
   CONTACT_EMAIL = "contact@braingency.eu".freeze
 
+  # Company profiles, listed as sameAs in the Organization JSON-LD so search
+  # engines tie the site to them.
+  PROFILES = ["https://www.linkedin.com/company/braingencyeu"].freeze
+
   # --- People -------------------------------------------------------------
 
   FOUNDERS = [
@@ -89,8 +93,10 @@ module Site
   Article = Struct.new(:slug, :published_on, keyword_init: true)
 
   ARTICLES = [
-    Article.new(slug: "one-platform-not-five-tools",  published_on: Date.new(2026, 8, 12)),
-    Article.new(slug: "vertio-property-valuation-ml", published_on: Date.new(2026, 7, 29))
+    Article.new(slug: "keeping-scoring-models-honest",  published_on: Date.new(2026, 9, 24)),
+    Article.new(slug: "vertio-live-in-latvia",          published_on: Date.new(2026, 9, 10)),
+    Article.new(slug: "one-platform-not-five-tools",    published_on: Date.new(2026, 8, 12)),
+    Article.new(slug: "vertio-property-valuation-ml",   published_on: Date.new(2026, 7, 29))
   ].freeze
 
   def self.article(slug) = ARTICLES.find { |a| a.slug == slug }

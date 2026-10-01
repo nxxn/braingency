@@ -1,0 +1,123 @@
+<%#
+  Vertio on a single property: the facts the model sees, its estimate with a
+  90% range, and the local market index — 24 months observed, 12 forecast
+  with a widening band. Sample series, labelled as such. The chart is drawn
+  here so it reads without JS; visuals/vertio.js animates it and adds the
+  crosshair readout.
+%><%
+  v = "pages.product.projects.vertio.visual"
+
+  # Deterministic sample series, €/m². Observed Oct 2024 – Sep 2026, forecast
+  # Oct 2026 – Sep 2027.
+  start = Date.new(2024, 10, 1)
+  hist = (0...24).map { |i| (1690 + i * 4.6 + Math.sin(i * 0.9) * 14 + Math.cos(i * 0.37) * 9).round }
+  last = hist.last
+  fc = (1..12).map { |j| { mid: (last + j * 5.4).round, spread: (j * 8.5 + 6).round } }
+  points = hist.each_with_index.map { |val, i| { m: start >> i, v: val } } +
+           fc.each_with_index.map { |f, j| { m: start >> (24 + j), v: f[:mid], lo: f[:mid] - f[:spread], hi: f[:mid] + f[:spread] } }
+
+  w, h = 600, 230
+  left, right, top, bottom = 44, 14, 14, 30
+  y_min, y_max = 1600, 2000
+  px = ->(i) { left + i * (w - left - right) / (points.size - 1.0) }
+  py = ->(val) { top + (y_max - val) * (h - top - bottom) / (y_max - y_min).to_f }
+  path = ->(pts) { pts.map { |i, val| "#{px.(i).round(1)},#{py.(val).round(1)}" }.join(" L") }
+
+  hist_d = "M" + path.(hist.each_with_index.map { |val, i| [i, val] })
+  fc_d = "M" + path.([[23, last]] + fc.each_with_index.map { |f, j| [24 + j, f[:mid]] })
+  band_top = fc.each_with_index.map { |f, j| [24 + j, f[:mid] + f[:spread]] }
+  band_bot = fc.each_with_index.map { |f, j| [24 + j, f[:mid] - f[:spread]] }.reverse
+  band_d = "M#{px.(23).round(1)},#{py.(last).round(1)} L" + path.(band_top) + " L" + path.(band_bot) + " Z"
+
+  area = 54
+  estimate = (area * last / 100.0).round * 100
+  low, high = (estimate * 0.95 / 100).round * 100, (estimate * 1.05 / 100).round * 100
+%>
+<figure class="min-w-0" data-reveal style="--reveal-delay:120ms">
+  <div data-vertio-visual
+       data-points="<%= points.map { |p| p.merge(m: p[:m].strftime("%Y-%m")) }.to_json %>"
+       data-label-forecast="<%= t("#{v}.forecast") %>"
+       data-label-range="<%= t("#{v}.range") %>"
+       class="crop visual-window overflow-hidden border border-line bg-ink-900">
+
+    <div class="flex items-center justify-between gap-4 border-b border-line px-5 py-3.5">
+      <span class="label text-fg-muted">vertio / <%= t("#{v}.window") %></span>
+      <span class="label"><%= t("common.illustrative") %></span>
+    </div>
+
+    <%# --- Property and estimate --- %>
+    <div class="grid grid-cols-2 gap-px border-b border-line bg-line">
+      <dl class="space-y-3 bg-ink-900 p-5 text-[0.8125rem] sm:p-6">
+        <% t("#{v}.facts").each do |key, value| %>
+          <div class="flex items-baseline justify-between gap-3">
+            <dt class="label truncate"><%= t("#{v}.fact_labels.#{key}") %></dt>
+            <dd class="shrink-0 font-mono text-fg" data-vertio-fact><%= value %></dd>
+          </div>
+        <% end %>
+      </dl>
+      <div class="flex flex-col justify-between bg-ink-900 p-5 sm:p-6">
+        <div>
+          <span class="label"><%= t("#{v}.estimate") %></span>
+          <p class="mt-3 font-mono text-[1.625rem] leading-none tracking-[-0.03em] text-fg sm:text-[2rem]" data-vertio-estimate data-value="<%= estimate %>"><%= euros(estimate) %></p>
+          <p class="mt-2.5 font-mono text-[0.75rem] text-fg-muted"><%= t("#{v}.range") %> <%= euros(low) %>–<%= euros(high) %></p>
+        </div>
+        <div class="mt-5">
+          <div class="h-[3px] overflow-hidden rounded-full bg-ink-700">
+            <div class="vertio-confidence h-full rounded-full bg-lime" style="width: 86%"></div>
+          </div>
+          <p class="label mt-2.5"><%= t("#{v}.comparables", count: 31) %></p>
+        </div>
+      </div>
+    </div>
+
+    <%# --- Market index chart --- %>
+    <div class="px-3 pb-3 pt-5 sm:px-5">
+      <p class="label px-2"><%= t("#{v}.chart_title") %></p>
+      <div class="relative mt-2" data-vertio-chart>
+        <svg class="block h-auto w-full" viewBox="0 0 <%= w %> <%= h %>" role="img"
+             aria-label="<%= t("#{v}.chart_title") %>">
+          <%# Recessive grid and y labels %>
+          <% [1700, 1800, 1900].each do |g| %>
+            <line x1="<%= left %>" x2="<%= w - right %>" y1="<%= py.(g) %>" y2="<%= py.(g) %>" stroke="var(--color-line)"/>
+            <text x="<%= left - 8 %>" y="<%= py.(g) + 3.5 %>" text-anchor="end" class="chart-tick"><%= g %></text>
+          <% end %>
+          <%# Year ticks %>
+          <% points.each_with_index do |p, i| %>
+            <% next unless p[:m].month == 1 %>
+            <text x="<%= px.(i) %>" y="<%= h - 10 %>" text-anchor="middle" class="chart-tick"><%= p[:m].year %></text>
+          <% end %>
+          <%# Today %>
+          <line x1="<%= px.(23.5) %>" x2="<%= px.(23.5) %>" y1="<%= top %>" y2="<%= h - bottom %>" stroke="var(--color-line-strong)"/>
+          <text x="<%= px.(23.5) + 6 %>" y="<%= top + 8 %>" class="chart-tick"><%= t("#{v}.today") %></text>
+
+          <path d="<%= band_d %>" class="vertio-band"/>
+          <path d="<%= hist_d %>" class="vertio-line" data-vertio-line pathLength="1"/>
+          <path d="<%= fc_d %>" class="vertio-forecast" data-vertio-forecast pathLength="1"/>
+          <circle cx="<%= px.(23) %>" cy="<%= py.(last) %>" r="4" class="vertio-now"/>
+
+          <%# Direct labels: today's value and the forecast end %>
+          <text x="<%= px.(23) - 8 %>" y="<%= py.(last) - 10 %>" text-anchor="end" class="chart-value"><%= last %> €/m²</text>
+          <text x="<%= px.(points.size - 1) - 2 %>" y="<%= py.(fc.last[:mid] + fc.last[:spread]) - 8 %>" text-anchor="end" class="chart-value is-muted"><%= fc.last[:mid] %></text>
+
+          <%# Crosshair, positioned by JS %>
+          <line data-vertio-cross y1="<%= top %>" y2="<%= h - bottom %>" class="vertio-cross"/>
+          <circle data-vertio-dot r="4" class="vertio-dot"/>
+        </svg>
+        <div data-vertio-tip class="chart-tip" hidden></div>
+      </div>
+
+      <%# Table view for assistive tech: quarterly values %>
+      <table class="sr-only">
+        <caption><%= t("#{v}.chart_title") %></caption>
+        <thead><tr><th scope="col"><%= t("#{v}.month") %></th><th scope="col">€/m²</th><th scope="col"><%= t("#{v}.range") %></th></tr></thead>
+        <tbody>
+          <% points.each_with_index do |p, i| %>
+            <% next unless i % 3 == 2 %>
+            <tr><td><%= p[:m].strftime("%Y-%m") %><%= " (#{t("#{v}.forecast")})" if p[:lo] %></td><td><%= p[:v] %></td><td><%= p[:lo] ? "#{p[:lo]}–#{p[:hi]}" : "—" %></td></tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <figcaption class="label mt-4"><%= t("#{v}.caption") %></figcaption>
+</figure>

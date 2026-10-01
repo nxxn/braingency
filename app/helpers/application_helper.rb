@@ -26,7 +26,7 @@ module ApplicationHelper
   # the asset pipeline on purpose: scrapers cache by URL, and a content digest
   # that changes on every deploy would invalidate every previously shared link.
   def og_image_url
-    name = ["og/#{@page_key}.png", "og/default.png"].find do |path|
+    name = ["og/#{@page_key}.#{I18n.locale}.png", "og/#{@page_key}.png", "og/default.png"].find do |path|
       Rails.public_path.join(path).exist?
     end
     return nil unless name
@@ -62,13 +62,91 @@ module ApplicationHelper
 
   def gep_document_url = "#{Site::HOST}#{gep_document_path}"
 
+  # Whole euros in the reader's convention — "€14,900" / "14 900 €" — matching
+  # what Intl.NumberFormat produces in the browser, so server-rendered sample
+  # figures and the ones the illustrations generate never disagree.
+  def euros(amount, compact: false)
+    lv = I18n.locale == :lv
+    if compact
+      millions = (amount / 1_000_000.0).round(1).to_s
+      return lv ? "#{millions.tr(".", ",")} milj. €" : "€#{millions}M"
+    end
+    digits = number_with_delimiter(amount.round, delimiter: lv ? "\u00a0" : ",")
+    lv ? "#{digits}\u00a0€" : "€#{digits}"
+  end
+
   def format_date(date)
     l(date, format: :long)
   end
 
   # --- Structured data ----------------------------------------------------
 
-  def organization_json_ld
+  # Every JSON-LD block for the current page: the organisation everywhere,
+  # the site entity on the home page, breadcrumbs below it, and an Article on
+  # news pages. Rendered by the layout as one <script> each.
+  def structured_data
+    blocks = [organization_data]
+    blocks << website_data if @page_key == :home
+    blocks << breadcrumb_data unless @page_key == :home
+    blocks << article_data if @article
+    blocks.compact
+  end
+
+  def json_ld(data) = data.to_json.html_safe
+
+  private
+
+  def website_data
+    {
+      "@context" => "https://schema.org",
+      "@type" => "WebSite",
+      "@id" => "#{Site::HOST}/#website",
+      "name" => Site::BRAND,
+      "url" => Site::HOST,
+      "inLanguage" => Site::LOCALES.map(&:to_s),
+      "publisher" => { "@id" => "#{Site::HOST}/#organization" }
+    }
+  end
+
+  # Home › Page, or Home › News › Article.
+  def breadcrumb_data
+    trail = [[t("nav.home"), locale_root_url(host: canonical_host)]]
+    if @article
+      trail << [t("nav.news"), news_url(host: canonical_host)]
+      trail << [t("articles.#{@article.slug.tr("-", "_")}.title"), canonical_url]
+    elsif Site.page(@page_key.to_s)
+      trail << [t("nav.#{@page_key}"), canonical_url]
+    else
+      return nil
+    end
+
+    {
+      "@context" => "https://schema.org",
+      "@type" => "BreadcrumbList",
+      "itemListElement" => trail.each_with_index.map do |(name, url), i|
+        { "@type" => "ListItem", "position" => i + 1, "name" => name, "item" => url }
+      end
+    }
+  end
+
+  def article_data
+    key = @article.slug.tr("-", "_")
+    {
+      "@context" => "https://schema.org",
+      "@type" => "BlogPosting",
+      "headline" => t("articles.#{key}.title"),
+      "description" => t("articles.#{key}.excerpt"),
+      "datePublished" => @article.published_on.iso8601,
+      "dateModified" => @article.published_on.iso8601,
+      "inLanguage" => I18n.locale.to_s,
+      "mainEntityOfPage" => canonical_url,
+      "image" => og_image_url,
+      "author" => { "@id" => "#{Site::HOST}/#organization" },
+      "publisher" => { "@id" => "#{Site::HOST}/#organization" }
+    }.compact
+  end
+
+  def organization_data
     {
       "@context" => "https://schema.org",
       "@type" => "Organization",
@@ -76,6 +154,9 @@ module ApplicationHelper
       "name" => Site::BRAND,
       "legalName" => Site::LEGAL_NAME,
       "url" => Site::HOST,
+      # A stable, digest-free URL, for the same reason as the OG cards.
+      "logo" => "#{Site::HOST}/icon-512.png",
+      "sameAs" => Site::PROFILES,
       "email" => Site::CONTACT_EMAIL,
       "description" => t("meta.home.description"),
       "taxID" => Site::VAT_NUMBER,
@@ -100,6 +181,6 @@ module ApplicationHelper
         "Machine learning", "Credit scoring", "Lending systems",
         "ERP", "CRM", "Ruby on Rails", "Fintech"
       ]
-    }.to_json.html_safe
+    }
   end
 end

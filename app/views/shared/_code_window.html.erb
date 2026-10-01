@@ -1,0 +1,64 @@
+<%#
+  An editor window that types out a short Rails service. It is an illustrative
+  excerpt, labelled as such, written the way the real codebase is: the score
+  is taken inside the same transaction that records and acts on it.
+
+  The code is plain text in the markup; code_window.js highlights it and types
+  it in. Without JS it is simply a readable, unhighlighted listing.
+%><%
+  c = "pages.home.code"
+  source = <<~RUBY
+    module Origination
+      class ScoreApplication
+        def call(application)
+          features = Features::Builder.new(application).to_h
+          model    = Scoring::Model.current
+
+          application.transaction do
+            score = model.predict(features)
+            application.scores.create!(value: score, model: model.version)
+            Audit.record(application, :scored, score:)
+
+            if score >= policy.approve_above
+              Decisions::Approve.call(application)
+            else
+              Decisions::Refer.call(application, queue: :underwriting)
+            end
+          end
+        end
+      end
+    end
+  RUBY
+  lines = source.lines.count
+%>
+<figure class="min-w-0" data-reveal style="--reveal-delay:120ms">
+  <div class="crop code-window overflow-hidden border border-line bg-ink-900">
+    <%# --- Tabs --- %>
+    <div class="flex items-stretch justify-between border-b border-line">
+      <div class="flex min-w-0 items-stretch">
+        <span class="flex items-center gap-2 border-r border-line bg-ink-850 px-4 py-3 font-mono text-[0.75rem] text-fg">
+          <span class="h-1.5 w-1.5 rounded-full bg-lime" aria-hidden="true"></span>
+          <span class="truncate">score_application.rb</span>
+        </span>
+        <span class="hidden items-center px-4 font-mono text-[0.75rem] text-fg-faint sm:flex">app/services/origination/</span>
+      </div>
+      <span class="label flex items-center px-4"><%= t("#{c}.note") %></span>
+    </div>
+
+    <%# --- Listing --- %>
+    <div class="flex overflow-x-auto [scrollbar-width:thin]">
+      <ol class="select-none border-r border-line py-5 pl-4 pr-3 text-right font-mono text-[0.75rem] leading-[1.75] text-fg-faint/70" aria-hidden="true">
+        <% lines.times do |i| %><li><%= i + 1 %></li><% end %>
+      </ol>
+      <pre class="min-w-0 flex-1 py-5 pl-5 pr-6 font-mono text-[0.75rem] leading-[1.75] text-fg-muted sm:text-[0.8125rem] sm:leading-[1.6]"><code data-code-typing><%= source.chomp %></code></pre>
+    </div>
+
+    <%# --- Status bar --- %>
+    <div class="flex items-center justify-between gap-4 border-t border-line px-4 py-2.5 font-mono text-[0.6875rem] text-fg-faint">
+      <span>ruby 3.3 · rails 7.2</span>
+      <span class="hidden sm:inline">UTF-8 · LF · <%= lines %> lines</span>
+    </div>
+  </div>
+
+  <figcaption class="label mt-4"><%= t("#{c}.caption") %></figcaption>
+</figure>

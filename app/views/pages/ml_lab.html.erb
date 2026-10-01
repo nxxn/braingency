@@ -48,20 +48,46 @@
 </section>
 
 <%# ======================================================================
+    Vertio across the country
+    ====================================================================== %>
+<section id="vertio-map" class="shell scroll-mt-24 pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "03",
+        label: t("pages.ml_lab.map.label"),
+        heading: t("pages.ml_lab.map.heading"),
+        body: t("pages.ml_lab.map.body") %>
+
+  <%= render "shared/visuals/vertio_map" %>
+</section>
+
+<%# ======================================================================
     Case examples
     ====================================================================== %>
 <section class="shell pt-[var(--spacing-section)]">
   <%= render "shared/section_head",
-        index: "03",
+        index: "04",
         label: t("pages.ml_lab.cases.label"),
         heading: t("pages.ml_lab.cases.heading") %>
 
-  <div class="mt-12 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-2" data-reveal-group="110">
+  <%# Full-width rows: the scoring case carries an interactive figure beside
+      its text; the valuation case points back up to the map. %>
+  <div class="crop mt-12 grid gap-px overflow-hidden border border-line bg-line" data-reveal-group="110">
     <% %w[scoring valuation].each do |key| %>
       <article class="card border-0 p-8 lg:p-10">
-        <span class="label label-accent"><%= t("pages.ml_lab.cases.items.#{key}.index") %></span>
-        <h3 class="text-h3 mt-6 font-medium"><%= t("pages.ml_lab.cases.items.#{key}.title") %></h3>
-        <p class="prose-braingency mt-4 text-[1rem]"><%= t("pages.ml_lab.cases.items.#{key}.body") %></p>
+        <div class="grid grid-cols-1 gap-x-14 gap-y-4 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+          <div>
+            <span class="label label-accent"><%= t("pages.ml_lab.cases.items.#{key}.index") %></span>
+            <h3 class="text-h3 mt-6 font-medium"><%= t("pages.ml_lab.cases.items.#{key}.title") %></h3>
+            <p class="prose-braingency mt-4 text-[1rem]"><%= t("pages.ml_lab.cases.items.#{key}.body") %></p>
+          </div>
+          <% if key == "scoring" %>
+            <div class="min-w-0 lg:pt-1"><%= render "shared/visuals/threshold" %></div>
+          <% else %>
+            <div class="flex items-end lg:justify-end">
+              <a href="#vertio-map" class="link font-mono text-[0.8125rem]"><%= t("pages.ml_lab.map.see") %> <span aria-hidden="true">&uarr;</span></a>
+            </div>
+          <% end %>
+        </div>
       </article>
     <% end %>
   </div>

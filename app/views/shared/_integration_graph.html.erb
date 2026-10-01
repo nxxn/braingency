@@ -1,0 +1,58 @@
+<%#
+  Integration map: the platform in the middle, the services it talks to around
+  it. Nodes are ordinary HTML in a grid, so they translate, wrap and reflow;
+  integration_graph.js measures where they landed and draws the connectors
+  and the packets travelling along them into the SVG behind.
+
+  Wide screens: sources left and right of the core. Narrow: above and below.
+  Without JS the grid alone still reads as a labelled map.
+%><%
+  g = "pages.product.technology.graph"
+  left  = %w[banking payments bureaus]
+  right = %w[kyc data ml]
+  stages = %w[intake scoring compliance contract portfolio collections]
+
+  node = lambda do |key, i|
+    tag.li(class: "graph-node", data: { graph_node: key }) do
+      safe_join([
+        tag.span(format("N-%02d", i + 1), class: "label label-accent"),
+        tag.span(t("#{g}.nodes.#{key}.title"), class: "mt-2 block text-[0.8125rem] font-medium leading-snug tracking-[-0.01em] sm:text-[0.9375rem]"),
+        tag.span(t("#{g}.nodes.#{key}.body"), class: "mt-1 hidden text-[0.8125rem] leading-snug text-fg-muted sm:block")
+      ])
+    end
+  end
+%>
+<figure class="mt-14" data-reveal>
+  <div data-graph class="crop relative overflow-hidden border border-line bg-ink-900 px-4 py-8 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+    <div class="bg-grid absolute inset-0 opacity-40 mask-fade-b" aria-hidden="true"></div>
+    <svg data-graph-svg class="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true"></svg>
+
+    <div class="relative grid items-center gap-y-12 lg:grid-cols-[1fr_minmax(0,1.15fr)_1fr] lg:gap-x-24">
+      <ul class="grid grid-cols-3 gap-2.5 sm:gap-4 lg:grid-cols-1 lg:gap-6">
+        <% left.each_with_index { |key, i| %><%= node.(key, i) %><% } %>
+      </ul>
+
+      <div data-graph-core class="graph-core relative border border-lime/30 bg-ink-950/80 p-5 backdrop-blur-sm sm:p-7">
+        <div class="flex items-center justify-between gap-4">
+          <span class="label label-accent">core</span>
+          <span class="label">rails</span>
+        </div>
+        <p class="mt-4 text-h3 font-medium"><%= t("#{g}.core") %></p>
+        <p class="mt-1.5 text-[0.875rem] text-fg-muted"><%= t("#{g}.core_note") %></p>
+        <ul class="mt-6 grid grid-cols-2 gap-px border border-line bg-line">
+          <% stages.each do |stage| %>
+            <li class="bg-ink-900 px-3 py-2.5 font-mono text-[0.6875rem] leading-snug tracking-[0.02em] text-fg-muted">
+              <%= t("pages.home.pipeline.stages.#{stage}") %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <ul class="grid grid-cols-3 gap-2.5 sm:gap-4 lg:grid-cols-1 lg:gap-6">
+        <% right.each_with_index { |key, i| %><%= node.(key, i + left.size) %><% } %>
+      </ul>
+    </div>
+  </div>
+
+  <figcaption class="label mt-4"><%= t("#{g}.caption") %></figcaption>
+</figure>

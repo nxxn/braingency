@@ -1,0 +1,89 @@
+<%#
+  A learner's view of the platform: module progress, a homework submission
+  going through review, XP, a streak and a badge. Sample data. The markup is
+  a finished state; visuals/learning.js replays the week.
+%><%
+  v = "pages.product.projects.learning.visual"
+  modules = Array(t("#{v}.modules"))
+  done = [100, 100, 100, 64, 0]
+%>
+<figure class="min-w-0" data-reveal style="--reveal-delay:120ms">
+  <div data-learning-visual aria-hidden="true"
+       data-label-submitted="<%= t("#{v}.homework.submitted") %>"
+       data-label-reviewing="<%= t("#{v}.homework.reviewing") %>"
+       data-label-reviewed="<%= t("#{v}.homework.reviewed") %>"
+       class="crop visual-window overflow-hidden border border-line bg-ink-900">
+
+    <div class="flex items-center justify-between gap-4 border-b border-line px-5 py-3.5">
+      <span class="label text-fg-muted">learn / <%= t("#{v}.course") %></span>
+      <span class="label"><%= t("common.illustrative") %></span>
+    </div>
+
+    <%# --- Level, XP, streak --- %>
+    <div class="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-5 border-b border-line p-5 sm:p-6">
+      <div class="relative grid h-16 w-16 place-items-center">
+        <svg class="absolute inset-0 -rotate-90" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="32" r="28" stroke="var(--color-line-strong)" stroke-width="3"/>
+          <circle data-learning-ring cx="32" cy="32" r="28" stroke="var(--color-lime)" stroke-width="3"
+                  stroke-linecap="round" pathLength="100" stroke-dasharray="72 100"/>
+        </svg>
+        <span class="text-center leading-none">
+          <span class="label block !text-[0.5625rem]"><%= t("#{v}.level") %></span>
+          <span class="mt-1 block font-mono text-[1.125rem] text-fg" data-learning-level>4</span>
+        </span>
+      </div>
+      <div class="min-w-0">
+        <div class="flex items-baseline justify-between gap-3">
+          <span class="font-mono text-[1.375rem] tracking-[-0.02em] text-fg"><span data-learning-xp>1,840</span> <span class="text-[0.75rem] text-fg-faint">XP</span></span>
+          <span class="xp-pop font-mono text-[0.8125rem] text-lime" data-learning-pop>+40</span>
+        </div>
+        <div class="mt-3 flex items-center gap-1.5">
+          <% 7.times do |d| %>
+            <span class="streak-day <%= "is-on" if d < 6 %>" data-learning-day></span>
+          <% end %>
+          <span class="label ml-2 truncate" data-learning-streak><%= t("#{v}.streak", count: 6) %></span>
+        </div>
+      </div>
+    </div>
+
+    <%# --- Modules --- %>
+    <ol class="divide-y divide-line">
+      <% modules.each_with_index do |name, i| %>
+        <li class="grid grid-cols-[1.75rem_minmax(0,1fr)_3rem] items-center gap-3 px-5 py-3.5 sm:px-6" data-learning-module>
+          <span class="label <%= done[i] == 100 ? "label-accent" : "" %>" data-learning-index><%= format("%02d", i + 1) %></span>
+          <div class="min-w-0">
+            <p class="truncate text-[0.875rem] text-fg"><%= name %></p>
+            <div class="mt-2 h-[3px] overflow-hidden rounded-full bg-ink-700">
+              <div class="learning-bar h-full rounded-full bg-lime" data-learning-bar style="width: <%= done[i] %>%"></div>
+            </div>
+          </div>
+          <span class="text-right font-mono text-[0.75rem] text-fg-muted" data-learning-pct><%= done[i] %>%</span>
+        </li>
+      <% end %>
+    </ol>
+
+    <%# --- Homework --- %>
+    <div class="flex items-center justify-between gap-4 border-t border-line px-5 py-4 sm:px-6">
+      <div class="min-w-0">
+        <span class="label"><%= t("#{v}.homework.label") %></span>
+        <p class="mt-1.5 truncate text-[0.875rem] text-fg"><%= t("#{v}.homework.title") %></p>
+      </div>
+      <span class="hw-state is-reviewed shrink-0" data-learning-hw>
+        <span class="hw-dot" aria-hidden="true"></span>
+        <span data-learning-hw-text><%= t("#{v}.homework.reviewed") %> · 92/100</span>
+      </span>
+    </div>
+
+    <%# --- Badge toast --- %>
+    <div class="badge-toast" data-learning-badge>
+      <svg class="h-5 w-5 text-lime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M12 3.5 14.4 8.4l5.4.8-3.9 3.8.9 5.4L12 15.9l-4.8 2.5.9-5.4-3.9-3.8 5.4-.8L12 3.5Z" stroke-linejoin="round"/>
+      </svg>
+      <span>
+        <span class="label label-accent block"><%= t("#{v}.badge.label") %></span>
+        <span class="mt-1 block text-[0.8125rem] text-fg"><%= t("#{v}.badge.title") %></span>
+      </span>
+    </div>
+  </div>
+  <figcaption class="label mt-4"><%= t("#{v}.caption") %></figcaption>
+</figure>

@@ -15,6 +15,7 @@ en:
       en: "English"
       lv: "Latvian"
     in_production: "In production"
+    illustrative: "Illustrative data"
     read_article: "Read article"
     back_to_news: "All news"
     cta:
@@ -41,6 +42,7 @@ en:
     reg_number: "Reg. no."
     vat_number: "VAT"
     tagline: "Built in Riga"
+    local_time: "Local time in Riga"
 
   # --- SEO --------------------------------------------------------------
   meta:
@@ -74,8 +76,26 @@ en:
     article_vertio_property_valuation_ml:
       title: "Vertio: forecasting Latvian property values with ML — Braingency"
       description: "A machine learning model trained on Latvian real estate market data, used for automated collateral assessment and as an input to credit scoring."
-
+    article_vertio_live_in_latvia:
+      title: "Vertio is live in Latvia — Braingency"
+      description: "Our machine learning model for property valuation now runs in production in Latvia, and we are extending it to Spain."
+    article_keeping_scoring_models_honest:
+      title: "Keeping a scoring model honest in production — Braingency"
+      description: "Training a credit scoring model is the visible part. Drift, late outcomes and accountability decide whether it stays useful once it approves real loans."
   # --- Pages ------------------------------------------------------------
+  # --- Command palette (⌘K) --------------------------------------------
+  palette:
+    open: "Search the site"
+    placeholder: "Jump to a page or action…"
+    pages: "Pages"
+    actions: "Actions"
+    write_email: "Write to us"
+    copy_email: "Copy email address"
+    copied: "Copied"
+    empty: "Nothing matches"
+    hint_navigate: "navigate"
+    hint_open: "open"
+
   pages:
     home:
       hero:
@@ -117,6 +137,43 @@ en:
           portfolio: "Portfolio management"
           collections: "Collections"
         model_note: "ML models trained on the full data stream"
+
+      # Illustrative origination run. Every figure in it is sample data and
+      # the card says so; see app/views/shared/_scoring_demo.html.erb.
+      demo:
+        label: "See it run"
+        heading: "One application, end to end"
+        body: "An application moving through the platform: verified, screened, scored by the model and booked — in about the time it takes to read this paragraph."
+        note: "Illustrative data"
+        caption: "fig. 02 — origination run"
+        sr_summary: "An animated illustration, using sample data, of a loan application passing through intake, bureau and collateral checks, model scoring, KYC and AML screening, a decision, contract generation and portfolio booking."
+        fields:
+          application: "Application"
+          product: "Product"
+          amount: "Amount"
+          term: "Term"
+        products:
+          auto: "Auto loan"
+          consumer: "Consumer credit"
+          mortgage: "Mortgage"
+        months: "%{count} mo"
+        checks:
+          kyc: "Identity (KYC)"
+          aml: "Sanctions & PEP screening"
+          bureau: "Credit bureau"
+          collateral: "Collateral valuation"
+        not_applicable: "n/a"
+        score: "Model score"
+        decisions:
+          approved: "Approved"
+          review: "Referred to underwriter"
+        log: "Event log"
+      code:
+        label: "From the codebase"
+        heading: "The model is one step of the workflow"
+        body: "Scoring is not a report someone reads later. It runs inside the transaction that decides the loan, is written to the audit trail, and is versioned like the rest of the code."
+        note: "Illustrative excerpt"
+        caption: "fig. 03 — scoring inside origination"
 
       why:
         label: "Why companies work with us"
@@ -189,6 +246,31 @@ en:
               body: "Structured debt recovery workflows with case management"
           outro: "On top of the operational layer, we analyse the full incoming data stream and build large-scale ML models that optimise the processes themselves — improving scoring accuracy, identifying risk patterns and automating decisions that previously required manual review."
           status: "In production with clients in Latvia, Spain and the United Arab Emirates."
+          visual:
+            queue: "applications"
+            caption: "fig. 05 — the operator's view"
+            statuses:
+              received: "Received"
+              scoring: "Scoring"
+              review: "Manual review"
+              approved: "Approved"
+              signed: "Signed"
+              active: "Active"
+            products:
+              auto: "Auto loan"
+              consumer: "Consumer"
+              mortgage: "Mortgage"
+              leasing: "Leasing"
+            kpis:
+              book: "Loan book"
+              review: "In review"
+              collected: "Collected today"
+            columns:
+              id: "Application"
+              product: "Product"
+              amount: "Amount"
+              status: "Status"
+              score: "Score"
         learning:
           index: "02"
           name: "Learning management platform"
@@ -197,6 +279,26 @@ en:
             - "A platform for organisations that deliver structured education at scale. Course creators can publish courses, take payment, assign and review homework, and track learner progress — with the entire administrative process automated end to end."
             - "The platform includes a gamification layer designed to improve completion rates and engagement, addressing the drop-off problem that affects most online learning products."
           status: "We developed a learning platform for Johns Hopkins University in the United States."
+          visual:
+            course: "financial modelling"
+            caption: "fig. 06 — the learner's week"
+            modules:
+              - "Spreadsheets for analysts"
+              - "Three-statement models"
+              - "Cash flow and valuation"
+              - "Scenario and sensitivity analysis"
+              - "Presenting a model"
+            level: "Level"
+            streak: "%{count}-day streak"
+            homework:
+              label: "Homework"
+              title: "Build a DCF for a listed company"
+              submitted: "Submitted"
+              reviewing: "In review"
+              reviewed: "Reviewed"
+            badge:
+              label: "Badge unlocked"
+              title: "Seven days in a row"
         assistant:
           index: "03"
           name: "AI assistant with built-in CRM"
@@ -204,6 +306,32 @@ en:
           body:
             - "A deployable AI chat assistant that can be embedded on any website. Through the admin panel, the assistant's knowledge base is populated with information about the company it represents, so it answers from the business's actual documentation rather than generic responses."
             - "Unlike a standalone chat widget, the assistant includes its own CRM: every conversation is stored with a summarised record of what the customer asked and what was resolved, giving the sales and support teams a searchable history of customer intent rather than a stream of disconnected chat logs."
+          visual:
+            window: "live chat"
+            caption: "fig. 07 — conversation in, record out"
+            source: "From the knowledge base"
+            placeholder: "Type a message…"
+            record: "conversation record"
+            fields:
+              intent: "Intent"
+              status: "Status"
+              summary: "Summary"
+              tags: "Tags"
+            scenarios:
+              - question: "Can I move my delivery to next week?"
+                answer: "Yes. You can change the date up to 48 hours before delivery — from your account, or by replying to your confirmation email with the new date."
+                source: "Delivery policy"
+                intent: "Reschedule delivery"
+                status: "Resolved by assistant"
+                summary: "Customer asked to move delivery to next week. Explained the 48-hour rule and both ways to change the date."
+                tags: ["delivery", "self-service"]
+              - question: "Do you offer volume pricing for 40 units?"
+                answer: "Volume pricing starts at 25 units, so 40 qualifies. I've passed your request to our sales team — they'll send a quote to this email within one working day."
+                source: "Pricing — volume terms"
+                intent: "Volume pricing, 40 units"
+                status: "Handed to sales"
+                summary: "Prospect asked about volume pricing for 40 units. Qualifies for volume terms; quote requested by email."
+                tags: ["lead", "volume", "quote"]
         vertio:
           index: "04"
           name: "Vertio — property valuation for lenders"
@@ -212,8 +340,29 @@ en:
             - "Vertio is our proprietary platform for analysing and forecasting real estate values. Built on our own machine learning model trained on real market data, it produces valuations for individual properties across the market."
             - "The point of the model is decision support: Vertio exists to help lenders decide how much to lend. An accurate, current valuation of the collateral is what determines the right loan amount, and getting that number wrong in either direction is expensive — it either over-exposes the loan book or turns away sound business."
             - "The immediate applications are in lending: automated collateral valuation for mortgage underwriting, and property-value inputs for credit scoring systems. Vertio connects directly to our lending platform, so a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal."
-          status_label: "In development"
-          status: "Built first for the Latvian market and currently being extended to Spain."
+          status: "Live in Latvia and currently being extended to Spain."
+          visual:
+            window: "valuation"
+            caption: "fig. 08 — one property, one estimate, one market"
+            forecast: "forecast"
+            range: "90% range"
+            estimate: "Model estimate"
+            comparables: "%{count} comparable sales"
+            chart_title: "Local market index, €/m²"
+            today: "today"
+            month: "Month"
+            fact_labels:
+              location: "Location"
+              type: "Type"
+              area: "Area"
+              built: "Built"
+              floor: "Floor"
+            facts:
+              location: "Rīga · Teika"
+              type: "2-room flat"
+              area: "54 m²"
+              built: "1978"
+              floor: "4 / 5"
       technology:
         label: "Technology"
         heading: "Built to stay in production"
@@ -228,6 +377,29 @@ en:
           - "Credit bureaus"
           - "Third-party data sources"
           - "In-house ML services"
+        graph:
+          caption: "fig. 04 — integration map"
+          core: "Lending platform"
+          core_note: "One data model across the whole cycle"
+          nodes:
+            banking:
+              title: "Banking integrations"
+              body: "Account data, transfers and payouts"
+            payments:
+              title: "Payment providers"
+              body: "Repayments in, disbursements out"
+            bureaus:
+              title: "Credit bureaus"
+              body: "Credit history at the point of scoring"
+            kyc:
+              title: "KYC / KYB services"
+              body: "Identity and company verification"
+            data:
+              title: "Third-party data"
+              body: "Registries and market data"
+            ml:
+              title: "In-house ML services"
+              body: "Scoring and valuation models"
 
     ml_lab:
       heading: "Braingency ML Lab"
@@ -268,6 +440,32 @@ en:
             index: "Case 02"
             title: "Property valuation"
             body: "Vertio: an ML model trained on Latvian real estate market data that forecasts property values, applied to mortgage collateral assessment and scoring."
+      map:
+        label: "Vertio, nationwide"
+        heading: "Every cell is a valuation"
+        body: "Vertio estimates a price for every part of the country and re-estimates as sales come in. Where comparable sales are scarce, the range widens — and the model says so."
+        window: "latvia · €/m²"
+        note: "Illustrative field, not market data"
+        caption: "fig. 09 — estimated price per m², by area"
+        sr_summary: "An illustrative map of Latvia divided into hexagons, shaded by estimated price per square metre: brightest around Riga and Jūrmala, lower in regional towns and lowest in rural areas. The table beside it lists the values for the main towns."
+        legend: "€/m²"
+        table: "Main towns"
+        city: "Town"
+        feed: "Incoming sales"
+        near: "near %{city}"
+        sale: "sale"
+        updated: "model.updated"
+        see: "fig. 09 — Vertio across Latvia"
+      threshold:
+        title: "Model score by outcome"
+        repaid: "Repaid"
+        defaulted: "Defaulted"
+        threshold: "Approve above"
+        readouts:
+          approved: "Approved"
+          default_rate: "Default rate"
+          declined_good: "Good declined"
+        caption: "fig. 10 — the approval trade-off, on synthetic data"
 
     team:
       heading: "The team"
@@ -421,3 +619,20 @@ en:
         - "Property valuation in a small market is a hard problem. There are fewer comparable transactions than in a large market, prices vary sharply by micro-location, and the data that does exist is fragmented. For a mortgage lender, this means collateral valuation is often slow, expensive and based on limited evidence."
         - "We built Vertio to address this. It is a machine learning model trained on Latvian real estate market data that forecasts the value of individual properties. The output can be used in two ways: as an automated collateral assessment during mortgage underwriting, and as an input feature into credit scoring models."
         - "Because Vertio connects to our lending platform, a mortgage application can be scored against a current model-driven valuation rather than a manual appraisal completed weeks earlier. The valuation stops being a bottleneck in the process and becomes part of the decision itself."
+    vertio_live_in_latvia:
+      title: "Vertio is live in Latvia — Spain is next"
+      excerpt: "Our property valuation model now runs in production for the Latvian market. Extending it to Spain is less about copying the model than about rebuilding what it learns from."
+      body:
+        - "Vertio, our machine learning model for property valuation, is now in production in Latvia. It estimates the value of individual properties from market data and puts that estimate where lenders need it: into collateral assessment during mortgage underwriting, and into credit scoring as an input."
+        - "Running in production changes what a model has to be good at. A forecast in a notebook only has to be accurate on average. A valuation that sits inside an underwriting workflow is judged case by case — including in the places where the market is thin and comparable sales are few. That is where most of the engineering effort goes."
+        - "We are now extending Vertio to Spain. That is not a matter of copying the model across: the Spanish market is larger, more regional and structured differently, and so are its data sources. The work is in rebuilding the training data and the features for that market, then validating the model against it before it informs a single decision."
+        - "Because Vertio connects directly to our lending platform, every market it covers is also a market where a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal."
+    keeping_scoring_models_honest:
+      title: "What it takes to keep a scoring model honest in production"
+      excerpt: "Training a credit scoring model is the visible part of the work. Whether it stays useful is decided after it starts approving real loans."
+      body:
+        - "Training a credit scoring model is the visible part of the work. The part that decides whether it stays useful starts the day it begins approving real applications."
+        - "The first problem is drift. A model learns the relationship between applicants and outcomes as it was in the training data. Products change, marketing brings in different customers, the economy moves. The model keeps producing confident scores regardless, so the only defence is to watch it: compare the scores it produces today with those it produced when it was validated, and track outcomes as loans mature."
+        - "The second is that outcomes arrive late, and only for some. Whether a loan was a good decision is known months after it was made, and only for applicants who were approved. A model that never learns what happened to the people it declined can drift towards its own blind spots, so monitoring has to account for that rather than treating the approved book as the whole truth."
+        - "The third is accountability. In a regulated business every automated decision has to be explainable afterwards: which model version scored the application, with which inputs, against which threshold. That is an engineering requirement as much as a data science one — the score has to be recorded in the audit trail as part of the same step that acts on it."
+        - "None of this is exotic. It is the difference between a model that was accurate once and a model a lender can keep relying on — and it is why we build scoring into the lending platform itself rather than bolting it on from outside."

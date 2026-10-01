@@ -1,0 +1,42 @@
+<%#
+  Credit scoring, made tangible: model score distributions for loans that
+  were repaid and loans that defaulted, and an approval threshold the reader
+  can move. The readouts recompute from the (synthetic) distributions, so the
+  trade-off every lender makes — approvals against losses — is felt, not
+  described. visuals/threshold.js draws and drives it.
+%><%
+  v = "pages.ml_lab.threshold"
+%>
+<figure class="mt-4 lg:mt-0" data-threshold-visual
+        data-label-repaid="<%= t("#{v}.repaid") %>"
+        data-label-defaulted="<%= t("#{v}.defaulted") %>">
+  <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+    <span class="label"><%= t("#{v}.title") %></span>
+    <ul class="flex items-center gap-4 text-[0.75rem] text-fg-muted">
+      <li class="flex items-center gap-2"><span class="h-2 w-3 rounded-[2px] bg-[#7f9f2e]"></span><%= t("#{v}.repaid") %></li>
+      <li class="flex items-center gap-2"><span class="h-2 w-3 rounded-[2px] bg-[#8f7ae0]"></span><%= t("#{v}.defaulted") %></li>
+    </ul>
+  </div>
+
+  <div class="relative mt-4">
+    <svg data-threshold-svg class="block h-auto w-full" viewBox="0 0 600 200" aria-hidden="true"></svg>
+  </div>
+
+  <label class="mt-3 flex items-center gap-4">
+    <span class="label shrink-0"><%= t("#{v}.threshold") %></span>
+    <input data-threshold-input type="range" min="0.2" max="0.9" step="0.01" value="0.62"
+           class="threshold-range min-w-0 flex-1" aria-describedby="threshold-readout">
+    <output data-threshold-value aria-live="off" class="w-10 shrink-0 text-right font-mono text-[0.875rem] text-fg">0.62</output>
+  </label>
+
+  <%# Not a live region: the entrance sweep would flood a screen reader. %>
+  <dl id="threshold-readout" class="mt-6 grid grid-cols-3 gap-px border border-line bg-line">
+    <% %w[approved default_rate declined_good].each do |key| %>
+      <div class="bg-ink-900 px-4 py-4">
+        <dt class="label"><%= t("#{v}.readouts.#{key}") %></dt>
+        <dd class="mt-2 font-mono text-[1.25rem] tracking-[-0.02em] text-fg" data-threshold-out="<%= key %>">—</dd>
+      </div>
+    <% end %>
+  </dl>
+  <figcaption class="label mt-4"><%= t("#{v}.caption") %></figcaption>
+</figure>

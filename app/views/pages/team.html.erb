@@ -12,7 +12,7 @@
       <div class="grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
 
         <div data-reveal>
-          <%= render "shared/portrait", initials: founder[:initials], seed: founder[:key] %>
+          <%= render "shared/portrait", initials: founder[:initials], seed: founder[:key], name: founder[:name] %>
 
           <div class="mt-6 flex items-center justify-between gap-4">
             <span class="label label-accent"><%= format("%02d", i + 1) %></span>

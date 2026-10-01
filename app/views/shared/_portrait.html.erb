@@ -3,17 +3,32 @@
   field derived from the person's initials, so the two founders get visibly
   different marks and neither slot reads as a missing image.
 
-  When photos land, replace the <svg> below with an image_tag — nothing else
-  on the page needs to change.
+  When a photo exists at app/assets/images/team/<seed>.jpg it is used
+  instead: the real <img> is in the markup (alt text, no-JS, crawlers), and
+  portrait_reveal.js lays a canvas over it that starts as the same lime cell
+  grid as this placeholder and resolves into the photograph — a model
+  converging, rather than an image fading in.
 
-  locals: initials (String), seed (Symbol/String)
+  locals: initials (String), seed (Symbol/String), name (String, alt text)
 %><%
   seed = local_assigns[:seed].to_s
+  photo = "team/#{seed}.jpg"
+  has_photo = Rails.root.join("app/assets/images", photo).exist?
+%>
+<% if has_photo %>
+<figure class="crop portrait-photo relative aspect-[4/5] w-full overflow-hidden border border-line bg-ink-900" data-portrait-reveal>
+  <%= image_tag photo, alt: local_assigns[:name].to_s, class: "absolute inset-0 h-full w-full object-cover",
+        loading: "lazy", decoding: "async", width: 800, height: 1000 %>
+  <canvas class="portrait-canvas absolute inset-0 h-full w-full" aria-hidden="true"></canvas>
+  <span class="label absolute bottom-5 left-5 text-fg/80" aria-hidden="true"><%= initials %></span>
+</figure>
+<% else %><%
+
   # Stable pseudo-random from the seed: same person, same pattern, every build.
   rng = seed.each_byte.each_with_index.sum { |b, i| b * (i + 3) }
   cells = (0...36).map { |n| ((rng * (n + 7) * 2_654_435_761) >> 9) % 100 }
 %>
-<div class="relative aspect-[4/5] w-full overflow-hidden border border-line bg-ink-900">
+<div class="crop relative aspect-[4/5] w-full overflow-hidden border border-line bg-ink-900">
   <svg class="absolute inset-0 h-full w-full" viewBox="0 0 60 75" preserveAspectRatio="xMidYMid slice"
        aria-hidden="true" focusable="false">
     <defs>
@@ -34,7 +49,8 @@
       <% next if v < 64 %>
       <% col = n % 6; row = n / 6 %>
       <rect x="<%= col * 10 %>" y="<%= row * 12.5 %>" width="10" height="12.5"
-            fill="url(#pg-<%= seed %>)" opacity="<%= ((v % 45) + 30) / 200.0 %>"/>
+            fill="url(#pg-<%= seed %>)" opacity="<%= ((v % 45) + 30) / 200.0 %>"
+            class="portrait-cell" style="animation-delay: -<%= (v * 97) % 7000 %>ms"/>
     <% end %>
 
     <%# Hairline grid %>
@@ -51,3 +67,4 @@
 
   <span class="label absolute right-5 top-5 text-fg-faint">Photo pending</span>
 </div>
+<% end %>

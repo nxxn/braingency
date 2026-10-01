@@ -63,6 +63,25 @@ pages.each do |page|
   )
   File.write("tmp/brand/og-#{page}.html", html)
 end
+
+# Articles get one card per language, named og/article_<key>.<locale>.png so
+# the layout picks the reader\x27s language first.
+require "date"
+require "./config/site"
+%w[en lv].each do |locale|
+  copy = YAML.load_file("config/locales/#{locale}.yml")[locale]
+  label = locale == "lv" ? "ZIŅAS" : "NEWS"
+  Site::ARTICLES.each do |article|
+    key = article.slug.tr("-", "_")
+    title = copy.dig("articles", key, "title") or next
+    html = ERB.new(template).result_with_hash(
+      title:   title,
+      eyebrow: "#{label} · #{article.published_on.strftime("%Y-%m-%d")}",
+      footer:  "braingency.eu"
+    )
+    File.write("tmp/brand/og-article_#{key}.#{locale}.html", html)
+  end
+end
 '
 
 for f in "$WORK"/og-*.html; do

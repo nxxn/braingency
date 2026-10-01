@@ -1,0 +1,71 @@
+<%#
+  Vertio across Latvia: a hex field of estimated €/m², one hue from dim to
+  bright, with sales pinging in and the model re-estimating around them. The
+  values are a synthetic field shaped like the market, not market data, and
+  the figure says so in its header.
+
+  visuals/vertio_map.js builds the hexes, the legend classes, the city table
+  (the non-hover way to read values) and the feed. Without JS the figure
+  still carries its caption and the sr-only summary.
+%><%
+  v = "pages.ml_lab.map"
+%>
+<figure class="mt-14" data-reveal>
+  <p class="sr-only"><%= t("#{v}.sr_summary") %></p>
+
+  <div data-vertio-map
+       data-label-near="<%= t("#{v}.near", city: "%{city}") %>"
+       data-label-sale="<%= t("#{v}.sale") %>"
+       data-label-updated="<%= t("#{v}.updated") %>"
+       data-label-range="<%= t("pages.product.projects.vertio.visual.range") %>"
+       class="crop visual-window overflow-hidden border border-line bg-ink-900">
+
+    <div class="flex items-center justify-between gap-4 border-b border-line px-5 py-3.5">
+      <div class="flex items-center gap-3">
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-60"></span>
+          <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime"></span>
+        </span>
+        <span class="label text-fg-muted">vertio / <%= t("#{v}.window") %></span>
+      </div>
+      <span class="label"><%= t("#{v}.note") %></span>
+    </div>
+
+    <div class="grid lg:grid-cols-[minmax(0,1fr)_19rem]">
+      <%# --- Map --- %>
+      <div class="relative min-w-0 border-line p-3 sm:p-6 lg:border-r">
+        <div class="relative" data-map-stage>
+          <svg data-map-svg class="block h-auto w-full" viewBox="0 0 820 500" aria-hidden="true"></svg>
+          <div data-map-tip class="chart-tip" hidden></div>
+        </div>
+
+        <%# Legend: five classes, one hue %>
+        <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 px-1 sm:px-2">
+          <span class="label"><%= t("#{v}.legend") %></span>
+          <ol data-map-legend class="flex items-center gap-1"></ol>
+        </div>
+      </div>
+
+      <%# --- Table + feed --- %>
+      <div class="flex min-w-0 flex-col border-t border-line lg:border-t-0">
+        <div class="border-b border-line px-5 py-3">
+          <span class="label"><%= t("#{v}.table") %></span>
+        </div>
+        <table class="w-full text-[0.8125rem]">
+          <caption class="sr-only"><%= t("#{v}.table") %></caption>
+          <thead class="sr-only">
+            <tr><th scope="col"><%= t("#{v}.city") %></th><th scope="col">€/m²</th><th scope="col"><%= t("pages.product.projects.vertio.visual.range") %></th></tr>
+          </thead>
+          <tbody data-map-table></tbody>
+        </table>
+
+        <div class="mt-auto border-t border-line">
+          <div class="px-5 py-3"><span class="label"><%= t("#{v}.feed") %></span></div>
+          <ol data-map-feed class="demo-log flex h-[11rem] flex-col justify-end overflow-hidden px-5 pb-4 font-mono text-[0.6875rem] leading-[1.8]" aria-hidden="true"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <figcaption class="label mt-4"><%= t("#{v}.caption") %></figcaption>
+</figure>

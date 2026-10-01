@@ -531,6 +531,1173 @@
 }
 
 /* ==========================================================================
+   Page transitions — same-origin navigations cross-fade instead of blinking.
+   The nav carries its own name so it stays put while the page changes under
+   it. Browsers without cross-document view transitions just navigate.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+[data-nav] {
+  view-transition-name: site-nav;
+}
+
+::view-transition-old(root) {
+  animation: vt-out 0.28s var(--ease-in-out-quart) both;
+}
+
+::view-transition-new(root) {
+  animation: vt-in 0.6s var(--ease-out-expo) 0.08s both;
+}
+
+@keyframes vt-out {
+  to { opacity: 0; transform: translateY(-0.75rem); filter: blur(4px); }
+}
+
+@keyframes vt-in {
+  from { opacity: 0; transform: translateY(1.25rem); filter: blur(6px); }
+}
+
+/* ==========================================================================
+   Scroll-driven motion — CSS scroll timelines, so none of it costs a frame of
+   JS. Where the browser lacks them these rules never apply and nothing moves.
+   ========================================================================== */
+
+.scroll-progress {
+  background: linear-gradient(to right, rgb(203 255 77 / 0.2), var(--color-lime));
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .scroll-progress {
+      opacity: 1;
+      animation: scroll-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+
+    /* Hero copy drifts up and dims as it leaves, so the page feels layered
+       rather than a flat sheet scrolling past. */
+    .hero-content {
+      animation: hero-exit linear both;
+      animation-timeline: view(block);
+      animation-range: exit 0% exit 100%;
+    }
+  }
+}
+
+@keyframes scroll-progress {
+  to { transform: scaleX(1); }
+}
+
+@keyframes hero-exit {
+  to { transform: translateY(-14%); opacity: 0.15; }
+}
+
+/* ==========================================================================
+   Hero grid glow — a lime copy of the grid shown only around the pointer.
+   ========================================================================== */
+
+.grid-glow {
+  --color-line: rgb(203 255 77 / 0.35);
+  opacity: 0;
+  mask-image: radial-gradient(16rem circle at var(--gx, 50%) var(--gy, 50%), black, transparent 70%);
+  transition: opacity 0.6s var(--ease-out-quart);
+}
+
+.grid-glow[data-active="true"] {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Section head hairline — drawn left to right when the head is revealed.
+   ========================================================================== */
+
+.draw-rule {
+  position: relative;
+}
+
+.draw-rule::before,
+.draw-rule::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background-color: var(--color-line);
+}
+
+/* A short lime spark leads the line in, then fades out. */
+.draw-rule::after {
+  width: 6rem;
+  background: linear-gradient(to right, transparent, var(--color-lime));
+  opacity: 0;
+}
+
+.js .draw-rule::before {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.4s var(--ease-out-expo) 0.1s;
+}
+
+.js .draw-rule.is-revealed::before {
+  transform: scaleX(1);
+}
+
+.js .draw-rule.is-revealed::after {
+  animation: rule-spark 1.5s var(--ease-out-expo) 0.1s both;
+}
+
+@keyframes rule-spark {
+  0%   { opacity: 0; transform: translateX(-6rem); }
+  15%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(min(60vw, 60rem)); }
+}
+
+/* ==========================================================================
+   Cards — the border lights up under the pointer, and the icon wakes.
+   ========================================================================== */
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    16rem circle at var(--mx, 50%) var(--my, 50%),
+    rgb(203 255 77 / 0.55),
+    transparent 70%
+  );
+  /* Keep only the 1px ring between the content box and the border box. */
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: opacity 0.5s var(--ease-out-quart);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* Icons only (the icon partial marks them focusable="false"); charts that
+   live inside cards must not tilt. */
+.card svg[focusable="false"] {
+  transition:
+    color 0.5s var(--ease-out-quart),
+    transform 0.6s var(--ease-out-expo);
+}
+
+.card:hover svg[focusable="false"] {
+  color: var(--color-lime);
+  transform: translateY(-2px) rotate(-6deg);
+}
+
+/* ==========================================================================
+   Primary button — a highlight sweeps across on hover.
+   ========================================================================== */
+
+.btn-primary {
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgb(255 255 255 / 0.55) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.btn-primary:hover::after {
+  transform: translateX(120%);
+  transition: transform 0.9s var(--ease-out-quart);
+}
+
+/* ==========================================================================
+   Pipeline pulse — once drawn, a packet of light keeps running the cycle:
+   along the rail on wide screens, down it on narrow ones.
+   ========================================================================== */
+
+[data-pipeline] .pipeline-pulse {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+[data-pipeline] .pipeline-pulse-x {
+  top: -1px;
+  left: 0;
+  height: 3px;
+  width: 9rem;
+  background: linear-gradient(to right, transparent, rgb(255 255 255 / 0.9) 85%, transparent);
+  filter: drop-shadow(0 0 6px var(--color-lime));
+}
+
+[data-pipeline] .pipeline-pulse-y {
+  left: 2.5px;
+  top: 0;
+  width: 3px;
+  height: 6rem;
+  background: linear-gradient(to bottom, transparent, var(--color-lime) 85%, transparent);
+  filter: drop-shadow(0 0 6px var(--color-lime));
+}
+
+[data-pipeline].is-running .pipeline-pulse {
+  opacity: 1;
+}
+
+[data-pipeline].is-running .pipeline-pulse-x {
+  animation: pulse-x 4.8s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+[data-pipeline].is-running .pipeline-pulse-y {
+  animation: pulse-y 4.8s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+@keyframes pulse-x {
+  0%   { left: -9rem; opacity: 0; }
+  10%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@keyframes pulse-y {
+  0%   { top: -6rem; opacity: 0; }
+  10%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Each stage flares as the pulse passes it: the delay steps with the stage's
+   position along the rail, so the flares chase the packet down the cycle. */
+[data-pipeline].is-running [data-pipeline-stage] .pipeline-dot {
+  animation: dot-flare 4.8s var(--ease-out-quart) infinite;
+  animation-delay: calc(var(--stage, 0) * 0.62s + 0.45s);
+}
+
+[data-pipeline-stage]:nth-child(2) { --stage: 1; }
+[data-pipeline-stage]:nth-child(3) { --stage: 2; }
+[data-pipeline-stage]:nth-child(4) { --stage: 3; }
+[data-pipeline-stage]:nth-child(5) { --stage: 4; }
+[data-pipeline-stage]:nth-child(6) { --stage: 5; }
+
+@keyframes dot-flare {
+  0%, 30%, 100% { box-shadow: 0 0 0 4px rgb(203 255 77 / 0.14), 0 0 18px 0 rgb(203 255 77 / 0.5); }
+  6%            { box-shadow: 0 0 0 8px rgb(203 255 77 / 0.08), 0 0 30px 4px rgb(203 255 77 / 0.85); }
+}
+
+/* ==========================================================================
+   Portrait field — lit cells drift in and out, so the placeholder reads as a
+   live signal instead of a static tile.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  .portrait-cell {
+    animation: cell-flicker 7s ease-in-out infinite;
+  }
+}
+
+@keyframes cell-flicker {
+  0%, 100% { fill-opacity: 1; }
+  50%      { fill-opacity: 0.35; }
+}
+
+/* ==========================================================================
+   Blueprint crop marks — registration corners on framed figures, the way a
+   technical drawing marks its sheet. Pure decoration, drawn with gradients.
+   ========================================================================== */
+
+.crop {
+  position: relative;
+}
+
+.crop::after {
+  --crop-c: rgb(203 255 77 / 0.55);
+  --crop-s: 0.625rem;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--crop-c), var(--crop-c)) top left / var(--crop-s) 1px,
+    linear-gradient(var(--crop-c), var(--crop-c)) top left / 1px var(--crop-s),
+    linear-gradient(var(--crop-c), var(--crop-c)) top right / var(--crop-s) 1px,
+    linear-gradient(var(--crop-c), var(--crop-c)) top right / 1px var(--crop-s),
+    linear-gradient(var(--crop-c), var(--crop-c)) bottom left / var(--crop-s) 1px,
+    linear-gradient(var(--crop-c), var(--crop-c)) bottom left / 1px var(--crop-s),
+    linear-gradient(var(--crop-c), var(--crop-c)) bottom right / var(--crop-s) 1px,
+    linear-gradient(var(--crop-c), var(--crop-c)) bottom right / 1px var(--crop-s);
+  background-repeat: no-repeat;
+}
+
+/* ==========================================================================
+   Scoring demo
+   ========================================================================== */
+
+.demo-stage {
+  color: var(--color-fg-faint);
+  transition: color 0.4s var(--ease-out-quart), background-color 0.4s var(--ease-out-quart);
+}
+
+.demo-stage .label {
+  transition: color 0.4s var(--ease-out-quart);
+}
+
+.demo-stage-bar {
+  background-color: var(--color-lime);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.demo-stage.is-active {
+  color: var(--color-fg);
+  background-color: rgb(203 255 77 / 0.04);
+}
+
+.demo-stage.is-active .label,
+.demo-stage.is-done .label {
+  color: var(--color-lime);
+}
+
+.demo-stage.is-done {
+  color: var(--color-fg-muted);
+}
+
+.demo-stage.is-active .demo-stage-bar {
+  transform: scaleX(1);
+  animation: stage-scan 1.2s ease-in-out infinite;
+}
+
+.demo-stage.is-done .demo-stage-bar {
+  transform: scaleX(1);
+  opacity: 0.45;
+}
+
+@keyframes stage-scan {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+.demo-check-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-fg-faint);
+}
+
+.demo-check-icon {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.demo-check.is-pending .demo-check-state {
+  color: var(--color-fg-muted);
+}
+
+.demo-check.is-pending .demo-check-icon {
+  border-color: var(--color-fg-muted);
+  border-top-color: transparent;
+  animation: spin 0.7s linear infinite;
+}
+
+.demo-check.is-pass .demo-check-state {
+  color: var(--color-lime);
+}
+
+.demo-check.is-pass .demo-check-icon {
+  background-color: var(--color-lime);
+  box-shadow: 0 0 10px rgb(203 255 77 / 0.6);
+}
+
+.demo-check.is-na .demo-check-icon {
+  border-style: dashed;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.is-typing::after {
+  content: "";
+  display: inline-block;
+  width: 0.5ch;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: -0.12em;
+  background-color: var(--color-lime);
+}
+
+[data-demo-gauge] {
+  transition: stroke 0.4s var(--ease-out-quart);
+  filter: drop-shadow(0 0 6px rgb(203 255 77 / 0.45));
+}
+
+[data-demo-gauge].is-review {
+  stroke: var(--color-fg-muted);
+  filter: none;
+}
+
+.demo-decision {
+  transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+}
+
+/* Hidden only once the replay owns the card; before that the server-rendered
+   finished state stays readable. */
+[data-scoring-demo].is-live .demo-decision:not(.is-shown) {
+  opacity: 0;
+  transform: translateY(0.4rem);
+}
+
+.demo-decision.is-approved { color: var(--color-lime); }
+.demo-decision.is-review   { color: var(--color-fg); }
+
+.demo-log {
+  mask-image: linear-gradient(to bottom, transparent, black 30%);
+}
+
+.demo-log-line {
+  white-space: nowrap;
+}
+
+.demo-log-line.is-new {
+  animation: log-in 0.45s var(--ease-out-expo) both;
+}
+
+@keyframes log-in {
+  from { opacity: 0; transform: translateX(-0.5rem); }
+}
+
+/* ==========================================================================
+   Code window
+   ========================================================================== */
+
+.code-window .tok-keyword { color: #ff9ecf; }
+.code-window .tok-const   { color: var(--color-fg); }
+.code-window .tok-method  { color: #9fd8ff; }
+.code-window .tok-symbol  { color: var(--color-lime); }
+.code-window .tok-string  { color: #ffd98a; }
+.code-window .tok-number  { color: #ffd98a; }
+.code-window .tok-comment { color: var(--color-fg-faint); font-style: italic; }
+
+.code-rest {
+  color: transparent;
+}
+
+.code-caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.15em;
+  margin-left: 1px;
+  vertical-align: -0.2em;
+  background-color: var(--color-lime);
+  animation: caret 1.05s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% { opacity: 0; }
+}
+
+/* ==========================================================================
+   Integration graph
+   ========================================================================== */
+
+.graph-node {
+  position: relative;
+  border: 1px solid var(--color-line);
+  background-color: rgb(12 14 16 / 0.85);
+  padding: 0.875rem;
+  backdrop-filter: blur(4px);
+  transition:
+    border-color 0.4s var(--ease-out-quart),
+    background-color 0.4s var(--ease-out-quart),
+    opacity 0.4s var(--ease-out-quart);
+}
+
+@media (min-width: 640px) {
+  .graph-node { padding: 1.125rem 1.25rem; }
+}
+
+.graph-node.is-hot {
+  border-color: rgb(203 255 77 / 0.5);
+  background-color: var(--color-ink-850);
+}
+
+[data-graph].has-hot .graph-node:not(.is-hot) {
+  opacity: 0.45;
+}
+
+.graph-core {
+  box-shadow: 0 0 0 1px rgb(203 255 77 / 0.05), 0 0 80px -20px rgb(203 255 77 / 0.25);
+}
+
+.graph-edge {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.2);
+  stroke-width: 1;
+  transition: stroke 0.4s var(--ease-out-quart);
+}
+
+.graph-edge.is-hot {
+  stroke: rgb(203 255 77 / 0.75);
+  stroke-width: 1.5;
+}
+
+[data-graph].is-drawn .graph-edge {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: edge-draw 1.6s var(--ease-out-expo) 0.2s forwards;
+}
+
+@keyframes edge-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.graph-terminal {
+  fill: var(--color-ink-950);
+  stroke: var(--color-fg-faint);
+  stroke-width: 1;
+}
+
+.graph-packet {
+  fill: var(--color-lime);
+  filter: drop-shadow(0 0 4px var(--color-lime));
+}
+
+/* ==========================================================================
+   Command palette
+   ========================================================================== */
+
+.palette {
+  width: min(36rem, calc(100vw - 2rem));
+  max-width: none;
+  margin: 14svh auto auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-fg);
+  overflow: visible;
+}
+
+.palette::backdrop {
+  background: rgb(8 9 10 / 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.palette-panel {
+  border: 1px solid var(--color-line-strong);
+  background-color: rgb(18 21 23 / 0.94);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.8), 0 0 0 1px rgb(203 255 77 / 0.04);
+}
+
+.palette[open] .palette-panel {
+  animation: palette-in 0.35s var(--ease-out-expo) both;
+}
+
+@keyframes palette-in {
+  from { opacity: 0; transform: translateY(-0.5rem) scale(0.98); }
+}
+
+.palette-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0.875rem;
+  border-radius: 2px;
+  cursor: pointer;
+  color: var(--color-fg-muted);
+}
+
+.palette-item[aria-selected="true"] {
+  background-color: rgb(203 255 77 / 0.08);
+  color: var(--color-fg);
+  box-shadow: inset 2px 0 0 var(--color-lime);
+}
+
+.palette-hint {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--color-fg-faint);
+  white-space: nowrap;
+}
+
+.palette-item[aria-selected="true"] .palette-hint {
+  color: var(--color-lime);
+}
+
+.palette-kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.5rem;
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-fg-faint);
+}
+
+.palette-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-fg-faint);
+}
+
+/* ==========================================================================
+   Product illustrations — shared chart pieces
+   ========================================================================== */
+
+.chart-tick {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--color-fg-faint);
+}
+
+.chart-value {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--color-fg);
+}
+
+.chart-value.is-muted {
+  fill: var(--color-fg-muted);
+}
+
+.chart-tip {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  gap: 0.2rem;
+  min-width: 9rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--color-line-strong);
+  background: rgb(18 21 23 / 0.94);
+  backdrop-filter: blur(8px);
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-fg-muted);
+  white-space: nowrap;
+}
+
+.chart-tip strong {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-fg);
+}
+
+.chart-tip[hidden] { display: none; }
+
+@keyframes item-in {
+  from { opacity: 0; transform: translateY(-0.4rem); }
+}
+
+/* --- Lending queue ------------------------------------------------------ */
+
+.lending-module {
+  color: var(--color-fg-faint);
+  box-shadow: inset 2px 0 0 transparent;
+  transition: color 0.4s var(--ease-out-quart), background-color 0.4s var(--ease-out-quart), box-shadow 0.4s;
+}
+
+.lending-module.is-active {
+  color: var(--color-fg);
+  background-color: rgb(203 255 77 / 0.05);
+  box-shadow: inset 2px 0 0 var(--color-lime);
+}
+
+.lending-module.is-active .label { color: var(--color-lime); }
+
+.lending-row {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr) 6rem 7.5rem 3rem;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 0.625rem;
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 639px) {
+  .lending-row { grid-template-columns: 5.5rem minmax(0, 1fr) 6.5rem; gap: 0.75rem; }
+}
+
+.lending-item {
+  border-top: 1px solid var(--color-line);
+}
+
+.lending-item.is-new {
+  animation: item-in 0.5s var(--ease-out-expo) both;
+  background: linear-gradient(to right, rgb(203 255 77 / 0.06), transparent 60%);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-fg-muted);
+  white-space: nowrap;
+  transition: color 0.3s, border-color 0.3s, background-color 0.3s;
+}
+
+.status-pill::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+[data-status="scoring"] .status-pill  { color: var(--color-fg); }
+[data-status="review"] .status-pill   { color: var(--color-fg); border-style: dashed; }
+[data-status="approved"] .status-pill,
+[data-status="signed"] .status-pill   { color: var(--color-lime); border-color: rgb(203 255 77 / 0.35); }
+[data-status="active"] .status-pill   { color: var(--color-ink-950); background: var(--color-lime); border-color: var(--color-lime); }
+
+.status-pill.is-flash { animation: pill-flash 0.6s var(--ease-out-quart); }
+
+@keyframes pill-flash {
+  0% { box-shadow: 0 0 0 0 rgb(203 255 77 / 0.5); }
+  100% { box-shadow: 0 0 0 6px rgb(203 255 77 / 0); }
+}
+
+/* --- Learning ----------------------------------------------------------- */
+
+.learning-bar {
+  transition: width 0.9s var(--ease-out-expo);
+  box-shadow: 0 0 10px rgb(203 255 77 / 0.5);
+}
+
+[data-learning-ring] { transition: stroke-dasharray 0.8s var(--ease-out-expo); }
+
+.streak-day {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 2px;
+  background: var(--color-ink-700);
+  transition: background-color 0.4s, box-shadow 0.4s, transform 0.4s var(--ease-out-expo);
+}
+
+.streak-day.is-on {
+  background: var(--color-lime);
+  box-shadow: 0 0 8px rgb(203 255 77 / 0.45);
+}
+
+.xp-pop { opacity: 0; }
+
+.xp-pop.is-shown { animation: xp-pop 1.2s var(--ease-out-expo) both; }
+
+@keyframes xp-pop {
+  0%   { opacity: 0; transform: translateY(0.5rem); }
+  20%  { opacity: 1; transform: none; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-0.4rem); }
+}
+
+.hw-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-fg-faint);
+}
+
+.hw-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+
+.hw-state.is-submitted { color: var(--color-fg); }
+.hw-state.is-reviewing { color: var(--color-fg); }
+.hw-state.is-reviewing .hw-dot { border-top-color: transparent; animation: spin 0.8s linear infinite; }
+.hw-state.is-reviewed { color: var(--color-lime); }
+.hw-state.is-reviewed .hw-dot { background: var(--color-lime); box-shadow: 0 0 8px rgb(203 255 77 / 0.6); }
+
+.badge-toast {
+  position: absolute;
+  right: 1rem;
+  top: 3.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgb(203 255 77 / 0.35);
+  background: rgb(18 21 23 / 0.96);
+  box-shadow: 0 20px 40px -12px rgb(0 0 0 / 0.7), 0 0 30px -10px rgb(203 255 77 / 0.4);
+  opacity: 0;
+  transform: translateY(-0.5rem) scale(0.97);
+  transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.badge-toast.is-shown { opacity: 1; transform: none; }
+
+[data-learning-visual] { position: relative; }
+
+/* --- Assistant ---------------------------------------------------------- */
+
+.chat-msg {
+  max-width: 88%;
+  padding: 0.625rem 0.875rem;
+  border-radius: 14px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.chat-msg.is-new { animation: item-in 0.4s var(--ease-out-expo) both; }
+
+.chat-msg.is-user {
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  background: var(--color-lime);
+  color: var(--color-ink-950);
+}
+
+.chat-msg.is-user.is-typing::after { background: var(--color-ink-950); }
+
+.chat-msg.is-bot {
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--color-line-strong);
+  background: var(--color-ink-850);
+  color: var(--color-fg);
+}
+
+.chat-source {
+  display: block;
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-lime);
+}
+
+.chat-source.is-new { animation: item-in 0.4s var(--ease-out-expo) both; }
+
+.chat-dots { display: inline-flex; gap: 4px; padding-block: 0.2rem; }
+
+.chat-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--color-fg-muted);
+  animation: dot-bounce 1s ease-in-out infinite;
+}
+
+.chat-dots span:nth-child(2) { animation-delay: 0.15s; }
+.chat-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes dot-bounce {
+  0%, 60%, 100% { transform: none; opacity: 0.4; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+
+.crm-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-fg-faint);
+}
+
+.crm-live span { width: 6px; height: 6px; border-radius: 999px; background: var(--color-ink-700); }
+.crm-live.is-on { color: var(--color-lime); }
+.crm-live.is-on span { background: var(--color-lime); animation: stage-scan 1s ease-in-out infinite; }
+
+[data-crm].is-filled { animation: crm-fill 0.8s var(--ease-out-quart); }
+
+@keyframes crm-fill {
+  from { background-color: rgb(203 255 77 / 0.12); }
+  to { background-color: transparent; }
+}
+
+.crm-tag {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgb(203 255 77 / 0.3);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-lime);
+}
+
+.crm-tag.is-new { animation: item-in 0.35s var(--ease-out-expo) both; }
+
+/* --- Vertio property card ----------------------------------------------- */
+
+.vertio-line {
+  fill: none;
+  stroke: var(--color-lime);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 5px rgb(203 255 77 / 0.35));
+}
+
+.vertio-forecast {
+  fill: none;
+  stroke: rgb(203 255 77 / 0.6);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.vertio-band { fill: rgb(203 255 77 / 0.1); }
+
+.vertio-now {
+  fill: var(--color-lime);
+  stroke: var(--color-ink-900);
+  stroke-width: 2;
+}
+
+.vertio-cross {
+  stroke: var(--color-fg-muted);
+  stroke-width: 1;
+  opacity: 0;
+}
+
+.vertio-dot {
+  fill: var(--color-ink-950);
+  stroke: var(--color-lime);
+  stroke-width: 2;
+  opacity: 0;
+}
+
+[data-vertio-visual].is-crossing .vertio-cross,
+[data-vertio-visual].is-crossing .vertio-dot { opacity: 1; }
+
+[data-vertio-chart] { cursor: crosshair; touch-action: pan-y; }
+[data-vertio-chart]:focus-visible { outline-offset: 4px; }
+
+.js [data-vertio-visual].is-armed .vertio-line,
+.js [data-vertio-visual].is-armed .vertio-forecast {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.js [data-vertio-visual].is-armed .vertio-band,
+.js [data-vertio-visual].is-armed .vertio-now,
+.js [data-vertio-visual].is-armed .chart-value { opacity: 0; }
+
+[data-vertio-visual].is-playing .vertio-line { animation: draw 1.8s var(--ease-in-out-quart) 0.2s forwards; }
+[data-vertio-visual].is-playing .vertio-forecast { animation: draw 1s var(--ease-out-quart) 1.9s forwards; }
+[data-vertio-visual].is-playing .vertio-band { animation: fade-in 1s var(--ease-out-quart) 2.1s forwards; }
+[data-vertio-visual].is-playing .vertio-now,
+[data-vertio-visual].is-playing .chart-value { animation: fade-in 0.6s var(--ease-out-quart) 2.6s forwards; }
+
+.vertio-confidence { box-shadow: 0 0 10px rgb(203 255 77 / 0.5); }
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade-in { to { opacity: 1; } }
+
+/* --- Vertio map --------------------------------------------------------- */
+
+.map-cell {
+  transition: opacity 0.35s var(--ease-out-quart), filter 0.35s;
+}
+
+.js [data-vertio-map].is-armed .map-cell {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.4);
+}
+
+.js [data-vertio-map].is-armed.is-shown .map-cell {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.5s var(--ease-out-quart) var(--d, 0ms),
+    transform 0.6s var(--ease-out-expo) var(--d, 0ms),
+    filter 0.35s;
+}
+
+[data-vertio-map].has-hot .map-cell:not(.is-hot) { opacity: 0.35; }
+
+.map-cell.is-hot { filter: brightness(1.35) drop-shadow(0 0 4px rgb(203 255 77 / 0.6)); }
+
+.map-cell.is-update { animation: cell-update 1.4s var(--ease-out-quart); }
+
+@keyframes cell-update {
+  0% { filter: brightness(1); }
+  25% { filter: brightness(1.8) drop-shadow(0 0 5px rgb(203 255 77 / 0.7)); }
+  100% { filter: brightness(1); }
+}
+
+.map-ping {
+  fill: none;
+  stroke: var(--color-lime);
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: map-ping 1.8s var(--ease-out-quart) forwards;
+}
+
+@keyframes map-ping {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(7); }
+}
+
+.map-town { fill: var(--color-fg); stroke: var(--color-ink-950); stroke-width: 1.5; }
+
+/* Below sm the labels would render at a few pixels; the table names the
+   towns instead. */
+@media (max-width: 639px) {
+  .map-label { display: none; }
+}
+
+.map-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--color-fg);
+  paint-order: stroke;
+  stroke: var(--color-ink-950);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.map-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-fg-muted);
+}
+
+.map-swatch {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 2px;
+}
+
+.map-legend-item .map-swatch { margin-right: 0; }
+
+.map-row td {
+  padding: 0.5rem 1.25rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.map-row td:first-child { color: var(--color-fg); }
+.map-row td + td { padding-left: 0; }
+
+.map-row {
+  cursor: default;
+  transition: background-color 0.3s;
+}
+
+.map-row:hover,
+.map-row:focus-visible { background-color: rgb(203 255 77 / 0.05); outline: none; }
+
+/* --- Threshold explorer ------------------------------------------------- */
+
+.thr-rule {
+  stroke: var(--color-fg);
+  stroke-width: 1.5;
+}
+
+.thr-knob {
+  fill: var(--color-lime);
+  stroke: var(--color-ink-900);
+  stroke-width: 2;
+}
+
+.js [data-threshold-visual].is-armed .thr-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+[data-threshold-visual].is-shown .thr-line { animation: draw 1.2s var(--ease-in-out-quart) forwards; }
+
+.threshold-range {
+  appearance: none;
+  height: 2px;
+  background: var(--color-line-strong);
+  border-radius: 999px;
+  accent-color: var(--color-lime);
+}
+
+.threshold-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--color-lime);
+  border: 2px solid var(--color-ink-900);
+  box-shadow: 0 0 0 1px var(--color-lime);
+  cursor: ew-resize;
+}
+
+.threshold-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--color-lime);
+  border: 2px solid var(--color-ink-900);
+  cursor: ew-resize;
+}
+
+/* ==========================================================================
+   Team photos — the photo is greyscale at rest and warms to colour on hover;
+   the canvas over it plays the cell-grid reveal and then gets out of the way.
+   ========================================================================== */
+
+.portrait-photo img {
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 0.8s var(--ease-out-quart), transform 1.2s var(--ease-out-expo);
+}
+
+.portrait-photo:hover img {
+  filter: grayscale(0.15) contrast(1);
+  transform: scale(1.015);
+}
+
+.portrait-canvas {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s var(--ease-out-quart);
+}
+
+.portrait-photo.is-armed .portrait-canvas { opacity: 1; }
+.portrait-photo.is-armed.is-revealed .portrait-canvas { opacity: 0; }
+
+/* ==========================================================================
    Reduced motion — one authoritative override
    ========================================================================== */
 

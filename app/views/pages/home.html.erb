@@ -17,7 +17,7 @@
         label: t("pages.home.what_we_do.label"),
         heading: t("pages.home.what_we_do.heading") %>
 
-  <div class="mt-14 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3" data-reveal-group="110">
+  <div class="crop mt-14 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3" data-reveal-group="110">
     <% %w[financial ml platforms].each_with_index do |key, i| %>
       <article class="card border-0 p-8 lg:p-10">
         <div class="flex items-baseline justify-between gap-4">
@@ -47,12 +47,15 @@
       so the rail changes axis rather than a horizontal one being sliced across
       a stacked grid. %>
   <div data-pipeline class="mt-16">
-    <div class="relative hidden h-px w-full bg-line lg:block">
+    <div class="relative hidden h-px w-full bg-line [clip-path:inset(-8px_0)] lg:block">
       <div data-pipeline-track class="absolute inset-0 bg-gradient-to-r from-lime/70 via-lime to-lime/70"></div>
+      <span class="pipeline-pulse pipeline-pulse-x" aria-hidden="true"></span>
     </div>
 
     <div class="relative">
-      <span class="absolute bottom-3 left-[3.5px] top-3 w-px bg-line lg:hidden" aria-hidden="true"></span>
+      <span class="absolute bottom-3 left-[3.5px] top-3 w-px bg-line [clip-path:inset(0_-8px)] lg:hidden" aria-hidden="true">
+        <span class="pipeline-pulse pipeline-pulse-y !left-[-1px]"></span>
+      </span>
 
       <ol class="grid gap-y-8 lg:grid-cols-6 lg:gap-x-6 lg:gap-y-0 lg:pt-6">
         <% stages.each_with_index do |stage, i| %>
@@ -68,6 +71,8 @@
     </div>
 
     <%# The layer that makes the data usable — spans the whole cycle %>
+    <p class="label mt-10" data-reveal>fig. 01 — <%= t("pages.home.pipeline.label").downcase %></p>
+
     <div class="mt-12 flex items-stretch gap-4" data-reveal>
       <div class="w-px shrink-0 bg-gradient-to-b from-lime/60 to-transparent"></div>
       <div class="pb-1">
@@ -81,11 +86,24 @@
 </section>
 
 <%# ======================================================================
-    Why companies work with us
+    See it run — the cycle above, played with one application
     ====================================================================== %>
 <section class="shell pt-[var(--spacing-section)]">
   <%= render "shared/section_head",
         index: "03",
+        label: t("pages.home.demo.label"),
+        heading: t("pages.home.demo.heading"),
+        body: t("pages.home.demo.body") %>
+
+  <%= render "shared/scoring_demo" %>
+</section>
+
+<%# ======================================================================
+    Why companies work with us
+    ====================================================================== %>
+<section class="shell pt-[var(--spacing-section)]">
+  <%= render "shared/section_head",
+        index: "04",
         label: t("pages.home.why.label"),
         heading: t("pages.home.why.heading") %>
 
@@ -97,6 +115,17 @@
         <p class="prose-braingency mt-3.5 text-[1rem]"><%= t("pages.home.why.items.#{key}.body") %></p>
       </article>
     <% end %>
+  </div>
+
+  <%# "Founders who write code", shown rather than claimed. %>
+  <div class="mt-[clamp(4rem,2rem+5vw,7rem)] grid grid-cols-1 items-start gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]">
+    <div class="lg:sticky lg:top-28">
+      <span class="label label-accent" data-reveal data-scramble><%= t("pages.home.code.label") %></span>
+      <h3 class="text-h3 mt-5 max-w-[22ch] font-medium" data-split><%= t("pages.home.code.heading") %></h3>
+      <p class="prose-braingency mt-4 max-w-[46ch] text-[1rem]" data-reveal style="--reveal-delay:120ms"><%= t("pages.home.code.body") %></p>
+    </div>
+
+    <%= render "shared/code_window" %>
   </div>
 </section>
 

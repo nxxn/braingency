@@ -9,6 +9,7 @@ export default function pipeline() {
 
   const settle = (el) => {
     el.querySelectorAll("[data-pipeline-track]").forEach((t) => (t.style.transform = "scaleX(1)"));
+    el.classList.add("is-drawn");
     el.querySelectorAll("[data-pipeline-stage]").forEach((s) => s.classList.add("is-lit"));
   };
 
@@ -32,5 +33,9 @@ export default function pipeline() {
     stages.forEach((stage, i) => {
       setTimeout(() => stage.classList.add("is-lit"), 120 + i * 200);
     });
+
+    // Once the line has been drawn, a pulse keeps travelling along it (CSS),
+    // so the cycle reads as running rather than as a finished drawing.
+    setTimeout(() => el.classList.add("is-running"), duration + 200);
   }, { threshold: 0.3 });
 }

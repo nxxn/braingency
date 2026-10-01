@@ -6,6 +6,9 @@
     <% if entry[:lastmod] %><lastmod><%= entry[:lastmod].iso8601 %></lastmod><% end %>
     <changefreq><%= entry[:changefreq] %></changefreq>
     <priority><%= entry[:priority] %></priority>
+    <% entry[:alternates].each do |lang, href| %>
+    <xhtml:link rel="alternate" hreflang="<%= lang %>" href="<%= href %>"/>
+    <% end %>
   </url>
 <% end %>
 </urlset>

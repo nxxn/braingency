@@ -32,6 +32,8 @@
   <% end %>
 
   <div class="bg-grid absolute inset-0 -z-10 opacity-[0.5] mask-fade-b" aria-hidden="true"></div>
+  <%# A lime copy of the grid, revealed only in a circle around the pointer. %>
+  <div data-grid-glow class="bg-grid grid-glow absolute inset-0 -z-10 mask-fade-b" aria-hidden="true"></div>
 
   <% if shader %>
     <%# Scrim: guarantees headline contrast no matter what the field is doing. %>
@@ -42,7 +44,7 @@
   <% end %>
 
   <%# --- Content -------------------------------------------------------- %>
-  <div class="shell relative">
+  <div class="shell hero-content relative">
     <% if local_assigns[:eyebrow] %>
       <div class="mb-7 flex items-center gap-3 lg:mb-10" data-reveal>
         <span class="relative flex h-1.5 w-1.5">
@@ -53,7 +55,7 @@
       </div>
     <% end %>
 
-    <h1 class="text-display max-w-[19ch] font-medium" <%= "data-split" if shader %>><%= heading %></h1>
+    <h1 class="text-display max-w-[19ch] font-medium" data-split><%= heading %></h1>
 
     <% if local_assigns[:lead] || local_assigns[:body] %>
       <div class="mt-7 grid gap-x-16 gap-y-7 lg:mt-11 lg:gap-y-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
@@ -97,7 +99,7 @@
         <% meta.each_with_index do |item, i| %>
           <li class="flex shrink-0 items-baseline gap-2.5" data-reveal style="--reveal-delay:<%= 360 + i * 40 %>ms">
             <span class="label label-accent"><%= format("%02d", i + 1) %></span>
-            <span class="label text-fg-muted"><%= item %></span>
+            <span class="label text-fg-muted" data-scramble><%= item %></span>
           </li>
         <% end %>
       </ul>
