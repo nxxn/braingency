@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<% @entries.each do |entry| %>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<% @entries.each do |entry| -%>
   <url>
     <loc><%= entry[:loc] %></loc>
-    <% if entry[:lastmod] %><lastmod><%= entry[:lastmod].iso8601 %></lastmod><% end %>
+<% if entry[:lastmod] -%>
+    <lastmod><%= entry[:lastmod].iso8601 %></lastmod>
+<% end -%>
     <changefreq><%= entry[:changefreq] %></changefreq>
     <priority><%= entry[:priority] %></priority>
-    <% entry[:alternates].each do |lang, href| %>
-    <xhtml:link rel="alternate" hreflang="<%= lang %>" href="<%= href %>"/>
-    <% end %>
   </url>
-<% end %>
+<% end -%>
 </urlset>
