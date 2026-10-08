@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   get "/sitemap.xml", to: "sitemaps#show", as: :sitemap, defaults: { format: "xml" }
 
+  # News editor. HTTP Basic, credentials from ADMIN_USER / ADMIN_PASSWORD.
+  namespace :admin do
+    root to: redirect("/admin/articles")
+    resources :articles, except: :show
+  end
+
   # Internal comparison sheet for choosing the logo mark. Never exposed in
   # production, never linked from the site.
   get "/dev/brand", to: "pages#brand" if Rails.env.development?

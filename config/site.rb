@@ -88,16 +88,7 @@ module Site
 
   # --- News ---------------------------------------------------------------
   #
-  # Dates live here rather than in the locale files: they are language
-  # independent and must not drift between EN and LV.
-  Article = Struct.new(:slug, :published_on, keyword_init: true)
-
-  ARTICLES = [
-    Article.new(slug: "keeping-scoring-models-honest",  published_on: Date.new(2026, 9, 24)),
-    Article.new(slug: "verteo-live-in-latvia",          published_on: Date.new(2026, 9, 10)),
-    Article.new(slug: "one-platform-not-five-tools",    published_on: Date.new(2026, 8, 12)),
-    Article.new(slug: "verteo-property-valuation-ml",   published_on: Date.new(2026, 7, 29))
-  ].freeze
+  # Articles themselves live in the database (Article, edited at /admin).
 
   # Slugs that have been live and were later renamed. Old URLs answer with a
   # permanent redirect so links and search engines carry over.
@@ -105,6 +96,4 @@ module Site
     "vertio-live-in-latvia"        => "verteo-live-in-latvia",
     "vertio-property-valuation-ml" => "verteo-property-valuation-ml"
   }.freeze
-
-  def self.article(slug) = ARTICLES.find { |a| a.slug == slug }
 end

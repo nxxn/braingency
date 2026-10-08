@@ -1,5 +1,5 @@
 class SitemapsController < ApplicationController
-  # Built from Site::PAGES + Site::ARTICLES, so it can never drift out of sync
+  # Built from Site::PAGES + published articles, so it can never drift out of sync
   # with the routes. URLs are composed from Site::HOST rather than the request,
   # so a sitemap fetched over the Heroku hostname still advertises the canonical
   # domain.
@@ -12,9 +12,9 @@ class SitemapsController < ApplicationController
         { loc: absolute(path_for_page(page, locale)), priority: page.priority, changefreq: "monthly" }
       end
 
-      articles = Site::ARTICLES.map do |article|
+      articles = Article.published.newest_first.map do |article|
         { loc: absolute(article_path(slug: article.slug, locale: locale)),
-          priority: 0.5, changefreq: "yearly", lastmod: article.published_on }
+          priority: 0.5, changefreq: "yearly", lastmod: article.modified_on }
       end
 
       pages + articles

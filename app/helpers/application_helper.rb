@@ -2,10 +2,14 @@ module ApplicationHelper
   # --- SEO ----------------------------------------------------------------
 
   def page_title
+    return @article.meta_title if @article
+
     t("meta.#{@page_key}.title", default: Site::BRAND)
   end
 
   def page_description
+    return @article.meta_description if @article
+
     t("meta.#{@page_key}.description", default: t("meta.home.description"))
   end
 
@@ -113,7 +117,7 @@ module ApplicationHelper
     trail = [[t("nav.home"), locale_root_url(host: canonical_host)]]
     if @article
       trail << [t("nav.news"), news_url(host: canonical_host)]
-      trail << [t("articles.#{@article.slug.tr("-", "_")}.title"), canonical_url]
+      trail << [@article.title, canonical_url]
     elsif Site.page(@page_key.to_s)
       trail << [t("nav.#{@page_key}"), canonical_url]
     else
@@ -130,14 +134,13 @@ module ApplicationHelper
   end
 
   def article_data
-    key = @article.slug.tr("-", "_")
     {
       "@context" => "https://schema.org",
       "@type" => "BlogPosting",
-      "headline" => t("articles.#{key}.title"),
-      "description" => t("articles.#{key}.excerpt"),
+      "headline" => @article.title,
+      "description" => @article.excerpt,
       "datePublished" => @article.published_on.iso8601,
-      "dateModified" => @article.published_on.iso8601,
+      "dateModified" => @article.modified_on.iso8601,
       "inLanguage" => I18n.locale.to_s,
       "mainEntityOfPage" => canonical_url,
       "image" => og_image_url,

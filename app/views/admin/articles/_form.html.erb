@@ -1,0 +1,53 @@
+<%= form_with model: [:admin, article] do |f| %>
+  <% if article.errors.any? %>
+    <div class="errors">
+      <% article.errors.full_messages.each do |message| %><div><%= message %></div><% end %>
+    </div>
+  <% end %>
+
+  <div class="grid">
+    <div>
+      <%= f.label :slug, "Slug (URL)" %>
+      <%= f.text_field :slug, placeholder: "verteo-live-in-spain", required: true, pattern: "[a-z0-9]+(-[a-z0-9]+)*" %>
+      <p class="hint">/en/news/<em>slug</em>. Changing it breaks existing links.</p>
+    </div>
+    <div>
+      <%= f.label :published_on, "Date" %>
+      <%= f.date_field :published_on, required: true %>
+    </div>
+    <div class="check" style="align-self:center;padding-top:1.4rem">
+      <%= f.check_box :published %><%= f.label :published, "Published on the site" %>
+    </div>
+  </div>
+
+  <div class="cols">
+    <% Site::LOCALES.each do |locale| %>
+      <fieldset>
+        <legend><%= locale.upcase %></legend>
+
+        <%= f.label :"title_#{locale}", "Title" %>
+        <%= f.text_field :"title_#{locale}", required: locale == Site::DEFAULT_LOCALE %>
+
+        <%= f.label :"excerpt_#{locale}", "Lead" %>
+        <%= f.text_area :"excerpt_#{locale}", rows: 3 %>
+        <p class="hint">Shown in the news list and in bold above the text.</p>
+
+        <%= f.label :"body_#{locale}", "Text" %>
+        <%= f.text_area :"body_#{locale}", rows: 16 %>
+        <p class="hint">Separate paragraphs with an empty line.</p>
+
+        <%= f.label :"meta_title_#{locale}", "SEO title (optional)" %>
+        <%= f.text_field :"meta_title_#{locale}", placeholder: "Defaults to “Title — #{Site::BRAND}”" %>
+
+        <%= f.label :"meta_description_#{locale}", "SEO description (optional)" %>
+        <%= f.text_area :"meta_description_#{locale}", rows: 2, placeholder: "Defaults to the lead" %>
+      </fieldset>
+    <% end %>
+  </div>
+  <p class="hint">Empty LV fields fall back to the English text on the Latvian site.</p>
+
+  <div class="actions">
+    <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= link_to "Cancel", admin_articles_path, class: "btn" %>
+  </div>
+<% end %>

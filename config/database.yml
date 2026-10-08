@@ -1,0 +1,21 @@
+# Postgres holds the news articles; everything else on the site is static copy
+# in config/locales. In production the database is the shared sites-db on the
+# Hetzner server (see config/deploy.yml), reached over the kamal network.
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: braingency_development
+
+test:
+  <<: *default
+  database: braingency_test
+
+production:
+  <<: *default
+  database: braingency_production
+  username: braingency
+  password: <%= ENV["BRAINGENCY_DATABASE_PASSWORD"] %>

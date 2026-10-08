@@ -4,7 +4,7 @@
 #
 # Sources of truth:
 #   public/icon.svg          -> favicon.ico, icon-{192,512}.png, apple-touch-icon.png
-#   tmp/brand/og-*.html      -> public/og/*.png   (generated below from the locale files)
+#   tmp/brand/og-*.html      -> public/og/*.png   (generated below from the locale files and articles)
 #
 # Re-run after changing the mark or any page title. Outputs are committed, so a
 # deploy never needs Chrome.
@@ -63,23 +63,23 @@ pages.each do |page|
   )
   File.write("tmp/brand/og-#{page}.html", html)
 end
+'
 
 # Articles get one card per language, named og/article_<key>.<locale>.png so
-# the layout picks the reader\x27s language first.
-require "date"
-require "./config/site"
-%w[en lv].each do |locale|
-  copy = YAML.load_file("config/locales/#{locale}.yml")[locale]
-  label = locale == "lv" ? "ZIŅAS" : "NEWS"
-  Site::ARTICLES.each do |article|
-    key = article.slug.tr("-", "_")
-    title = copy.dig("articles", key, "title") or next
-    html = ERB.new(template).result_with_hash(
-      title:   title,
-      eyebrow: "#{label} · #{article.published_on.strftime("%Y-%m-%d")}",
-      footer:  "braingency.eu"
-    )
-    File.write("tmp/brand/og-article_#{key}.#{locale}.html", html)
+# the layout picks the reader's language first. Titles come from the local
+# database; articles without a card fall back to og/default.png.
+bin/rails runner '
+template = File.read("lib/brand/og_card.html.erb")
+Article.published.find_each do |article|
+  Site::LOCALES.each do |locale|
+    I18n.with_locale(locale) do
+      html = ERB.new(template).result_with_hash(
+        title:   article.title,
+        eyebrow: "#{locale == :lv ? "ZIŅAS" : "NEWS"} · #{article.published_on.iso8601}",
+        footer:  "braingency.eu"
+      )
+      File.write("tmp/brand/og-#{article.og_key}.#{locale}.html", html)
+    end
   end
 end
 '

@@ -1,0 +1,111 @@
+# Articles that were live before news moved into the database. Loaded by
+# db/seeds.rb; once an article exists, the admin is the source of truth.
+---
+- slug: keeping-scoring-models-honest
+  published_on: '2026-09-24'
+  published: true
+  title_en: What it takes to keep a scoring model honest in production
+  excerpt_en: Training a credit scoring model is the visible part of the work. Whether it stays useful is decided after it starts approving real loans.
+  body_en: |-
+    Training a credit scoring model is the visible part of the work. The part that decides whether it stays useful starts the day it begins approving real applications.
+
+    The first problem is drift. A model learns the relationship between applicants and outcomes as it was in the training data. Products change, marketing brings in different customers, the economy moves. The model keeps producing confident scores regardless, so the only defence is to watch it: compare the scores it produces today with those it produced when it was validated, and track outcomes as loans mature.
+
+    The second is that outcomes arrive late, and only for some. Whether a loan was a good decision is known months after it was made, and only for applicants who were approved. A model that never learns what happened to the people it declined can drift towards its own blind spots, so monitoring has to account for that rather than treating the approved book as the whole truth.
+
+    The third is accountability. In a regulated business every automated decision has to be explainable afterwards: which model version scored the application, with which inputs, against which threshold. That is an engineering requirement as much as a data science one — the score has to be recorded in the audit trail as part of the same step that acts on it.
+
+    None of this is exotic. It is the difference between a model that was accurate once and a model a lender can keep relying on — and it is why we build scoring into the lending platform itself rather than bolting it on from outside.
+  meta_title_en: Keeping a scoring model honest in production — Braingency
+  meta_description_en: Training a credit scoring model is the visible part. Drift, late outcomes and accountability decide whether it stays useful once it approves real loans.
+  title_lv: Kas vajadzīgs, lai kredītnovērtēšanas modelis ražošanā paliktu godīgs
+  excerpt_lv: Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Vai tas paliek noderīgs, izšķiras pēc tam, kad tas sāk apstiprināt reālus kredītus.
+  body_lv: |-
+    Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Tā daļa, kas nosaka, vai modelis paliek noderīgs, sākas dienā, kad tas sāk apstiprināt reālus pieteikumus.
+
+    Pirmā problēma ir nobīde. Modelis apgūst saikni starp pieteicējiem un iznākumiem tādu, kāda tā bija mācību datos. Produkti mainās, mārketings piesaista citus klientus, ekonomika mainās. Modelis jebkurā gadījumā turpina izdot pārliecinošus vērtējumus, tāpēc vienīgā aizsardzība ir to uzraudzīt: salīdzināt šodienas vērtējumus ar tiem, ko tas izdeva validācijas laikā, un sekot iznākumiem, kredītiem nobriestot.
+
+    Otrā — iznākumi kļūst zināmi vēlu un tikai daļai. Vai kredīts bija labs lēmums, kļūst zināms mēnešus vēlāk un tikai par apstiprinātajiem pieteicējiem. Modelis, kas nekad neuzzina, kas notika ar tiem, kuriem tas atteica, var novirzīties uz saviem aklajiem punktiem, tāpēc uzraudzībai tas jāņem vērā, nevis jāuzskata apstiprinātais portfelis par visu patiesību.
+
+    Trešā ir atbildība. Regulētā biznesā katram automatizētam lēmumam jābūt izskaidrojamam arī vēlāk: kura modeļa versija novērtēja pieteikumu, ar kādiem ievaddatiem un pret kādu slieksni. Tā ir tikpat liela inženiertehniska prasība kā datu zinātnes prasība — vērtējumam jābūt ierakstītam audita pierakstā tajā pašā solī, kurā uz to balstās lēmums.
+
+    Nekas no tā nav eksotisks. Tā ir atšķirība starp modeli, kas reiz bija precīzs, un modeli, uz kuru kreditētājs var turpināt paļauties — un tieši tāpēc mēs iebūvējam novērtēšanu pašā kreditēšanas platformā, nevis pievienojam to no ārpuses.
+  meta_title_lv: Kā saglabāt kredītnovērtēšanas modeli godīgu ražošanā — Braingency
+  meta_description_lv: Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Datu nobīde, vēlu zināmi iznākumi un atbildība nosaka, vai tas paliek noderīgs, kad apstiprina reālus kredītus.
+- slug: verteo-live-in-latvia
+  published_on: '2026-09-10'
+  published: true
+  title_en: Verteo is live in Latvia — Spain is next
+  excerpt_en: Our property valuation model now runs in production for the Latvian market. Extending it to Spain is less about copying the model than about rebuilding what it learns from.
+  body_en: |-
+    Verteo, our machine learning model for property valuation, is now in production in Latvia. It estimates the value of individual properties from market data and puts that estimate where lenders need it: into collateral assessment during mortgage underwriting, and into credit scoring as an input.
+
+    Running in production changes what a model has to be good at. A forecast in a notebook only has to be accurate on average. A valuation that sits inside an underwriting workflow is judged case by case — including in the places where the market is thin and comparable sales are few. That is where most of the engineering effort goes.
+
+    We are now extending Verteo to Spain. That is not a matter of copying the model across: the Spanish market is larger, more regional and structured differently, and so are its data sources. The work is in rebuilding the training data and the features for that market, then validating the model against it before it informs a single decision.
+
+    Because Verteo connects directly to our lending platform, every market it covers is also a market where a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal.
+  meta_title_en: Verteo is live in Latvia — Braingency
+  meta_description_en: Our machine learning model for property valuation now runs in production in Latvia, and we are extending it to Spain.
+  title_lv: Verteo darbojas Latvijā — nākamā ir Spānija
+  excerpt_lv: Mūsu īpašumu vērtēšanas modelis tagad darbojas ražošanā Latvijas tirgū. Paplašināšana uz Spāniju nav modeļa kopēšana, bet gan tā mācību pamata pārbūve.
+  body_lv: |-
+    Verteo, mūsu mašīnmācīšanās modelis īpašumu vērtēšanai, tagad darbojas ražošanā Latvijā. Tas novērtē atsevišķu īpašumu vērtību, balstoties uz tirgus datiem, un nodod šo vērtējumu tur, kur tas kreditētājiem vajadzīgs: ķīlas novērtēšanā hipotekāro kredītu izvērtēšanas laikā un kredītspējas novērtēšanā kā ievades datus.
+
+    Darbs ražošanā maina to, kas modelim jāprot. Prognozei piezīmju grāmatiņā pietiek būt precīzai vidēji. Vērtējums, kas iekļauts kredīta izvērtēšanas procesā, tiek vērtēts katrā gadījumā atsevišķi — arī tur, kur tirgus ir plāns un salīdzināmu darījumu ir maz. Tieši tur tiek ieguldīta lielākā daļa inženiertehniskā darba.
+
+    Tagad mēs paplašinām Verteo uz Spāniju. Tā nav modeļa pārnešana: Spānijas tirgus ir lielāks, izteiktāk reģionāls un citādi strukturēts, un tādi ir arī tā datu avoti. Darbs ir mācību datu un pazīmju pārbūvē šim tirgum un modeļa validācijā, pirms tas ietekmē kaut vienu lēmumu.
+
+    Tā kā Verteo ir tieši savienots ar mūsu kreditēšanas platformu, katrs tirgus, ko tas aptver, ir arī tirgus, kurā hipotekārā kredīta pieteikumu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis novecojušu ekspertīzi.
+  meta_title_lv: Verteo darbojas Latvijā — Braingency
+  meta_description_lv: Mūsu mašīnmācīšanās modelis īpašumu vērtēšanai darbojas ražošanā Latvijā, un mēs to paplašinām uz Spāniju.
+- slug: one-platform-not-five-tools
+  published_on: '2026-08-12'
+  published: true
+  title_en: Why we build lending systems as one platform, not five tools
+  excerpt_en: Each tool in an assembled lending stack works. The problem is everything between them — and the data that gets scattered across systems that cannot see each other.
+  body_en: |-
+    Most lending businesses run on an assembled stack: one system for applications, another for scoring, a third for compliance checks, a spreadsheet for the portfolio, and something improvised for collections. Each tool works. The problem is everything between them.
+
+    Data gets re-entered. Reconciliation becomes a job. When a regulator asks how a specific decision was made, the answer has to be reconstructed from four sources. And the most valuable asset the business has — the accumulated record of who applied, what was decided, and what happened next — is scattered across systems that cannot see each other.
+
+    That last point is what changed our approach. A lender's own portfolio history is the best possible training data for a scoring model. But it is only usable if the application, the decision, the contract and the repayment record all live in the same place and can be joined. When we build the full lending cycle as one platform, the data stream becomes coherent by design — and the machine learning stops being a separate project and becomes a feature of the system.
+
+    This is the reasoning behind our lending ERP platform, now running with clients in Latvia, Spain and the UAE.
+  meta_title_en: Why we build lending systems as one platform — Braingency
+  meta_description_en: Most lending businesses run on an assembled stack. Each tool works; the problem is everything between them. Why we build the full cycle as one system.
+  title_lv: Kāpēc mēs veidojam kreditēšanas sistēmas kā vienu platformu, nevis pieciem rīkiem
+  excerpt_lv: Katrs rīks saliktā kreditēšanas sistēmu kopumā darbojas. Problēma ir viss, kas atrodas starp tiem — un dati, kas izkaisīti pa sistēmām, kuras viena otru neredz.
+  body_lv: |-
+    Lielākā daļa kreditēšanas uzņēmumu strādā ar salikto rīku kopumu: viena sistēma pieteikumiem, cita skoringam, trešā atbilstības pārbaudēm, izklājlapa portfelim un kaut kas improvizēts parādu piedziņai. Katrs rīks darbojas. Problēma ir viss, kas atrodas starp tiem.
+
+    Dati tiek ievadīti atkārtoti. Saskaņošana kļūst par atsevišķu darbu. Kad regulators jautā, kā tika pieņemts konkrēts lēmums, atbilde jāsaliek kopā no četriem avotiem. Un vērtīgākais aktīvs, kas uzņēmumam ir — uzkrātais ieraksts par to, kas pieteicās, kas tika izlemts un kas notika pēc tam — ir izkaisīts pa sistēmām, kuras viena otru neredz.
+
+    Tieši šis pēdējais punkts mainīja mūsu pieeju. Kreditētāja paša portfeļa vēsture ir labākie iespējamie apmācības dati skoringa modelim. Bet tie ir izmantojami tikai tad, ja pieteikums, lēmums, līgums un atmaksas ieraksts atrodas vienuviet un ir savienojami. Kad mēs veidojam visu kreditēšanas ciklu kā vienu platformu, datu plūsma jau pēc būtības kļūst saskaņota — un mašīnmācīšanās pārstāj būt atsevišķs projekts un kļūst par sistēmas funkciju.
+
+    Tāda ir loģika aiz mūsu kreditēšanas ERP platformas, kas tagad darbojas ar klientiem Latvijā, Spānijā un AAE.
+  meta_title_lv: Kāpēc veidojam kreditēšanas sistēmas kā vienu platformu — Braingency
+  meta_description_lv: Lielākā daļa kreditētāju strādā ar salikto rīku kopumu. Katrs rīks darbojas; problēma ir viss, kas atrodas starp tiem.
+- slug: verteo-property-valuation-ml
+  published_on: '2026-07-29'
+  published: true
+  title_en: 'Verteo: forecasting Latvian property values with machine learning'
+  excerpt_en: In a small market, comparable transactions are scarce and the data that does exist is fragmented. Verteo turns collateral valuation from a bottleneck into part of the decision.
+  body_en: |-
+    Property valuation in a small market is a hard problem. There are fewer comparable transactions than in a large market, prices vary sharply by micro-location, and the data that does exist is fragmented. For a mortgage lender, this means collateral valuation is often slow, expensive and based on limited evidence.
+
+    We built Verteo to address this. It is a machine learning model trained on Latvian real estate market data that forecasts the value of individual properties. The output can be used in two ways: as an automated collateral assessment during mortgage underwriting, and as an input feature into credit scoring models.
+
+    Because Verteo connects to our lending platform, a mortgage application can be scored against a current model-driven valuation rather than a manual appraisal completed weeks earlier. The valuation stops being a bottleneck in the process and becomes part of the decision itself.
+  meta_title_en: 'Verteo: forecasting Latvian property values with ML — Braingency'
+  meta_description_en: A machine learning model trained on Latvian real estate market data, used for automated collateral assessment and as an input to credit scoring.
+  title_lv: 'Verteo: Latvijas īpašumu vērtību prognozēšana ar mašīnmācīšanos'
+  excerpt_lv: Nelielā tirgū salīdzināmu darījumu ir maz, un tie dati, kas ir pieejami, ir sadrumstaloti. Verteo pārvērš ķīlas vērtēšanu no šķēršļa par daļu no lēmuma.
+  body_lv: |-
+    Nekustamā īpašuma vērtēšana nelielā tirgū ir sarežģīts uzdevums. Salīdzināmu darījumu ir mazāk nekā lielā tirgū, cenas krasi atšķiras atkarībā no mikrolokācijas, un tie dati, kas ir pieejami, ir sadrumstaloti. Hipotekāro kredītu izsniedzējam tas nozīmē, ka ķīlas vērtēšana bieži ir lēna, dārga un balstīta uz ierobežotiem pierādījumiem.
+
+    Mēs izveidojām Verteo, lai to atrisinātu. Tas ir mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un prognozē atsevišķu īpašumu vērtību. Rezultātu var izmantot divējādi: kā automatizētu ķīlas novērtējumu hipotekārā kredīta izvērtēšanas laikā un kā ievades datus kredītspējas novērtēšanas modeļos.
+
+    Tā kā Verteo ir savienots ar mūsu kreditēšanas platformu, hipotekāro kredīta pieteikumu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis manuālu novērtējumu, kas veikts vairākas nedēļas iepriekš. Vērtēšana pārstāj būt šķērslis procesā un kļūst par daļu no paša lēmuma.
+  meta_title_lv: 'Verteo: Latvijas īpašumu vērtību prognozēšana ar ML — Braingency'
+  meta_description_lv: Mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un tiek izmantots automatizētai ķīlas novērtēšanai un kredītspējas novērtēšanā.

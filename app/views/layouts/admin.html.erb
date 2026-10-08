@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin — <%= Site::BRAND %></title>
+    <%= csrf_meta_tags %>
+    <style>
+      :root { color-scheme: light dark; --line: #8884; --muted: #888; --accent: #b5e853; }
+      * { box-sizing: border-box; }
+      body { margin: 0; font: 15px/1.5 system-ui, sans-serif; background: Canvas; color: CanvasText; }
+      .wrap { max-width: 64rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+      header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-bottom: 1px solid var(--line); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+      a { color: inherit; }
+      h1 { font-size: 1.4rem; margin: 0 0 1rem; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { text-align: left; padding: .6rem .5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+      th { font-weight: 600; color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; }
+      .muted { color: var(--muted); }
+      .btn { display: inline-block; padding: .45rem .9rem; border: 1px solid var(--line); border-radius: 6px; background: none; color: inherit; font: inherit; cursor: pointer; text-decoration: none; }
+      .btn-primary { background: var(--accent); color: #111; border-color: var(--accent); }
+      .btn-danger { color: #d33; border-color: #d335; }
+      .notice { padding: .6rem .9rem; border-radius: 6px; background: #b5e85333; margin-bottom: 1rem; }
+      .errors { padding: .6rem .9rem; border-radius: 6px; background: #d3333322; margin-bottom: 1rem; }
+      .badge { font-size: .75rem; padding: .1rem .45rem; border-radius: 999px; border: 1px solid var(--line); }
+      .badge-live { background: #b5e85333; border-color: transparent; }
+      .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+      .cols { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr)); margin-top: 1.5rem; }
+      fieldset { border: 1px solid var(--line); border-radius: 8px; padding: 1rem; margin: 0; min-width: 0; }
+      legend { font-weight: 600; padding: 0 .3rem; }
+      label { display: block; font-size: .85rem; color: var(--muted); margin: .8rem 0 .25rem; }
+      input[type=text], input[type=date], textarea { width: 100%; padding: .5rem .6rem; border: 1px solid var(--line); border-radius: 6px; background: Field; color: FieldText; font: inherit; }
+      textarea { resize: vertical; }
+      .check label { display: inline; color: inherit; font-size: inherit; margin: 0 0 0 .3rem; }
+      .hint { font-size: .8rem; color: var(--muted); margin: .25rem 0 0; }
+      .actions { display: flex; gap: .75rem; align-items: center; margin-top: 1.5rem; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <strong><%= link_to "#{Site::BRAND} admin", admin_articles_path, style: "text-decoration:none" %></strong>
+        <%= link_to "Open site ↗", news_path(locale: Site::DEFAULT_LOCALE), target: "_blank", class: "muted" %>
+      </header>
+      <% if notice %><p class="notice"><%= notice %></p><% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

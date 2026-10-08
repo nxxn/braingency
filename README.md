@@ -8,7 +8,7 @@ Europe)** application: evaluators visit it to verify the company is real and to
 find the published Gender Equality Plan.
 
 ```
-Rails 7.2 · Propshaft · esbuild · Tailwind v4 · no database · Heroku
+Rails 7.2 · Propshaft · esbuild · Tailwind v4 · Postgres (news) · Kamal on Hetzner
 ```
 
 ---
@@ -18,7 +18,8 @@ Rails 7.2 · Propshaft · esbuild · Tailwind v4 · no database · Heroku
 ```bash
 bundle install
 yarn install
-bin/dev          # Rails + esbuild --watch + tailwind --watch on :3000
+bin/rails db:prepare   # local Postgres; seeds the existing news articles
+bin/dev                # Rails + esbuild --watch + tailwind --watch on :3000
 ```
 
 `bin/build-assets` does a one-shot rebuild of both bundles if you are not
@@ -28,12 +29,14 @@ running the watchers.
 
 ## How it is put together
 
-There is **no database, no CMS and no forms**. Every page is a static render.
+Pages are static renders of locale copy. The only thing in the database is
+**news articles**, edited at `/admin` (see below). There are no forms.
 
 | Concern | Where |
 |---|---|
 | Site structure, legal facts, people, GEP metadata | `config/site.rb` |
-| All copy, both languages | `config/locales/{en,lv}.yml` |
+| All page copy, both languages | `config/locales/{en,lv}.yml` |
+| News articles | `articles` table, edited at `/admin` |
 | Design tokens, components, animation base states | `app/frontend/styles/application.css` |
 | Animations (one module per behaviour) | `app/javascript/lib/` |
 | Page templates | `app/views/pages/` |
@@ -49,6 +52,24 @@ All text lives in `config/locales/en.yml` and `config/locales/lv.yml`, which
 mirror each other key for key. Missing Latvian keys fall back to English
 automatically, so a partial translation never shows "translation missing" to a
 visitor.
+
+### News
+
+Articles live in Postgres (`Article`, one column per language: `title_en`,
+`title_lv`, …) and are edited at **`/admin`**, behind HTTP Basic auth with
+`ADMIN_USER` / `ADMIN_PASSWORD`. Without both variables the admin answers 403.
+
+- A draft is invisible on the site; ticking *Published* puts it on the news
+  page, its own URL and the sitemap.
+- Body text is plain: paragraphs are separated by an empty line.
+- Empty Latvian fields fall back to the English text.
+- The four articles that predate the database are in `db/seeds/articles.yml`;
+  `bin/rails db:seed` (or `kamal seed`) loads any that are missing and never
+  overwrites existing ones.
+- Renamed slugs keep redirecting via `Site::RENAMED_ARTICLES`.
+
+New articles share `og/default.png` until `bin/build-brand` is re-run, which
+renders cards for every published article in the local database.
 
 ### Languages
 
@@ -110,41 +131,47 @@ content is fully readable with JavaScript disabled.
 
 ---
 
-## Deploying to Heroku
+## Deploying (Kamal → Hetzner)
+
+The site runs on the shared sites server (`2.29.53.148`) next to the other
+sites, behind kamal-proxy, which also issues the Let's Encrypt certificate.
+Its database lives in the shared `sites-db` Postgres container on the same
+server (`../sites_infra`).
+
+Secrets come from `.env` (gitignored) via `.kamal/secrets`:
+
+```
+KAMAL_REGISTRY_USER=…            # ghcr.io, same as the other sites
+KAMAL_REGISTRY_PASSWORD=…
+BRAINGENCY_DATABASE_PASSWORD=…
+ADMIN_USER=…
+ADMIN_PASSWORD=…
+```
+
+`RAILS_MASTER_KEY` is read from `config/master.key`.
 
 One-time setup:
 
 ```bash
-heroku create braingency --stack heroku-24
-heroku buildpacks:add heroku/nodejs      # order matters — Node first
-heroku buildpacks:add heroku/ruby
-
-heroku config:set RAILS_ENV=production \
-                  RACK_ENV=production \
-                  SECRET_KEY_BASE="$(bin/rails secret)" \
-                  RAILS_LOG_TO_STDOUT=true
-
-heroku domains:add braingency.eu
-heroku domains:add www.braingency.eu
-heroku certs:auto:enable
+../sites_infra/bin/create-app-db braingency "$BRAINGENCY_DATABASE_PASSWORD"
+kamal setup
+kamal seed        # load the pre-database articles
 ```
 
-Then point DNS at the targets `heroku domains` prints (ALIAS/ANAME for the
-apex, CNAME for `www`) and deploy:
+Then deploy with:
 
 ```bash
-git push heroku main
+kamal deploy
 ```
 
-No database and no add-ons are required. `RAILS_SERVE_STATIC_FILES` is not
-needed — `config.public_file_server.enabled` is set explicitly in
-`config/environments/production.rb`.
+The container runs `db:prepare` on boot, so migrations apply on every deploy.
+DNS: `A braingency.eu` and `A www.braingency.eu` → `2.29.53.148`.
 
 ### What production does differently
 
-- Forces HTTPS (`/up` excluded so uptime monitors get a plain 200).
+- Forces HTTPS (`/up` excluded so health checks get a plain 200).
 - 301s `www.braingency.eu` → `braingency.eu`.
-- Restricts `Host` to the two domains plus `*.herokuapp.com`.
+- Restricts `Host` to the two domains.
 - Emits canonical URLs against `Site::HOST`, not the request host.
 
 ---
@@ -157,7 +184,7 @@ curl -sI http://braingency.eu/en | grep -i location            # → https
 curl -sI https://www.braingency.eu/en | grep -i location       # → apex
 curl -sI https://braingency.eu/gender-equality-plan            # 302 → /en/...
 curl -sI https://braingency.eu/documents/braingency-gender-equality-plan-v1.0-2026-01-12.pdf
-curl -s  https://braingency.eu/sitemap.xml | grep -c '<loc>'   # 20
+curl -s  https://braingency.eu/sitemap.xml | grep -c '<loc>'   # 24 (8 pages + 4 articles, × 2 languages)
 ```
 
 Lighthouse (desktop and mobile) should stay at 100/100/100/100; the last run

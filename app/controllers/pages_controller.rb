@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   # Every page in Site::PAGES renders app/views/pages/<action>.html.erb.
-  # No database, no CMS — copy lives in config/locales/{en,lv}.yml.
+  # Page copy lives in config/locales/{en,lv}.yml; only news articles come
+  # from the database.
 
   def home = render_page(:home)
   def about = render_page(:about)
@@ -11,15 +12,15 @@ class PagesController < ApplicationController
   def gender_equality_plan = render_page(:gender_equality_plan)
 
   def news
-    @articles = Site::ARTICLES.sort_by(&:published_on).reverse
+    @articles = Article.published.newest_first
     render_page(:news)
   end
 
   def article
-    @article = Site::article(params[:slug]) or
+    @article = Article.published.find_by(slug: params[:slug]) or
       return render file: Rails.public_path.join("404.html"), status: :not_found, layout: false
 
-    @page_key = :"article_#{@article.slug.tr('-', '_')}"
+    @page_key = @article.og_key
     render :article
   end
 

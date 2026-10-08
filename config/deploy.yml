@@ -1,0 +1,54 @@
+# Deployed with Kamal to the shared sites server on Hetzner, next to the other
+# sites. The database is the shared sites-db container (see ../sites_infra):
+# create the braingency user and databases there with
+#   ../sites_infra/bin/create-app-db braingency '<BRAINGENCY_DATABASE_PASSWORD>'
+service: braingency
+image: nxxn/braingency
+
+servers:
+  web:
+    hosts:
+      - 2.29.53.148
+
+proxy:
+  ssl: true
+  hosts:
+    - braingency.eu
+    - www.braingency.eu
+  app_port: 80
+  healthcheck:
+    path: /up
+    interval: 5
+    timeout: 5
+
+registry:
+  server: ghcr.io
+  username:
+    - KAMAL_REGISTRY_USER
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+  context: .
+
+env:
+  clear:
+    PGHOST: sites-db
+    WEB_CONCURRENCY: 1
+    RAILS_MAX_THREADS: 3
+  secret:
+    - RAILS_MASTER_KEY
+    - BRAINGENCY_DATABASE_PASSWORD
+    - ADMIN_USER
+    - ADMIN_PASSWORD
+
+asset_path: /rails/public/assets
+retain_containers: 2
+
+aliases:
+  console: app exec -i "bin/rails console"
+  shell: app exec -i bash
+  logs: app logs -f
+  dbc: app exec -i "bin/rails dbconsole"
+  seed: app exec "bin/rails db:seed"

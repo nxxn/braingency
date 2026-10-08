@@ -37,7 +37,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Deliberately NOT setting config.assume_ssl. The Heroku router terminates
+  # Deliberately NOT setting config.assume_ssl. kamal-proxy terminates
   # TLS and forwards X-Forwarded-Proto, which Rack already reads — so force_ssl
   # below can still tell an http request from an https one and upgrade it.
   # assume_ssl would make every request look secure and silently disable that
@@ -72,16 +72,14 @@ Rails.application.configure do
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
 
-  # DNS rebinding protection. herokuapp.com stays allowed so the app is
-  # reachable before DNS for the custom domain has propagated.
+  # DNS rebinding protection.
   config.hosts = [
     "braingency.eu",
-    "www.braingency.eu",
-    /\A[a-z0-9-]+\.herokuapp\.com\z/
+    "www.braingency.eu"
   ]
   config.hosts << ENV["APP_HOST"] if ENV["APP_HOST"].present?
 
-  # The Heroku router health-checks by IP, without a Host header we allow.
+  # kamal-proxy health-checks the container directly, without a Host header we allow.
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
 end

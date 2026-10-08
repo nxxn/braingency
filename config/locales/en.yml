@@ -70,18 +70,6 @@ en:
     contact:
       title: "Contact — Braingency | SIA BATWATEX, Riga"
       description: "Get in touch with Braingency. SIA BATWATEX, Rupniecibas 22-38, Riga, Latvia."
-    article_one_platform_not_five_tools:
-      title: "Why we build lending systems as one platform — Braingency"
-      description: "Most lending businesses run on an assembled stack. Each tool works; the problem is everything between them. Why we build the full cycle as one system."
-    article_verteo_property_valuation_ml:
-      title: "Verteo: forecasting Latvian property values with ML — Braingency"
-      description: "A machine learning model trained on Latvian real estate market data, used for automated collateral assessment and as an input to credit scoring."
-    article_verteo_live_in_latvia:
-      title: "Verteo is live in Latvia — Braingency"
-      description: "Our machine learning model for property valuation now runs in production in Latvia, and we are extending it to Spain."
-    article_keeping_scoring_models_honest:
-      title: "Keeping a scoring model honest in production — Braingency"
-      description: "Training a credit scoring model is the visible part. Drift, late outcomes and accountability decide whether it stays useful once it approves real loans."
   # --- Pages ------------------------------------------------------------
   # --- Command palette (⌘K) --------------------------------------------
   palette:
@@ -601,38 +589,3 @@ en:
         response: "We read everything that arrives and reply to anything that looks like a fit."
       find_us:
         label: "Find us"
-
-  # --- News articles ------------------------------------------------------
-  articles:
-    one_platform_not_five_tools:
-      title: "Why we build lending systems as one platform, not five tools"
-      excerpt: "Each tool in an assembled lending stack works. The problem is everything between them — and the data that gets scattered across systems that cannot see each other."
-      body:
-        - "Most lending businesses run on an assembled stack: one system for applications, another for scoring, a third for compliance checks, a spreadsheet for the portfolio, and something improvised for collections. Each tool works. The problem is everything between them."
-        - "Data gets re-entered. Reconciliation becomes a job. When a regulator asks how a specific decision was made, the answer has to be reconstructed from four sources. And the most valuable asset the business has — the accumulated record of who applied, what was decided, and what happened next — is scattered across systems that cannot see each other."
-        - "That last point is what changed our approach. A lender's own portfolio history is the best possible training data for a scoring model. But it is only usable if the application, the decision, the contract and the repayment record all live in the same place and can be joined. When we build the full lending cycle as one platform, the data stream becomes coherent by design — and the machine learning stops being a separate project and becomes a feature of the system."
-        - "This is the reasoning behind our lending ERP platform, now running with clients in Latvia, Spain and the UAE."
-    verteo_property_valuation_ml:
-      title: "Verteo: forecasting Latvian property values with machine learning"
-      excerpt: "In a small market, comparable transactions are scarce and the data that does exist is fragmented. Verteo turns collateral valuation from a bottleneck into part of the decision."
-      body:
-        - "Property valuation in a small market is a hard problem. There are fewer comparable transactions than in a large market, prices vary sharply by micro-location, and the data that does exist is fragmented. For a mortgage lender, this means collateral valuation is often slow, expensive and based on limited evidence."
-        - "We built Verteo to address this. It is a machine learning model trained on Latvian real estate market data that forecasts the value of individual properties. The output can be used in two ways: as an automated collateral assessment during mortgage underwriting, and as an input feature into credit scoring models."
-        - "Because Verteo connects to our lending platform, a mortgage application can be scored against a current model-driven valuation rather than a manual appraisal completed weeks earlier. The valuation stops being a bottleneck in the process and becomes part of the decision itself."
-    verteo_live_in_latvia:
-      title: "Verteo is live in Latvia — Spain is next"
-      excerpt: "Our property valuation model now runs in production for the Latvian market. Extending it to Spain is less about copying the model than about rebuilding what it learns from."
-      body:
-        - "Verteo, our machine learning model for property valuation, is now in production in Latvia. It estimates the value of individual properties from market data and puts that estimate where lenders need it: into collateral assessment during mortgage underwriting, and into credit scoring as an input."
-        - "Running in production changes what a model has to be good at. A forecast in a notebook only has to be accurate on average. A valuation that sits inside an underwriting workflow is judged case by case — including in the places where the market is thin and comparable sales are few. That is where most of the engineering effort goes."
-        - "We are now extending Verteo to Spain. That is not a matter of copying the model across: the Spanish market is larger, more regional and structured differently, and so are its data sources. The work is in rebuilding the training data and the features for that market, then validating the model against it before it informs a single decision."
-        - "Because Verteo connects directly to our lending platform, every market it covers is also a market where a mortgage application can be scored against a current, model-driven valuation rather than a stale appraisal."
-    keeping_scoring_models_honest:
-      title: "What it takes to keep a scoring model honest in production"
-      excerpt: "Training a credit scoring model is the visible part of the work. Whether it stays useful is decided after it starts approving real loans."
-      body:
-        - "Training a credit scoring model is the visible part of the work. The part that decides whether it stays useful starts the day it begins approving real applications."
-        - "The first problem is drift. A model learns the relationship between applicants and outcomes as it was in the training data. Products change, marketing brings in different customers, the economy moves. The model keeps producing confident scores regardless, so the only defence is to watch it: compare the scores it produces today with those it produced when it was validated, and track outcomes as loans mature."
-        - "The second is that outcomes arrive late, and only for some. Whether a loan was a good decision is known months after it was made, and only for applicants who were approved. A model that never learns what happened to the people it declined can drift towards its own blind spots, so monitoring has to account for that rather than treating the approved book as the whole truth."
-        - "The third is accountability. In a regulated business every automated decision has to be explainable afterwards: which model version scored the application, with which inputs, against which threshold. That is an engineering requirement as much as a data science one — the score has to be recorded in the audit trail as part of the same step that acts on it."
-        - "None of this is exotic. It is the difference between a model that was accurate once and a model a lender can keep relying on — and it is why we build scoring into the lending platform itself rather than bolting it on from outside."

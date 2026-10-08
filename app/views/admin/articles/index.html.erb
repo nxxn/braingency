@@ -1,0 +1,38 @@
+<div style="display:flex;justify-content:space-between;align-items:center">
+  <h1>News</h1>
+  <%= link_to "New article", new_admin_article_path, class: "btn btn-primary" %>
+</div>
+
+<table>
+  <thead>
+    <tr><th>Date</th><th>Title</th><th>Status</th><th></th></tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td class="muted" style="white-space:nowrap"><%= article.published_on.iso8601 %></td>
+        <td>
+          <%= link_to article.title_en, edit_admin_article_path(article) %>
+          <div class="muted" style="font-size:.85rem"><%= article.slug %><%= " · no LV translation" if article.title_lv.blank? %></div>
+        </td>
+        <td>
+          <% if article.published %>
+            <span class="badge badge-live">Published</span>
+          <% else %>
+            <span class="badge">Draft</span>
+          <% end %>
+        </td>
+        <td style="white-space:nowrap;text-align:right">
+          <% if article.published %>
+            <% Site::LOCALES.each do |locale| %>
+              <%= link_to locale.upcase, article_path(slug: article.slug, locale: locale), target: "_blank", class: "muted" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    <% if @articles.empty? %>
+      <tr><td colspan="4" class="muted">No articles yet.</td></tr>
+    <% end %>
+  </tbody>
+</table>

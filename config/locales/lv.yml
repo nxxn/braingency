@@ -90,18 +90,6 @@ lv:
     contact:
       title: "Kontakti — Braingency | SIA BATWATEX, Rīga"
       description: "Sazinieties ar Braingency. SIA BATWATEX, Rupniecibas 22-38, Rīga, Latvija."
-    article_one_platform_not_five_tools:
-      title: "Kāpēc veidojam kreditēšanas sistēmas kā vienu platformu — Braingency"
-      description: "Lielākā daļa kreditētāju strādā ar salikto rīku kopumu. Katrs rīks darbojas; problēma ir viss, kas atrodas starp tiem."
-    article_verteo_property_valuation_ml:
-      title: "Verteo: Latvijas īpašumu vērtību prognozēšana ar ML — Braingency"
-      description: "Mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un tiek izmantots automatizētai ķīlas novērtēšanai un kredītspējas novērtēšanā."
-    article_verteo_live_in_latvia:
-      title: "Verteo darbojas Latvijā — Braingency"
-      description: "Mūsu mašīnmācīšanās modelis īpašumu vērtēšanai darbojas ražošanā Latvijā, un mēs to paplašinām uz Spāniju."
-    article_keeping_scoring_models_honest:
-      title: "Kā saglabāt kredītnovērtēšanas modeli godīgu ražošanā — Braingency"
-      description: "Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Datu nobīde, vēlu zināmi iznākumi un atbildība nosaka, vai tas paliek noderīgs, kad apstiprina reālus kredītus."
   # --- Pages ------------------------------------------------------------
   # --- Komandu palete (⌘K) ---------------------------------------------
   palette:
@@ -554,38 +542,3 @@ lv:
         response: "Mēs izlasām visu, kas pienāk, un atbildam uz visu, kas šķiet piemērots."
       find_us:
         label: "Atrodiet mūs"
-
-  # --- News articles ------------------------------------------------------
-  articles:
-    one_platform_not_five_tools:
-      title: "Kāpēc mēs veidojam kreditēšanas sistēmas kā vienu platformu, nevis pieciem rīkiem"
-      excerpt: "Katrs rīks saliktā kreditēšanas sistēmu kopumā darbojas. Problēma ir viss, kas atrodas starp tiem — un dati, kas izkaisīti pa sistēmām, kuras viena otru neredz."
-      body:
-        - "Lielākā daļa kreditēšanas uzņēmumu strādā ar salikto rīku kopumu: viena sistēma pieteikumiem, cita skoringam, trešā atbilstības pārbaudēm, izklājlapa portfelim un kaut kas improvizēts parādu piedziņai. Katrs rīks darbojas. Problēma ir viss, kas atrodas starp tiem."
-        - "Dati tiek ievadīti atkārtoti. Saskaņošana kļūst par atsevišķu darbu. Kad regulators jautā, kā tika pieņemts konkrēts lēmums, atbilde jāsaliek kopā no četriem avotiem. Un vērtīgākais aktīvs, kas uzņēmumam ir — uzkrātais ieraksts par to, kas pieteicās, kas tika izlemts un kas notika pēc tam — ir izkaisīts pa sistēmām, kuras viena otru neredz."
-        - "Tieši šis pēdējais punkts mainīja mūsu pieeju. Kreditētāja paša portfeļa vēsture ir labākie iespējamie apmācības dati skoringa modelim. Bet tie ir izmantojami tikai tad, ja pieteikums, lēmums, līgums un atmaksas ieraksts atrodas vienuviet un ir savienojami. Kad mēs veidojam visu kreditēšanas ciklu kā vienu platformu, datu plūsma jau pēc būtības kļūst saskaņota — un mašīnmācīšanās pārstāj būt atsevišķs projekts un kļūst par sistēmas funkciju."
-        - "Tāda ir loģika aiz mūsu kreditēšanas ERP platformas, kas tagad darbojas ar klientiem Latvijā, Spānijā un AAE."
-    verteo_property_valuation_ml:
-      title: "Verteo: Latvijas īpašumu vērtību prognozēšana ar mašīnmācīšanos"
-      excerpt: "Nelielā tirgū salīdzināmu darījumu ir maz, un tie dati, kas ir pieejami, ir sadrumstaloti. Verteo pārvērš ķīlas vērtēšanu no šķēršļa par daļu no lēmuma."
-      body:
-        - "Nekustamā īpašuma vērtēšana nelielā tirgū ir sarežģīts uzdevums. Salīdzināmu darījumu ir mazāk nekā lielā tirgū, cenas krasi atšķiras atkarībā no mikrolokācijas, un tie dati, kas ir pieejami, ir sadrumstaloti. Hipotekāro kredītu izsniedzējam tas nozīmē, ka ķīlas vērtēšana bieži ir lēna, dārga un balstīta uz ierobežotiem pierādījumiem."
-        - "Mēs izveidojām Verteo, lai to atrisinātu. Tas ir mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un prognozē atsevišķu īpašumu vērtību. Rezultātu var izmantot divējādi: kā automatizētu ķīlas novērtējumu hipotekārā kredīta izvērtēšanas laikā un kā ievades datus kredītspējas novērtēšanas modeļos."
-        - "Tā kā Verteo ir savienots ar mūsu kreditēšanas platformu, hipotekāro kredīta pieteikumu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis manuālu novērtējumu, kas veikts vairākas nedēļas iepriekš. Vērtēšana pārstāj būt šķērslis procesā un kļūst par daļu no paša lēmuma."
-    verteo_live_in_latvia:
-      title: "Verteo darbojas Latvijā — nākamā ir Spānija"
-      excerpt: "Mūsu īpašumu vērtēšanas modelis tagad darbojas ražošanā Latvijas tirgū. Paplašināšana uz Spāniju nav modeļa kopēšana, bet gan tā mācību pamata pārbūve."
-      body:
-        - "Verteo, mūsu mašīnmācīšanās modelis īpašumu vērtēšanai, tagad darbojas ražošanā Latvijā. Tas novērtē atsevišķu īpašumu vērtību, balstoties uz tirgus datiem, un nodod šo vērtējumu tur, kur tas kreditētājiem vajadzīgs: ķīlas novērtēšanā hipotekāro kredītu izvērtēšanas laikā un kredītspējas novērtēšanā kā ievades datus."
-        - "Darbs ražošanā maina to, kas modelim jāprot. Prognozei piezīmju grāmatiņā pietiek būt precīzai vidēji. Vērtējums, kas iekļauts kredīta izvērtēšanas procesā, tiek vērtēts katrā gadījumā atsevišķi — arī tur, kur tirgus ir plāns un salīdzināmu darījumu ir maz. Tieši tur tiek ieguldīta lielākā daļa inženiertehniskā darba."
-        - "Tagad mēs paplašinām Verteo uz Spāniju. Tā nav modeļa pārnešana: Spānijas tirgus ir lielāks, izteiktāk reģionāls un citādi strukturēts, un tādi ir arī tā datu avoti. Darbs ir mācību datu un pazīmju pārbūvē šim tirgum un modeļa validācijā, pirms tas ietekmē kaut vienu lēmumu."
-        - "Tā kā Verteo ir tieši savienots ar mūsu kreditēšanas platformu, katrs tirgus, ko tas aptver, ir arī tirgus, kurā hipotekārā kredīta pieteikumu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis novecojušu ekspertīzi."
-    keeping_scoring_models_honest:
-      title: "Kas vajadzīgs, lai kredītnovērtēšanas modelis ražošanā paliktu godīgs"
-      excerpt: "Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Vai tas paliek noderīgs, izšķiras pēc tam, kad tas sāk apstiprināt reālus kredītus."
-      body:
-        - "Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Tā daļa, kas nosaka, vai modelis paliek noderīgs, sākas dienā, kad tas sāk apstiprināt reālus pieteikumus."
-        - "Pirmā problēma ir nobīde. Modelis apgūst saikni starp pieteicējiem un iznākumiem tādu, kāda tā bija mācību datos. Produkti mainās, mārketings piesaista citus klientus, ekonomika mainās. Modelis jebkurā gadījumā turpina izdot pārliecinošus vērtējumus, tāpēc vienīgā aizsardzība ir to uzraudzīt: salīdzināt šodienas vērtējumus ar tiem, ko tas izdeva validācijas laikā, un sekot iznākumiem, kredītiem nobriestot."
-        - "Otrā — iznākumi kļūst zināmi vēlu un tikai daļai. Vai kredīts bija labs lēmums, kļūst zināms mēnešus vēlāk un tikai par apstiprinātajiem pieteicējiem. Modelis, kas nekad neuzzina, kas notika ar tiem, kuriem tas atteica, var novirzīties uz saviem aklajiem punktiem, tāpēc uzraudzībai tas jāņem vērā, nevis jāuzskata apstiprinātais portfelis par visu patiesību."
-        - "Trešā ir atbildība. Regulētā biznesā katram automatizētam lēmumam jābūt izskaidrojamam arī vēlāk: kura modeļa versija novērtēja pieteikumu, ar kādiem ievaddatiem un pret kādu slieksni. Tā ir tikpat liela inženiertehniska prasība kā datu zinātnes prasība — vērtējumam jābūt ierakstītam audita pierakstā tajā pašā solī, kurā uz to balstās lēmums."
-        - "Nekas no tā nav eksotisks. Tā ir atšķirība starp modeli, kas reiz bija precīzs, un modeli, uz kuru kreditētājs var turpināt paļauties — un tieši tāpēc mēs iebūvējam novērtēšanu pašā kreditēšanas platformā, nevis pievienojam to no ārpuses."

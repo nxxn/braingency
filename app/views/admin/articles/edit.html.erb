@@ -1,0 +1,5 @@
+<h1>Edit article</h1>
+<%= render "form", article: @article %>
+
+<%= button_to "Delete article", admin_article_path(@article), method: :delete, class: "btn btn-danger",
+      form: { style: "margin-top:2.5rem", onsubmit: "return confirm('Delete this article for good?')" } %>
