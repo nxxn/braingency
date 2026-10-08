@@ -46,6 +46,8 @@ module Braingency
     # --- i18n ---------------------------------------------------------------
     config.i18n.available_locales = Site::LOCALES
     config.i18n.default_locale = Site::DEFAULT_LOCALE
+    # Interactive articles keep their copy in config/locales/articles/.
+    config.i18n.load_path += Dir[Rails.root.join("config/locales/articles/*.yml")]
     # Missing LV keys fall back to the English source rather than rendering
     # "translation missing" at a visitor.
     config.i18n.fallbacks = [ Site::DEFAULT_LOCALE ]

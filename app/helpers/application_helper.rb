@@ -70,13 +70,14 @@ module ApplicationHelper
   # what Intl.NumberFormat produces in the browser, so server-rendered sample
   # figures and the ones the illustrations generate never disagree.
   def euros(amount, compact: false)
-    lv = I18n.locale == :lv
+    suffixed = I18n.locale != :en
     if compact
       millions = (amount / 1_000_000.0).round(1).to_s
-      return lv ? "#{millions.tr(".", ",")} milj. €" : "€#{millions}M"
+      return "€#{millions}M" unless suffixed
+      return "#{millions.tr(".", ",")} #{I18n.locale == :ru ? "млн" : "milj."} €"
     end
-    digits = number_with_delimiter(amount.round, delimiter: lv ? "\u00a0" : ",")
-    lv ? "#{digits}\u00a0€" : "€#{digits}"
+    digits = number_with_delimiter(amount.round, delimiter: suffixed ? "\u00a0" : ",")
+    suffixed ? "#{digits}\u00a0€" : "€#{digits}"
   end
 
   def format_date(date)

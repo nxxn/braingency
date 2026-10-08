@@ -14,6 +14,7 @@ en:
     languages:
       en: "English"
       lv: "Latvian"
+      ru: "Russian"
     in_production: "In production"
     illustrative: "Illustrative data"
     read_article: "Read article"

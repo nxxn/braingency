@@ -34,6 +34,7 @@ lv:
     languages:
       en: "angļu"
       lv: "latviešu"
+      ru: "krievu"
     in_production: "Ražošanā"
     illustrative: "Ilustratīvi dati"
     read_article: "Lasīt rakstu"

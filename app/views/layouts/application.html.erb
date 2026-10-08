@@ -18,8 +18,11 @@
     <%# --- Open Graph / Twitter --- %>
     <meta property="og:type" content="<%= @article ? "article" : "website" %>">
     <meta property="og:site_name" content="<%= Site::BRAND %>">
-    <meta property="og:locale" content="<%= I18n.locale == :lv ? "lv_LV" : "en_GB" %>">
-    <meta property="og:locale:alternate" content="<%= I18n.locale == :lv ? "en_GB" : "lv_LV" %>">
+    <% og_locales = { en: "en_GB", lv: "lv_LV", ru: "ru_RU" } %>
+    <meta property="og:locale" content="<%= og_locales.fetch(I18n.locale) %>">
+    <% og_locales.except(I18n.locale).each_value do |og_locale| %>
+      <meta property="og:locale:alternate" content="<%= og_locale %>">
+    <% end %>
     <% if @article %>
       <meta property="article:published_time" content="<%= @article.published_on.iso8601 %>">
       <meta property="article:author" content="<%= Site::BRAND %>">
@@ -45,6 +48,9 @@
     <%# Fonts are same-origin; preload the two subsets that render above the fold %>
     <%= preload_link_tag asset_path("inter-tight-latin-wght-normal.woff2"), as: "font", type: "font/woff2", crossorigin: "anonymous" %>
     <%= preload_link_tag asset_path("jetbrains-mono-latin-wght-normal.woff2"), as: "font", type: "font/woff2", crossorigin: "anonymous" %>
+    <% if I18n.locale == :ru %>
+      <%= preload_link_tag asset_path("inter-tight-cyrillic-wght-normal.woff2"), as: "font", type: "font/woff2", crossorigin: "anonymous" %>
+    <% end %>
 
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application", type: "module", defer: true %>

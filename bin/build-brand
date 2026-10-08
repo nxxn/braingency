@@ -75,7 +75,7 @@ Article.published.find_each do |article|
     I18n.with_locale(locale) do
       html = ERB.new(template).result_with_hash(
         title:   article.title,
-        eyebrow: "#{locale == :lv ? "ZIŅAS" : "NEWS"} · #{article.published_on.iso8601}",
+        eyebrow: "#{{ lv: "ZIŅAS", ru: "НОВОСТИ" }.fetch(locale, "NEWS")} · #{article.published_on.iso8601}",
         footer:  "braingency.eu"
       )
       File.write("tmp/brand/og-#{article.og_key}.#{locale}.html", html)

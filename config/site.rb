@@ -4,7 +4,7 @@
 # derived from here, so adding a page means touching this file and the two
 # locale files — nothing else.
 module Site
-  LOCALES = %i[en lv].freeze
+  LOCALES = %i[en lv ru].freeze
   DEFAULT_LOCALE = :en
 
   HOST = "https://braingency.eu".freeze

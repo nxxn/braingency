@@ -1,5 +1,5 @@
-# Articles that were live before news moved into the database. Loaded by
-# db/seeds.rb; once an article exists, the admin is the source of truth.
+# News articles shipped with the code. Loaded by db/seeds.rb; once an article
+# exists, the admin is the source of truth and only blank fields are filled.
 ---
 - slug: keeping-scoring-models-honest
   published_on: '2026-09-24'
@@ -19,7 +19,9 @@
   meta_title_en: Keeping a scoring model honest in production — Braingency
   meta_description_en: Training a credit scoring model is the visible part. Drift, late outcomes and accountability decide whether it stays useful once it approves real loans.
   title_lv: Kas vajadzīgs, lai kredītnovērtēšanas modelis ražošanā paliktu godīgs
+  title_ru: Что нужно, чтобы скоринговая модель оставалась честной в эксплуатации
   excerpt_lv: Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Vai tas paliek noderīgs, izšķiras pēc tam, kad tas sāk apstiprināt reālus kredītus.
+  excerpt_ru: Обучение модели кредитного скоринга — видимая часть работы. Останется ли она полезной, решается после того, как она начинает одобрять реальные кредиты.
   body_lv: |-
     Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Tā daļa, kas nosaka, vai modelis paliek noderīgs, sākas dienā, kad tas sāk apstiprināt reālus pieteikumus.
 
@@ -30,8 +32,20 @@
     Trešā ir atbildība. Regulētā biznesā katram automatizētam lēmumam jābūt izskaidrojamam arī vēlāk: kura modeļa versija novērtēja pieteikumu, ar kādiem ievaddatiem un pret kādu slieksni. Tā ir tikpat liela inženiertehniska prasība kā datu zinātnes prasība — vērtējumam jābūt ierakstītam audita pierakstā tajā pašā solī, kurā uz to balstās lēmums.
 
     Nekas no tā nav eksotisks. Tā ir atšķirība starp modeli, kas reiz bija precīzs, un modeli, uz kuru kreditētājs var turpināt paļauties — un tieši tāpēc mēs iebūvējam novērtēšanu pašā kreditēšanas platformā, nevis pievienojam to no ārpuses.
+  body_ru: |-
+    Обучение модели кредитного скоринга — видимая часть работы. Та часть, от которой зависит, останется ли модель полезной, начинается в день, когда она начинает одобрять реальные заявки.
+
+    Первая проблема — дрейф. Модель усваивает связь между заёмщиками и исходами такой, какой она была в обучающих данных. Продукты меняются, маркетинг приводит других клиентов, экономика не стоит на месте. А модель продолжает уверенно выдавать оценки, поэтому единственная защита — наблюдать за ней: сравнивать сегодняшние оценки с теми, что она выдавала при валидации, и отслеживать исходы по мере того, как кредиты вызревают.
+
+    Вторая — исходы становятся известны поздно и только для части заявок. Было ли решение по кредиту удачным, выясняется через месяцы и только для одобренных заёмщиков. Модель, которая так и не узнаёт, что стало с теми, кому она отказала, может смещаться в сторону собственных слепых зон, поэтому мониторинг должен это учитывать, а не считать одобренный портфель всей правдой.
+
+    Третья — подотчётность. В регулируемом бизнесе каждое автоматическое решение должно быть объяснимо и задним числом: какая версия модели оценила заявку, на каких входных данных и относительно какого порога. Это такое же инженерное требование, как и требование data science: оценка должна записываться в журнал аудита в рамках того же шага, на котором по ней принимается решение.
+
+    Ничего экзотического здесь нет. В этом разница между моделью, которая когда-то была точной, и моделью, на которую кредитор может полагаться и дальше, — и именно поэтому мы встраиваем скоринг в саму кредитную платформу, а не прикручиваем его снаружи.
   meta_title_lv: Kā saglabāt kredītnovērtēšanas modeli godīgu ražošanā — Braingency
+  meta_title_ru: Как сохранить честность скоринговой модели в эксплуатации — Braingency
   meta_description_lv: Kredītnovērtēšanas modeļa apmācība ir redzamā darba daļa. Datu nobīde, vēlu zināmi iznākumi un atbildība nosaka, vai tas paliek noderīgs, kad apstiprina reālus kredītus.
+  meta_description_ru: Обучение модели кредитного скоринга — видимая часть работы. Дрейф, поздние исходы и подотчётность решают, останется ли она полезной, когда начнёт одобрять реальные кредиты.
 - slug: verteo-live-in-latvia
   published_on: '2026-09-10'
   published: true
@@ -48,7 +62,9 @@
   meta_title_en: Verteo is live in Latvia — Braingency
   meta_description_en: Our machine learning model for property valuation now runs in production in Latvia, and we are extending it to Spain.
   title_lv: Verteo darbojas Latvijā — nākamā ir Spānija
+  title_ru: Verteo запущена в Латвии — следующая на очереди Испания
   excerpt_lv: Mūsu īpašumu vērtēšanas modelis tagad darbojas ražošanā Latvijas tirgū. Paplašināšana uz Spāniju nav modeļa kopēšana, bet gan tā mācību pamata pārbūve.
+  excerpt_ru: Наша модель оценки недвижимости теперь работает в эксплуатации на латвийском рынке. Выход в Испанию — это не копирование модели, а перестройка того, на чём она учится.
   body_lv: |-
     Verteo, mūsu mašīnmācīšanās modelis īpašumu vērtēšanai, tagad darbojas ražošanā Latvijā. Tas novērtē atsevišķu īpašumu vērtību, balstoties uz tirgus datiem, un nodod šo vērtējumu tur, kur tas kreditētājiem vajadzīgs: ķīlas novērtēšanā hipotekāro kredītu izvērtēšanas laikā un kredītspējas novērtēšanā kā ievades datus.
 
@@ -57,8 +73,18 @@
     Tagad mēs paplašinām Verteo uz Spāniju. Tā nav modeļa pārnešana: Spānijas tirgus ir lielāks, izteiktāk reģionāls un citādi strukturēts, un tādi ir arī tā datu avoti. Darbs ir mācību datu un pazīmju pārbūvē šim tirgum un modeļa validācijā, pirms tas ietekmē kaut vienu lēmumu.
 
     Tā kā Verteo ir tieši savienots ar mūsu kreditēšanas platformu, katrs tirgus, ko tas aptver, ir arī tirgus, kurā hipotekārā kredīta pieteikumu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis novecojušu ekspertīzi.
+  body_ru: |-
+    Verteo, наша модель машинного обучения для оценки недвижимости, запущена в промышленную эксплуатацию в Латвии. Она оценивает стоимость отдельных объектов по рыночным данным и передаёт эту оценку туда, где она нужна кредиторам: в оценку залога при ипотечном андеррайтинге и в кредитный скоринг в качестве входных данных.
+
+    Работа в эксплуатации меняет требования к модели. Прогнозу в ноутбуке достаточно быть точным в среднем. Оценку, встроенную в процесс андеррайтинга, судят по каждому отдельному случаю — в том числе там, где рынок тонкий, а сопоставимых сделок мало. Именно туда уходит большая часть инженерных усилий.
+
+    Сейчас мы расширяем Verteo на Испанию. Это не перенос модели как есть: испанский рынок больше, сильнее разделён по регионам и устроен иначе — как и его источники данных. Работа состоит в том, чтобы заново собрать обучающие данные и признаки для этого рынка, а затем провалидировать на нём модель, прежде чем она повлияет хотя бы на одно решение.
+
+    Поскольку Verteo напрямую подключена к нашей кредитной платформе, каждый рынок, который она охватывает, становится рынком, где ипотечную заявку можно оценивать по актуальной оценке модели, а не по устаревшему заключению оценщика.
   meta_title_lv: Verteo darbojas Latvijā — Braingency
+  meta_title_ru: Verteo запущена в Латвии — Braingency
   meta_description_lv: Mūsu mašīnmācīšanās modelis īpašumu vērtēšanai darbojas ražošanā Latvijā, un mēs to paplašinām uz Spāniju.
+  meta_description_ru: Наша модель машинного обучения для оценки недвижимости работает в промышленной эксплуатации в Латвии, и мы расширяем её на Испанию.
 - slug: one-platform-not-five-tools
   published_on: '2026-08-12'
   published: true
@@ -75,7 +101,9 @@
   meta_title_en: Why we build lending systems as one platform — Braingency
   meta_description_en: Most lending businesses run on an assembled stack. Each tool works; the problem is everything between them. Why we build the full cycle as one system.
   title_lv: Kāpēc mēs veidojam kreditēšanas sistēmas kā vienu platformu, nevis pieciem rīkiem
+  title_ru: Почему мы строим кредитные системы как одну платформу, а не пять инструментов
   excerpt_lv: Katrs rīks saliktā kreditēšanas sistēmu kopumā darbojas. Problēma ir viss, kas atrodas starp tiem — un dati, kas izkaisīti pa sistēmām, kuras viena otru neredz.
+  excerpt_ru: Каждый инструмент в собранном по частям кредитном стеке работает. Проблема — всё, что между ними, и данные, разбросанные по системам, которые не видят друг друга.
   body_lv: |-
     Lielākā daļa kreditēšanas uzņēmumu strādā ar salikto rīku kopumu: viena sistēma pieteikumiem, cita skoringam, trešā atbilstības pārbaudēm, izklājlapa portfelim un kaut kas improvizēts parādu piedziņai. Katrs rīks darbojas. Problēma ir viss, kas atrodas starp tiem.
 
@@ -84,8 +112,18 @@
     Tieši šis pēdējais punkts mainīja mūsu pieeju. Kreditētāja paša portfeļa vēsture ir labākie iespējamie apmācības dati skoringa modelim. Bet tie ir izmantojami tikai tad, ja pieteikums, lēmums, līgums un atmaksas ieraksts atrodas vienuviet un ir savienojami. Kad mēs veidojam visu kreditēšanas ciklu kā vienu platformu, datu plūsma jau pēc būtības kļūst saskaņota — un mašīnmācīšanās pārstāj būt atsevišķs projekts un kļūst par sistēmas funkciju.
 
     Tāda ir loģika aiz mūsu kreditēšanas ERP platformas, kas tagad darbojas ar klientiem Latvijā, Spānijā un AAE.
+  body_ru: |-
+    Большинство кредитных компаний работают на стеке, собранном по частям: одна система для заявок, другая для скоринга, третья для проверок комплаенса, таблица для портфеля и что-то самодельное для взыскания. Каждый инструмент работает. Проблема — всё, что между ними.
+
+    Данные вводятся повторно. Сверка превращается в отдельную работу. Когда регулятор спрашивает, как было принято конкретное решение, ответ приходится восстанавливать по четырём источникам. А самый ценный актив компании — накопленная история о том, кто подавал заявку, какое решение было принято и что произошло дальше, — разбросан по системам, которые не видят друг друга.
+
+    Именно последний пункт изменил наш подход. Собственная история портфеля кредитора — лучшие обучающие данные для скоринговой модели, какие только можно получить. Но использовать их можно, только если заявка, решение, договор и история погашений хранятся в одном месте и могут быть связаны между собой. Когда мы строим весь кредитный цикл как одну платформу, поток данных согласован по самой конструкции — и машинное обучение перестаёт быть отдельным проектом и становится функцией системы.
+
+    Такова логика нашей кредитной ERP-платформы, которая сейчас работает у клиентов в Латвии, Испании и ОАЭ.
   meta_title_lv: Kāpēc veidojam kreditēšanas sistēmas kā vienu platformu — Braingency
+  meta_title_ru: Почему мы строим кредитные системы как одну платформу — Braingency
   meta_description_lv: Lielākā daļa kreditētāju strādā ar salikto rīku kopumu. Katrs rīks darbojas; problēma ir viss, kas atrodas starp tiem.
+  meta_description_ru: Большинство кредитных компаний работают на стеке, собранном по частям. Каждый инструмент работает; проблема — всё, что между ними. Почему мы строим весь цикл как одну систему.
 - slug: verteo-property-valuation-ml
   published_on: '2026-07-29'
   published: true
@@ -100,12 +138,38 @@
   meta_title_en: 'Verteo: forecasting Latvian property values with ML — Braingency'
   meta_description_en: A machine learning model trained on Latvian real estate market data, used for automated collateral assessment and as an input to credit scoring.
   title_lv: 'Verteo: Latvijas īpašumu vērtību prognozēšana ar mašīnmācīšanos'
+  title_ru: 'Verteo: прогнозирование стоимости латвийской недвижимости с помощью машинного обучения'
   excerpt_lv: Nelielā tirgū salīdzināmu darījumu ir maz, un tie dati, kas ir pieejami, ir sadrumstaloti. Verteo pārvērš ķīlas vērtēšanu no šķēršļa par daļu no lēmuma.
+  excerpt_ru: На небольшом рынке сопоставимых сделок мало, а имеющиеся данные разрознены. Verteo превращает оценку залога из узкого места в часть решения.
   body_lv: |-
     Nekustamā īpašuma vērtēšana nelielā tirgū ir sarežģīts uzdevums. Salīdzināmu darījumu ir mazāk nekā lielā tirgū, cenas krasi atšķiras atkarībā no mikrolokācijas, un tie dati, kas ir pieejami, ir sadrumstaloti. Hipotekāro kredītu izsniedzējam tas nozīmē, ka ķīlas vērtēšana bieži ir lēna, dārga un balstīta uz ierobežotiem pierādījumiem.
 
     Mēs izveidojām Verteo, lai to atrisinātu. Tas ir mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un prognozē atsevišķu īpašumu vērtību. Rezultātu var izmantot divējādi: kā automatizētu ķīlas novērtējumu hipotekārā kredīta izvērtēšanas laikā un kā ievades datus kredītspējas novērtēšanas modeļos.
 
     Tā kā Verteo ir savienots ar mūsu kreditēšanas platformu, hipotekāro kredīta pieteikumu var novērtēt pret aktuālu, uz modeli balstītu vērtējumu, nevis manuālu novērtējumu, kas veikts vairākas nedēļas iepriekš. Vērtēšana pārstāj būt šķērslis procesā un kļūst par daļu no paša lēmuma.
+  body_ru: |-
+    Оценка недвижимости на небольшом рынке — сложная задача. Сопоставимых сделок меньше, чем на крупном рынке, цены резко различаются в зависимости от микрорасположения, а имеющиеся данные разрознены. Для ипотечного кредитора это означает, что оценка залога часто оказывается медленной, дорогой и основанной на ограниченных данных.
+
+    Мы создали Verteo, чтобы решить эту проблему. Это модель машинного обучения, обученная на данных латвийского рынка недвижимости, которая прогнозирует стоимость отдельных объектов. Результат можно использовать двумя способами: как автоматическую оценку залога при ипотечном андеррайтинге и как входной признак для моделей кредитного скоринга.
+
+    Поскольку Verteo подключена к нашей кредитной платформе, ипотечную заявку можно оценивать по актуальной оценке модели, а не по ручной оценке, проведённой несколько недель назад. Оценка перестаёт быть узким местом процесса и становится частью самого решения.
   meta_title_lv: 'Verteo: Latvijas īpašumu vērtību prognozēšana ar ML — Braingency'
+  meta_title_ru: 'Verteo: прогнозирование стоимости латвийской недвижимости с помощью ML — Braingency'
   meta_description_lv: Mašīnmācīšanās modelis, kas apmācīts uz Latvijas nekustamā īpašuma tirgus datiem un tiek izmantots automatizētai ķīlas novērtēšanai un kredītspējas novērtēšanā.
+  meta_description_ru: Модель машинного обучения, обученная на данных латвийского рынка недвижимости и используемая для автоматической оценки залога и как входные данные для кредитного скоринга.
+- slug: 358-years-vs-88-hours
+  published_on: '2026-10-09'
+  published: true
+  template: ai_in_mathematics
+  title_en: 358 years vs 88 hours
+  excerpt_en: Humanity needed 358 years to prove Fermat's Last Theorem. According to OpenAI, a swarm of AI agents settled the Navier–Stokes Millennium Prize Problem in 88 hours. Twenty-five Fields Medallists say this is a problem. We think science has never needed more people.
+  meta_title_en: '358 years vs 88 hours: AI, mathematics and why science needs more people — Braingency'
+  meta_description_en: An AI proof of Navier–Stokes, a warning from 25 Fields Medallists and OpenAI's reply — with interactive figures and a reader poll on speed versus understanding.
+  title_lv: 358 gadi pret 88 stundām
+  excerpt_lv: Cilvēcei vajadzēja 358 gadus, lai pierādītu Lielo Ferma teorēmu. Saskaņā ar OpenAI paziņojumu MI aģentu spiets atrisināja Navjē–Stoksa tūkstošgades problēmu 88 stundās. Divdesmit pieci Fīldsa medaļas laureāti uzskata, ka tā ir problēma. Mēs uzskatām, ka zinātnei vēl nekad nav bijis vajadzīgs tik daudz cilvēku.
+  meta_title_lv: '358 gadi pret 88 stundām: MI, matemātika un kāpēc zinātnei vajag vairāk cilvēku — Braingency'
+  meta_description_lv: MI pierādījums Navjē–Stoksa problēmai, 25 Fīldsa laureātu brīdinājums un OpenAI atbilde — ar interaktīviem grafikiem un lasītāju aptauju par ātrumu un izpratni.
+  title_ru: 358 лет против 88 часов
+  excerpt_ru: Человечеству понадобилось 358 лет, чтобы доказать Великую теорему Ферма. По заявлению OpenAI, рой ИИ-агентов решил задачу тысячелетия Навье–Стокса за 88 часов. Двадцать пять лауреатов Филдсовской премии считают это проблемой. Мы считаем, что науке ещё никогда не было нужно столько людей.
+  meta_title_ru: '358 лет против 88 часов: ИИ, математика и почему науке нужно больше людей — Braingency'
+  meta_description_ru: Доказательство ИИ для задачи Навье–Стокса, предупреждение 25 филдсовских лауреатов и ответ OpenAI — с интерактивными графиками и опросом читателей о скорости и понимании.

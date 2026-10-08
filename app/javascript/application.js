@@ -1,3 +1,4 @@
+import aiInMathematics from "./lib/articles/ai_in_mathematics";
 import codeWindow from "./lib/code_window";
 import commandPalette from "./lib/command_palette";
 import counter from "./lib/counter";
@@ -26,6 +27,7 @@ const boot = () => {
     nav, reveal, splitText, scramble, counter, pointerFx, pipeline,
     scoringDemo, codeWindow, integrationGraph, commandPalette, localTime,
     lendingVisual, learningVisual, assistantVisual, verteoVisual, verteoMap, thresholdVisual, portraitReveal,
+    aiInMathematics,
     heroShader
   ]) {
     try {

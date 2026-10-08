@@ -1,0 +1,588 @@
+<%#
+  "358 years vs 88 hours" — an interactive essay on AI and mathematics.
+
+  Copy: config/locales/articles/ai_in_mathematics.*.yml. Behaviour:
+  app/javascript/lib/articles/ai_in_mathematics.js. Every figure is rendered
+  in full on the server and readable without JavaScript; the script only
+  switches between states that are already in the page.
+
+  Switches: a [data-aim-switch] root holds data-<key>="<value>" and buttons
+  carrying data-aim-set="<key>:<value>"; children marked
+  data-when-<key>="<value>" show only in that state (see application.css).
+%><%
+  c = t("ai_in_mathematics")
+  author = Site::FOUNDERS.find { |f| f[:key] == :shehurina }
+
+  # Hours behind each bar of fig. 03, and who produced it.
+  year = 8_760
+  scale_data = {
+    find:  { hours: [7 * year, 88, 50, 3], who: %w[human ai ai ai], ratio: (7 * year / 88.0).round },
+    check: { hours: [11 * year, 3 * year, 17], who: %w[human human ai], ratio: (11 * year / 17.0).round }
+  }
+  log_width = ->(h) { [1.5, Math.log10([h, 1].max) / 5 * 100].max.round(2) }
+  lin_width = ->(h, max) { [0.4, h.to_f / max * 100].max.round(2) }
+
+  # fig. 04: opened, closed (2026 = still open today), who closed it.
+  problems = [[1611, 1998, "human"], [1637, 1994, "human"], [1852, 1976, "human"], [1859, 2026, "open"],
+              [1904, 2003, "human"], [1934, 2026, "ai"], [1939, 2026, "ai"], [1945, 2026, "ai"], [1950, 2026, "open"]]
+  first_year, last_year = 1600, 2026
+  year_pos = ->(y) { ((y - first_year).to_f / (last_year - first_year) * 100).round(2) }
+
+  # fig. 07: compute cost, progress, understanding per task.
+  tasks = [[60, 30, 5], [15, 15, 30], [20, 30, 20], [10, 10, 15], [30, 45, 20], [40, 8, 2]]
+
+  # fig. 08: pace, shared understanding, people needed — per position.
+  gauges = [[15, 95, 35], [40, 85, 50], [70, 75, 85], [90, 60, 100], [100, 15, 20]]
+  poll_start = 3
+  poll_colors = %w[#8fb0ff #9fc6e0 #afdcb6 #bdee82 #cbff4d]
+%>
+
+<article class="aim" data-aim>
+  <%# ================================================================== %>
+  <header class="relative isolate overflow-hidden pb-[clamp(2.5rem,2rem+3vw,4rem)] pt-[clamp(8rem,6rem+8vw,13rem)]">
+    <div class="bg-grid absolute inset-0 -z-10 opacity-[0.5] mask-fade-b" aria-hidden="true"></div>
+
+    <div class="shell relative">
+      <%= link_to news_path, class: "link label !text-fg-faint" do %>
+        <span aria-hidden="true">&larr;</span>
+        <%= t("common.back_to_news") %>
+      <% end %>
+
+      <p class="label mt-10 text-fg-muted" data-reveal><%= c[:eyebrow] %></p>
+
+      <h1 class="text-display mt-6 font-medium" data-reveal>
+        <span class="text-human"><%= c[:title][:human] %></span>
+        <span class="text-fg-faint">&thinsp;<%= c[:title][:versus] %>&thinsp;</span>
+        <span class="text-lime"><%= c[:title][:ai] %></span>
+      </h1>
+
+      <div class="mt-10 grid gap-x-16 gap-y-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-end">
+        <p class="max-w-[46ch] text-lead text-fg" data-reveal style="--reveal-delay:100ms"><%= @article.excerpt %></p>
+
+        <div class="flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-5 lg:justify-self-end" data-reveal style="--reveal-delay:160ms">
+          <time class="label text-fg-muted" datetime="<%= @article.published_on.iso8601 %>"><%= format_date(@article.published_on) %></time>
+          <span class="label"><%= c[:byline][:read_time] %></span>
+          <span class="label"><%= c[:byline][:thoughts_by] %> <span class="text-fg"><%= author[:name] %></span></span>
+          <span class="label"><%= c[:byline][:graphs_by] %> <span class="text-fg">Claude</span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <%# --- Contents ------------------------------------------------------ %>
+  <nav class="shell" aria-label="<%= c[:contents] %>">
+    <ol class="grid border-t border-line sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-8" data-reveal-group="40">
+      <% c[:toc].each_with_index do |entry, i| %>
+        <li class="border-b border-line">
+          <a href="#aim-<%= i + 1 %>" class="group flex items-baseline gap-4 py-4 text-[0.9375rem] text-fg-muted transition-colors duration-300 hover:text-lime">
+            <span class="label label-accent"><%= format("%02d", i + 1) %></span>
+            <span><%= entry %></span>
+          </a>
+        </li>
+      <% end %>
+    </ol>
+  </nav>
+
+  <%# --- Introduction -------------------------------------------------- %>
+  <div class="shell pt-[clamp(3rem,2rem+3vw,5rem)]">
+    <div class="aim-prose max-w-[44rem]" data-reveal>
+      <% c[:intro].each do |paragraph| %><p><%= rich paragraph %></p><% end %>
+    </div>
+  </div>
+
+  <%# ==================================================================
+      01 — Timeline
+      ================================================================== %>
+  <% s = c[:timeline] %>
+  <section id="aim-1" class="shell scroll-mt-24 pt-[var(--spacing-section)]">
+    <%= render "shared/section_head", index: "01", label: c[:labels][0], heading: s[:heading], body: s[:sub] %>
+
+    <div class="aim-prose mt-10 max-w-[44rem]" data-reveal>
+      <% s[:body].each do |paragraph| %><p><%= rich paragraph %></p><% end %>
+    </div>
+
+    <figure class="aim-panel mt-12" data-aim-timeline data-reveal>
+      <div class="grid gap-8 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-12">
+        <div class="aim-steps" role="tablist" aria-label="<%= c[:labels][0] %>">
+          <% s[:steps].each_with_index do |step, i| %>
+            <button type="button" role="tab" id="aim-step-tab-<%= i %>" aria-controls="aim-step-<%= i %>"
+                    aria-selected="<%= i.zero? %>" tabindex="<%= i.zero? ? 0 : -1 %>" data-aim-step="<%= i %>">
+              <span class="aim-dot is-<%= step[:who] %>" aria-hidden="true"></span><%= step[:date] %>
+            </button>
+          <% end %>
+        </div>
+
+        <div>
+          <% s[:steps].each_with_index do |step, i| %>
+            <div class="aim-step-panel<%= " is-current" if i.zero? %>" id="aim-step-<%= i %>" role="tabpanel" aria-labelledby="aim-step-tab-<%= i %>" data-aim-step-panel>
+              <span class="aim-who is-<%= step[:who] %>"><%= step[:tag] %> · <%= step[:date] %><%= s[:year] %></span>
+              <h3 class="text-h3 mt-5 font-medium"><%= step[:title] %></h3>
+              <p class="mt-3 max-w-[60ch] leading-relaxed text-fg-muted"><%= step[:body] %></p>
+              <dl class="mt-6 flex flex-wrap gap-x-10 gap-y-4">
+                <% step[:stats].each do |value, caption| %>
+                  <div class="flex flex-col-reverse">
+                    <dt class="mt-1.5 text-[0.8125rem] text-fg-muted"><%= caption %></dt>
+                    <dd class="font-mono text-[1.625rem] leading-none tracking-[-0.03em] text-fg"><%= value %></dd>
+                  </div>
+                <% end %>
+              </dl>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <figcaption class="aim-caption">
+        <span class="label"><%= s[:figure] %></span>
+        <span class="aim-js-only flex gap-2" hidden>
+          <button type="button" class="aim-btn" data-aim-prev><%= s[:prev] %></button>
+          <button type="button" class="aim-btn" data-aim-next><%= s[:next] %></button>
+        </span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <%# ==================================================================
+      02 — The declaration and the reply
+      ================================================================== %>
+  <% s = c[:debate] %>
+  <section id="aim-2" class="shell scroll-mt-24 pt-[var(--spacing-section)]">
+    <%= render "shared/section_head", index: "02", label: c[:labels][1], heading: s[:heading], body: s[:sub] %>
+
+    <div class="aim-prose mt-10 max-w-[44rem]" data-reveal>
+      <% s[:body].each do |paragraph| %><p><%= rich paragraph %></p><% end %>
+    </div>
+
+    <figure class="aim-panel mt-12" data-aim-debate data-aim-switch data-side="m" data-reveal>
+      <div class="grid gap-8 md:grid-cols-[18rem_minmax(0,1fr)] md:gap-12">
+        <div class="aim-claims" role="tablist" aria-label="<%= c[:labels][1] %>">
+          <% s[:claims].each_with_index do |claim, i| %>
+            <button type="button" role="tab" id="aim-claim-tab-<%= i %>" aria-controls="aim-claim-<%= i %>"
+                    aria-selected="<%= i.zero? %>" tabindex="<%= i.zero? ? 0 : -1 %>" data-aim-claim="<%= i %>">
+              <span><%= claim[:title] %></span>
+              <span class="aim-verdict is-<%= claim[:verdict] %>"><%= claim[:verdict_text] %></span>
+            </button>
+          <% end %>
+        </div>
+
+        <div>
+          <div class="aim-seg aim-js-only" role="group" hidden>
+            <button type="button" data-aim-set="side:m" aria-pressed="true"><%= s[:side_mathematicians] %></button>
+            <button type="button" data-aim-set="side:o" aria-pressed="false"><%= s[:side_openai] %></button>
+          </div>
+
+          <% s[:claims].each_with_index do |claim, i| %>
+            <div class="aim-claim-panel<%= " is-current" if i.zero? %>" id="aim-claim-<%= i %>" role="tabpanel" aria-labelledby="aim-claim-tab-<%= i %>" data-aim-claim-panel>
+              <div data-when-side="m">
+                <span class="aim-who is-hm"><%= s[:who][0] %></span>
+                <p class="aim-quote"><%= claim[:quote] %></p>
+                <p class="mt-4 max-w-[60ch] leading-relaxed text-fg-muted"><%= rich claim[:mathematicians] %></p>
+              </div>
+              <div data-when-side="o">
+                <span class="aim-who is-ai"><%= s[:who][1] %></span>
+                <p class="aim-quote"><%= claim[:verdict_text] %>.</p>
+                <p class="aim-rich mt-4 max-w-[60ch] leading-relaxed text-fg-muted"><%= rich claim[:openai] %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <figcaption class="aim-caption">
+        <span class="label"><%= s[:figure] %></span>
+        <span class="aim-chip"><%= s[:note] %></span>
+      </figcaption>
+    </figure>
+
+    <div class="aim-prose mt-12 max-w-[44rem]" data-reveal><p><%= rich s[:after] %></p></div>
+  </section>
+
+  <%# ==================================================================
+      03 — Humans vs AI, on one scale
+      ================================================================== %>
+  <% s = c[:scale] %>
+  <section id="aim-3" class="shell scroll-mt-24 pt-[var(--spacing-section)]">
+    <%= render "shared/section_head", index: "03", label: c[:labels][2], heading: s[:heading], body: s[:sub] %>
+
+    <div class="aim-prose mt-10 max-w-[44rem]" data-reveal>
+      <% s[:body].each do |paragraph| %><p><%= rich paragraph %></p><% end %>
+    </div>
+
+    <figure class="aim-panel mt-12" data-aim-switch data-mode="find" data-scale="log" data-reveal>
+      <div class="aim-js-only flex flex-wrap gap-3" hidden>
+        <div class="aim-seg" role="group">
+          <button type="button" data-aim-set="mode:find" aria-pressed="true"><%= s[:find] %></button>
+          <button type="button" data-aim-set="mode:check" aria-pressed="false"><%= s[:check] %></button>
+        </div>
+        <div class="aim-seg" role="group">
+          <button type="button" data-aim-set="scale:log" aria-pressed="true"><%= s[:log] %></button>
+          <button type="button" data-aim-set="scale:lin" aria-pressed="false"><%= s[:linear] %></button>
+        </div>
+      </div>
+
+      <% scale_data.each do |mode, data| %>
+        <div class="mt-8" data-when-mode="<%= mode %>">
+          <p class="label mb-5 text-fg-muted no-js-only"><%= s[mode] %></p>
+          <div class="space-y-4">
+            <% max = data[:hours].max %>
+            <% s[:rows][mode].each_with_index do |(who, what, value), i| %>
+              <% hours = data[:hours][i] %>
+              <div class="aim-bar-row">
+                <div class="text-[0.9375rem] leading-snug"><%= who %><small class="block text-[0.8125rem] text-fg-faint"><%= what %></small></div>
+                <div class="aim-track"><div class="aim-fill is-<%= data[:who][i] %>" style="--w-log:<%= log_width.(hours) %>%;--w-lin:<%= lin_width.(hours, max) %>%"></div></div>
+                <div class="text-right font-mono text-[0.8125rem] tabular-nums"><%= value %></div>
+              </div>
+            <% end %>
+          </div>
+          <div class="aim-bar-row mt-2" aria-hidden="true">
+            <span></span>
+            <div>
+              <div class="aim-axis" data-when-scale="log"><% s[:axis_log].each do |tick| %><span><%= tick %></span><% end %></div>
+              <div class="aim-axis" data-when-scale="lin"><% s[:axis_linear][mode].each do |tick| %><span><%= tick %></span><% end %></div>
+            </div>
+            <span></span>
+          </div>
+          <p class="aim-note" data-when-scale="lin"><%= rich format(s[:note_linear], ratio: localized_number(data[:ratio])) %></p>
+        </div>
+      <% end %>
+      <p class="aim-note" data-when-scale="log"><%= s[:note_log] %></p>
+
+      <figcaption class="aim-caption">
+        <span class="label"><%= s[:figure] %></span>
+        <span class="aim-chip"><%= s[:note] %></span>
+      </figcaption>
+    </figure>
+
+    <div class="aim-prose mt-12 max-w-[44rem]" data-reveal><p><%= rich s[:after] %></p></div>
+  </section>
+
+  <%# ==================================================================
+      04 — Famous problems explorer
+      ================================================================== %>
+  <% s = c[:problems] %>
+  <section id="aim-4" class="shell scroll-mt-24 pt-[var(--spacing-section)]">
+    <%= render "shared/section_head", index: "04", label: c[:labels][3], heading: s[:heading], body: s[:sub] %>
+
+    <div class="aim-prose mt-10 max-w-[44rem]" data-reveal>
+      <% s[:body].each do |paragraph| %><p><%= rich paragraph %></p><% end %>
+    </div>
+
+    <figure class="aim-panel mt-12" data-aim-switch data-filter="all" data-reveal>
+      <div class="aim-js-only flex flex-wrap gap-2" role="group" hidden>
+        <% [["all", s[:all]], ["human", s[:human]], ["ai", s[:ai]], ["open", s[:open]]].each do |key, text| %>
+          <button type="button" class="aim-filter" data-aim-set="filter:<%= key %>" aria-pressed="<%= key == "all" %>">
+            <% unless key == "all" %><i class="aim-swatch is-<%= key %>" aria-hidden="true"></i><% end %><%= text %>
+          </button>
+        <% end %>
+      </div>
+
+      <div class="mt-6 border-t border-line">
+        <% problems.each_with_index do |(opened, closed, kind), i| %>
+          <% item = s[:items][i] %>
+          <details class="aim-problem" name="aim-problems" data-kind="<%= kind %>">
+            <summary>
+              <span class="text-[0.9375rem]"><%= item[:name] %></span>
+              <span class="aim-span-track" aria-hidden="true"><span class="aim-span is-<%= kind %>" style="left:<%= year_pos.(opened) %>%;width:<%= year_pos.(closed) - year_pos.(opened) %>%"></span></span>
+              <span class="text-right font-mono text-[0.75rem] text-fg-muted"><%= pluralize_with(s[:years], closed - opened) %><%= "+" if kind == "open" %></span>
+            </summary>
+            <div class="pb-5 pt-1 text-[0.9375rem] leading-relaxed text-fg-muted">
+              <p class="font-mono text-[0.8125rem] text-fg"><%= opened %> &rarr; <%= kind == "open" ? s[:still_open] : closed %></p>
+              <p class="mt-2 max-w-[70ch]"><%= item[:story] %></p>
+            </div>
+          </details>
+        <% end %>
+      </div>
+      <div class="aim-span-axis" aria-hidden="true">
+        <span></span><div><% [1600, 1700, 1800, 1900, 2026].each do |tick| %><span><%= tick %></span><% end %></div><span></span>
+      </div>
+
+      <figcaption class="aim-caption">
+        <span class="label"><%= s[:figure] %></span>
+        <span class="aim-chip"><%= s[:note] %></span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <%# ==================================================================
+      05 — Professions have always changed
+      ================================================================== %>
+  <% s = c[:professions] %>
+  <section id="aim-5" class="shell scroll-mt-24 pt-[var(--spacing-section)]">
+    <%= render "shared/section_head", index: "05", label: c[:labels][4], heading: s[:heading], body: s[:sub] %>
+
+    <div class="mt-12 grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <div data-reveal>
+        <p class="aim-pull"><%= rich s[:pull] %></p>
+        <div class="aim-prose mt-8">
+          <% s[:body].each do |paragraph| %><p><%= rich paragraph %></p><% end %>
+        </div>
+      </div>
+
+      <figure class="aim-panel self-start" data-aim-switch data-era="then" data-reveal style="--reveal-delay:120ms">
+        <div class="aim-seg aim-js-only" role="group" hidden>
+          <button type="button" data-aim-set="era:then" aria-pressed="true"><%= s[:then] %></button>
+          <button type="button" data-aim-set="era:now" aria-pressed="false"><%= s[:now] %></button>
+        </div>
+        <ul class="mt-6">
+          <% s[:jobs].each_with_index do |(before, after), i| %>
+            <li class="aim-job<%= " is-future" if i == s[:jobs].size - 1 %>">
+              <span class="aim-job-then"><%= before %></span>
+              <span class="font-mono text-fg-faint" aria-hidden="true">&rarr;</span>
+              <span class="aim-job-now"><%= after %></span>
+            </li>
+          <% end %>
+        </ul>
+        <figcaption class="aim-caption"><span class="label"><%= s[:figure] %></span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <%# ==================================================================
+      06 — We need more scientists, not fewer
+      ================================================================== %>
+  <% s = c[:scientists] %>
+  <section id="aim-6" class="shell scroll-mt-24 pt-[var(--spacing-section)]">
+    <%= render "shared/section_head", index: "06", label: c[:labels][5], heading: s[:heading], body: s[:sub] %>
+
+    <div class="mt-12 grid gap-8 lg:grid-cols-2 lg:gap-16" data-reveal>
+      <p class="aim-pull"><%= rich s[:pull] %></p>
+      <div class="aim-prose"><p><%= rich s[:body] %></p></div>
+    </div>
+
+    <figure class="aim-panel mt-12" data-aim-switch data-access="before" data-reveal>
+      <div class="aim-seg aim-js-only" role="group" hidden>
+        <button type="button" data-aim-set="access:before" aria-pressed="true"><%= s[:before] %></button>
+        <button type="button" data-aim-set="access:with" aria-pressed="false"><%= s[:with] %></button>
+      </div>
+      <div class="aim-cards mt-6">
+        <% s[:access].each do |card| %>
+          <div class="aim-card">
+            <span class="label"><%= card[:label] %></span>
+            <% [[:before, "before"], [:with, "with"]].each do |key, state| %>
+              <div data-when-access="<%= state %>" class="<%= "is-ai" if state == "with" %>">
+                <p class="aim-card-value"><%= card[key][0] %></p>
+                <p class="mt-1 text-[0.8125rem] text-fg-muted"><%= card[key][1] %></p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <figcaption class="aim-caption"><span class="label"><%= s[:figure] %></span></figcaption>
+    </figure>
+
+    <div class="mt-[clamp(3rem,2rem+3vw,5rem)] max-w-[44rem]" data-reveal>
+      <h3 class="text-h3 font-medium"><%= s[:budget_heading] %></h3>
+      <div class="aim-prose mt-5"><p><%= rich s[:budget_body] %></p></div>
+    </div>
+
+    <figure class="aim-panel mt-10" data-aim-budget data-budget="100"
+            data-verdicts="<%= s[:verdicts].to_json %>" data-reveal>
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <div class="space-y-2">
+          <% tasks.each_with_index do |(cost, progress, insight), i| %>
+            <button type="button" class="aim-task" aria-pressed="false"
+                    data-aim-task data-cost="<%= cost %>" data-progress="<%= progress %>" data-insight="<%= insight %>">
+              <span class="aim-box" aria-hidden="true"></span>
+              <span class="text-[0.9375rem]"><%= s[:tasks][i][0] %><small class="mt-0.5 block text-[0.8125rem] text-fg-muted"><%= s[:tasks][i][1] %></small></span>
+              <span class="whitespace-nowrap font-mono text-[0.75rem] text-fg-muted"><%= cost %> <%= s[:units] %></span>
+            </button>
+          <% end %>
+        </div>
+
+        <div class="aim-meter">
+          <div>
+            <p class="label"><%= s[:score] %></p>
+            <p class="mt-3 font-mono text-[2.75rem] leading-none tracking-[-0.04em] text-lime tabular-nums" data-aim-score>0</p>
+          </div>
+          <div class="aim-gauge">
+            <p class="aim-gauge-label"><span><%= s[:used] %></span><span data-aim-used>0 / 100</span></p>
+            <div class="aim-gauge-track"><div data-aim-used-bar></div></div>
+          </div>
+          <div class="aim-gauge is-insight">
+            <p class="aim-gauge-label"><span><%= s[:gained] %></span><span data-aim-insight>0</span></p>
+            <div class="aim-gauge-track"><div data-aim-insight-bar></div></div>
+          </div>
+          <p class="text-[0.875rem] leading-relaxed text-fg-muted" data-aim-verdict aria-live="polite"><%= s[:verdicts][:idle] %></p>
+          <button type="button" class="aim-btn self-start" data-aim-reset><%= s[:reset] %></button>
+        </div>
+      </div>
+      <figcaption class="aim-caption">
+        <span class="label"><%= s[:budget_figure] %></span>
+        <span class="aim-chip"><%= s[:illustrative] %></span>
+      </figcaption>
+    </figure>
+
+    <div class="aim-prose mt-12 max-w-[44rem]" data-reveal><p><%= rich s[:after] %></p></div>
+  </section>
+
+  <%# ==================================================================
+      07 — Freedom and the higher path
+      ================================================================== %>
+  <% s = c[:freedom] %>
+  <section id="aim-7" class="shell scroll-mt-24 pt-[var(--spacing-section)]">
+    <%= render "shared/section_head", index: "07", label: c[:labels][6], heading: s[:heading], body: s[:sub] %>
+
+    <div class="mt-12 grid gap-14 lg:grid-cols-2 lg:gap-16">
+      <% [s[:existentialists], s[:brodsky]].each_with_index do |idea, i| %>
+        <div data-reveal style="--reveal-delay:<%= i * 120 %>ms">
+          <p class="label label-accent"><%= idea[:eyebrow] %></p>
+          <p class="aim-pull mt-5"><%= rich idea[:pull] %></p>
+          <div class="aim-prose mt-8">
+            <% idea[:body].each do |paragraph| %><p><%= rich paragraph %></p><% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <figure class="aim-panel mt-14" data-aim-switch data-path="easy" data-reveal>
+      <div class="aim-seg aim-js-only" role="group" hidden>
+        <button type="button" data-aim-set="path:easy" aria-pressed="true"><%= s[:easy] %></button>
+        <button type="button" data-aim-set="path:high" aria-pressed="false"><%= s[:high] %></button>
+      </div>
+      <div class="aim-cards mt-6">
+        <% s[:paths].each do |card| %>
+          <div class="aim-card">
+            <span class="label"><%= card[:label] %></span>
+            <% [[:easy, "easy"], [:high, "high"]].each do |key, state| %>
+              <div data-when-path="<%= state %>" class="<%= "is-ai" if state == "high" %>">
+                <p class="aim-card-value"><%= card[key][0] %></p>
+                <p class="mt-1 text-[0.8125rem] text-fg-muted"><%= card[key][1] %></p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <p class="mt-6 text-[0.9375rem] text-fg-muted" data-when-path="easy"><%= s[:notes][0] %></p>
+      <p class="mt-6 text-[0.9375rem] text-fg" data-when-path="high"><%= s[:notes][1] %></p>
+      <figcaption class="aim-caption"><span class="label"><%= s[:figure] %></span></figcaption>
+    </figure>
+  </section>
+
+  <%# ==================================================================
+      08 — Where do you stand? (live reader poll)
+      ================================================================== %>
+  <% s = c[:poll] %>
+  <section id="aim-8" class="shell scroll-mt-24 pt-[var(--spacing-section)]">
+    <%= render "shared/section_head", index: "08", label: c[:labels][7], heading: s[:heading], body: s[:sub] %>
+
+    <div class="aim-prose mt-10 max-w-[44rem]" data-reveal>
+      <% s[:body].each do |paragraph| %><p><%= rich paragraph %></p><% end %>
+    </div>
+
+    <div data-aim-poll
+         data-url="<%= article_vote_path(slug: @article.slug) %>"
+         data-gauges="<%= gauges.to_json %>"
+         data-counts="<%= @poll_counts.to_json %>"
+         data-mine="<%= @poll_mine.to_json %>"
+         data-votes="<%= s[:votes].to_json %>"
+         data-messages="<%= s.slice(:vote, :current, :change, :none, :saving, :thanks, :error, :move, :voted).to_json %>">
+
+      <figure class="aim-panel mt-12" data-reveal>
+        <div class="flex justify-between gap-4 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-fg-muted">
+          <span><%= s[:understanding] %></span><span class="text-right"><%= s[:speed] %></span>
+        </div>
+        <input type="range" class="threshold-range mt-5 w-full aim-js-only" min="0" max="4" step="1" value="<%= @poll_mine || poll_start %>"
+               aria-label="<%= s[:understanding] %> — <%= s[:speed] %>" data-aim-slider hidden>
+
+        <div class="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+          <ol aria-live="polite">
+            <% s[:states].each_with_index do |state, i| %>
+              <li class="aim-position<%= " is-current" if i == (@poll_mine || poll_start) %>" data-aim-position>
+                <h3 class="text-h3 font-medium"><%= state[:title] %></h3>
+                <p class="mt-3 max-w-[56ch] leading-relaxed text-fg-muted"><%= state[:body] %></p>
+              </li>
+            <% end %>
+          </ol>
+          <div class="aim-js-only space-y-5" hidden>
+            <% [[:speed, ""], [:understanding, "is-human"], [:people, "is-insight"]].each_with_index do |(key, tone), i| %>
+              <div class="aim-gauge <%= tone %>">
+                <p class="aim-gauge-label"><span><%= s[:gauges][key] %></span></p>
+                <div class="aim-gauge-track"><div data-aim-gauge="<%= i %>"></div></div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="aim-js-only mt-8 flex flex-wrap items-center gap-4" hidden>
+          <button type="button" class="btn btn-primary" data-aim-vote disabled><%= s[:vote] %></button>
+          <span class="text-[0.875rem] text-fg-muted" data-aim-status aria-live="polite"><%= @poll_mine ? s[:voted] : s[:move] %></span>
+        </div>
+
+        <figcaption class="aim-caption">
+          <span class="label"><%= s[:figure] %></span>
+          <span class="aim-chip"><%= s[:illustrative] %></span>
+        </figcaption>
+      </figure>
+
+      <% total = @poll_counts.sum %>
+      <figure class="aim-panel mt-4" data-reveal>
+        <div class="flex flex-wrap items-baseline justify-between gap-3">
+          <h3 class="text-h3 font-medium"><%= s[:results] %></h3>
+          <span class="font-mono text-[0.8125rem] text-fg-muted" data-aim-total><%= total.zero? ? s[:none] : pluralize_with(s[:votes], total) %></span>
+        </div>
+
+        <div class="aim-dist mt-6" data-aim-dist>
+          <% s[:states].each_with_index do |state, i| %>
+            <% pct = total.zero? ? 0 : @poll_counts[i] * 100.0 / total %>
+            <div style="flex-grow:<%= pct.round(2) %>;background:<%= poll_colors[i] %>" title="<%= state[:title] %>" <%= "hidden" if pct.zero? %>><span><%= "#{pct.round}%" if pct >= 9 %></span></div>
+          <% end %>
+          <div class="aim-dist-empty" <%= "hidden" unless total.zero? %>></div>
+        </div>
+        <div class="mt-2 flex justify-between gap-4 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-fg-faint" aria-hidden="true">
+          <span><%= s[:understanding] %></span><span class="text-right"><%= s[:speed] %></span>
+        </div>
+
+        <div class="mt-8 space-y-3">
+          <% top = @poll_counts.max %>
+          <% s[:states].each_with_index do |state, i| %>
+            <% pct = total.zero? ? 0 : @poll_counts[i] * 100.0 / total %>
+            <div class="aim-result<%= " is-mine" if @poll_mine == i %><%= " is-lead" if total.positive? && @poll_counts[i] == top %>" data-aim-result>
+              <span class="flex flex-wrap items-center gap-2.5 text-[0.9375rem]">
+                <i class="aim-swatch" style="background:<%= poll_colors[i] %>" aria-hidden="true"></i><%= state[:title] %>
+                <small class="aim-mine-tag"><%= s[:mine] %></small>
+              </span>
+              <span class="aim-result-track"><span style="width:<%= pct.round(2) %>%;background:<%= poll_colors[i] %>" data-aim-bar></span></span>
+              <span class="text-right font-mono text-[0.875rem] tabular-nums"><span data-aim-pct><%= pct.round %>%</span><small class="block text-[0.6875rem] text-fg-faint" data-aim-count><%= @poll_counts[i] %></small></span>
+            </div>
+          <% end %>
+        </div>
+        <p class="mt-6 text-[0.875rem] text-fg-muted" data-aim-first <%= "hidden" unless total.zero? %>><%= s[:first] %></p>
+
+        <figcaption class="aim-caption">
+          <span class="label"><%= s[:results_figure] %></span>
+          <span class="aim-chip"><%= s[:live] %></span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <%# --- Sources -------------------------------------------------------- %>
+  <% s = c[:sources] %>
+  <section class="shell pt-[var(--spacing-section)]">
+    <div class="border-t border-line pt-8" data-reveal>
+      <p class="label"><%= s[:heading] %></p>
+      <ul class="mt-6 space-y-3 text-[0.9375rem]">
+        <% %w[
+          https://terrytao.wordpress.com/2026/09/11/a-severe-misalignment-of-ai-in-mathematics/
+          https://mathandai.org/
+          https://openai.com/index/navier-stokes-solution/
+          https://openai.com/index/sharing-ai-progress-in-mathematics/
+          https://github.com/openai/math
+        ].each_with_index do |url, i| %>
+          <li><%= link_to s[:items][i], url, class: "link text-fg-muted", target: "_blank", rel: "noopener" %></li>
+        <% end %>
+      </ul>
+      <p class="mt-6 max-w-[70ch] text-[0.8125rem] leading-relaxed text-fg-faint"><%= s[:disclaimer] %></p>
+
+      <div class="mt-12 flex flex-wrap gap-3.5">
+        <%= link_to contact_path, class: "btn btn-primary", data: { magnetic: true } do %>
+          <%= t("common.talk_to_us") %>
+          <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+        <% end %>
+        <%= link_to news_path, class: "btn btn-ghost" do %>
+          <span aria-hidden="true">&larr;</span>
+          <%= t("common.back_to_news") %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</article>

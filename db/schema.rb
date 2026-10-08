@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_10_08_120000) do
+ActiveRecord::Schema[7.2].define(version: 2026_10_09_090100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,7 +30,25 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_08_120000) do
     t.string "meta_description_lv"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title_ru"
+    t.text "excerpt_ru"
+    t.text "body_ru"
+    t.string "meta_title_ru"
+    t.string "meta_description_ru"
+    t.string "template"
     t.index ["published", "published_on"], name: "index_articles_on_published_and_published_on"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
+
+  create_table "poll_votes", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.string "voter", null: false
+    t.integer "choice", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id", "voter"], name: "index_poll_votes_on_article_id_and_voter", unique: true
+    t.index ["article_id"], name: "index_poll_votes_on_article_id"
+  end
+
+  add_foreign_key "poll_votes", "articles", on_delete: :cascade
 end

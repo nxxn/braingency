@@ -1,0 +1,430 @@
+# Copy for the interactive article "358 years vs 88 hours" (Article template
+# ai_in_mathematics, rendered by app/views/articles/ai_in_mathematics.html.erb).
+# Title, lead and SEO fields live on the article row and are edited in /admin.
+en:
+  ai_in_mathematics:
+    eyebrow: Insight · Mathematics & AI · October 2026
+    title:
+      human: 358 years
+      versus: vs
+      ai: 88 hours
+    byline:
+      read_time: "≈ 12 min read"
+      thoughts_by: Thoughts by
+      graphs_by: Graphs by
+    contents: Contents
+    toc:
+    - Five weeks that shook math
+    - The declaration and the reply
+    - Humans vs AI, on one scale
+    - Famous problems explorer
+    - Professions always change
+    - We need more scientists
+    - Freedom and the higher path
+    - Where do you stand?
+    labels:
+    - Timeline
+    - The debate
+    - Scale
+    - History
+    - Opinion
+    - Opinion
+    - Opinion
+    - Poll
+    intro:
+    - 'For most of history, a great unsolved problem in mathematics worked like a lighthouse. Generations of mathematicians sailed towards it, and on the way they discovered new continents: whole branches of mathematics that ended up running the modern world, from cryptography to weather forecasts.'
+    - In September 2026 that rhythm broke. An AI system from OpenAI produced a proof for one of the seven Millennium Prize Problems, the hardest questions mathematicians set themselves at the turn of the century, each carrying a one-million-dollar reward. Within a week, twenty-five Fields Medallists, holders of the highest prize in mathematics, published a warning. A month later OpenAI answered with a public catalogue of hundreds of new results.
+    - 'This article walks through what happened, what each side is arguing, and why we at braingency think the right response is not to slow down, but to train far more people who can work alongside these machines. Every figure below is interactive: switch, filter and step through it. At the end, cast your own vote.'
+    timeline:
+      heading: Five weeks that shook mathematics
+      sub: Step through what happened between September 1 and October 6, 2026.
+      body:
+      - 'The Navier–Stokes equations describe how fluids move: air over a wing, blood in an artery, weather over the Atlantic. Engineers use them every day. Yet for almost a century nobody could answer a basic question about them. If a fluid starts out smooth, can the equations ever produce a moment where the speed becomes infinite? Mathematicians call that a blow-up. If it happens, the equations stop describing reality at that point.'
+      - OpenAI's system answered yes. It built a swirling vortex that spirals inwards and stretches like spaghetti, getting faster and thinner until, in finite time, the velocity at its centre becomes infinite while the total energy stays finite.
+      - 'What made the result hard to dismiss is <strong>Lean</strong>, a programming language in which every step of a proof is checked by a computer. A Lean proof cannot hide a gap the way a 200-page paper can. Just as notable is how the proof was found: not by one model thinking alone, but by thousands of AI agents working in groups, sharing partial ideas and being redirected as promising approaches emerged.'
+      figure: fig. 01 — five weeks in autumn
+      prev: "← Previous"
+      next: Next →
+      year: ", 2026"
+      steps:
+      - date: Sep 1
+        who: ai
+        tag: OpenAI
+        title: Agents go after the Millennium Problems
+        body: 'Prompted by rumours that two Millennium Problems had fallen, OpenAI points a new internal model at every open one. Groups of agents get different variants of each problem: prove it, or disprove it.'
+        stats:
+        - - "≈10,000"
+          - concurrent agents
+        - - '6'
+          - open Millennium Problems
+      - date: Sep 5
+        who: ai
+        tag: OpenAI
+        title: Navier–Stokes breaks
+        body: 'After 88 hours, one group finds a smooth fluid that develops infinite speed in finite time: a vortex stretched like spaghetti. A further 17 hours go into a full Lean formalization.'
+        stats:
+        - - 88 h
+          - to a proof
+        - - 2.7 M
+          - agent messages
+        - - 130 B
+          - output tokens
+      - date: Sep 8
+        who: ai
+        tag: OpenAI
+        title: The announcement
+        body: OpenAI publishes the proof and its Lean check, says it will not claim the Millennium Prize, and credits Levent Alpöge and Tristan Buckmaster, who used an Anthropic model to resolve a related Euler problem first.
+        stats:
+        - - '2'
+          - fluid problems resolved
+        - - "$1 M"
+          - prize not claimed
+      - date: Sep 11
+        who: hm
+        tag: Mathematicians
+        title: 25 Fields Medallists push back
+        body: 'Terence Tao, Peter Scholze, Maryna Viazovska and 22 others publish a declaration: the goals of AI companies and of mathematics are severely misaligned. Solving problems was only ever a proxy for understanding.'
+        stats:
+        - - '25'
+          - Fields Medallists
+        - - 1978–2026
+          - medals spanning
+      - date: Oct 6
+        who: ai
+        tag: OpenAI
+        title: 'The reply: a catalogue'
+        body: OpenAI releases 719 manuscripts on GitHub, with version history, citation rules, reasoning summaries and Lean proofs for part of them, and promises to fund workshops on understanding AI results.
+        stats:
+        - - '719'
+          - manuscripts
+        - - "≈4,000"
+          - problems posed
+        - - 42%
+          - formalized in Lean
+    debate:
+      heading: The declaration and the reply
+      sub: Pick a concern raised by the mathematicians, then switch sides to see how OpenAI answered it a month later.
+      body:
+      - 'The declaration, titled <em>A Severe Misalignment of AI in Mathematics</em>, is short, and its signatures carry enormous weight: Terence Tao, Peter Scholze, Maxim Kontsevich, Maryna Viazovska, Pierre Deligne and twenty more Fields Medallists, spanning medals from 1978 to 2026.'
+      - 'Their central argument is an old one in a new setting. A famous problem was never valued for its answer alone. Its value was that solving it forced someone to invent new ideas, which the community then spent years discussing, simplifying and teaching until they became textbook material. When a machine produces the answer without that journey, the signal stays, but the thing it used to signal may be gone. Economists call this Goodhart''s law: when a measure becomes a target, it stops being a good measure.'
+      - 'The authors also object to how results are released: announced quickly, without proper write-ups or credit to earlier work. And they worry about students, who are given problems precisely so that they grow by struggling with them. They frame all of this as a preview of what every intellectual profession will face.'
+      after: 'The declaration does not ask to ban AI. Terence Tao uses it daily and shortly afterwards wrote that mathematics will need many more mathematicians, not fewer. The argument is about who sets the goals: marketing departments or the research community.'
+      side_mathematicians: Mathematicians said
+      side_openai: OpenAI replied
+      who:
+      - Fields Medallists
+      - OpenAI, Oct 6
+      figure: fig. 02 — concern in, response out
+      note: Verdicts are our reading
+      claims:
+      - title: Results are announced in a rush
+        verdict: part
+        verdict_text: Partly met
+        quote: No time for a proper write-up.
+        mathematicians: Solutions are announced before anyone has written them up properly, isolated the new methods, or digested them through talks and papers.
+        openai: Everything now sits in a <strong>versioned GitHub repository</strong> with a revision protocol, and OpenAI promises better exposition in future releases. But 719 manuscripts at once is still far more than the community can read quickly.
+      - title: Can we trust the proofs?
+        verdict: ok
+        verdict_text: Addressed
+        quote: Checking a new result takes people months or years.
+        mathematicians: Human verification of a major proof is slow, and errors can hide in hundreds of pages.
+        openai: About <strong>42% of headline results are formalized in Lean</strong>, which means a computer checked every step. For the rest, OpenAI says plainly that they may contain errors and will be fixed.
+      - title: Attribution and plagiarism
+        verdict: ok
+        verdict_text: Addressed
+        quote: Who gets credit, and whose work was built on?
+        mathematicians: As in every creative profession, rushed AI results raise hard questions of attribution and of citing the people whose ideas came first.
+        openai: Each manuscript now has <strong>citation instructions</strong>. In the Euler case OpenAI publicly credited another team's priority. It also consults an independent advisory group at the Institute for Advanced Study.
+      - title: The human chain of knowledge
+        verdict: part
+        verdict_text: Partly met
+        quote: Ideas only come alive when people carry them.
+        mathematicians: Without mathematicians who absorb AI ideas into the canon, those ideas never fully live, and the chain from teacher to student breaks.
+        openai: OpenAI will <strong>fund workshops, conferences and programmes</strong> on understanding AI results, and published reasoning summaries for ten results so people can follow the model's path.
+      - title: What happens to students?
+        verdict: 'no'
+        verdict_text: No answer
+        quote: We give students problems so that they grow.
+        mathematicians: Problems for students exist to build skill and maturity. If answers come for free, that training disappears.
+        openai: There is <strong>no direct answer</strong> in OpenAI's release. In my view this is the most important open question, and the one the rest of this article tries to answer.
+    scale:
+      heading: Humans vs AI, on one scale
+      sub: Switch between finding and verifying a proof. Then flip the scale to linear and watch the AI bars all but disappear.
+      body:
+      - A mathematical result has two costs. First someone has to find the proof. Then everyone else has to be convinced it is correct. For humans both steps are slow. Andrew Wiles spent seven years largely alone on Fermat's Last Theorem. When Grigori Perelman posted his proof of the Poincaré conjecture, several teams of experts needed about three years to confirm it. Thomas Hales's computer-assisted proof of the Kepler conjecture was so hard to referee that he launched a project to check it formally, and that took eleven more years.
+      - AI changes both numbers at once. The chart below puts them side by side. The default view uses a logarithmic scale, where each grid step is ten times longer than the one before; it is the only way hours and decades fit on the same line.
+      after: 'The comparison is not entirely fair: the model stands on the shoulders of every mathematician before it. But the shift in scale is real. In the 26 years since the Millennium Prize Problems were announced, humans solved exactly one, the Poincaré conjecture. OpenAI''s catalogue alone now holds <strong>719 manuscripts in 372 families</strong>, produced from roughly 4,000 posed problems, at about three hours of compute per result. Around 42% of the headline results are formally checked in Lean.'
+      find: Find a proof
+      check: Verify a proof
+      log: Log scale
+      linear: Linear scale
+      figure: fig. 03 — time to a result
+      note: Human durations are approximate
+      rows:
+        find:
+        - - Andrew Wiles
+          - Fermat's Last Theorem
+          - "≈ 7 years"
+        - - OpenAI agents
+          - Navier–Stokes
+          - 88 h
+        - - OpenAI agents
+          - Euler, unforced
+          - "≈ 50 h"
+        - - OpenAI catalogue
+          - average result
+          - "≈ 3 h"
+        check:
+        - - Flyspeck project
+          - Kepler conjecture, formal check
+          - "≈ 11 years"
+        - - Mathematicians
+          - checking Perelman's proof
+          - "≈ 3 years"
+        - - GPT-6 Astra
+          - Navier–Stokes in Lean
+          - 17 h
+      axis_log:
+      - 1 h
+      - 10 h
+      - 4 days
+      - 6 weeks
+      - 1 year
+      - 11 years
+      axis_linear:
+        find:
+        - '0'
+        - "≈ 3.5 years"
+        - 7 years
+        check:
+        - '0'
+        - "≈ 5.5 years"
+        - 11 years
+      note_log: On a log scale each grid step is ten times the previous one. That is the only way human and AI timelines fit on one chart.
+      note_linear: 'On a linear scale the AI bars shrink to a sliver: the human effort here is about <strong>%{ratio}×</strong> longer.'
+    problems:
+      heading: Famous problems explorer
+      sub: Each line is how long a problem stayed open. Filter by who closed it, and open a row for the story.
+      body:
+      - Why do mathematicians care so much about the road and not just the destination? Fermat's Last Theorem is the classic example. The statement itself has no practical use. But in 1847 Gabriel Lamé announced a proof that quietly assumed numbers factor uniquely in a larger number system. They don't. Trying to repair the gap, Ernst Kummer and Richard Dedekind invented ideals, which became the foundation of modern algebra. A century later, the route to Wiles's proof ran through elliptic curves and modular forms, now central to one of the largest projects in mathematics, the Langlands programme.
+      - 'That is the fear in one sentence: if a machine had simply announced "Fermat is true" in 1847, would anyone have invented ideals? The optimistic answer is that a good AI can produce the ideas along with the answer. Whether it does depends on what we train it to deliver.'
+      all: All
+      human: Solved by humans
+      ai: Claimed by AI
+      open: Still open
+      figure: fig. 04 — centuries of waiting
+      note: AI results as reported by OpenAI
+      still_open: still open
+      years:
+        one: "%{count} yr"
+        other: "%{count} yrs"
+      items:
+      - name: Kepler conjecture
+        story: How densely can spheres be packed? Thomas Hales proved Kepler's guess with heavy computer help in 1998. A full formal check (Flyspeck) took until 2014.
+      - name: Fermat's Last Theorem
+        story: Andrew Wiles worked on it largely alone for seven years. Along the way mathematics gained ideal theory in the 19th century and modularity methods in the 20th.
+      - name: Four colour theorem
+        story: Appel and Haken's proof was the first major theorem to rely on a computer, and caused years of debate about what counts as a proof.
+      - name: Riemann hypothesis
+        story: Still open. OpenAI reports a zero-free region for Re(s) > 11/12. That is not the hypothesis itself, but if it holds up, it is the first strip of its kind ever proven.
+      - name: Poincaré conjecture
+        story: Grigori Perelman's proof is the only Millennium Problem solved by humans. He declined both the Fields Medal and the $1 M prize.
+      - name: Navier–Stokes
+        story: Open since Leray's 1934 work. OpenAI's agents showed a smooth flow can blow up in finite time. The proof is formalized in Lean; OpenAI does not claim the prize.
+      - name: Mahler conjecture
+        story: A question about the smallest volume product of a convex body and its dual. Listed among OpenAI's results, with a published summary of the model's reasoning.
+      - name: Free group factors
+        story: Whether different free group factors are isomorphic has been a central question in operator algebras since the era of Murray and von Neumann. OpenAI lists it among its results.
+      - name: Hodge conjecture
+        story: 'Still open in general. OpenAI reports a proof for an important special case: CM abelian varieties.'
+    professions:
+      heading: Professions have always changed
+      sub: I taught mathematics for 13 years. I understand the worry. I see it differently.
+      pull: If the goal of science is to move civilisation forward, then <em>speed of results</em> matters enormously.
+      body:
+      - The faster we get answers, the faster we can ask the next questions. For the first time, a breakthrough that once took several generations may fit into <strong>a single human lifetime</strong>. Turning that down to keep familiar routines feels wrong to me.
+      - 'Every profession has been through this. For each person, adapting in the moment was hard. Together, those changes built a world that is far better than the one before. So I would shift the priority: not protecting conditions where nothing changes for decades, but learning to adapt fast and rebuild how we work.'
+      - In the classroom I learned the main thing. <strong>We never taught for the answer at the back of the book. We taught people to think.</strong> That is exactly why AI does not scare me. It does not cancel thinking. It raises it to a new level.
+      then: Then
+      now: Now
+      figure: fig. 05 — the job outlives the tool
+      jobs:
+      - - Cinema pianist
+        - Film soundtrack
+      - - Elevator operator
+        - Push-button lift
+      - - Punch-card programmer
+        - IDE and AI pair programmer
+      - - Typist at a typewriter
+        - Word processor
+      - - Hand typesetter
+        - Desktop publishing
+      - - Proving every lemma by hand
+        - Choosing questions, directing AI, understanding results
+    scientists:
+      heading: We need more scientists, not fewer
+      sub: Science will transform and accelerate. That is exactly why we need more scientists across every field to push it forward.
+      pull: AI levels the field. You no longer need <em>hundreds of thousands</em> spent on an elite education if you are capable and know how to ask questions.
+      body: 'These models will soon be available to everyone. A student in a small town will hold a tool that only the best labs in the world had yesterday. Talent stops depending on where you were born and what your diploma cost. Mathematics, physics, biology, medicine, materials science: every field will need people who ask the questions, steer the machines and turn results into technologies, medicines and new knowledge.'
+      before: Before AI
+      with: With AI
+      figure: fig. 06 — who gets to do research
+      access:
+      - label: Entry ticket
+        before:
+        - Elite degree
+        - Often hundreds of thousands in tuition
+        with:
+        - Curiosity and good questions
+        - A frontier model costs a subscription
+      - label: Tools at hand
+        before:
+        - What your lab can afford
+        - Top tools concentrated in a few institutions
+        with:
+        - The same model as the best labs
+        - Available everywhere, in every language
+      - label: Who contributes
+        before:
+        - A few thousand specialists per field
+        - Geography decides a lot
+        with:
+        - Anyone capable, anywhere
+        - Talent decides, not postcode
+      - label: The bottleneck
+        before:
+        - Human time to compute and check
+        - Years per hard result
+        with:
+        - Compute, and choosing what to ask
+        - Hours per hard result
+      budget_heading: 'The new skill: maximum progress per unit of compute'
+      budget_body: 'Compute will stay limited and expensive. The Navier–Stokes run alone took millions of messages between agents. The scientist of the future decides which question to ask first, where to spend the budget, and which result deserves deep understanding. Try it: you have <strong>100 compute units</strong>. Pick your research portfolio.'
+      score: Progress score
+      used: Compute used
+      gained: Understanding gained
+      reset: Reset portfolio
+      budget_figure: fig. 07 — a research budget
+      illustrative: Illustrative data
+      units: units
+      tasks:
+      - - Brute-force a famous open problem
+        - A headline, but a proof nobody can build on yet
+      - - Have the model explain and simplify an AI proof
+        - Turn a 200-page result into a method people can use
+      - - Test a conjecture you formulated yourself
+        - Search for counterexamples to your own new question
+      - - Formalize a key result in Lean
+        - Make one important proof fully trustworthy
+      - - Cross-field transfer
+        - Apply a fluid-dynamics method to a biology model
+      - - Generate 500 variants of a known lemma
+        - Lots of output, little that is new
+      verdicts:
+        idle: Select tasks on the left. Each one costs compute; the budget is fixed.
+        headline: A big headline, but little anyone can build on. This is the trap the Fields Medallists warn about.
+        volume: Lots of output, little insight. Volume is not progress.
+        strong: 'A strong portfolio: new results plus the understanding needed to ask the next questions.'
+        mixed: Not bad. Try mixing discovery with work that makes results understandable.
+      after: Here my view and the mathematicians' meet. Asking the right questions and understanding the answers becomes the core skill of a scientist. I just see AI as the reason to build that skill faster, not as a threat to it.
+    freedom:
+      heading: Freedom and the higher path
+      sub: Two ideas from outside mathematics that, I think, explain what is really at stake.
+      existentialists:
+        eyebrow: The existentialists
+        pull: The more AI can do for us, the more <em>freedom</em> we have to choose who we become.
+        body:
+        - 'Existentialist philosophers spent the twentieth century on a question that suddenly feels practical. Kierkegaard described the dizziness a person feels when facing open possibility. Sartre wrote that we are <strong>condemned to be free</strong>: there is no fixed nature or script that decides for us, so every choice is ours, and so is the responsibility for it.'
+        - 'For most of history that freedom was limited by necessity. Years of a life went into computing, copying, checking and remembering, simply because someone had to. As AI takes over more of that work, necessity shrinks and the question the existentialists asked becomes everyone''s daily question: <strong>now that the machine can do this, what do I choose to do?</strong> I think this is exactly where we are now. The freedom is unavoidable. What we do with it is up to us.'
+      brodsky:
+        eyebrow: Joseph Brodsky, Nobel Lecture, 1987
+        pull: Not art that speaks the language of the crowd, but people who learn to speak the <em>language of art</em>.
+        body:
+        - In his Nobel lecture Brodsky turned a familiar demand around. It is not literature that should come down to the everyday speech of the masses; it is people who should rise to the language of literature. I read this as a stand against simplifying art for the widest audience. Literature, for Brodsky, should lift a person to a new intellectual level rather than adapt to the level of speech and thinking they already have.
+        - 'I believe the same is true of AI. <strong>The easy path is to use it to stay where we are</strong>: to think less, write less, understand less, and let the machine fill the gap. The far more interesting path, and the far more useful one for society and civilisation, is to use it to reach a new level, both as a society and as individual people.'
+      easy: The easy path
+      high: The higher path
+      figure: fig. 10 — the same tool, two directions
+      paths:
+      - label: A student
+        easy:
+        - Gets the homework answer
+        - The grade is fine, nothing was learned
+        high:
+        - Argues with the AI about why
+        - Reaches ideas years ahead of the syllabus
+      - label: A mathematician
+        easy:
+        - Collects proofs nobody reads
+        - Results pile up as black boxes
+        high:
+        - Turns AI proofs into new methods
+        - Asks questions no one could ask before
+      - label: A writer
+        easy:
+        - Generates text at the usual level
+        - Language flattens towards the average
+        high:
+        - Uses AI as a demanding editor
+        - Writes better than they could alone
+      - label: Society
+        easy:
+        - Same thinking, just faster
+        - Convenience without growth
+        high:
+        - More people doing real science
+        - A higher shared level of thought
+      notes:
+      - Comfortable and fast. The level of thinking stays where it is.
+      - Harder, slower at first, and the only path that makes us more than we were.
+    poll:
+      heading: Where do you stand?
+      sub: The whole debate comes down to what we maximise. Move the slider to explore each position, then cast your vote.
+      body:
+      - 'Strip away the details and the disagreement is about a single trade-off. Push hard for speed and we get more results than ever, but risk a growing pile of proofs nobody understands. Push hard for understanding and we keep mathematics human, but leave most of the new capability on the table. In the long run the two goals converge: understanding is what lets us ask the next good question. In the short run they compete for the same people and the same compute.'
+      - There is no neutral setting. Pick the one closest to your view and see how others voted.
+      understanding: Depth of understanding
+      speed: Speed of progress
+      gauges:
+        speed: Pace of discovery
+        understanding: Shared human understanding
+        people: People needed in science
+      figure: fig. 08 — choose your trade-off
+      illustrative: Gauges are illustrative
+      results: How readers voted
+      results_figure: fig. 09 — the room, so far
+      live: Live results
+      states:
+      - title: Every theorem a textbook
+        body: Results are checked and digested for years. Understanding is deep, but progress moves at the speed of generations, as it has for 300 years.
+      - title: Careful adoption
+        body: AI handles routine work and checking, people keep the big problems. The pace rises, but most of the opportunity goes unused.
+      - title: Speed and understanding together
+        body: AI finds results, people and AI turn them into methods anyone can learn. It needs new publishing norms and many people trained to work with machine results.
+      - title: Bet on progress
+        body: 'Science accelerates many times over: breakthroughs within one lifetime instead of several. The key skill becomes choosing questions and spending limited compute wisely. This is my position.'
+      - title: Answers only
+        body: Statements get proven faster than anyone reads them. Progress looks huge, but more and more becomes a black box nobody can check or build on.
+      vote: Vote for this position
+      current: Your current vote
+      change: Change my vote to this
+      mine: Your vote
+      none: No votes yet
+      votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      first: 'Be the first: pick a position with the slider above and vote.'
+      saving: Saving your vote…
+      thanks: Thanks, your vote is counted. You can change it any time.
+      error: The vote could not be saved. Please try again in a moment.
+      move: Move the slider, then vote.
+      voted: You have voted. Move the slider to change your vote.
+    sources:
+      heading: Sources
+      items:
+      - A Severe Misalignment of AI in Mathematics — Terence Tao's blog
+      - Declaration text and signatures — mathandai.org
+      - On the Navier–Stokes Millennium Prize Problem — OpenAI
+      - Sharing AI progress in mathematics — OpenAI
+      - Results catalogue — github.com/openai/math
+      disclaimer: AI results are as reported by OpenAI on October 8, 2026; many are not yet independently verified. Historical durations are approximate.

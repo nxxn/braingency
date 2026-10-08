@@ -1,0 +1,428 @@
+# Latvian copy for the interactive article — see ai_in_mathematics.en.yml.
+lv:
+  ai_in_mathematics:
+    eyebrow: Ieskats · Matemātika un MI · 2026. gada oktobris
+    title:
+      human: 358 gadi
+      versus: pret
+      ai: 88 stundām
+    byline:
+      read_time: "≈ 12 min lasīšanas"
+      thoughts_by: 'Domas:'
+      graphs_by: 'Grafiki:'
+    contents: Saturs
+    toc:
+    - Piecas nedēļas, kas satricināja matemātiku
+    - Deklarācija un atbilde
+    - Cilvēki un MI vienā skalā
+    - Slavenās problēmas
+    - Profesijas vienmēr mainās
+    - Mums vajag vairāk zinātnieku
+    - Brīvība un ceļš augšup
+    - Kāda ir jūsu nostāja?
+    labels:
+    - Hronoloģija
+    - Debates
+    - Mērogs
+    - Vēsture
+    - Viedoklis
+    - Viedoklis
+    - Viedoklis
+    - Aptauja
+    intro:
+    - 'Gandrīz visu vēsturi liela neatrisināta matemātikas problēma darbojās kā bāka. Matemātiķu paaudzes kuģoja tās virzienā un pa ceļam atklāja jaunus kontinentus: veselas matemātikas nozares, uz kurām galu galā balstās mūsdienu pasaule, no kriptogrāfijas līdz laika prognozēm.'
+    - 2026. gada septembrī šis ritms salūza. OpenAI MI sistēma piedāvāja pierādījumu vienai no septiņām tūkstošgades problēmām. Tie ir grūtākie jautājumi, ko matemātiķi sev uzdeva gadsimtu mijā, un par katru ir solīts miljons dolāru. Nedēļas laikā divdesmit pieci Fīldsa medaļas laureāti, augstākās matemātikas balvas ieguvēji, publicēja brīdinājumu. Pēc mēneša OpenAI atbildēja ar publisku katalogu, kurā ir simtiem jaunu rezultātu.
+    - 'Šajā rakstā mēs izskaidrojam, kas notika, par ko strīdas abas puses un kāpēc mēs braingency uzskatām, ka pareizā atbilde nav bremzēt, bet sagatavot daudz vairāk cilvēku, kas spēj strādāt kopā ar šīm mašīnām. Visi grafiki zemāk ir interaktīvi: pārslēdziet, filtrējiet un pāršķiriet tos. Beigās nobalsojiet paši.'
+    timeline:
+      heading: Piecas nedēļas, kas satricināja matemātiku
+      sub: Pāršķiriet notikumus no 1. septembra līdz 2026. gada 6. oktobrim.
+      body:
+      - 'Navjē–Stoksa vienādojumi apraksta šķidrumu un gāzu kustību: gaisu virs spārna, asinis artērijā, laikapstākļus virs Atlantijas. Inženieri tos izmanto katru dienu. Tomēr gandrīz simts gadus neviens nespēja atbildēt uz vienkāršu jautājumu. Ja plūsma sākumā ir gluda, vai kādā brīdī ātrums var kļūt bezgalīgs? Matemātiķi to sauc par atrisinājuma „sprādzienu”. Ja tas ir iespējams, šajā punktā vienādojumi pārstāj aprakstīt realitāti.'
+      - 'OpenAI sistēma atbildēja: jā. Tā konstruēja virpuli, kas griežas uz iekšu un izstiepjas kā spageti, kļūstot arvien ātrāks un tievāks, līdz galīgā laikā ātrums tā centrā kļūst bezgalīgs, kamēr kopējā enerģija paliek galīga.'
+      - 'Rezultātu ir grūti noraidīt, pateicoties <strong>Lean</strong> — programmēšanas valodai, kurā katru pierādījuma soli pārbauda dators. Lean pierādījumā nevar paslēpt robu tā, kā 200 lappušu rakstā. Tikpat interesanti ir tas, kā pierādījums tika atrasts: nevis viens modelis domājot vienatnē, bet tūkstošiem MI aģentu, kas strādāja grupās, dalījās ar daļējām idejām un tika pārvirzīti uz daudzsološākajām pieejām.'
+      figure: fig. 01 — piecas rudens nedēļas
+      prev: "← Iepriekšējais"
+      next: Nākamais →
+      year: " 2026"
+      steps:
+      - date: 1. sept.
+        who: ai
+        tag: OpenAI
+        title: Aģenti ķeras pie tūkstošgades problēmām
+        body: 'Izdzirdējusi baumas, ka divas tūkstošgades problēmas jau ir atrisinātas, OpenAI vērš jaunu iekšējo modeli pret visām atvērtajām. Aģentu grupas saņem dažādus katras problēmas variantus: pierādīt vai atspēkot.'
+        stats:
+        - - "≈10 000"
+          - aģentu vienlaikus
+        - - '6'
+          - atvērtās tūkstošgades problēmas
+      - date: 5. sept.
+        who: ai
+        tag: OpenAI
+        title: Navjē–Stokss padodas
+        body: 'Pēc 88 stundām viena grupa atrod gludu plūsmu, kas galīgā laikā sasniedz bezgalīgu ātrumu: virpuli, kas izstiepts kā spageti. Vēl 17 stundas aiziet pilnai formalizācijai Lean.'
+        stats:
+        - - 88 h
+          - līdz pierādījumam
+        - - 2,7 milj.
+          - aģentu ziņojumu
+        - - 130 mljrd.
+          - izvades tokenu
+      - date: 8. sept.
+        who: ai
+        tag: OpenAI
+        title: Paziņojums
+        body: OpenAI publicē pierādījumu un tā Lean pārbaudi, paziņo, ka nepretendēs uz balvu, un atzīst Leventa Alpēges un Tristana Bukmastera prioritāti, kuri ar Anthropic modeli pirmie atrisināja līdzīgu Eilera vienādojumu problēmu.
+        stats:
+        - - '2'
+          - hidrodinamikas problēmas
+        - - "$1 milj."
+          - balva netiek pieprasīta
+      - date: 11. sept.
+        who: hm
+        tag: Matemātiķi
+        title: 25 Fīldsa laureāti iebilst
+        body: 'Terenss Tao, Pēters Šolce, Marina Vjazovska un vēl 22 matemātiķi publicē deklarāciju: MI uzņēmumu un matemātikas mērķi nopietni nesakrīt. Problēmu risināšana vienmēr bija tikai netiešs izpratnes rādītājs.'
+        stats:
+        - - '25'
+          - Fīldsa medaļas laureāti
+        - - 1978–2026
+          - medaļu gadi
+      - date: 6. okt.
+        who: ai
+        tag: OpenAI
+        title: 'Atbilde: katalogs'
+        body: OpenAI publicē GitHub 719 manuskriptus ar versiju vēsturi, citēšanas noteikumiem, spriedumu kopsavilkumiem un Lean pierādījumiem daļai no tiem, un sola finansēt darbnīcas MI rezultātu izpratnei.
+        stats:
+        - - '719'
+          - manuskripti
+        - - "≈4000"
+          - uzdotas problēmas
+        - - 42%
+          - pārbaudīti Lean
+    debate:
+      heading: Deklarācija un atbilde
+      sub: Izvēlieties matemātiķu iebildumu un pārslēdzieties, lai redzētu, ko OpenAI atbildēja mēnesi vēlāk.
+      body:
+      - 'Deklarācija ar nosaukumu <em>A Severe Misalignment of AI in Mathematics</em> („Nopietna MI un matemātikas mērķu nesakritība”) ir īsa, bet tās parakstiem ir milzīgs svars: Terenss Tao, Pēters Šolce, Maksims Koncevičs, Marina Vjazovska, Pjērs Delinjs un vēl divdesmit Fīldsa medaļas laureāti, kuru medaļas aptver laiku no 1978. līdz 2026. gadam.'
+      - 'Galvenais arguments ir vecs, bet jaunos apstākļos. Slavena problēma nekad netika vērtēta tikai atbildes dēļ. Tās vērtība bija tā, ka risinājums lika izgudrot jaunas idejas, kuras kopiena pēc tam gadiem ilgi apsprieda, vienkāršoja un mācīja, līdz tās kļuva par mācību grāmatu materiālu. Kad mašīna sniedz atbildi bez šī ceļa, signāls paliek, bet tas, ko tas agrāk signalizēja, var izzust. Ekonomisti to sauc par Gudharta likumu: kad rādītājs kļūst par mērķi, tas vairs nav labs rādītājs.'
+      - 'Autori iebilst arī pret to, kā rezultāti tiek publicēti: ātri, bez pienācīga izklāsta un atsaucēm uz priekšgājējiem. Un viņi raizējas par studentiem, kuriem uzdevumus dod tieši tāpēc, lai viņi augtu, ar tiem cīnoties. To visu viņi redz kā priekšvēstnesi tam, ar ko saskarsies ikviena intelektuāla profesija.'
+      after: 'Deklarācija neprasa aizliegt MI. Terenss Tao pats to izmanto katru dienu un drīz pēc deklarācijas rakstīja, ka matemātiķu būs vajadzīgs daudz vairāk, nevis mazāk. Strīds ir par to, kas nosaka mērķus: mārketinga nodaļas vai zinātniskā kopiena.'
+      side_mathematicians: Ko teica matemātiķi
+      side_openai: Ko atbildēja OpenAI
+      who:
+      - Fīldsa laureāti
+      - OpenAI, 6. oktobris
+      figure: fig. 02 — iebildums un atbilde
+      note: Vērtējumi ir mūsu interpretācija
+      claims:
+      - title: Rezultātus paziņo steigā
+        verdict: part
+        verdict_text: Daļēji
+        quote: Nav laika pienācīgam izklāstam.
+        mathematicians: Risinājumus paziņo, pirms kāds tos ir pienācīgi aprakstījis, izcēlis jaunās metodes vai apspriedis referātos un rakstos.
+        openai: Tagad viss atrodas <strong>GitHub repozitorijā ar versiju vēsturi</strong> un labojumu kārtību, un OpenAI sola labāku izklāstu nākamajos laidienos. Taču 719 manuskripti vienlaikus joprojām ir daudz vairāk, nekā kopiena spēj ātri izlasīt.
+      - title: Vai pierādījumiem var uzticēties?
+        verdict: ok
+        verdict_text: Ņemts vērā
+        quote: Jauna rezultāta pārbaude cilvēkiem aizņem mēnešus un gadus.
+        mathematicians: Liela pierādījuma cilvēciska pārbaude ir lēna, un kļūdas var slēpties simtiem lappušu.
+        openai: Apmēram <strong>42% galveno rezultātu ir formalizēti Lean</strong>, tas nozīmē, ka katru soli pārbaudīja dators. Par pārējiem OpenAI atklāti raksta, ka tajos var būt kļūdas, un tās tiks labotas.
+      - title: Autorība un plaģiāts
+        verdict: ok
+        verdict_text: Ņemts vērā
+        quote: Kam pienākas nopelns un uz kā darba tas balstās?
+        mathematicians: Kā jebkurā radošā profesijā, steidzīgi MI rezultāti rada sarežģītus autorības jautājumus un jautājumus par atsaucēm uz tiem, kuru idejas bija pirmās.
+        openai: Katram manuskriptam tagad ir <strong>citēšanas norādījumi</strong>. Eilera gadījumā OpenAI publiski atzina citas komandas prioritāti. Uzņēmums arī konsultējas ar neatkarīgu padomdevēju grupu Prinstonas Padziļināto pētījumu institūtā.
+      - title: Zināšanu nodošanas ķēde
+        verdict: part
+        verdict_text: Daļēji
+        quote: Idejas atdzīvojas tikai tad, kad tās nes cilvēki.
+        mathematicians: Bez matemātiķiem, kas iekļauj MI idejas zinātnē, šīs idejas nekad pilnībā neatdzīvosies, un ķēde no skolotāja līdz skolēnam pārtrūks.
+        openai: OpenAI <strong>finansēs darbnīcas, konferences un programmas</strong> MI rezultātu izpratnei un publicēja modeļa spriedumu kopsavilkumus desmit rezultātiem, lai varētu izsekot tā ceļam.
+      - title: Kas notiks ar studentiem?
+        verdict: 'no'
+        verdict_text: Nav atbildes
+        quote: Mēs dodam studentiem uzdevumus, lai viņi augtu.
+        mathematicians: Uzdevumi studentiem ir vajadzīgi, lai attīstītu prasmes un briedumu. Ja atbildes nāk par velti, šis treniņš izzūd.
+        openai: OpenAI publikācijā <strong>nav tiešas atbildes</strong>. Manuprāt, tas ir svarīgākais atvērtais jautājums, un uz to mēģina atbildēt visa atlikusī raksta daļa.
+    scale:
+      heading: Cilvēki un MI vienā skalā
+      sub: Pārslēdzieties starp pierādījuma atrašanu un pārbaudi. Pēc tam ieslēdziet lineāro skalu un vērojiet, kā MI stabiņi gandrīz pazūd.
+      body:
+      - Matemātiskam rezultātam ir divas cenas. Vispirms kādam jāatrod pierādījums. Pēc tam visiem pārējiem jāpārliecinās, ka tas ir pareizs. Cilvēkiem abi soļi ir lēni. Endrjū Vailss gandrīz viens pats septiņus gadus strādāja pie Ferma teorēmas. Kad Grigorijs Perelmans publicēja Puankarē hipotēzes pierādījumu, vairākām ekspertu grupām vajadzēja apmēram trīs gadus, lai to apstiprinātu. Tomasa Heilsa datorizēto Keplera hipotēzes pierādījumu bija tik grūti recenzēt, ka viņš uzsāka formālas pārbaudes projektu, un tas aizņēma vēl vienpadsmit gadus.
+      - 'MI maina abus skaitļus vienlaikus. Grafiks zemāk tos novieto blakus. Pēc noklusējuma skala ir logaritmiska: katrs iedaļas solis ir desmit reizes lielāks par iepriekšējo. Tikai tā stundas un gadu desmiti ietilpst vienā līnijā.'
+      after: 'Salīdzinājums nav pilnīgi godīgs: modelis stāv uz visu iepriekšējo matemātiķu pleciem. Taču mēroga maiņa ir reāla. 26 gados kopš tūkstošgades problēmu izsludināšanas cilvēki atrisināja tieši vienu — Puankarē hipotēzi. Tikai OpenAI katalogā vien tagad ir <strong>719 manuskripti 372 saimēs</strong>, kas iegūti no aptuveni 4000 uzdotām problēmām, vidēji ap trim skaitļošanas stundām uz rezultātu. Apmēram 42% galveno rezultātu ir formāli pārbaudīti Lean.'
+      find: Atrast pierādījumu
+      check: Pārbaudīt pierādījumu
+      log: Log. skala
+      linear: Lineārā skala
+      figure: fig. 03 — laiks līdz rezultātam
+      note: Cilvēku termiņi ir aptuveni
+      rows:
+        find:
+        - - Endrjū Vailss
+          - Ferma teorēma
+          - "≈ 7 gadi"
+        - - OpenAI aģenti
+          - Navjē–Stokss
+          - 88 h
+        - - OpenAI aģenti
+          - Eilers bez ārējā spēka
+          - "≈ 50 h"
+        - - OpenAI katalogs
+          - vidējais rezultāts
+          - "≈ 3 h"
+        check:
+        - - Projekts Flyspeck
+          - Keplera hipotēze, formāla pārbaude
+          - "≈ 11 gadi"
+        - - Matemātiķi
+          - Perelmana pierādījuma pārbaude
+          - "≈ 3 gadi"
+        - - GPT-6 Astra
+          - Navjē–Stokss Lean
+          - 17 h
+      axis_log:
+      - 1 h
+      - 10 h
+      - 4 dienas
+      - 6 nedēļas
+      - 1 gads
+      - 11 gadi
+      axis_linear:
+        find:
+        - '0'
+        - "≈ 3,5 gadi"
+        - 7 gadi
+        check:
+        - '0'
+        - "≈ 5,5 gadi"
+        - 11 gadi
+      note_log: Logaritmiskajā skalā katra iedaļa ir desmit reizes lielāka par iepriekšējo. Tikai tā cilvēku un MI termiņi ietilpst vienā grafikā.
+      note_linear: 'Lineārajā skalā MI stabiņi saraujas līdz plānai svītrai: cilvēki šeit strādāja apmēram <strong>%{ratio} reizes</strong> ilgāk.'
+    problems:
+      heading: Slavenās problēmas
+      sub: Katra līnija rāda, cik ilgi problēma palika atvērta. Filtrējiet pēc tā, kas to atrisināja, un atveriet rindu, lai izlasītu stāstu.
+      body:
+      - Kāpēc matemātiķiem tik ļoti rūp ceļš, nevis tikai galamērķis? Klasisks piemērs ir Lielā Ferma teorēma. Pašam apgalvojumam nav praktiska pielietojuma. Taču 1847. gadā Gabriels Lamē paziņoja par pierādījumu, kurā nemanāmi pieņēma, ka sadalījums reizinātājos paplašinātā skaitļu sistēmā ir viennozīmīgs. Tas tā nav. Mēģinot aizlāpīt robu, Ernsts Kummers un Rihards Dedekinds izgudroja ideālus, kas kļuva par modernās algebras pamatu. Gadsimtu vēlāk ceļš uz Vailsa pierādījumu veda caur eliptiskajām līknēm un modulārajām formām, kas tagad ir viena no lielākajiem matemātikas projektiem — Langlendsa programmas — centrā.
+      - 'Bažas vienā teikumā: ja mašīna 1847. gadā vienkārši būtu paziņojusi „Ferma teorēma ir patiesa”, vai kāds būtu izgudrojis ideālus? Optimistiskā atbilde: labs MI var sniegt idejas kopā ar atbildi. Vai tas tā darīs, ir atkarīgs no tā, ko mēs to iemācīsim sniegt.'
+      all: Visas
+      human: Atrisinājuši cilvēki
+      ai: Pieteicis MI
+      open: Joprojām atvērtas
+      figure: fig. 04 — gadsimtiem ilga gaidīšana
+      note: MI rezultāti pēc OpenAI datiem
+      still_open: joprojām atvērta
+      years:
+        one: "%{count} gads"
+        other: "%{count} gadi"
+      items:
+      - name: Keplera hipotēze
+        story: Cik blīvi var sapakot lodes? Tomass Heilss pierādīja Keplera minējumu 1998. gadā ar lielu datora palīdzību. Pilna formālā pārbaude (Flyspeck) ilga līdz 2014. gadam.
+      - name: Ferma teorēma
+        story: Endrjū Vailss gandrīz viens pats pie tās strādāja septiņus gadus. Pa ceļam matemātika ieguva ideālu teoriju 19. gadsimtā un modularitātes metodes 20. gadsimtā.
+      - name: Četru krāsu teorēma
+        story: Apela un Hakena pierādījums bija pirmā lielā teorēma, kas balstījās uz datoru, un izraisīja gadiem ilgus strīdus par to, ko uzskatīt par pierādījumu.
+      - name: Rīmaņa hipotēze
+        story: Joprojām atvērta. OpenAI ziņo par apgabalu bez nullēm, kur Re(s) > 11/12. Tā nav pati hipotēze, bet, ja rezultāts apstiprināsies, šāda josla pierādīta pirmo reizi.
+      - name: Puankarē hipotēze
+        story: Grigorija Perelmana pierādījums ir vienīgā cilvēku atrisinātā tūkstošgades problēma. Viņš atteicās gan no Fīldsa medaļas, gan no $1 milj. balvas.
+      - name: Navjē–Stokss
+        story: Atvērta kopš Lerē 1934. gada darba. OpenAI aģenti parādīja, ka gluda plūsma var „uzsprāgt” galīgā laikā. Pierādījums formalizēts Lean; uz balvu OpenAI nepretendē.
+      - name: Mālera hipotēze
+        story: Jautājums par izliekta ķermeņa un tā duālā ķermeņa tilpumu minimālo reizinājumu. Iekļauta OpenAI rezultātos, publicēts modeļa spriedumu kopsavilkums.
+      - name: Brīvo grupu faktori
+        story: Vai dažādi brīvo grupu faktori ir izomorfi — centrāls operatoru algebru jautājums kopš Mareja un fon Neimana laikiem. OpenAI to iekļauj savos rezultātos.
+      - name: Hodža hipotēze
+        story: Vispārīgā veidā joprojām atvērta. OpenAI ziņo par pierādījumu svarīgam speciālgadījumam — ābela varietātēm ar kompleksu reizināšanu.
+    professions:
+      heading: Profesijas vienmēr ir mainījušās
+      sub: Es 13 gadus mācīju matemātiku. Es saprotu šīs bažas. Bet es uz to raugos citādi.
+      pull: Ja zinātnes mērķis ir virzīt civilizāciju uz priekšu, tad <em>rezultātu iegūšanas ātrumam</em> ir milzīga nozīme.
+      body:
+      - Jo ātrāk mēs iegūstam atbildes, jo ātrāk varam uzdot nākamos jautājumus. Pirmo reizi izrāviens, kam agrāk vajadzēja vairākas paaudzes, var ietilpt <strong>vienā cilvēka mūžā</strong>. Atteikties no tā ierasto paradumu dēļ man šķiet nepareizi.
+      - 'Tam ir gājusi cauri katra profesija. Katram cilvēkam tajā brīdī pielāgoties bija grūti. Taču kopā šīs pārmaiņas uzbūvēja pasauli, kas ir daudz labāka par iepriekšējo. Tāpēc es mainītu prioritāti: nevis sargāt apstākļus, kuros gadu desmitiem nekas nemainās, bet mācīties ātri pielāgoties un pārbūvēt savu darbu.'
+      - Klasē es sapratu galveno. <strong>Mēs nekad nemācījām atbildes dēļ uzdevumu krājuma beigās. Mēs mācījām cilvēkiem domāt.</strong> Tieši tāpēc MI mani nebiedē. Tas neatceļ domāšanu. Tas paceļ to jaunā līmenī.
+      then: Tad
+      now: Tagad
+      figure: fig. 05 — darbs pārdzīvo instrumentu
+      jobs:
+      - - Kinoteātra pianists
+        - Filmas skaņu celiņš
+      - - Lifta operators
+        - Lifts ar pogām
+      - - Perfokaršu programmētājs
+        - IDE un MI palīgs
+      - - Mašīnrakstītāja
+        - Teksta redaktors
+      - - Burtlicis
+        - Datorizdevējsistēma
+      - - Pierādīt katru lemmu ar roku
+        - Izvēlēties jautājumus, vadīt MI, saprast rezultātus
+    scientists:
+      heading: Mums vajag vairāk zinātnieku, nevis mazāk
+      sub: Zinātne transformēsies un paātrināsies. Tieši tāpēc mums kā nekad vajag vairāk zinātnieku visās jomās, lai to virzītu uz priekšu.
+      pull: MI izlīdzina iespējas. Vairs nav jātērē <em>simtiem tūkstošu</em> elitārai izglītībai, ja tu esi spējīgs un proti uzdot jautājumus.
+      body: 'Drīz šie modeļi būs pieejami visiem. Students mazā pilsētā turēs rokās instrumentu, kas vēl vakar bija tikai labākajām pasaules laboratorijām. Talants vairs nav atkarīgs no tā, kur tu esi dzimis un cik maksāja tavs diploms. Matemātika, fizika, bioloģija, medicīna, materiālzinātne: katrai jomai būs vajadzīgi cilvēki, kas uzdod jautājumus, vada mašīnas un pārvērš rezultātus tehnoloģijās, zālēs un jaunās zināšanās.'
+      before: Pirms MI
+      with: Ar MI
+      figure: fig. 06 — kurš var nodarboties ar zinātni
+      access:
+      - label: Ieejas biļete
+        before:
+        - Elitārs grāds
+        - Bieži simtiem tūkstošu par mācībām
+        with:
+        - Ziņkāre un labi jautājumi
+        - Vismodernākais modelis maksā kā abonements
+      - label: Instrumenti
+        before:
+        - Tas, ko var atļauties laboratorija
+        - Labākie instrumenti dažos institūtos
+        with:
+        - Tas pats modelis, kas labākajām laboratorijām
+        - Pieejams visur un jebkurā valodā
+      - label: Kas piedalās
+        before:
+        - Daži tūkstoši speciālistu katrā jomā
+        - Daudz izšķir ģeogrāfija
+        with:
+        - Jebkurš spējīgs cilvēks jebkur
+        - Izšķir talants, nevis adrese
+      - label: Šaurā vieta
+        before:
+        - Cilvēku laiks aprēķiniem un pārbaudei
+        - Gadi uz grūtu rezultātu
+        with:
+        - Skaitļošana un jautājumu izvēle
+        - Stundas uz grūtu rezultātu
+      budget_heading: 'Jaunā prasme: maksimāls progress uz skaitļošanas vienību'
+      budget_body: 'Skaitļošanas jauda paliks ierobežota un dārga. Tikai Navjē–Stoksa uzdevumam vien vajadzēja miljoniem ziņojumu starp aģentiem. Nākotnes zinātnieks izlemj, kuru jautājumu uzdot pirmo, kur tērēt budžetu un kurš rezultāts ir pelnījis dziļu izpratni. Pamēģiniet: jums ir <strong>100 skaitļošanas vienības</strong>. Izveidojiet savu pētniecības portfeli.'
+      score: Progresa rādītājs
+      used: Izmantotā skaitļošana
+      gained: Iegūtā izpratne
+      reset: Atiestatīt portfeli
+      budget_figure: fig. 07 — pētniecības budžets
+      illustrative: Ilustratīvi dati
+      units: vien.
+      tasks:
+      - - Uzbrukt slavenai atvērtai problēmai ar pārlasi
+        - Skaļš virsraksts, bet pierādījums, uz kā vēl neko nevar būvēt
+      - - Likt modelim izskaidrot un vienkāršot MI pierādījumu
+        - Pārvērst 200 lappušu rezultātu metodē, ko cilvēki var izmantot
+      - - Pārbaudīt paša formulētu hipotēzi
+        - Meklēt pretpiemērus savam jaunajam jautājumam
+      - - Formalizēt galveno rezultātu Lean
+        - Padarīt vienu svarīgu pierādījumu pilnīgi uzticamu
+      - - Pārnese starp jomām
+        - Pielietot hidrodinamikas metodi bioloģijas modelim
+      - - Ģenerēt 500 zināmas lemmas variantus
+        - Daudz izvades, maz jauna
+      verdicts:
+        idle: Izvēlieties uzdevumus kreisajā pusē. Katrs maksā skaitļošanu; budžets ir fiksēts.
+        headline: Skaļš virsraksts, bet būvēt uz tā gandrīz nav ko. Tieši par šo slazdu brīdina Fīldsa laureāti.
+        volume: Daudz izvades, maz izpratnes. Apjoms nav progress.
+        strong: 'Spēcīgs portfelis: jauni rezultāti un izpratne, kas vajadzīga nākamajiem jautājumiem.'
+        mixed: Nav slikti. Mēģiniet apvienot atklājumus ar darbu, kas padara rezultātus saprotamus.
+      after: Šeit mans skatījums un matemātiķu nostāja sakrīt. Prasme uzdot pareizos jautājumus un saprast atbildes kļūst par zinātnieka galveno prasmi. Es tikai redzu MI kā iemeslu attīstīt šo prasmi ātrāk, nevis kā draudus tai.
+    freedom:
+      heading: Brīvība un ceļš augšup
+      sub: Divas idejas ārpus matemātikas, kas, manuprāt, izskaidro, kas patiesībā ir likts uz spēles.
+      existentialists:
+        eyebrow: Eksistenciālisti
+        pull: Jo vairāk MI var izdarīt mūsu vietā, jo vairāk mums ir <em>brīvības</em> izvēlēties, par ko kļūt.
+        body:
+        - 'Eksistenciālisma filozofi visu 20. gadsimtu domāja par jautājumu, kas pēkšņi kļuvis praktisks. Kirkegors aprakstīja reiboni, ko cilvēks izjūt atvērtas iespējas priekšā. Sartrs rakstīja, ka mēs esam <strong>nolemti būt brīvi</strong>: nav noteiktas dabas vai scenārija, kas izlemj mūsu vietā, tāpēc katra izvēle ir mūsu, un arī atbildība par to.'
+        - 'Lielāko vēstures daļu šo brīvību ierobežoja nepieciešamība. Dzīves gadi aizgāja aprēķiniem, pārrakstīšanai, pārbaudei un iegaumēšanai tikai tāpēc, ka kādam tas bija jādara. Jo vairāk šī darba pārņem MI, jo mazāk ir nepieciešamības, un eksistenciālistu jautājums kļūst par ikviena ikdienas jautājumu: <strong>ja mašīna to var izdarīt, ko izvēlos darīt es?</strong> Manuprāt, tieši šeit mēs tagad esam. Brīvība ir neizbēgama. Ko mēs ar to darīsim, ir atkarīgs no mums.'
+      brodsky:
+        eyebrow: Josifs Brodskis, Nobela lekcija, 1987
+        pull: Nevis mākslai jārunā pūļa valodā, bet cilvēkiem jāiemācās runāt <em>mākslas valodā</em>.
+        body:
+        - Savā Nobela lekcijā Brodskis apgrieza ierastu prasību otrādi. Nevis literatūrai jānolaižas līdz masu ikdienas runai, bet tautai jāpaceļas līdz literatūras valodai. Es to saprotu kā nostāju pret mākslas vienkāršošanu plašākās auditorijas dēļ. Literatūrai, pēc Brodska domām, cilvēks jāpaceļ jaunā intelektuālā līmenī, nevis jāpielāgojas jau ierastajam runas un domāšanas līmenim.
+        - 'Es uzskatu, ka tas pats attiecas uz MI. <strong>Vieglais ceļš ir izmantot to, lai paliktu tur, kur esam</strong>: mazāk domāt, mazāk rakstīt, mazāk saprast un ļaut mašīnai aizpildīt tukšumu. Daudz interesantāks un sabiedrībai un civilizācijai daudz noderīgāks ceļš ir ar tā palīdzību sasniegt jaunu līmeni gan sabiedrībai kopumā, gan katram cilvēkam atsevišķi.'
+      easy: Vieglais ceļš
+      high: Ceļš augšup
+      figure: fig. 10 — viens instruments, divi virzieni
+      paths:
+      - label: Students
+        easy:
+        - Saņem mājasdarba atbildi
+        - Atzīme ir laba, nekas nav iemācīts
+        high:
+        - Strīdas ar MI par to, kāpēc
+        - Nonāk pie idejām gadiem pirms programmas
+      - label: Matemātiķis
+        easy:
+        - Krāj pierādījumus, ko neviens nelasa
+        - Rezultāti krājas kā melnās kastes
+        high:
+        - Pārvērš MI pierādījumus jaunās metodēs
+        - Uzdod jautājumus, ko agrāk neviens nevarēja uzdot
+      - label: Rakstnieks
+        easy:
+        - Ģenerē tekstu ierastajā līmenī
+        - Valoda noslīd līdz vidējam
+        high:
+        - Izmanto MI kā prasīgu redaktoru
+        - Raksta labāk, nekā spētu viens
+      - label: Sabiedrība
+        easy:
+        - Tā pati domāšana, tikai ātrāk
+        - Ērtības bez izaugsmes
+        high:
+        - Vairāk cilvēku nodarbojas ar īstu zinātni
+        - Augstāks kopējais domāšanas līmenis
+      notes:
+      - Ērti un ātri. Domāšanas līmenis paliek, kur bija.
+      - Grūtāk un sākumā lēnāk, bet tikai šis ceļš padara mūs par vairāk, nekā bijām.
+    poll:
+      heading: Kāda ir jūsu nostāja?
+      sub: Viss strīds ir par to, ko mēs maksimizējam. Pabīdiet slīdni, lai izpētītu katru nostāju, un nobalsojiet.
+      body:
+      - 'Ja atmet detaļas, nesaskaņas ir par vienu kompromisu. Ja spiež uz ātrumu, rezultātu būs vairāk nekā jebkad, bet aug kaudze pierādījumu, kurus neviens nesaprot. Ja spiež uz izpratni, matemātika paliek cilvēciska, bet lielākā daļa jauno iespēju paliek neizmantota. Ilgtermiņā mērķi saplūst: tieši izpratne ļauj uzdot nākamo labo jautājumu. Īstermiņā tie sacenšas par tiem pašiem cilvēkiem un to pašu skaitļošanas jaudu.'
+      - Neitrālas pozīcijas nav. Izvēlieties to, kas vistuvāk jūsu skatījumam, un paskatieties, kā balsoja citi.
+      understanding: Izpratnes dziļums
+      speed: Progresa ātrums
+      gauges:
+        speed: Atklājumu temps
+        understanding: Kopējā cilvēku izpratne
+        people: Cik cilvēku vajag zinātnei
+      figure: fig. 08 — izvēlieties savu kompromisu
+      illustrative: Rādītāji ir ilustratīvi
+      results: Kā balsoja lasītāji
+      results_figure: fig. 09 — balsis līdz šim
+      live: Rezultāti reāllaikā
+      states:
+      - title: Katra teorēma — mācību grāmata
+        body: Rezultātus gadiem ilgi pārbauda un apgūst. Izpratne ir dziļa, bet progress notiek paaudžu ātrumā, kā pēdējos 300 gadus.
+      - title: Piesardzīga ieviešana
+        body: MI veic rutīnu un pārbaudi, lielās problēmas paliek cilvēkiem. Temps pieaug, bet lielākā daļa iespēju paliek neizmantota.
+      - title: Ātrums un izpratne kopā
+        body: MI atrod rezultātus, cilvēki kopā ar MI pārvērš tos metodēs, ko var apgūt ikviens. Vajag jaunas publicēšanas normas un daudz cilvēku, kas prot strādāt ar mašīnu rezultātiem.
+      - title: Likme uz progresu
+        body: 'Zinātne paātrinās daudzkārt: izrāvieni viena mūža laikā, nevis vairākos. Galvenā prasme kļūst jautājumu izvēle un gudra ierobežotās skaitļošanas tērēšana. Šī ir mana nostāja.'
+      - title: Tikai atbildes
+        body: Apgalvojumus pierāda ātrāk, nekā kāds tos izlasa. Progress izskatās milzīgs, bet arvien vairāk kļūst par melno kasti, ko neviens nevar pārbaudīt vai attīstīt.
+      vote: Balsot par šo nostāju
+      current: Jūsu pašreizējā balss
+      change: Mainīt balsi uz šo
+      mine: Jūsu balss
+      none: Vēl nav balsu
+      votes:
+        one: "%{count} balss"
+        other: "%{count} balsis"
+      first: 'Esiet pirmais: izvēlieties nostāju ar slīdni augstāk un nobalsojiet.'
+      saving: Saglabājam jūsu balsi…
+      thanks: Paldies, jūsu balss ir ieskaitīta. To var mainīt jebkurā brīdī.
+      error: Balsi neizdevās saglabāt. Lūdzu, mēģiniet vēlreiz pēc brīža.
+      move: Pabīdiet slīdni un nobalsojiet.
+      voted: Jūs nobalsojāt. Pabīdiet slīdni, lai mainītu balsi.
+    sources:
+      heading: Avoti
+      items:
+      - A Severe Misalignment of AI in Mathematics — Terensa Tao blogs
+      - Deklarācijas teksts un paraksti — mathandai.org
+      - On the Navier–Stokes Millennium Prize Problem — OpenAI
+      - Sharing AI progress in mathematics — OpenAI
+      - Rezultātu katalogs — github.com/openai/math
+      disclaimer: MI rezultāti norādīti pēc OpenAI datiem 2026. gada 8. oktobrī; daudzi vēl nav neatkarīgi pārbaudīti. Vēsturiskie termiņi ir aptuveni.

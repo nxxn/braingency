@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  include PollVoter
+
   # Every page in Site::PAGES renders app/views/pages/<action>.html.erb.
   # Page copy lives in config/locales/{en,lv}.yml; only news articles come
   # from the database.
@@ -21,7 +23,13 @@ class PagesController < ApplicationController
       return render file: Rails.public_path.join("404.html"), status: :not_found, layout: false
 
     @page_key = @article.og_key
-    render :article
+    return render :article if @article.template.blank?
+
+    if @article.poll_options.positive?
+      @poll_counts = @article.poll_counts
+      @poll_mine = poll_voter_token && @article.poll_votes.find_by(voter: poll_voter_token)&.choice
+    end
+    render "articles/#{@article.template}"
   end
 
   # Development-only logo comparison sheet (see config/routes.rb).

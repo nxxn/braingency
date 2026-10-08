@@ -42,7 +42,7 @@ module Admin
 
     def article_params
       localized = %i[title excerpt body meta_title meta_description].product(Site::LOCALES).map { |f, l| :"#{f}_#{l}" }
-      params.require(:article).permit(:slug, :published_on, :published, *localized)
+      params.require(:article).permit(:slug, :published_on, :published, :template, *localized)
     end
   end
 end

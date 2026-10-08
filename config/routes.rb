@@ -29,8 +29,9 @@ Rails.application.routes.draw do
     end
 
     get "news/:slug", to: "pages#article", as: :article
+    post "news/:slug/vote", to: "poll_votes#create", as: :article_vote
   end
 
-  # "/" sniffs Accept-Language and forwards to /en or /lv
+  # "/" sniffs Accept-Language and forwards to /en, /lv or /ru
   root to: "pages#locale_redirect"
 end

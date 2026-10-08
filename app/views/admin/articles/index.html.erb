@@ -13,7 +13,7 @@
         <td class="muted" style="white-space:nowrap"><%= article.published_on.iso8601 %></td>
         <td>
           <%= link_to article.title_en, edit_admin_article_path(article) %>
-          <div class="muted" style="font-size:.85rem"><%= article.slug %><%= " · no LV translation" if article.title_lv.blank? %></div>
+          <div class="muted" style="font-size:.85rem"><%= article.slug %><% missing = Site::LOCALES.select { |l| article[:"title_#{l}"].blank? } %><%= " · no #{missing.map(&:upcase).join("/")} translation" if missing.any? %><%= " · interactive: #{article.template}" if article.template.present? %></div>
         </td>
         <td>
           <% if article.published %>
